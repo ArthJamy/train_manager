@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simulateur ferroviaire</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <label for="heure">Heure actuelle :</label>
+            <input type="time" id="heure" step="1" value="08:15:00">
+            <button id="mode-heure">⏰ Heure réelle</button>
+        </div>
+        <h2 class="header-center">🛤️ Simulateur ferroviaire — Est de la France</h2>
+        <div class="header-right">
+            <button id="save-trains">💾 Sauvegarder</button>
+        </div>
+    </header>
+
+
+
+    <div id="app">
+        <div id="info-panel">
+            <h2>Informations</h2>
+            <div id="info-content">Cliquez sur un train ou une gare</div>
+        </div>
+
+        <div id="canvas-container">
+            <!-- La carte p5 sera insérée ici -->
+            <div id="controls">
+                <button class="arrow" id="up">↑</button>
+                <div>
+                    <button class="arrow" id="left">←</button>
+                    <button class="arrow" id="right">→</button>
+                </div>
+                <button class="arrow" id="down">↓</button>
+
+                <div id="zoom-controls">
+                    <button class="arrow" id="zoom-in">＋</button>
+                    <button class="arrow" id="zoom-out">－</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="context-menu" style="display:none;"></div>
+
+    <script type="module" src="./src/main.js"></script>
+</body>
+
+
+<!-- p5.js depuis un CDN -->
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+</body>
+
+</html>

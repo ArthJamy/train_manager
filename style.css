@@ -1,0 +1,477 @@
+body {
+    background: #e7ecf5;
+    font-family: sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #2e3b4e;
+    color: white;
+    padding: 5px 10px;
+    height: 50px; /* header plus compact */
+    box-sizing: border-box;
+}
+
+header h2 {
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+    flex: 1;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#app {
+    display: flex;
+    height: calc(100vh - 50px); /* prend tout sauf le header */
+}
+
+
+canvas {
+    margin: 0;
+    border: none;
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+input[type="time"] {
+    padding: 6px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #888;
+}
+
+#info-panel {
+    width: 30%;
+    background: white;
+    border-right: 1px solid #ccc;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+#canvas-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background: #a8c6ff;*/
+    background: #ff0000;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#controls {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    z-index: 10;
+}
+
+#controls>div {
+    display: flex;
+    gap: 5px;
+}
+
+#zoom-controls {
+    display: flex;
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.arrow:hover {
+    background: #dbe3ff;
+}
+
+#context-menu {
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  padding: 8px;
+  font-size: 14px;
+  z-index: 9999;
+}
+
+#context-menu button {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+#context-menu button:hover {
+  background: #e0e7ff;
+}
+
+#context-menu button.train-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+}
+
+.train-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid #222;
+}
+
+
+
+ /* Conteneur global de la bande train */
+#train-image-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Vue défilable */
+#train-image-view {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+  max-height: 60px;  /* ✅ fixe la hauteur visible */
+  scrollbar-width: none;
+}
+
+#train-image-view::-webkit-scrollbar {
+  display: none;
+}
+
+/* Images de rames */
+.train-segment {
+  height: 60px;      /* ✅ assure une hauteur uniforme */
+  object-fit: contain;
+  flex-shrink: 0;
+  
+}
+
+/* Flèches */
+.img-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+#img-left { left: 5px; }
+#img-right { right: 5px; }
+
+.img-nav:hover {
+  background: rgba(230, 230, 255, 0.9);
+}
+
+#mode-heure {
+  margin-left: 10px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #4b5563;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#mode-heure:hover {
+  background: #6b7280;
+}
+
+#mode-heure.active {
+  background: #16a34a; /* vert quand actif */
+}
+
+#info-content {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* === Timeline === */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 10px;
+  padding-left: 10px;
+  border-left: 2px solid #ccc;
+}
+
+/* --- Étape gare --- */
+.timeline-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.timeline-step .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  position: absolute;
+  left: -6px;
+}
+
+.timeline-step .info {
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  text-align: left
+}
+
+.timeline-step .heure {
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.timeline-step .gare {
+  font-size: 0.9rem;
+}
+
+/* --- États des gares --- */
+.timeline-step.passe .dot { background: #888; }
+.timeline-step.futur .dot { background: #ccc; }
+.timeline-step.en-gare .dot { background: dodgerblue; }
+.timeline-step.en-gare .gare { color: dodgerblue; font-weight: 600; }
+.timeline-step.passe .gare { color: #888; }
+
+/* --- Étape segment intermédiaire --- */
+.timeline-segment {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 2px 0;
+}
+
+.timeline-segment .dot-train {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  position: absolute;
+  left: -6px;
+}
+
+/* quand le train est sur ce segment */
+.timeline-segment.en-route .dot-train {
+  background: dodgerblue;
+  box-shadow: 0 0 6px dodgerblue;
+}
+
+
+
+
+
+
+
+/* === Horaire Gare === */
+.horaire-section {
+  margin-top: 10px;
+  border-radius: 6px;
+  padding: 8px;
+  color: white;
+  font-family: 'Consolas', monospace;
+}
+
+.horaire-section h4 {
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* --- Départs (bleu SNCF) --- */
+.horaire-section.depart {
+  background: linear-gradient(180deg, #1e3a8a, #3b82f6);
+}
+
+.horaire-section.depart ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.horaire-section.depart li {
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.horaire-section.depart li .heure {
+  width: 50px;
+  font-weight: bold;
+}
+.horaire-section.depart li.lendemain {
+  opacity: 0.6;
+}
+.horaire-section.depart .next-day {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #dbeafe;
+}
+
+/* --- Arrivées (vert SNCF) --- */
+.horaire-section.arrivee {
+  background: linear-gradient(180deg, #065f46, #10b981);
+  margin-top: 12px;
+}
+
+.horaire-section.arrivee ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.horaire-section.arrivee li {
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.horaire-section.arrivee li .heure {
+  width: 50px;
+  font-weight: bold;
+}
+
+.horaire-section.arrivee li.lendemain {
+  opacity: 0.6;
+}
+.horaire-section.arrivee .next-day {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #dcfce7;
+}
+
+/* --- ID du train --- */
+.train-id {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+
+/* Taille uniforme des lignes horaires */
+.horaire-section ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.horaire-section li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 28px;            /* hauteur fixe */
+  padding: 0 8px;
+  font-size: 0.95rem;
+}
+
+/* Élément "heure" */
+.horaire-section li .heure {
+  flex: 0 0 60px;          /* largeur fixe */
+  text-align: right;
+  font-weight: bold;
+}
+
+/* Élément "destination" (vers) */
+.horaire-section li .vers {
+  flex: 0 0 120px;         /* largeur fixe */
+  text-align: left;
+}
+
+/* Bandeau des gares défilantes */
+.gares-defile {
+  flex: 1;                 /* occupe tout l’espace restant */
+  overflow: hidden;
+  height: 1.1em;
+  position: relative;
+  margin: 0 5px;
+}
+
+/* ID train + tag lendemain */
+.horaire-section li .train-id {
+  flex: 0 0 70px;
+  text-align: right;
+}
+
+.horaire-section li .next-day {
+  flex: 0 0 70px;
+  font-size: 0.8rem;
+  color: #dbeafe;
+  text-align: right;
+}
+
+/* === Bandeau gares défilantes (afficheur quai SNCF) === */
+.gares-defile {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  width: 180px;         /* largeur du bandeau */
+  height: 1.1em;
+  margin-left: 6px;
+  position: relative;
+}
+
+.gares-txt {
+  display: inline-block;
+  white-space: nowrap;
+  animation: defile 8s linear infinite;
+  color: #e0e7ff;
+  font-size: 0.85rem;
+  padding-right: 10px; /* petit espace avant que la boucle recommence */
+}
+
+
+@keyframes defile {
+  0%   { transform: translateX(20%); }
+  100% { transform: translateX(-100%); }
+}
+
