@@ -13,7 +13,7 @@ export const trains = [
         dessertes: [
           { gare: "Mulhouse", heure: "08:00", arret: 2 },
           { gare: "Colmar", heure: "08:25", arret: 3 },
-          { gare: "Selestat", heure: "08:45", arret: 2 },
+          { gare: "Sélestat", heure: "08:45", arret: 2 },
           { gare: "Strasbourg", heure: "09:05", arret: 0 }
         ]
       },
@@ -21,7 +21,7 @@ export const trains = [
         nom: "Strasbourg → Mulhouse",
         dessertes: [
           { gare: "Strasbourg", heure: "09:55", arret: 4 },
-          { gare: "Selestat", heure: "10:15", arret: 2 },
+          { gare: "Sélestat", heure: "10:15", arret: 2 },
           { gare: "Colmar", heure: "10:35", arret: 3 },
           { gare: "Mulhouse", heure: "11:00", arret: 0 }
         ]
@@ -40,19 +40,19 @@ export const trains = [
     },
     trajets: [
       {
-        nom: "Bâle → Strasbourg",
+        nom: "Basel SBB → Strasbourg",
         dessertes: [
-        { gare: "Bâle", heure: "06:42", arret: 3 },
+        { gare: "Basel SBB", heure: "06:42", arret: 3 },
         { gare: "Mulhouse", heure: "07:00", arret: 4 },
         { gare: "Strasbourg", heure: "07:45", arret: 0 }
       ]
       },
       {
-        nom: "Strasbourg → Bâle",
+        nom: "Strasbourg → Basel SBB",
         dessertes: [
           { gare: "Strasbourg", heure: "09:00", arret: 4 },
           { gare: "Mulhouse", heure: "09:50", arret: 4 },
-          { gare: "Bâle", heure: "10:08", arret: 0 }
+          { gare: "Basel SBB", heure: "10:08", arret: 0 }
         ]
       }
     ]
@@ -68,19 +68,19 @@ export const trains = [
     },
     trajets: [
       {
-        nom: "Bâle → Colmar",
+        nom: "Basel SBB → Colmar",
             dessertes: [
-      { gare: "Bâle", heure: "08:15", arret: 3 },
+      { gare: "Basel SBB", heure: "08:15", arret: 3 },
       { gare: "Mulhouse", heure: "08:35", arret: 2 },
       { gare: "Colmar", heure: "09:00", arret: 0 }
     ]
       },
       {
-        nom: "Colmar → Bâle",
+        nom: "Colmar → Basel SBB",
         dessertes: [
           { gare: "Colmar", heure: "19:00", arret: 4 },
           { gare: "Mulhouse", heure: "19:30", arret: 3 },
-          { gare: "Bâle", heure: "19:50", arret: 0 }
+          { gare: "Basel SBB", heure: "19:50", arret: 0 }
         ]
       }
     ]
@@ -96,25 +96,25 @@ export const trains = [
     },
     trajets: [
       {
-        nom: "Bâle → Colmar",
+        nom: "Basel SBB → Colmar",
             dessertes: [
-      { gare: "Bâle", heure: "18:15", arret: 3 },
+      { gare: "Basel SBB", heure: "18:15", arret: 3 },
       { gare: "Mulhouse", heure: "18:33", arret: 2 },
       { gare: "Colmar", heure: "19:00", arret: 0 }
     ]
       },
       {
-        nom: "Colmar → Bâle",
+        nom: "Colmar → Basel SBB",
         dessertes: [
           { gare: "Colmar", heure: "20:00", arret: 4 },
           { gare: "Mulhouse", heure: "20:30", arret: 3 },
-          { gare: "Bâle", heure: "20:50", arret: 0 }
+          { gare: "Basel SBB", heure: "20:50", arret: 0 }
         ]
       },
             {
-        nom: "Bâle → Colmar",
+        nom: "Basel SBB → Colmar",
             dessertes: [
-      { gare: "Bâle", heure: "21:15", arret: 3 },
+      { gare: "Basel SBB", heure: "21:15", arret: 3 },
       { gare: "Mulhouse", heure: "21:33", arret: 2 },
       { gare: "Colmar", heure: "22:00", arret: 0 }
     ]
