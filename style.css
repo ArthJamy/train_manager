@@ -281,11 +281,11 @@ input[type="time"] {
 }
 
 /* --- États des gares --- */
-.timeline-step.passe .dot { background: #888; }
-.timeline-step.futur .dot { background: #ccc; }
+.timeline-step.passe .dot { background: #ccc; }
+.timeline-step.futur .dot { background: #888; }
 .timeline-step.en-gare .dot { background: dodgerblue; }
 .timeline-step.en-gare .gare { color: dodgerblue; font-weight: 600; }
-.timeline-step.passe .gare { color: #888; }
+.timeline-step.passe .gare { color: #ccc; }
 .timeline-step.en-route .gare { color: #888; }
 
 /* --- Étape segment intermédiaire --- */
@@ -475,5 +475,6 @@ input[type="time"] {
   0%   { transform: translateX(20%); }
   100% { transform: translateX(-100%); }
 }
+
 
 
