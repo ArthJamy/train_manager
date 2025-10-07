@@ -348,7 +348,7 @@ function getEtatTrain(train, heureCourante) {
 
         // Si tunnel → pointillé
       if (l.type === "tunnel") {
-        p.drawingContext.setLineDash([8, 6]);
+        p.drawingContext.setLineDash([2, 6]);
       } else {
         p.drawingContext.setLineDash([]); // ← réinitialisation indispensable
       }
@@ -856,3 +856,4 @@ function getEtatTrain(train, heureCourante) {
 
 
 });
+
