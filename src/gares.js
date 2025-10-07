@@ -20,5 +20,10 @@ export const villes = [
   { nom: "Bartenheim", x: 144.6, y: 107.5, type: "petite", fluxPassager: 1400 },
   { nom: "Saint-Louis la Chaussée", x: 188.2, y: 132.8, type: "petite", fluxPassager: 1100 },
   { nom: "Bâle Saint-Jean", x: 229.8, y: 172.1, type: "petite", fluxPassager: 1450 },
-  { nom: "Aéroport Bâle-Mulhouse Terminal", x: 188.7, y: 142.9, type: "moyenne", fluxPassager: 10000 }
+  { nom: "Aéroport Bâle-Mulhouse Terminal", x: 188.7, y: 142.9, type: "moyenne", fluxPassager: 10000 },
+  { nom: "Flaxlanden", x: -38.4, y: 43.7, type: "petite", fluxPassager: 1300 },
+  { nom: "Illfurth", x: -74.5, y: 66.1, type: "petite", fluxPassager: 1600 },
+  { nom: "Dannemarie", x: -217.9, y: 114.7, type: "petite", fluxPassager: 1500 },
+  { nom: "Montreux-Vieux", x: -317.3, y: 124.5, type: "petite", fluxPassager: 1200 },
+  { nom: "Petit-Croix", x: -348.2, y: 132.4, type: "petite", fluxPassager: 800 }
 ];
