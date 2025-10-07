@@ -7,5 +7,18 @@ export const villes = [
   { nom: "Basel SBB", x: 246.9, y: 194.8, type: "grande", fluxPassager: 18000 },
   { nom: "Saint-Louis", x: 213.0, y: 151.8, type: "moyenne", fluxPassager: 8000 },
   { nom: "Altkirch", x: -103.8, y: 115.4, type: "petite", fluxPassager: 1500 },
-  { nom: "Belfort-Ville", x: -489.0, y: 108.9, type: "moyenne", fluxPassager: 9000 }
+  { nom: "Belfort-Ville", x: -489.0, y: 108.9, type: "moyenne", fluxPassager: 9000 },
+  { nom: "Lutterbach", x: -65.8, y: -15.8, type: "petite", fluxPassager: 1000 },
+  { nom: "Staffelfelden", x: -77.8, y: -85.2, type: "petite", fluxPassager: 1500 },
+  { nom: "Bollwiller", x: -75.5, y: -114.5, type: "petite", fluxPassager: 1500 },
+  { nom: "Raedersheim", x: -58.7, y: -144.7, type: "petite", fluxPassager: 1500 },
+  { nom: "Merxheim", x: -40.7, y: -170.6, type: "petite", fluxPassager: 1200 },
+  { nom: "Rouffach", x: -30.2, y: -217.9, type: "petite", fluxPassager: 2200 },
+  { nom: "Herrlisheim-Près-Colmar", x: -22.2, y: -274.7, type: "petite", fluxPassager: 1600 },
+  { nom: "Habsheim", x: 75.2, y: 4.7, type: "petite", fluxPassager: 1200 },
+  { nom: "Sierentz", x: 116.5, y: 86.5, type: "petite", fluxPassager: 1300 },
+  { nom: "Bartenheim", x: 144.6, y: 107.5, type: "petite", fluxPassager: 1400 },
+  { nom: "Saint-Louis la Chaussée", x: 188.2, y: 132.8, type: "petite", fluxPassager: 1100 },
+  { nom: "Bâle Saint-Jean", x: 229.8, y: 172.1, type: "petite", fluxPassager: 1450 },
+  { nom: "Aéroport Bâle-Mulhouse Terminal", x: 188.7, y: 142.9, type: "moyenne", fluxPassager: 10000 }
 ];
