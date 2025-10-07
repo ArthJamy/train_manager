@@ -25,5 +25,17 @@ export const lignes = [
   { gareA: "Altkirch", gareB: "Dannemarie", longueur: 13.8, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "KVB" },
   { gareA: "Dannemarie", gareB: "Montreux-Vieux", longueur: 11.5, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "KVB" },
   { gareA: "Montreux-Vieux", gareB: "Petit-Croix", longueur: 3.6, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "KVB" },
-  { gareA: "Petit-Croix", gareB: "Belfort-Ville", longueur: 16.1, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "KVB" }
+  { gareA: "Petit-Croix", gareB: "Belfort-Ville", longueur: 16.1, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "KVB" },
+  { gareA: "Lutterbach", gareB: "Graffenwald", longueur: 6.3, type: "classique", vitesse_max: 120, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Graffenwald", gareB: "Cernay", longueur: 6.1, type: "classique", vitesse_max: 120, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Cernay", gareB: "Thann Gare", longueur: 7.6, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Thann Gare", gareB: "Bitschwiller-lès-Thann", longueur: 3.8, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Bitschwiller-lès-Thann", gareB: "Willer-sur-Thur", longueur: 2, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Willer-sur-Thur", gareB: "Saint-Amarin", longueur: 5.7, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Saint-Amarin", gareB: "Wesserling", longueur: 3.9, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Wesserling", gareB: "Oderen", longueur: 3.5, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Oderen", gareB: "Kruth", longueur: 1.6, type: "classique", vitesse_max: 60, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Mulhouse", gareB: "Bantzenheim", longueur: 19.5, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" },
+  { gareA: "Bantzenheim", gareB: "Neuenburg (Baden)", longueur: 6.5, type: "classique", vitesse_max: 90, electrification: "15kV CA", signalisation: "PZB" },
+  { gareA: "Neuenburg (Baden)", gareB: "Muellheim", longueur: 4.4, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "PZB" }
 ];

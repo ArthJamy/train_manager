@@ -25,5 +25,17 @@ export const villes = [
   { nom: "Illfurth", x: -74.5, y: 66.1, type: "petite", fluxPassager: 1600 },
   { nom: "Dannemarie", x: -217.9, y: 114.7, type: "petite", fluxPassager: 1500 },
   { nom: "Montreux-Vieux", x: -317.3, y: 124.5, type: "petite", fluxPassager: 1200 },
-  { nom: "Petit-Croix", x: -348.2, y: 132.4, type: "petite", fluxPassager: 800 }
+  { nom: "Petit-Croix", x: -348.2, y: 132.4, type: "petite", fluxPassager: 800 },
+  { nom: "Graffenwald", x: -118.0, y: -38.5, type: "petite", fluxPassager: 2500 },
+  { nom: "Cernay", x: -169.2, y: -59.3, type: "petite", fluxPassager: 2800 },
+  { nom: "Thann Gare", x: -235.8, y: -66.4, type: "moyenne", fluxPassager: 4200 },
+  { nom: "Bitschwiller-lès-Thann", x: -264.4, y: -85.1, type: "petite", fluxPassager: 100 },
+  { nom: "Willer-sur-Thur", x: -273.5, y: -100.1, type: "petite", fluxPassager: 230 },
+  { nom: "Saint-Amarin", x: -314.0, y: -130.5, type: "petite", fluxPassager: 320 },
+  { nom: "Wesserling", x: -345.2, y: -147.4, type: "moyenne", fluxPassager: 800 },
+  { nom: "Oderen", x: -369.2, y: -168.1, type: "petite", fluxPassager: 120 },
+  { nom: "Kruth", x: -374.2, y: -181.2, type: "petite", fluxPassager: 400 },
+  { nom: "Bantzenheim", x: 161.1, y: -68.7, type: "petite", fluxPassager: 600 },
+  { nom: "Neuenburg (Baden)", x: 220.0, y: -69.2, type: "petite", fluxPassager: 1200 },
+  { nom: "Muellheim", x: 256.9, y: -67.5, type: "moyenne", fluxPassager: 7000 }
 ];
