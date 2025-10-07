@@ -5,11 +5,19 @@ import { trains } from './trains.js';
 new p5((p) => {
   let offsetX = 0;
   let offsetY = 0;
+
   let elementSelectionne = null; // { type: "train" | "gare", data: ... }
   let derniereHeureConnue = null; // pour éviter les rafraîchissements inutiles
   let zoom = 1;
-  const moveSpeed = 20;
+  let moveSpeed = 400;
   const zoomFactor = 0.1;
+
+  let frontieres = [];
+
+  p.preload = function () {
+    frontieres = p.loadJSON('./src/frontieres.geojson');
+  };
+
 
   p.setup = function () {
     const container = document.getElementById("canvas-container");
@@ -52,28 +60,60 @@ new p5((p) => {
       // Sinon → déplacement normal
       switch (e.key) {
         case "ArrowUp":
-          offsetY += moveSpeed;
+          offsetY += 40;
           break;
         case "ArrowDown":
-          offsetY -= moveSpeed;
+          offsetY -= 40;
           break;
         case "ArrowLeft":
-          offsetX += moveSpeed;
+          offsetX += 40;
           break;
         case "ArrowRight":
-          offsetX -= moveSpeed;
+          offsetX -= 40;
           break;
       }
     });
 
-
     // --- Zoom boutons ---
     document.getElementById("zoom-in").onclick = () => zoomOnPoint(p.width / 2, p.height / 2, 1);
     document.getElementById("zoom-out").onclick = () => zoomOnPoint(p.width / 2, p.height / 2, -1);
+    // Centrer la coordonnée (0,0) au milieu du canvas
+    offsetX = p.width / 2;
+    offsetY = p.height / 2;
 
     boutonMode.click(); // active automatiquement le mode réel
 
+    precomputeFrontieres();
+
   };
+
+  function precomputeFrontieres() {
+    if (!frontieres || !frontieres.features) return;
+
+    const origine = { lat: 47.742426, lon: 7.3428351 };
+    const echelle = 1000;
+
+    function latLonToXY(lat, lon) {
+      const x = (lon - origine.lon) * echelle;
+      const y = (origine.lat - lat) * echelle;
+      return { x, y };
+    }
+
+    frontieres.paths = [];
+
+    frontieres.features.forEach(feat => {
+      const geom = feat.geometry;
+      if (!geom || geom.type !== "LineString") return;
+
+      const coords = geom.coordinates;
+      const path = coords.map(coord => {
+        const [lon, lat] = coord; // ⚠️ GeoJSON = [lon, lat]
+        return latLonToXY(lat, lon);
+      });
+
+      frontieres.paths.push(path);
+    });
+  }
 
 
   // ===== Fonction de zoom centrée sur le curseur ---
@@ -135,8 +175,6 @@ function majHeureReelle() {
   if (minuteCourante !== derniereHeureConnue) {
     derniereHeureConnue = minuteCourante;
     rafraichirSelection(); // maj des infos toutes les minutes
-
-    // p.redraw(); // force le redessin de la carte, à voir si obligatoire
   }
 }
 
@@ -289,6 +327,18 @@ function getEtatTrain(train, heureCourante) {
     const input = document.getElementById("heure");
     const heureCourante = input ? input.value : "08:00"; // Valeur par défaut
 
+    // --- Fond carte (frontières) ---
+    p.noFill();
+    p.stroke(80);
+    p.strokeWeight(1);
+
+    frontieres.paths.forEach(path => {
+      p.beginShape();
+      path.forEach(pt => p.vertex(pt.x, pt.y));
+      p.endShape();
+    });
+
+
     // --- Lignes ferroviaires ---
     p.strokeWeight(3);
     lignes.forEach(l => {
@@ -296,6 +346,12 @@ function getEtatTrain(train, heureCourante) {
       const g2 = villes.find(v => v.nom === l.gareB);
       if (!g1 || !g2) return;
 
+        // Si tunnel → pointillé
+      if (l.type === "tunnel") {
+        p.drawingContext.setLineDash([8, 6]);
+      } else {
+        p.drawingContext.setLineDash([]); // ← réinitialisation indispensable
+      }
       // Couleur selon l'électrification
       if (l.electrification === "25kV CA") p.stroke(254, 52, 52);
       else if (l.electrification === "15kV CA") p.stroke(87, 186, 52);
@@ -304,37 +360,90 @@ function getEtatTrain(train, heureCourante) {
       p.line(g1.x, g1.y, g2.x, g2.y);
     });
 
-    // --- Gares ---
-    villes.forEach(v => {
-      p.noStroke();
-      p.fill(0);
-      p.circle(v.x, v.y, v.type === "grande" ? 14 : 10);
-      p.textAlign(p.CENTER, p.CENTER);
-      p.textSize(12);
-      p.fill(0);
-      p.text(v.nom, v.x, v.y - 15);
-    });
+
+  // --- Gares ---
+  villes.forEach(v => {
+    if (v.fantome) return;
+    // Règle d'affichage selon le niveau de zoom
+    if (zoom < 1.2 && v.type === "petite") return;  // Trop petit, on ne l'affiche pas
+    if (zoom < 0.8 && v.type === "moyenne") return; // Trop zoomé, cacher aussi les moyennes
+
+    // Taille du cercle et du texte selon le type
+    let size, textSize;
+    switch (v.type) {
+      case "vaste": size = 16; textSize = 18; break;
+      case "grande": size = 14; textSize = 16; break;
+      case "moyenne": size = 12; textSize = 14; break;
+      default: size = 10; textSize = 12;
+    }
+
+    // Ajuster légèrement selon le zoom
+    const scaleFactor = Math.min(2, 1.2 / zoom);
+
+    size *= scaleFactor;
+    textSize *= scaleFactor;
+
+    // Dessin de la gare
+    p.noStroke();
+    p.fill(0);
+    p.circle(v.x, v.y, size);
+
+    // Nom de la gare
+    p.textAlign(p.RIGHT, p.CENTER);
+    p.textSize(textSize);
+    p.fill(0);
+    p.text(v.nom, v.x - 10, v.y);
+  });
 
 
 
 
     // --- Trains sur la carte ---
     trains.forEach(train => {
+
+      let size = 9; 
+      let textSize = 12;
+      const scaleFactor = Math.min(2, 1.2 / zoom);
+      size *= scaleFactor;
+      textSize *= scaleFactor;
+
       const etat = getEtatTrain(train, heureCourante);
       if (!etat || !etat.position) return;
 
       const { position, statut } = etat;
 
       // Couleur selon le statut
-      if (statut.startsWith("entre")) p.fill("blue");
-      else if (statut.startsWith("en gare")) p.fill("orange");
-      else p.fill("gray");
+      if (statut.startsWith("entre")) {
+        p.fill("blue");
+        p.noStroke();
+        p.circle(position.x, position.y, size);
+        p.fill(25, 46, 232);
+        p.textSize(textSize);
+        p.textAlign(p.CENTER, p.CENTER);
+        p.text(train.id, position.x, position.y - textSize);
+      }
+      else if (statut.startsWith("en gare")) {
+        p.fill(0, 179, 255);
+        p.noStroke();
+        p.circle(position.x, position.y, size);
+        p.fill("blue");
+        p.textSize(textSize);
+        p.textAlign(p.CENTER, p.CENTER);
+        p.text(train.id, position.x, position.y - textSize);
+      }else if(statut.startsWith("en attente")){
+        p.fill(113, 114, 122);
+        p.noStroke();
+        p.circle(position.x, position.y, size);
+        p.textSize(textSize);
+        p.textAlign(p.CENTER, p.CENTER);
+        p.text(train.id, position.x, position.y - textSize);
+      }
+      else {
+        p.fill(170, 171, 180);
+        p.noStroke();
+        p.circle(position.x, position.y, size);
+      };
 
-      p.noStroke();
-      p.circle(position.x, position.y, 8);
-      p.fill(0);
-      p.textSize(10);
-      p.text(train.id, position.x, position.y - 10);
 
       train._screenPos = position;
       train._statut = statut;
@@ -382,6 +491,7 @@ function getEtatTrain(train, heureCourante) {
 
     // --- détecter gare proche ---
     for (const v of villes) {
+      if (v.fantome) continue; // 👈 on saute les gares fantômes
       const d = p.dist(worldX, worldY, v.x, v.y);
       if (d < 10 / zoom) gareCliquee = v;
     }
@@ -428,7 +538,7 @@ function getEtatTrain(train, heureCourante) {
       // déterminer couleur selon statut
       let color = "gray";
       if (train._statut?.startsWith("entre")) color = "blue";
-      else if (train._statut?.startsWith("en gare")) color = "orange";
+      else if (train._statut?.startsWith("en gare")) color = "rgb(0, 179, 255)";
 
       // contenu du bouton avec petit rond coloré
       btn.innerHTML = `
@@ -463,7 +573,7 @@ function getEtatTrain(train, heureCourante) {
   function reinitialiserInfoPanel() {
   const div = document.getElementById("info-content");
   if (!div) return;
-  div.innerHTML = `<h2>Informations</h2><div>Cliquez sur un train ou une gare</div>`;
+  div.innerHTML = `<div>Cliquez sur un train ou une gare</div>`;
   }
 
   function rafraichirSelection() {

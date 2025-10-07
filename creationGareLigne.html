@@ -51,6 +51,9 @@
   }
   .small { font-size: 12px; color:#666; }
 </style>
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
 </head>
 <body>
 
@@ -69,7 +72,10 @@
   <div class="colonne" id="colGares">
     <h2>Gares</h2>
     <div id="garesContainer"></div>
-    <button onclick="ajouterCarteGare()">+ Ajouter une gare</button>
+    <div style="display:flex; gap:8px; justify-content:center; margin-bottom:6px;">
+      <button onclick="ajouterCarteGare()">➕ Ajouter une gare</button>
+      <button onclick="ajouterCarteFantome()">👻 Ajouter une gare fantôme</button>
+    </div>
     <div class="list" id="listeGares"></div>
     <div class="small">Astuce : colle un lien Google Maps (formats variés acceptés). Le nom encodé sera décodé automatiquement.</div>
   </div>
@@ -87,12 +93,19 @@
 
 /* ================== !!!!!!!!!!!  PARAMS CARTE !!!!!!!!!!!   ================== */
 const origine = { lat: 47.742426, lon: 7.3428351 }; // Mulhouse = (0,0)
-const echelle = 1000; // nombre de pixels par degré (~ Alsace)
+const echelle = 1000; // nombre de pixels par degré 
 const FLUX_PAR_TAILLE = { petite:1500, moyenne:8000, grande:15000, vaste:40000 };
 /* ================== !!!!!!!!!!!  PARAMS CARTE !!!!!!!!!!!   ================== */
 
-
-
+/* ================== Pré remplir ==================*/
+let dernierContexteLigne = {
+  gareA: null,
+  gareB: null,
+  type: "classique",
+  vitesse: 140,
+  elec: "diesel",
+  sign: "KVB"
+};
 
 /* ================== ETATS ================== */
 let garesExistantes = [];   // normalisées: {nom,x,y,type,fluxPassager}
@@ -106,11 +119,34 @@ function latLonToXY(lat, lon) {
   const y = (origine.lat - lat) * echelle;
   return {x,y};
 }
+
 function normaliserGare(g) {
-  const type = g.type ?? g.taille ?? 'petite';
-  const flux = (g.fluxPassager != null) ? g.fluxPassager : (FLUX_PAR_TAILLE[type] ?? FLUX_PAR_TAILLE.petite);
-  return { nom: g.nom, x: Number(g.x), y: Number(g.y), type, fluxPassager: Number(flux) };
+  // 🪄 Si c’est une gare fantôme, on ne touche à rien
+  if (g.fantome) {
+    return {
+      nom: g.nom,
+      x: Number(g.x),
+      y: Number(g.y),
+      fantome: true
+    };
+  }
+
+  // 🚉 Sinon, gare normale : on complète les champs manquants
+  const type = g.type ?? g.taille ?? "petite";
+  const flux =
+    g.fluxPassager != null
+      ? g.fluxPassager
+      : FLUX_PAR_TAILLE[type] ?? FLUX_PAR_TAILLE.petite;
+
+  return {
+    nom: g.nom,
+    x: Number(g.x),
+    y: Number(g.y),
+    type,
+    fluxPassager: Number(flux)
+  };
 }
+
 function extraireArrayDepuisTexte(texte, varName) {
   // 1) export const villes = [ ... ]
   let re = new RegExp(`export\\s+(?:const|let|var)\\s+${varName}\\s*=\\s*(\\[[\\s\\S]*?\\])`, 'm');
@@ -145,6 +181,8 @@ async function chargerDonnees() {
 
     // Normalisation et affichage
     garesExistantes = villes.map(normaliserGare);
+    console.log("✅ Gares chargées :", garesExistantes);
+
     lignesExistantes = lignes;
 
     majListeGares();
@@ -160,6 +198,9 @@ chargerDonnees();
 
 /* ================== GARes ================== */
 function ajouterCarteGare() {
+  const baseFlux = FLUX_PAR_TAILLE.petite;
+  const fluxAleatoire = Math.round(baseFlux * (0.9 + Math.random() * 0.2)); // ±10%
+
   const container = document.getElementById("garesContainer");
   const div = document.createElement("div");
   div.className = "card";
@@ -193,8 +234,8 @@ function ajouterCarteGare() {
     </div>
     <div class="row">
       <div>
-        <label>Flux passager (auto)</label>
-        <input type="number" class="flux" value="${FLUX_PAR_TAILLE.petite}">
+        <label>Flux passager (modifiable)</label>
+        <input type="number" class="flux" value="${fluxAleatoire}">
       </div>
       <div style="display:flex;align-items:flex-end;gap:8px">
         <button onclick="calculerXYApercu(this)">📐 Aperçu (x,y)</button>
@@ -204,12 +245,78 @@ function ajouterCarteGare() {
   `;
   container.appendChild(div);
 }
+
+function ajouterCarteFantome() {
+  const container = document.getElementById("garesContainer");
+  const div = document.createElement("div");
+  div.className = "card";
+
+  div.innerHTML = `
+    <label>Lien Google Maps (facultatif)</label>
+    <input type="text" placeholder="Coller ici (pour récupérer coordonnées)" onblur="extraireDepuisLien(this)">
+    
+    <div class="row">
+      <div>
+        <label>Nom de la gare fantôme</label>
+        <input type="text" class="nom" placeholder="ex : CourbeMulhouseNord">
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Latitude</label>
+        <input type="number" class="lat" step="0.000001" placeholder="ex : 47.6270725">
+      </div>
+      <div>
+        <label>Longitude</label>
+        <input type="number" class="lon" step="0.000001" placeholder="ex : 7.2390608">
+      </div>
+    </div>
+
+    <div style="text-align:right;margin-top:8px;">
+      <button onclick="calculerXYApercu(this)">📐 Aperçu (x,y)</button>
+      <button onclick="validerGareFantome(this)">✅ Ajouter</button>
+    </div>
+  `;
+
+  container.appendChild(div);
+}
+function validerGareFantome(btn) {
+  const card = btn.closest(".card");
+  const nom = card.querySelector(".nom").value.trim();
+  const lat = parseFloat(card.querySelector(".lat").value);
+  const lon = parseFloat(card.querySelector(".lon").value);
+
+  if (!nom || isNaN(lat) || isNaN(lon)) {
+    alert("⚠️ Remplis au moins le nom, la latitude et la longitude.");
+    return;
+  }
+
+  const { x, y } = latLonToXY(lat, lon);
+  const gare = {
+    nom: nom.startsWith("_") ? nom : "_" + nom,
+    x,
+    y,
+    fantome: true
+  };
+
+  nouvellesGares.push(gare);
+  majListeGares();
+  majSelectsGares();
+  card.remove();
+}
+
 function majFluxPourCarte(sel) {
   const card = sel.closest(".card");
   const taille = sel.value;
   const fluxInput = card.querySelector(".flux");
-  fluxInput.value = FLUX_PAR_TAILLE[taille] ?? FLUX_PAR_TAILLE.petite;
+
+  // flux recalculé à ±10 % du flux de base
+  const base = FLUX_PAR_TAILLE[taille];
+  const alea = Math.round(base * (0.9 + Math.random() * 0.2));
+  fluxInput.value = alea;
 }
+
 function setLatLon(card, lat, lon) {
   if (lat != null) card.querySelector(".lat").value = parseFloat(lat);
   if (lon != null) card.querySelector(".lon").value = parseFloat(lon);
@@ -263,23 +370,69 @@ function validerGare(btn){
   majSelectsGares();
   card.remove();
 }
-function majListeGares(){
-  const toutes = [...garesExistantes, ...nouvellesGares];
-  const out = toutes.map(g => `${g.nom} → x:${g.x.toFixed(1)}, y:${g.y.toFixed(1)}, ${g.type}, flux:${g.fluxPassager}`).join("\n");
-  document.getElementById("listeGares").innerHTML =
-  (out || "(aucune gare)").replaceAll("\n", "<br>");
+
+function validerGareFantome(btn) {
+  const card = btn.closest(".card");
+  const nom = card.querySelector(".nom").value.trim();
+  const lat = parseFloat(card.querySelector(".lat").value);
+  const lon = parseFloat(card.querySelector(".lon").value);
+
+  if (!nom || isNaN(lat) || isNaN(lon)) {
+    alert("⚠️ Remplis au moins le nom, la latitude et la longitude.");
+    return;
+  }
+
+  const { x, y } = latLonToXY(lat, lon);
+  const gare = {
+    nom: nom.startsWith("_") ? nom : "_" + nom,
+    x,
+    y,
+    fantome: true
+  };
+
+  nouvellesGares.push(gare);
+  majListeGares();
+  majSelectsGares();
+  card.remove();
 }
-function majSelectsGares(){
-  const noms = [...garesExistantes, ...nouvellesGares].map(g=>g.nom);
-  document.querySelectorAll(".selectGare").forEach(sel=>{
+
+function majListeGares() {
+  const toutes = [...garesExistantes, ...nouvellesGares];
+
+  const out = toutes.map(g => {
+    // 💡 Si c’est une gare fantôme → affichage simplifié
+    if (g.fantome) {
+      return `${g.nom} → x:${g.x.toFixed(1)}, y:${g.y.toFixed(1)}, fantome: true`;
+    }
+    // 🚉 Sinon gare normale
+    return `${g.nom} → x:${g.x.toFixed(1)}, y:${g.y.toFixed(1)}, ${g.type}, flux:${g.fluxPassager}`;
+  }).join("\n");
+
+  document.getElementById("listeGares").innerHTML =
+    (out || "(aucune gare)").replaceAll("\n", "<br>");
+}
+
+function majSelectsGares() {
+  const noms = [...garesExistantes, ...nouvellesGares]
+    .map(g => g.nom)
+    .sort((a, b) => {
+      const aFantome = a.startsWith("_");
+      const bFantome = b.startsWith("_");
+      if (aFantome && !bFantome) return 1;
+      if (!aFantome && bFantome) return -1;
+      return a.localeCompare(b, 'fr', { sensitivity: 'base' });
+    });
+
+  document.querySelectorAll(".selectGare").forEach(sel => {
     const current = sel.value;
     sel.innerHTML = "";
-    noms.forEach(n=>{
+    noms.forEach(n => {
       const opt = document.createElement("option");
-      opt.textContent = n; opt.value = n;
+      opt.textContent = n;
+      opt.value = n;
       sel.appendChild(opt);
     });
-    if(current && noms.includes(current)) sel.value = current;
+    if (current && noms.includes(current)) sel.value = current;
   });
 }
 
@@ -303,6 +456,7 @@ function ajouterCarteLigne(){
     <label>Type</label>
     <select class="type">
       <option value="classique" selected>classique</option>
+      <option value="tunnel">tunnel</option>
       <option value="LGV">LGV</option>
     </select>
     <label>Vitesse max (km/h)</label>
@@ -325,6 +479,14 @@ function ajouterCarteLigne(){
   `;
   container.appendChild(div);
   majSelectsGares();
+  // 🔁 Préremplissage automatique si un contexte précédent existe
+  if (dernierContexteLigne.gareB) {
+    div.querySelector(".gareA").value = dernierContexteLigne.gareB;
+  }
+  div.querySelector(".type").value = dernierContexteLigne.type;
+  div.querySelector(".vitesse").value = dernierContexteLigne.vitesse;
+  div.querySelector(".elec").value = dernierContexteLigne.elec;
+  div.querySelector(".sign").value = dernierContexteLigne.sign;
 
   // Calcul auto quand on change A/B (facultatif, laisse la main pour modifier)
   const a = div.querySelector(".gareA");
@@ -357,6 +519,7 @@ function validerLigne(btn){
   const elec = card.querySelector(".elec").value;
   const sign = card.querySelector(".sign").value;
   nouvellesLignes.push({gareA,gareB,longueur,type,vitesse_max:vitesse,electrification:elec,signalisation:sign});
+  dernierContexteLigne = { gareA, gareB, type, vitesse, elec, sign };   // 🔁 Sauvegarde du dernier contexte
   majListeLignes();
   card.remove();
 }
@@ -368,14 +531,22 @@ function majListeLignes(){
 }
 
 /* ================== EXPORT ================== */
-function telechargerGares(){
+function telechargerGares() {
   const toutes = [...garesExistantes, ...nouvellesGares];
-  const contenu =
-`export const villes = [
-${toutes.map(g=>`  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", fluxPassager: ${g.fluxPassager} }`).join(",\n")}
-];`;
+
+  const lignes = toutes.map(g => {
+    if (g.fantome) {
+      return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, fantome: true }`;
+    } else {
+      return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", fluxPassager: ${g.fluxPassager} }`;
+    }
+  }).join(",\n");
+
+  const contenu = `export const villes = [\n${lignes}\n];`;
   telechargerFichier("gares.js", contenu);
 }
+
+
 function telechargerLignes(){
   const toutes = [...lignesExistantes, ...nouvellesLignes];
   const contenu =
@@ -384,6 +555,7 @@ ${toutes.map(l=>`  { gareA: "${l.gareA}", gareB: "${l.gareB}", longueur: ${l.lon
 ];`;
   telechargerFichier("voies.js", contenu);
 }
+
 function telechargerFichier(nom, contenu){
   const blob = new Blob([contenu], {type:"text/javascript"});
   const a = document.createElement("a");
@@ -395,13 +567,20 @@ function telechargerFichier(nom, contenu){
 /* ================== COPIE ================== */
 async function copierGares() {
   const toutes = [...garesExistantes, ...nouvellesGares];
-  const contenu =
-`export const villes = [
-${toutes.map(g=>`  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", fluxPassager: ${g.fluxPassager} }`).join(",\n")}
-];`;
+
+  const lignes = toutes.map(g => {
+    if (g.fantome) {
+      return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, fantome: true }`;
+    } else {
+      return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", fluxPassager: ${g.fluxPassager} }`;
+    }
+  }).join(",\n");
+
+  const contenu = `export const villes = [\n${lignes}\n];`;
   await navigator.clipboard.writeText(contenu);
   alert("📋 Contenu de gares.js copié dans le presse-papier !");
 }
+
 
 async function copierLignes() {
   const toutes = [...lignesExistantes, ...nouvellesLignes];
