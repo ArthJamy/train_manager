@@ -47,5 +47,11 @@ export const villes = [
   { nom: "Erstein", x: 295.9, y: -680.6, type: "petite", fluxPassager: 1600 },
   { nom: "Fegersheim - Lipsheim", x: 329.7, y: -748.5, type: "petite", fluxPassager: 2200 },
   { nom: "Graffenstaden", x: 347.0, y: -790.0, type: "petite", fluxPassager: 2300 },
-  { nom: "_courbeStrasSud", x: 366.3, y: -828.3, fantome: true }
+  { nom: "_courbeStrasSud", x: 366.3, y: -828.3, fantome: true },
+  { nom: "Logelbach", x: -21.7, y: -344.9, type: "petite", fluxPassager: 1500 },
+  { nom: "Turckheim", x: -63.3, y: -343.3, type: "petite", fluxPassager: 2300 },
+  { nom: "Wihr-au-Val - Soultzbach", x: -133.1, y: -303.8, type: "petite", fluxPassager: 1200 },
+  { nom: "Munster", x: -208.7, y: -295.8, type: "moyenne", fluxPassager: 5100 },
+  { nom: "Muhlbach-sur-Munster", x: -255.1, y: -282.2, type: "petite", fluxPassager: 300 },
+  { nom: "Metzeral", x: -269.6, y: -270.8, type: "petite", fluxPassager: 600 }
 ];

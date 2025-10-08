@@ -46,5 +46,11 @@ export const lignes = [
   { gareA: "Erstein", gareB: "Fegersheim - Lipsheim", longueur: 8.4, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Fegersheim - Lipsheim", gareB: "Graffenstaden", longueur: 5, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Graffenstaden", gareB: "_courbeStrasSud", longueur: 4.8, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
-  { gareA: "_courbeStrasSud", gareB: "Strasbourg", longueur: 3.3, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "ETCS" }
+  { gareA: "_courbeStrasSud", gareB: "Strasbourg", longueur: 3.3, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Metzeral", gareB: "Muhlbach-sur-Munster", longueur: 2.2, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Muhlbach-sur-Munster", gareB: "Munster", longueur: 5.4, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Munster", gareB: "Wihr-au-Val - Soultzbach", longueur: 8.4, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Wihr-au-Val - Soultzbach", gareB: "Turckheim", longueur: 9.2, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Turckheim", gareB: "Logelbach", longueur: 4.8, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Logelbach", gareB: "Colmar", longueur: 3.5, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" }
 ];
