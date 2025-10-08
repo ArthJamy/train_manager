@@ -112,6 +112,8 @@ let garesExistantes = [];   // normalisées: {nom,x,y,type,fluxPassager}
 let lignesExistantes = [];  // tel le fichier
 let nouvellesGares = [];
 let nouvellesLignes = [];
+let indexProchainSegment = null; // index dans nouvellesGares pour proposer A
+
 
 /* ================== OUTILS ================== */
 function latLonToXY(lat, lon) {
@@ -301,6 +303,7 @@ function validerGareFantome(btn) {
   };
 
   nouvellesGares.push(gare);
+  indexProchainSegment = nouvellesGares.length - 1; // reset le pointeur sur la dernière gare ajoutée
   majListeGares();
   majSelectsGares();
   card.remove();
@@ -366,6 +369,8 @@ function validerGare(btn){
   if(!nom || isNaN(lat) || isNaN(lon)){ alert("Champs incomplets"); return; }
   const {x,y} = latLonToXY(lat,lon);
   nouvellesGares.push({nom, x, y, type, fluxPassager: flux});
+  
+  indexProchainSegment = nouvellesGares.length - 1; // reset le pointeur sur la dernière gare ajoutée
   majListeGares();
   majSelectsGares();
   card.remove();
@@ -436,7 +441,7 @@ function majSelectsGares() {
   });
 }
 
-/* ================== LIGNES ================== */
+
 /* ================== LIGNES ================== */
 function ajouterCarteLigne() {
   const container = document.getElementById("lignesContainer");
@@ -480,48 +485,56 @@ function ajouterCarteLigne() {
   container.appendChild(div);
   majSelectsGares();
 
-  // --------------------------
-  // Préremplissage intelligent :
-  // --------------------------
-  const derniereGare = nouvellesGares.at(-1);
-  const avantDerniere = nouvellesGares.length > 1 ? nouvellesGares.at(-2) : null;
-
   const selectA = div.querySelector(".gareA");
   const selectB = div.querySelector(".gareB");
 
-  // Par défaut : la dernière gare ajoutée en A, et celle d’avant en B
-  if (dernierContexteLigne.gareB) {
-    selectA.value = dernierContexteLigne.gareB;
-  } else if (derniereGare) {
-    selectA.value = derniereGare.nom;
-  }
-  if (avantDerniere) selectB.value = avantDerniere.nom;
+  // --- Pré-remplissage intelligent basé UNIQUEMENT sur l'ordre d'ajout des nouvelles gares ---
+  if (nouvellesGares.length >= 1) {
+    // Initialise/recale le pointeur si besoin
+    if (indexProchainSegment == null || indexProchainSegment >= nouvellesGares.length) {
+      indexProchainSegment = nouvellesGares.length - 1;
+    }
+    const idxA = indexProchainSegment;
+    const idxB = indexProchainSegment - 1;
 
-  // Autres paramètres repris du dernier contexte
+    selectA.value = nouvellesGares[idxA].nom;
+    if (idxB >= 0) {
+      selectB.value = nouvellesGares[idxB].nom;
+    } else {
+      selectB.value = ""; // pas de B proposé si A est la première du lot
+    }
+  } else {
+    // Fallback (aucune nouvelle gare) : garder le dernier contexte si dispo
+    if (dernierContexteLigne.gareB) selectA.value = dernierContexteLigne.gareB;
+  }
+
+  // Récupération des autres paramètres depuis le dernier contexte
   div.querySelector(".type").value = dernierContexteLigne.type;
   div.querySelector(".vitesse").value = dernierContexteLigne.vitesse;
   div.querySelector(".elec").value = dernierContexteLigne.elec;
   div.querySelector(".sign").value = dernierContexteLigne.sign;
 
-  // 🧠 Quand on change la gare A → gare B = gare suivante dans l'ordre d'ajout
+  // Calcul auto immédiat de la distance après le pré-remplissage
+  calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"));
+
+  // --- Quand A change, B = la gare juste AVANT A dans l'ordre d'ajout des nouvelles gares ---
   selectA.addEventListener("change", () => {
-    const toutes = [...garesExistantes, ...nouvellesGares];
-    const index = toutes.findIndex(g => g.nom === selectA.value);
-    if (index >= 0 && index < toutes.length - 1) {
-      selectB.value = toutes[index + 1].nom;
+    const idx = nouvellesGares.findIndex(g => g.nom === selectA.value);
+    if (idx > 0) {
+      selectB.value = nouvellesGares[idx - 1].nom;
     } else {
-      // dernière gare ou non trouvée → on ne change pas
+      // si A est la première du lot (ou pas trouvée), on efface B
       selectB.value = "";
     }
+    calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"));
   });
 
-  // 📏 Calcul auto de distance quand A ou B changent
-  [selectA, selectB].forEach(sel =>
-    sel.addEventListener("change", () =>
-      calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"))
-    )
-  );
+  // Recalcul auto si B change manuellement
+  selectB.addEventListener("change", () => {
+    calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"));
+  });
 }
+
 
   
 function getXYByName(nom){
@@ -549,8 +562,16 @@ function validerLigne(btn){
   const vitesse = parseInt(card.querySelector(".vitesse").value)||140;
   const elec = card.querySelector(".elec").value;
   const sign = card.querySelector(".sign").value;
+  
   nouvellesLignes.push({gareA,gareB,longueur,type,vitesse_max:vitesse,electrification:elec,signalisation:sign});
+  
   dernierContexteLigne = { gareA, gareB, type, vitesse, elec, sign };   // 🔁 Sauvegarde du dernier contexte
+
+   // 🔁 Avance le pointeur pour le prochain segment (on remonte la chaîne)
+  if (indexProchainSegment != null) {
+    indexProchainSegment = Math.max(0, indexProchainSegment - 1);
+  }
+  
   majListeLignes();
   card.remove();
 }
@@ -639,5 +660,6 @@ window.addEventListener("beforeunload", function (e) {
 </script>
 </body>
 </html>
+
 
 
