@@ -1,6 +1,5 @@
 export const lignes = [
   { gareA: "Mulhouse", gareB: "Mulhouse Dornach", longueur: 3.9, type: "classique", vitesse_max: 80, electrification: "25kV CA", signalisation: "ETCS" },
-  { gareA: "Sélestat", gareB: "Strasbourg", longueur: 48.5, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Mulhouse Dornach", gareB: "Lutterbach", longueur: 3.7, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Lutterbach", gareB: "Staffelfelden", longueur: 8, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Staffelfelden", gareB: "Bollwiller", longueur: 3.3, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" },
