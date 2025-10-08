@@ -437,6 +437,7 @@ function majSelectsGares() {
 }
 
 /* ================== LIGNES ================== */
+/* ================== LIGNES ================== */
 function ajouterCarteLigne() {
   const container = document.getElementById("lignesContainer");
   const div = document.createElement("div");
@@ -479,25 +480,22 @@ function ajouterCarteLigne() {
   container.appendChild(div);
   majSelectsGares();
 
-  /* --------------------------
-   * Préremplissage intelligent :
-   * --------------------------
-   * 1. Gare A = dernière gare du contexte (comme avant)
-   * 2. Gare B = gare précédente dans la liste des gares ajoutées
-   */
-  const garesAll = [...garesExistantes, ...nouvellesGares];
+  // --------------------------
+  // Préremplissage intelligent :
+  // --------------------------
   const derniereGare = nouvellesGares.at(-1);
   const avantDerniere = nouvellesGares.length > 1 ? nouvellesGares.at(-2) : null;
 
-  if (dernierContexteLigne.gareB) {
-    div.querySelector(".gareA").value = dernierContexteLigne.gareB;
-  } else if (derniereGare) {
-    div.querySelector(".gareA").value = derniereGare.nom;
-  }
+  const selectA = div.querySelector(".gareA");
+  const selectB = div.querySelector(".gareB");
 
-  if (avantDerniere) {
-    div.querySelector(".gareB").value = avantDerniere.nom;
+  // Par défaut : la dernière gare ajoutée en A, et celle d’avant en B
+  if (dernierContexteLigne.gareB) {
+    selectA.value = dernierContexteLigne.gareB;
+  } else if (derniereGare) {
+    selectA.value = derniereGare.nom;
   }
+  if (avantDerniere) selectB.value = avantDerniere.nom;
 
   // Autres paramètres repris du dernier contexte
   div.querySelector(".type").value = dernierContexteLigne.type;
@@ -505,11 +503,26 @@ function ajouterCarteLigne() {
   div.querySelector(".elec").value = dernierContexteLigne.elec;
   div.querySelector(".sign").value = dernierContexteLigne.sign;
 
-  // Calcul auto quand on change A/B (facultatif, laisse la main pour modifier)
-  const a = div.querySelector(".gareA");
-  const b = div.querySelector(".gareB");
-  [a,b].forEach(sel => sel.addEventListener("change", ()=> calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"))));
+  // 🧠 Quand on change la gare A → gare B = gare suivante dans l'ordre d'ajout
+  selectA.addEventListener("change", () => {
+    const toutes = [...garesExistantes, ...nouvellesGares];
+    const index = toutes.findIndex(g => g.nom === selectA.value);
+    if (index >= 0 && index < toutes.length - 1) {
+      selectB.value = toutes[index + 1].nom;
+    } else {
+      // dernière gare ou non trouvée → on ne change pas
+      selectB.value = "";
+    }
+  });
+
+  // 📏 Calcul auto de distance quand A ou B changent
+  [selectA, selectB].forEach(sel =>
+    sel.addEventListener("change", () =>
+      calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"))
+    )
+  );
 }
+
   
 function getXYByName(nom){
   const g = [...garesExistantes, ...nouvellesGares].find(x=>x.nom===nom);
@@ -626,4 +639,5 @@ window.addEventListener("beforeunload", function (e) {
 </script>
 </body>
 </html>
+
 
