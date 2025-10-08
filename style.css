@@ -286,11 +286,11 @@ input[type="time"] {
 .timeline-step.en-gare .dot { background: dodgerblue; }
 .timeline-step.en-gare .gare { color: dodgerblue; font-weight: 600; }
 .timeline-step.passe .gare { color: #ccc; }
-.timeline-step.en-route .gare { color: #888; }
+.timeline-step.en-route .gare { color: #ccc; }
 
 .timeline-step.en-gare .heure { color: dodgerblue; font-weight: 600; }
 .timeline-step.passe .heure { color: #ccc; }
-.timeline-step.en-route .heure { color: #888; }
+.timeline-step.en-route .heure { color: #ccc; }
 
 /* --- Étape segment intermédiaire --- */
 .timeline-segment {
@@ -479,6 +479,7 @@ input[type="time"] {
   0%   { transform: translateX(20%); }
   100% { transform: translateX(-100%); }
 }
+
 
 
 
