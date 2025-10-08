@@ -40,5 +40,12 @@ export const villes = [
   { nom: "Neuenburg (Baden)", x: 220.0, y: -69.2, type: "petite", fluxPassager: 1200 },
   { nom: "Muellheim", x: 256.9, y: -67.5, type: "moyenne", fluxPassager: 7000 },
   { nom: "Dunkerque", x: -4973.9, y: -3288.0, type: "moyenne", fluxPassager: 7285 },
-  { nom: "_ColSél-Ostheim", x: 18.7, y: -422.7, fantome: true }
+  { nom: "_ColSél-Ostheim", x: 18.7, y: -422.7, fantome: true },
+  { nom: "Ebersheim", x: 151.7, y: -567.6, type: "petite", fluxPassager: 1518 },
+  { nom: "Kogenheim", x: 192.5, y: -596.4, type: "petite", fluxPassager: 1511 },
+  { nom: "Benfeld", x: 241.2, y: -631.2, type: "petite", fluxPassager: 1451 },
+  { nom: "Erstein", x: 295.9, y: -680.6, type: "petite", fluxPassager: 1600 },
+  { nom: "Fegersheim - Lipsheim", x: 329.7, y: -748.5, type: "petite", fluxPassager: 1399 },
+  { nom: "Graffenstaden", x: 347.0, y: -790.0, type: "petite", fluxPassager: 1800 },
+  { nom: "_courbeStrasSud", x: 366.3, y: -828.3, fantome: true }
 ];

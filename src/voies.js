@@ -39,5 +39,13 @@ export const lignes = [
   { gareA: "Bantzenheim", gareB: "Neuenburg (Baden)", longueur: 6.5, type: "classique", vitesse_max: 90, electrification: "15kV CA", signalisation: "PZB" },
   { gareA: "Neuenburg (Baden)", gareB: "Muellheim", longueur: 4.4, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "PZB" },
   { gareA: "Colmar", gareB: "_ColSél-Ostheim", longueur: 10.4, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" },
-  { gareA: "_ColSél-Ostheim", gareB: "Sélestat", longueur: 13.9, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" }
+  { gareA: "_ColSél-Ostheim", gareB: "Sélestat", longueur: 13.9, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Sélestat", gareB: "Ebersheim", longueur: 8, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Ebersheim", gareB: "Kogenheim", longueur: 5.5, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Kogenheim", gareB: "Benfeld", longueur: 6.7, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Benfeld", gareB: "Erstein", longueur: 8.2, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Erstein", gareB: "Fegersheim - Lipsheim", longueur: 8.4, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Fegersheim - Lipsheim", gareB: "Graffenstaden", longueur: 5, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Graffenstaden", gareB: "_courbeStrasSud", longueur: 4.8, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "_courbeStrasSud", gareB: "Strasbourg", longueur: 3.3, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "ETCS" }
 ];
