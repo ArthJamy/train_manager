@@ -52,5 +52,9 @@ export const lignes = [
   { gareA: "Munster", gareB: "Wihr-au-Val - Soultzbach", longueur: 8.4, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Wihr-au-Val - Soultzbach", gareB: "Turckheim", longueur: 9.2, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Turckheim", gareB: "Logelbach", longueur: 4.8, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
-  { gareA: "Logelbach", gareB: "Colmar", longueur: 3.5, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" }
+  { gareA: "Logelbach", gareB: "Colmar", longueur: 3.5, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Molsheim", gareB: "Duttlenheim", longueur: 7.4, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "_courbeStrasSud", gareB: "Lingolsheim", longueur: 3.6, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Lingolsheim", gareB: "Entzheim-Aéroport", longueur: 5.7, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Entzheim-Aéroport", gareB: "Duttlenheim", longueur: 6.9, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" }
 ];
