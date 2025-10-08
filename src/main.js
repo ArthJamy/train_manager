@@ -202,6 +202,21 @@ new p5((p) => {
   // Exposer la fonction globalement pour le snapshot
   window.__getEtatTrain = getEtatTrain;
 
+  // Fonction pour centrer la carte sur un train depuis l'extérieur
+  window.__centrerSurTrain = (x, y, trainId) => {
+    // Centrer la carte sur les coordonnées du train
+    offsetX = p.width / 2 - x * zoom;
+    offsetY = p.height / 2 - y * zoom;
+    
+    // Trouver le train et le sélectionner
+    const train = trains.find(t => t.id === trainId);
+    if (train) {
+      elementSelectionne = { type: "train", data: train };
+      // Petit délai pour laisser la popup se fermer
+      setTimeout(() => afficherInfosTrain(train), 100);
+    }
+  };
+
 
   p.setup = function () {
     const container = document.getElementById("canvas-container");

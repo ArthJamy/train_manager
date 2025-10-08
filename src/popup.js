@@ -263,7 +263,7 @@ function renderGrid(data, container) {
   }
 
   container.innerHTML = data.map(t => `
-    <div class="flotte-card ${etatClass(t.etat)}">
+    <div class="flotte-card ${etatClass(t.etat)}" data-train-id="${t.id}" data-x="${t.x}" data-y="${t.y}">
       <div class="card-header">
         <span class="card-id">${t.id}</span>
         <span class="etat-badge ${etatClass(t.etat)}">${labelEtat(t.etat)}</span>
@@ -275,5 +275,22 @@ function renderGrid(data, container) {
       </div>
     </div>
   `).join("");
+
+  // Ajouter les événements click sur chaque carte
+  container.querySelectorAll('.flotte-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const trainId = card.dataset.trainId;
+      const x = parseFloat(card.dataset.x);
+      const y = parseFloat(card.dataset.y);
+      
+      // Appeler la fonction globale pour centrer la carte
+      if (window.__centrerSurTrain) {
+        window.__centrerSurTrain(x, y, trainId);
+      }
+      
+      // Fermer la popup
+      card.closest('.popup-overlay')?.remove();
+    });
+  });
 }
 
