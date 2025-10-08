@@ -38,5 +38,6 @@ export const villes = [
   { nom: "Kruth", x: -374.2, y: -181.2, type: "petite", fluxPassager: 400 },
   { nom: "Bantzenheim", x: 161.1, y: -68.7, type: "petite", fluxPassager: 600 },
   { nom: "Neuenburg (Baden)", x: 220.0, y: -69.2, type: "petite", fluxPassager: 1200 },
-  { nom: "Muellheim", x: 256.9, y: -67.5, type: "moyenne", fluxPassager: 7000 }
+  { nom: "Muellheim", x: 256.9, y: -67.5, type: "moyenne", fluxPassager: 7000 },
+  { nom: "Dunkerque", x: -4973.9, y: -3288.0, type: "moyenne", fluxPassager: 7285 }
 ];
