@@ -53,5 +53,9 @@ export const villes = [
   { nom: "Wihr-au-Val - Soultzbach", x: -133.1, y: -303.8, type: "petite", fluxPassager: 1200 },
   { nom: "Munster", x: -208.7, y: -295.8, type: "moyenne", fluxPassager: 5100 },
   { nom: "Muhlbach-sur-Munster", x: -255.1, y: -282.2, type: "petite", fluxPassager: 300 },
-  { nom: "Metzeral", x: -269.6, y: -270.8, type: "petite", fluxPassager: 600 }
+  { nom: "Metzeral", x: -269.6, y: -270.8, type: "petite", fluxPassager: 600 },
+  { nom: "Lingolsheim", x: 335.6, y: -817.1, type: "petite", fluxPassager: 2300 },
+  { nom: "Entzheim-Aéroport", x: 285.8, y: -804.5, type: "moyenne", fluxPassager: 7888 },
+  { nom: "Duttlenheim", x: 223.3, y: -802.9, type: "petite", fluxPassager: 4200 },
+  { nom: "Molsheim", x: 157.4, y: -794.7, type: "moyenne", fluxPassager: 7308 }
 ];
