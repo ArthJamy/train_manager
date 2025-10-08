@@ -1,6 +1,86 @@
 import { villes } from './gares.js';
 import { lignes } from './voies.js';
 import { trains } from './trains.js';
+import { afficherTrajetsTrain, afficherFicheHoraire, afficherCarteFlotte } from "./popup.js";
+
+
+// bouton en header
+document.getElementById("btn-flotte").addEventListener("click", () => {
+  afficherCarteFlotte();
+});
+
+// Fonction helper globale
+function timeToMinutes(h) {
+  if (!h) return 0;
+  const [hr, mn] = h.split(":").map(Number);
+  return hr * 60 + (mn || 0);
+}
+
+// ===== EXPOSITION DU SNAPSHOT FLOTTE POUR popup.js =====
+window.__trainRuntime = {
+  getSnapshot: () => {
+    const heureCourante = document.getElementById("heure")?.value || "08:00";
+    
+    return trains.map(train => {
+      const etat = window.__getEtatTrain ? window.__getEtatTrain(train, heureCourante) : null;
+      
+      // Déterminer l'état simplifié
+      let etatSimple = "termine";
+      if (etat?.statut) {
+        if (etat.statut.startsWith("entre")) {
+          etatSimple = "en_route";
+        } else if (etat.statut.startsWith("en gare") || etat.statut.startsWith("en attente")) {
+          etatSimple = "en_gare";
+        }
+      }
+      
+      // Construire l'URL de l'image + nom
+      const imageName = train.nom.replaceAll(" ", "_") + ".png";
+      const imageUrl = `./assets/trains/${imageName}`;
+      
+      return {
+        id: train.id,
+        nom: train.nom,
+        etat: etatSimple,
+        statut: etat?.statut || "Aucune information",  // ✅ On ajoute le statut complet
+        x: etat?.position?.x || 0,
+        y: etat?.position?.y || 0,
+        imageUrl
+      };
+    });
+  }
+};
+
+
+// Affichage gares intermédiaires (fonction globale)
+function trouverCheminEntreGares(gareA, gareB) {
+  const graph = {};
+  lignes.forEach(l => {
+    if (!graph[l.gareA]) graph[l.gareA] = [];
+    if (!graph[l.gareB]) graph[l.gareB] = [];
+    graph[l.gareA].push(l.gareB);
+    graph[l.gareB].push(l.gareA);
+  });
+
+  const queue = [[gareA]];
+  const visited = new Set([gareA]);
+
+  while (queue.length > 0) {
+    const path = queue.shift();
+    const last = path[path.length - 1];
+    if (last === gareB) return path;
+
+    for (const voisin of graph[last] || []) {
+      if (!visited.has(voisin)) {
+        visited.add(voisin);
+        queue.push([...path, voisin]);
+      }
+    }
+  }
+
+  return [gareA, gareB]; // fallback
+}
+
 
 new p5((p) => {
   let offsetX = 0;
@@ -17,6 +97,110 @@ new p5((p) => {
   p.preload = function () {
     frontieres = p.loadJSON('./src/frontieres.geojson');
   };
+
+  // ===== Savoir état du train (fonction accessible globalement via window)
+  function getEtatTrain(train, heureCourante) {
+    const tNow = timeToMinutes(heureCourante);
+    let trajetActuel = null;
+    let statut = "";
+    let position = null; // {x, y}
+
+    // --- Trouver trajet en cours ---
+    for (const trajet of train.trajets) {
+      const debut = timeToMinutes(trajet.dessertes[0].heure);
+      const fin = timeToMinutes(trajet.dessertes.at(-1).heure);
+      if (tNow >= debut && tNow <= fin) {
+        trajetActuel = trajet;
+        statut = "en circulation";
+        break;
+      }
+    }
+
+    // --- Cas 1 : trajet en cours ---
+    if (trajetActuel) {
+      const dess = trajetActuel.dessertes;
+
+      for (let i = 0; i < dess.length - 1; i++) {
+        const a = dess[i];
+        const b = dess[i + 1];
+
+        const tA = timeToMinutes(a.heure);
+        const tB = timeToMinutes(b.heure);
+        const arret = a.arret || 0;
+        const tDepartEffectif = tA + arret;
+
+        // ⏱️ Tant qu'il n'a pas quitté la gare A (pendant arrêt), il reste dessus
+        if (tNow >= tA && tNow < tDepartEffectif) {
+          const g = villes.find(v => v.nom === a.gare);
+          if (g) position = { x: g.x, y: g.y };
+          statut = `en gare à ${a.gare}`;
+          return { trajet: trajetActuel, statut, position };
+        }
+
+        // 🚆 Après départ effectif → suivre le trajet entre A et B
+        if (tNow >= tDepartEffectif && tNow < tB) {
+          const ratio = (tNow - tDepartEffectif) / (tB - tDepartEffectif);
+
+          // 🔹 Chemin réel entre les deux gares
+          const chemin = trouverCheminEntreGares(a.gare, b.gare);
+          const points = chemin.map(nom => villes.find(v => v.nom === nom)).filter(Boolean);
+
+          if (points.length >= 2) {
+            // Longueur totale du chemin
+            let totalDist = 0;
+            for (let j = 0; j < points.length - 1; j++) {
+              totalDist += p.dist(points[j].x, points[j].y, points[j + 1].x, points[j + 1].y);
+            }
+
+            // Distance parcourue sur le chemin
+            let distParcourue = ratio * totalDist;
+
+            // Trouver le segment actuel
+            for (let j = 0; j < points.length - 1; j++) {
+              const d = p.dist(points[j].x, points[j].y, points[j + 1].x, points[j + 1].y);
+              if (distParcourue <= d) {
+                const localRatio = distParcourue / d;
+                const x = p.lerp(points[j].x, points[j + 1].x, localRatio);
+                const y = p.lerp(points[j].y, points[j + 1].y, localRatio);
+                position = { x, y };
+                statut = `entre ${a.gare} et ${b.gare}`;
+                return { trajet: trajetActuel, statut, position };
+              }
+              distParcourue -= d;
+            }
+          }
+        }
+      }
+
+      // arrivé au terminus
+      const derniere = trajetActuel.dessertes.at(-1);
+      const gTerm = villes.find(v => v.nom === derniere.gare);
+      if (gTerm) position = { x: gTerm.x, y: gTerm.y };
+      statut = `en gare à ${derniere.gare}`;
+      return { trajet: trajetActuel, statut, position };
+    }
+
+    // --- Cas 2 : pas de trajet en cours ---
+    const prochain = train.trajets.find(t => timeToMinutes(t.dessertes[0].heure) > tNow);
+    if (prochain) {
+      const precedent = train.trajets.findLast(t => timeToMinutes(t.dessertes.at(-1).heure) <= tNow);
+      const gareRef = precedent ? precedent.dessertes.at(-1).gare : prochain.dessertes[0].gare;
+      const g = villes.find(v => v.nom === gareRef);
+      if (g) position = { x: g.x, y: g.y };
+      statut = `en attente du prochain trajet (${prochain.nom})`;
+      return { trajet: prochain, statut, position };
+    }
+
+    // --- Cas 3 : fin de service ---
+    const dernier = train.trajets.at(-1);
+    const gFin = villes.find(v => v.nom === dernier.dessertes.at(-1).gare);
+    if (gFin) position = { x: gFin.x, y: gFin.y };
+    statut = `Service fini. En gare à ${dernier.dessertes.at(-1).gare}`;
+    return { trajet: dernier, statut, position };
+  }
+
+  // Exposer la fonction globalement pour le snapshot
+  window.__getEtatTrain = getEtatTrain;
 
 
   p.setup = function () {
@@ -178,145 +362,12 @@ function majHeureReelle() {
   }
 }
 
-  // Affichage gares intermédiaires
-  function trouverCheminEntreGares(gareA, gareB) {
-    // Graphe simple des connexions à partir de lignes[]
-    const graph = {};
-    lignes.forEach(l => {
-      if (!graph[l.gareA]) graph[l.gareA] = [];
-      if (!graph[l.gareB]) graph[l.gareB] = [];
-      graph[l.gareA].push(l.gareB);
-      graph[l.gareB].push(l.gareA);
-    });
-
-    // BFS pour trouver le plus court chemin
-    const queue = [[gareA]];
-    const visited = new Set([gareA]);
-
-    while (queue.length > 0) {
-      const path = queue.shift();
-      const last = path[path.length - 1];
-      if (last === gareB) return path;
-
-      for (const voisin of graph[last] || []) {
-        if (!visited.has(voisin)) {
-          visited.add(voisin);
-          queue.push([...path, voisin]);
-        }
-      }
-    }
-
-    return [gareA, gareB]; // fallback
-  }
-
-
-  // ===== Savoir état du train
-function getEtatTrain(train, heureCourante) {
-  const tNow = timeToMinutes(heureCourante);
-  let trajetActuel = null;
-  let statut = "";
-  let position = null; // {x, y}
-
-  // --- Trouver trajet en cours ---
-    for (const trajet of train.trajets) {
-      const debut = timeToMinutes(trajet.dessertes[0].heure);
-      const fin = timeToMinutes(trajet.dessertes.at(-1).heure);
-      if (tNow >= debut && tNow <= fin) {
-        trajetActuel = trajet;
-        statut = "en circulation";
-        break;
-      }
-    }
-
-    // --- Cas 1 : trajet en cours ---
-    if (trajetActuel) {
-      const dess = trajetActuel.dessertes;
-
-      for (let i = 0; i < dess.length - 1; i++) {
-        const a = dess[i];
-        const b = dess[i + 1];
-
-        const tA = timeToMinutes(a.heure);
-        const tB = timeToMinutes(b.heure);
-        const arret = a.arret || 0;
-        const tDepartEffectif = tA + arret;
-
-        // ⏱️ Tant qu'il n'a pas quitté la gare A (pendant arrêt), il reste dessus
-        if (tNow >= tA && tNow < tDepartEffectif) {
-          const g = villes.find(v => v.nom === a.gare);
-          if (g) position = { x: g.x, y: g.y };
-          statut = `en gare à ${a.gare}`;
-          return { trajet: trajetActuel, statut, position };
-        }
-
-        // 🚆 Après départ effectif → suivre le trajet entre A et B
-        if (tNow >= tDepartEffectif && tNow < tB) {
-          const ratio = (tNow - tDepartEffectif) / (tB - tDepartEffectif);
-
-          // 🔹 Chemin réel entre les deux gares
-          const chemin = trouverCheminEntreGares(a.gare, b.gare);
-          const points = chemin.map(nom => villes.find(v => v.nom === nom)).filter(Boolean);
-
-          if (points.length >= 2) {
-            // Longueur totale du chemin
-            let totalDist = 0;
-            for (let j = 0; j < points.length - 1; j++) {
-              totalDist += p.dist(points[j].x, points[j].y, points[j + 1].x, points[j + 1].y);
-            }
-
-            // Distance parcourue sur le chemin
-            let distParcourue = ratio * totalDist;
-
-            // Trouver le segment actuel
-            for (let j = 0; j < points.length - 1; j++) {
-              const d = p.dist(points[j].x, points[j].y, points[j + 1].x, points[j + 1].y);
-              if (distParcourue <= d) {
-                const localRatio = distParcourue / d;
-                const x = p.lerp(points[j].x, points[j + 1].x, localRatio);
-                const y = p.lerp(points[j].y, points[j + 1].y, localRatio);
-                position = { x, y };
-                statut = `entre ${a.gare} et ${b.gare}`;
-                return { trajet: trajetActuel, statut, position };
-              }
-              distParcourue -= d;
-            }
-          }
-        }
-      }
-
-    // arrivé au terminus
-    const derniere = trajetActuel.dessertes.at(-1);
-    const gTerm = villes.find(v => v.nom === derniere.gare);
-    if (gTerm) position = { x: gTerm.x, y: gTerm.y };
-    statut = `en gare à ${derniere.gare}`;
-    return { trajet: trajetActuel, statut, position };
-  }
-
-  // --- Cas 2 : pas de trajet en cours ---
-  const prochain = train.trajets.find(t => timeToMinutes(t.dessertes[0].heure) > tNow);
-  if (prochain) {
-    const precedent = train.trajets.findLast(t => timeToMinutes(t.dessertes.at(-1).heure) <= tNow);
-    const gareRef = precedent ? precedent.dessertes.at(-1).gare : prochain.dessertes[0].gare;
-    const g = villes.find(v => v.nom === gareRef);
-    if (g) position = { x: g.x, y: g.y };
-    statut = `en attente du prochain trajet (${prochain.nom})`;
-    return { trajet: prochain, statut, position };
-  }
-
-  // --- Cas 3 : fin de service ---
-  const dernier = train.trajets.at(-1);
-  const gFin = villes.find(v => v.nom === dernier.dessertes.at(-1).gare);
-  if (gFin) position = { x: gFin.x, y: gFin.y };
-  statut = `Service fini. En gare à ${dernier.dessertes.at(-1).gare}`;
-  return { trajet: dernier, statut, position };
-}
-
 
 
 
   // --- Dessin ---
   p.draw = function () {
-    p.background(170, 200, 255);
+    p.background(228,246,222);
     p.push();
     // Appliquer zoom et décalage
     p.translate(offsetX, offsetY);
@@ -692,6 +743,7 @@ function getEtatTrain(train, heureCourante) {
     <p><b>Destination :</b> ${trajet ? trajet.dessertes.at(-1).gare : "—"}</p>
     <p><b>Prochaines gares :</b></p>
     <ul>${garesHTML}</ul>
+    <button class="btn-popup" id="btn-trajets-train">📅 Voir les trajets du jour</button>
   `;
 
       const imgView = div.querySelector("#train-image-view");
@@ -704,6 +756,10 @@ function getEtatTrain(train, heureCourante) {
         imgView.scrollBy({ left: 150, behavior: "smooth" });
       };
       
+      document.getElementById("btn-trajets-train").addEventListener("click", () => {
+        afficherTrajetsTrain(train.id);
+      });
+
       // Petit délai pour que le navigateur prenne en compte le nouveau contenu
       setTimeout(() => {
         div.style.opacity = 1;
@@ -812,7 +868,7 @@ function getEtatTrain(train, heureCourante) {
               <span class="gares-txt">${d.gares}</span>
             </span>
             <span class="train-id">(${d.train})</span>
-            ${d.demain ? '<span class="next-day">Lendemain</span>' : ""}
+
           </li>`).join("")}
       </ul>
     </div>
@@ -829,9 +885,13 @@ function getEtatTrain(train, heureCourante) {
           </li>`).join("")}
       </ul>
     </div>
-  `;
+    <button class="btn-popup" id="btn-fiche-gare">🕓 Voir la fiche horaire</button>
+    `;
 
       div.innerHTML = html;
+          document.getElementById("btn-fiche-gare").addEventListener("click", () => {
+        afficherFicheHoraire(nomGare);
+      });
       
       setTimeout(() => {
         div.style.opacity = 1;
@@ -840,12 +900,7 @@ function getEtatTrain(train, heureCourante) {
     }, 300);
   }
 
-  // ----- Conversion "HH:MM" → minutes
-  function timeToMinutes(h) {
-    if (!h) return 0;
-    const [hr, mn] = h.split(":").map(Number);
-    return hr * 60 + (mn || 0);
-  }
+
 
   // ----- Conversion minutes → "HH:MM"
   function minutesToTime(minutes) {
@@ -856,4 +911,3 @@ function getEtatTrain(train, heureCourante) {
 
 
 });
-

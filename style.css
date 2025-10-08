@@ -456,31 +456,29 @@ input[type="time"] {
 
 /* === Bandeau gares défilantes (afficheur quai SNCF) === */
 .gares-defile {
-  overflow: hidden;
   display: inline-block;
+  overflow: hidden;
   vertical-align: middle;
-  width: 180px;         /* largeur du bandeau */
-  height: 1.1em;
-  margin-left: 6px;
-  position: relative;
+  width: 180px; /* largeur fixe de la "fenêtre" */
 }
 
 .gares-txt {
   display: inline-block;
   white-space: nowrap;
-  animation: defile 8s linear infinite;
+  animation-name: defile;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 15s; /* durée par défaut */
   color: #e0e7ff;
   font-size: 0.85rem;
-  padding-right: 10px; /* petit espace avant que la boucle recommence */
 }
 
-
+/* Crée le mouvement de droite à gauche */
 @keyframes defile {
-  0%   { transform: translateX(20%); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(20%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
-
-
-
-
-

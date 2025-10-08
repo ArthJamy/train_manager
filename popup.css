@@ -1,0 +1,496 @@
+/* === Fenêtre popup === */
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999; /* ✅ toujours au-dessus */
+  backdrop-filter: blur(2px);
+}
+
+.popup-window {
+  background: #fff;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  padding: 24px 30px;
+  position: relative;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+  animation: fadeIn 0.25s ease;
+  font-family: system-ui, sans-serif;
+  z-index: 100000; /* ✅ par sécurité */
+}
+
+/* ✅ Restaure style du bouton fermer */
+.popup-close {
+  position: absolute;
+  top: 10px; right: 10px;
+  border: none;
+  background: #e5e7eb;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.popup-close:hover {
+  background: #d1d5db;
+  transform: scale(1.1);
+}
+
+/* Animation d’apparition */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* === Boutons popup === */
+.btn-popup {
+  background: #4b5563;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-popup:hover {
+  background: #6b7280;
+  transform: translateY(-1px);
+}
+
+/* === Trajets du train === */
+.trajet-bloc {
+  background: linear-gradient(135deg, #e0e7ff, #f3f4f6);
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin: 10px 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  text-align: left;
+}
+.trajet-bloc h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  color: #1e3a8a;
+  border-bottom: 1px solid #c7d2fe;
+  padding-bottom: 4px;
+}
+
+/* === Fiche horaire === */
+.fiche-horaire {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.horaire-col.depart {
+  background: linear-gradient(180deg, #1e3a8a, #3b82f6);
+  color: white;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.horaire-col.arrivee {
+  background: linear-gradient(180deg, #065f46, #10b981);
+  color: white;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.horaire-col h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.05rem;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 4px;
+}
+
+.horaire-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.horaire-col li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Consolas', monospace;
+  font-size: 0.95rem;
+  height: 28px;
+  overflow: hidden;
+}
+.horaire-col .heure {
+  font-weight: bold;
+  width: 50px;
+  text-align: right;
+}
+.horaire-col .train-id {
+  opacity: 0.9;
+  font-size: 0.8rem;
+  width: 70px;
+  text-align: right;
+}
+
+/* === Fiche horaire === */
+.fiche-horaire {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.horaire-col.depart {
+  background: linear-gradient(180deg, #1e3a8a, #3b82f6);
+  color: white;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.horaire-col.arrivee {
+  background: linear-gradient(180deg, #065f46, #10b981);
+  color: white;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.horaire-col h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.05rem;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 4px;
+}
+
+.horaire-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.horaire-col li {
+  display: flex;
+  gap: 4px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  font-family: 'Consolas', monospace;
+}
+
+.horaire-row-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+.horaire-row-top .heure { font-weight: bold; }
+.horaire-row-top .train-id {
+  opacity: 0.8;
+  font-size: 0.8rem;
+}
+
+/* === Fiche horaire simplifiée === */
+.fiche-horaire {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.horaire-col {
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: white;
+}
+.horaire-col.depart { background: linear-gradient(180deg,#1e3a8a,#3b82f6); }
+.horaire-col.arrivee { background: linear-gradient(180deg,#065f46,#10b981); }
+
+.horaire-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.train-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 8px 4px;
+  min-height: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  font-family: 'Consolas', monospace;
+}
+.train-line:hover {
+  background: rgba(255,255,255,0.1);
+}
+.train-line .heure {
+  font-weight: bold;
+  width: 55px;
+  flex-shrink: 0;
+}
+.train-line .destination {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+.train-line .train-id {
+  opacity: 0.8;
+  width: 70px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* === Mini-popup déroulant (au survol d’une ligne) === */
+.mini-popup {
+  position: fixed;
+  background: white;
+  color: #111;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  padding: 6px 10px;
+  z-index: 100000;
+  animation: fadeIn 0.15s ease;
+  min-width: 160px;
+}
+.mini-popup h5 {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  color: #1e3a8a;
+  font-weight: 600;
+}
+.mini-popup ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mini-popup li {
+  padding: 2px 0;
+  white-space: nowrap;
+}
+
+/*=============== Affichage flotte ===============*/
+/* Bouton sombre cohérent avec #mode-heure */
+.btn-dark {
+  margin-left: 10px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #4b5563;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-dark:hover { background: #6b7280; }
+
+/* Popup Flotte : barre d’outils + layout */
+.flotte-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.flotte-toolbar label { font-weight: 600; }
+
+.flotte-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 14px;
+  min-height: 380px;
+}
+
+/* Carte mini */
+#flotte-carte {
+  width: 100%;
+  height: 420px;           /* rendu CSS ; dimension canvas fixée en JS */
+  background: #f5f7fb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+/* Liste */
+.flotte-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 420px;
+  overflow: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+}
+.flotte-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 10px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eef2f7;
+  cursor: default;
+}
+.flotte-item:hover { background: #f1f5ff; }
+
+.flotte-item .fi-id { font-weight: 700; }
+.flotte-item .fi-state { justify-self: end; }
+
+.etat-chip {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+}
+.etat-en_route  { background: #2563eb; }
+.etat-en_gare   { background: #059669; }
+.etat-termine   { background: #6b7280; }
+.etat-inconnu   { background: #9ca3af; }
+
+/* Légende sous la carte (facultatif) */
+.flotte-legend {
+  display: flex; gap: 12px; margin-top: 6px; font-size: 0.85rem;
+}
+.flotte-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: -1px; }
+.dot-route  { background:#2563eb; border:1px solid #1e40af; }
+.dot-gare   { background:#059669; border:1px solid #065f46; }
+.dot-end    { background:#6b7280; border:1px solid #374151; }
+
+/* === Grille de flotte === */
+.flotte-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+.flotte-toolbar label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.flotte-toolbar select {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  font-size: 0.9rem;
+}
+
+.flotte-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.flotte-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.flotte-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.flotte-card.etat-en_route {
+  border-color: #2563eb;
+  background: linear-gradient(to bottom, #eff6ff 0%, white 30%);
+}
+
+.flotte-card.etat-en_gare {
+  border-color: #059669;
+  background: linear-gradient(to bottom, #ecfdf5 0%, white 30%);
+}
+
+.flotte-card.etat-termine {
+  border-color: #9ca3af;
+  background: linear-gradient(to bottom, #f9fafb 0%, white 30%);
+  opacity: 0.7;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: rgba(0,0,0,0.03);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.card-id {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #111827;
+}
+
+.etat-badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.etat-badge.etat-en_route {
+  background: #2563eb;
+  color: white;
+}
+
+.etat-badge.etat-en_gare {
+  background: #059669;
+  color: white;
+}
+
+.etat-badge.etat-termine {
+  background: #6b7280;
+  color: white;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-image {
+  width: 100%;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.75rem;
+  background: #f9fafb;
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+.card-nom {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.card-info {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}

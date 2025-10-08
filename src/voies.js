@@ -16,7 +16,7 @@ export const lignes = [
   { gareA: "Saint-Louis la Chaussée", gareB: "Saint-Louis", longueur: 3.5, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Saint-Louis", gareB: "Bâle Saint-Jean", longueur: 2.9, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Bâle Saint-Jean", gareB: "Basel SBB", longueur: 4.2, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
-  { gareA: "Bartenheim", gareB: "Aéroport Bâle-Mulhouse Terminal", longueur: 6.6, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Bartenheim", gareB: "Aéroport Bâle-Mulhouse Terminal", longueur: 6.6, type: "tunnel", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Aéroport Bâle-Mulhouse Terminal", gareB: "Saint-Louis", longueur: 3.4, type: "tunnel", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Mulhouse", gareB: "Flaxlanden", longueur: 6.7, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Flaxlanden", gareB: "Illfurth", longueur: 4.8, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "KVB" },
