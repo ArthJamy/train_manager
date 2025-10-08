@@ -57,5 +57,12 @@ export const villes = [
   { nom: "Lingolsheim", x: 335.6, y: -817.1, type: "petite", fluxPassager: 2300 },
   { nom: "Entzheim-Aéroport", x: 285.8, y: -804.5, type: "moyenne", fluxPassager: 7888 },
   { nom: "Duttlenheim", x: 223.3, y: -802.9, type: "petite", fluxPassager: 4200 },
-  { nom: "Molsheim", x: 157.4, y: -794.7, type: "moyenne", fluxPassager: 7308 }
+  { nom: "Molsheim", x: 157.4, y: -794.7, type: "moyenne", fluxPassager: 7308 },
+  { nom: "Rosheim", x: 148.3, y: -762.8, type: "petite", fluxPassager: 1395 },
+  { nom: "Bischoffsheim", x: 155.1, y: -744.6, type: "petite", fluxPassager: 1430 },
+  { nom: "Obernai", x: 146.1, y: -719.6, type: "moyenne", fluxPassager: 8281 },
+  { nom: "Gertwiller", x: 123.7, y: -670.9, type: "petite", fluxPassager: 1355 },
+  { nom: "Eichhoffen", x: 106.7, y: -640.1, type: "petite", fluxPassager: 300 },
+  { nom: "Dambach-la-Ville", x: 92.7, y: -579.2, type: "petite", fluxPassager: 1200 },
+  { nom: "Scherwiller", x: 87.5, y: -544.6, type: "petite", fluxPassager: 1100 }
 ];

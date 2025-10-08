@@ -56,5 +56,13 @@ export const lignes = [
   { gareA: "Molsheim", gareB: "Duttlenheim", longueur: 7.4, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
   { gareA: "_courbeStrasSud", gareB: "Lingolsheim", longueur: 3.6, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Lingolsheim", gareB: "Entzheim-Aéroport", longueur: 5.7, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
-  { gareA: "Entzheim-Aéroport", gareB: "Duttlenheim", longueur: 6.9, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" }
+  { gareA: "Entzheim-Aéroport", gareB: "Duttlenheim", longueur: 6.9, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Sélestat", gareB: "Scherwiller", longueur: 3.3, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Dambach-la-Ville", gareB: "Eichhoffen", longueur: 6.9, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Eichhoffen", gareB: "Gertwiller", longueur: 3.9, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Gertwiller", gareB: "Obernai", longueur: 5.9, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Obernai", gareB: "Bischoffsheim", longueur: 2.9, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Bischoffsheim", gareB: "Rosheim", longueur: 2.2, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Rosheim", gareB: "Molsheim", longueur: 3.6, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Scherwiller", gareB: "Dambach-la-Ville", longueur: 3.9, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" }
 ];
