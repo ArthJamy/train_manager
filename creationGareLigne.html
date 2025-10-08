@@ -437,7 +437,7 @@ function majSelectsGares() {
 }
 
 /* ================== LIGNES ================== */
-function ajouterCarteLigne(){
+function ajouterCarteLigne() {
   const container = document.getElementById("lignesContainer");
   const div = document.createElement("div");
   div.className = "card";
@@ -456,7 +456,6 @@ function ajouterCarteLigne(){
     <label>Type</label>
     <select class="type">
       <option value="classique" selected>classique</option>
-      <option value="tunnel">tunnel</option>
       <option value="LGV">LGV</option>
     </select>
     <label>Vitesse max (km/h)</label>
@@ -479,10 +478,28 @@ function ajouterCarteLigne(){
   `;
   container.appendChild(div);
   majSelectsGares();
-  // 🔁 Préremplissage automatique si un contexte précédent existe
+
+  /* --------------------------
+   * Préremplissage intelligent :
+   * --------------------------
+   * 1. Gare A = dernière gare du contexte (comme avant)
+   * 2. Gare B = gare précédente dans la liste des gares ajoutées
+   */
+  const garesAll = [...garesExistantes, ...nouvellesGares];
+  const derniereGare = nouvellesGares.at(-1);
+  const avantDerniere = nouvellesGares.length > 1 ? nouvellesGares.at(-2) : null;
+
   if (dernierContexteLigne.gareB) {
     div.querySelector(".gareA").value = dernierContexteLigne.gareB;
+  } else if (derniereGare) {
+    div.querySelector(".gareA").value = derniereGare.nom;
   }
+
+  if (avantDerniere) {
+    div.querySelector(".gareB").value = avantDerniere.nom;
+  }
+
+  // Autres paramètres repris du dernier contexte
   div.querySelector(".type").value = dernierContexteLigne.type;
   div.querySelector(".vitesse").value = dernierContexteLigne.vitesse;
   div.querySelector(".elec").value = dernierContexteLigne.elec;
@@ -493,6 +510,7 @@ function ajouterCarteLigne(){
   const b = div.querySelector(".gareB");
   [a,b].forEach(sel => sel.addEventListener("change", ()=> calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"))));
 }
+  
 function getXYByName(nom){
   const g = [...garesExistantes, ...nouvellesGares].find(x=>x.nom===nom);
   return g ? {x:g.x, y:g.y} : null;
@@ -608,3 +626,4 @@ window.addEventListener("beforeunload", function (e) {
 </script>
 </body>
 </html>
+
