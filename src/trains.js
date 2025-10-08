@@ -88,35 +88,63 @@ export const trains = [
   {
     id: "TER2011",
     nom: "AGC blueAlsace 4C",
-    moteurs: ["Diesel"],
-    vitesseMax: 140,
+    moteurs: ["25kV CA"],
+    vitesseMax: 160,
     capacite: {
       premiere: 30,
       seconde: 160
     },
     trajets: [
       {
-        nom: "Basel SBB → Colmar",
+        nom: "Basel SBB → Mulhouse",
             dessertes: [
-      { gare: "Basel SBB", heure: "18:15", arret: 3 },
-      { gare: "Mulhouse", heure: "18:33", arret: 2 },
-      { gare: "Colmar", heure: "19:00", arret: 0 }
+      { gare: "Basel SBB", heure: "07:15", arret: 4 },
+      { gare: "Bâle Saint-Jean", heure: "07:22", arret: 2 },
+      { gare: "Saint-Louis", heure: "07:28", arret: 3 },
+      { gare: "Aéroport Bâle-Mulhouse Terminal", heure: "07:34", arret: 4 },
+      { gare: "Bartenheim", heure: "07:51", arret: 2 },
+      { gare: "Sierentz", heure: "07:57", arret: 2 },
+      { gare: "Habsheim", heure: "08:09", arret: 2 },
+      { gare: "Mulhouse", heure: "08:18", arret: 0 }
     ]
       },
       {
-        nom: "Colmar → Basel SBB",
-        dessertes: [
-          { gare: "Colmar", heure: "20:00", arret: 4 },
-          { gare: "Mulhouse", heure: "20:30", arret: 3 },
-          { gare: "Basel SBB", heure: "20:50", arret: 0 }
-        ]
-      },
-            {
-        nom: "Basel SBB → Colmar",
+        nom: "Mulhouse → Basel SBB",
             dessertes: [
-      { gare: "Basel SBB", heure: "21:15", arret: 3 },
-      { gare: "Mulhouse", heure: "21:33", arret: 2 },
-      { gare: "Colmar", heure: "22:00", arret: 0 }
+      { gare: "Mulhouse", heure: "08:35", arret: 4 },
+      { gare: "Habsheim", heure: "08:48", arret: 2 },
+      { gare: "Sierentz", heure: "09:02", arret: 2 },
+      { gare: "Bartenheim", heure: "09:10", arret: 2 },
+      { gare: "Aéroport Bâle-Mulhouse Terminal", heure: "09:25", arret: 4 },
+      { gare: "Saint-Louis", heure: "09:33", arret: 3 },
+      { gare: "Bâle Saint-Jean", heure: "09:39", arret: 2 },
+      { gare: "Basel SBB", heure: "09:44", arret: 0 }
+    ]
+      },
+      {
+        nom: "Basel SBB → Mulhouse",
+            dessertes: [
+      { gare: "Basel SBB", heure: "10:15", arret: 4 },
+      { gare: "Bâle Saint-Jean", heure: "10:22", arret: 2 },
+      { gare: "Saint-Louis", heure: "10:28", arret: 3 },
+      { gare: "Aéroport Bâle-Mulhouse Terminal", heure: "10:34", arret: 4 },
+      { gare: "Bartenheim", heure: "10:51", arret: 2 },
+      { gare: "Sierentz", heure: "10:57", arret: 2 },
+      { gare: "Habsheim", heure: "11:09", arret: 2 },
+      { gare: "Mulhouse", heure: "11:18", arret: 0 }
+    ]
+      },
+      {
+        nom: "Mulhouse → Basel SBB",
+            dessertes: [
+      { gare: "Mulhouse", heure: "12:35", arret: 4 },
+      { gare: "Habsheim", heure: "12:48", arret: 2 },
+      { gare: "Sierentz", heure: "13:02", arret: 2 },
+      { gare: "Bartenheim", heure: "13:10", arret: 2 },
+      { gare: "Aéroport Bâle-Mulhouse Terminal", heure: "13:25", arret: 4 },
+      { gare: "Saint-Louis", heure: "13:33", arret: 3 },
+      { gare: "Bâle Saint-Jean", heure: "13:39", arret: 2 },
+      { gare: "Basel SBB", heure: "13:44", arret: 0 }
     ]
       },
     ]
