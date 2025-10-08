@@ -2,7 +2,7 @@ export const trains = [
   {
     id: "TER2001",
     nom: "Regiolis fluoGrandEst 5C",
-    moteurs: ["25kV CA"],
+    moteurs: ["25kV CA", "1.5kV CC"],
     vitesseMax: 160,
     capacite: { premiere: 80, seconde: 360 },
     composition: ["Regiolis fluoGrandEst 5C"],
@@ -32,7 +32,7 @@ export const trains = [
   {
     id: "TGV100",
     nom: "TGVEuroDuplex lyria 8C",
-    moteurs: ["25kV CA", "15kV CA"],
+    moteurs: ["25kV CA", "1.5kV CC", "15kV CA"],
     vitesseMax: 320,
     capacite: {
       premiere: 100,
@@ -60,8 +60,8 @@ export const trains = [
   {
     id: "TER2010",
     nom: "AGC blueAlsace 4C",
-    moteurs: ["Diesel"],
-    vitesseMax: 140,
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
     capacite: {
       premiere: 30,
       seconde: 160
@@ -88,7 +88,7 @@ export const trains = [
   {
     id: "TER2011",
     nom: "AGC blueAlsace 4C",
-    moteurs: ["25kV CA"],
+    moteurs: ["25kV CA", "1.5kV CC"],
     vitesseMax: 160,
     capacite: {
       premiere: 30,
@@ -147,6 +147,70 @@ export const trains = [
       { gare: "Basel SBB", heure: "13:44", arret: 0 }
     ]
       },
+    ]
+  },
+  {
+    id: "TER2012",
+    nom: "Regiolis blueFluoEurope 4C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: {
+      premiere: 24,
+      seconde: 210
+    },
+    trajets: [
+      {
+        nom: "Mulhouse → Belfort-Ville",
+            dessertes: [
+      { gare: "Mulhouse", heure: "07:58", arret: 4 },
+      { gare: "Flaxlanden", heure: "08:05", arret: 1 },
+      { gare: "Illfurth", heure: "08:09", arret: 1 },
+      { gare: "Altkirch", heure: "08:13", arret: 2 },
+      { gare: "Dannemarie", heure: "08:20", arret: 2 },
+      { gare: "Montreux-Vieux", heure: "08:26", arret: 1 },
+      { gare: "Petit-Croix", heure: "08:29", arret: 1 },
+      { gare: "Belfort-Ville", heure: "08:40", arret: 0 },
+    ]
+      },
+      {
+        nom: "Belfort-Ville → Mulhouse",
+            dessertes: [
+      { gare: "Belfort-Ville", heure: "11:00", arret: 4 },
+      { gare: "Petit-Croix", heure: "11:10", arret: 1 },
+      { gare: "Montreux-Vieux", heure: "11:13", arret: 1 },
+      { gare: "Dannemarie", heure: "11:17", arret: 2 },
+      { gare: "Altkirch", heure: "11:23", arret: 2 },
+      { gare: "Illfurth", heure: "11:29", arret: 1 },
+      { gare: "Flaxlanden", heure: "11:33", arret: 1 },
+      { gare: "Mulhouse", heure: "11:39", arret: 0 },
+    ]
+      },
+      {
+        nom: "Mulhouse → Belfort-Ville",
+            dessertes: [
+      { gare: "Mulhouse", heure: "15:58", arret: 4 },
+      { gare: "Flaxlanden", heure: "16:05", arret: 1 },
+      { gare: "Illfurth", heure: "16:09", arret: 1 },
+      { gare: "Altkirch", heure: "16:13", arret: 2 },
+      { gare: "Dannemarie", heure: "16:20", arret: 2 },
+      { gare: "Montreux-Vieux", heure: "16:26", arret: 1 },
+      { gare: "Petit-Croix", heure: "16:29", arret: 1 },
+      { gare: "Belfort-Ville", heure: "16:40", arret: 0 },
+    ]
+      },
+      {
+        nom: "Belfort-Ville → Mulhouse",
+            dessertes: [
+      { gare: "Belfort-Ville", heure: "19:00", arret: 4 },
+      { gare: "Petit-Croix", heure: "19:10", arret: 1 },
+      { gare: "Montreux-Vieux", heure: "19:13", arret: 1 },
+      { gare: "Dannemarie", heure: "19:17", arret: 2 },
+      { gare: "Altkirch", heure: "19:23", arret: 2 },
+      { gare: "Illfurth", heure: "19:29", arret: 1 },
+      { gare: "Flaxlanden", heure: "19:33", arret: 1 },
+      { gare: "Mulhouse", heure: "19:39", arret: 0 },
+    ]
+      }
     ]
   }
 ];
