@@ -35,7 +35,7 @@ export const lignes = [
   { gareA: "Wesserling", gareB: "Oderen", longueur: 3.5, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Oderen", gareB: "Kruth", longueur: 1.6, type: "classique", vitesse_max: 60, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Mulhouse", gareB: "Bantzenheim", longueur: 19.5, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" },
-  { gareA: "Bantzenheim", gareB: "Neuenburg (Baden)", longueur: 6.5, type: "classique", vitesse_max: 90, electrification: "15kV CA", signalisation: "PZB" },
+  { gareA: "Bantzenheim", gareB: "Neuenburg (Baden)", longueur: 6.5, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" },
   { gareA: "Neuenburg (Baden)", gareB: "Muellheim", longueur: 4.4, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "PZB" },
   { gareA: "Colmar", gareB: "_ColSél-Ostheim", longueur: 10.4, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "_ColSél-Ostheim", gareB: "Sélestat", longueur: 13.9, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" },
