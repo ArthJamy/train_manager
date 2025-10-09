@@ -69,5 +69,16 @@ export const villes = [
   { nom: "Mundolsheim", x: 378.6, y: -902.3, type: "petite", fluxPassager: 5300 },
   { nom: "Vendenheim", x: 374.9, y: -923.5, type: "petite", fluxPassager: 8320 },
   { nom: "_SéparationNordStras", x: 373.2, y: -938.3, fantome: true },
-  { nom: "_VendenheimEvitement", x: 374.5, y: -924.2, fantome: true }
+  { nom: "_VendenheimEvitement", x: 374.5, y: -924.2, fantome: true },
+  { nom: "Lauterbourg", x: 839.8, y: -1225.3, type: "petite", fluxPassager: 1582 },
+  { nom: "Mothern", x: 818.8, y: -1192.3, type: "petite", fluxPassager: 1274 },
+  { nom: "Seltz", x: 755.8, y: -1154.2, type: "petite", fluxPassager: 2449 },
+  { nom: "Roeschwoog", x: 687.1, y: -1091.0, type: "petite", fluxPassager: 1396 },
+  { nom: "Sessenheim", x: 646.3, y: -1053.9, type: "petite", fluxPassager: 801 },
+  { nom: "Drusenheim", x: 605.0, y: -1023.5, type: "moyenne", fluxPassager: 4641 },
+  { nom: "Herrlisheim(Bas-Rhin)", x: 567.7, y: -985.6, type: "petite", fluxPassager: 1266 },
+  { nom: "Gambsheim", x: 536.5, y: -952.6, type: "petite", fluxPassager: 1433 },
+  { nom: "La Wantzenau", x: 480.1, y: -921.5, type: "petite", fluxPassager: 1431 },
+  { nom: "Hoenheim Tram", x: 415.0, y: -886.2, type: "petite", fluxPassager: 2805 },
+  { nom: "Gare de Bischheim", x: 399.4, y: -869.4, type: "petite", fluxPassager: 3358 }
 ];

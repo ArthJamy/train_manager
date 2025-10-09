@@ -70,5 +70,16 @@ export const lignes = [
   { gareA: "_AiguillageStrasNord", gareB: "Strasbourg", longueur: 2, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "_AiguillageStrasNord", gareB: "_courbeStrasSud", longueur: 4.3, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "_AiguillageStrasNord", gareB: "_VendenheimEvitement", longueur: 6.5, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
-  { gareA: "_VendenheimEvitement", gareB: "_SéparationNordStras", longueur: 1.4, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" }
+  { gareA: "_VendenheimEvitement", gareB: "_SéparationNordStras", longueur: 1.4, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Gare de Bischheim", gareB: "Hoenheim Tram", longueur: 2.5, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Hoenheim Tram", gareB: "La Wantzenau", longueur: 8.2, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "La Wantzenau", gareB: "Gambsheim", longueur: 7.2, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Gambsheim", gareB: "Herrlisheim(Bas-Rhin)", longueur: 5, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Herrlisheim(Bas-Rhin)", gareB: "Drusenheim", longueur: 5.9, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Drusenheim", gareB: "Sessenheim", longueur: 5.7, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Sessenheim", gareB: "Roeschwoog", longueur: 6.1, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Roeschwoog", gareB: "Seltz", longueur: 10.4, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Seltz", gareB: "Mothern", longueur: 8.2, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Mothern", gareB: "Lauterbourg", longueur: 4.3, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "_AiguillageStrasNord", gareB: "Gare de Bischheim", longueur: 1.6, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" }
 ];
