@@ -8,7 +8,7 @@ export const villes = [
   { nom: "Basel SBB", x: 246.9, y: 194.8, type: "grande", fluxPassager: 18000 },
   { nom: "Saint-Louis", x: 213.0, y: 151.8, type: "moyenne", fluxPassager: 8000 },
   { nom: "Altkirch", x: -103.8, y: 115.4, type: "moyenne", fluxPassager: 1500 },
-  { nom: "Belfort-Ville", x: -489.0, y: 108.9, type: "moyenne", fluxPassager: 9000 },
+  { nom: "Belfort-Ville", x: -489.0, y: 108.9, type: "grande", fluxPassager: 9000 },
   { nom: "Lutterbach", x: -65.8, y: -15.8, type: "petite", fluxPassager: 1000 },
   { nom: "Staffelfelden", x: -77.8, y: -85.2, type: "petite", fluxPassager: 1600 },
   { nom: "Bollwiller", x: -75.5, y: -114.5, type: "petite", fluxPassager: 1700 },
