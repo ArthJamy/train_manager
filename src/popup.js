@@ -245,6 +245,7 @@ function sortFlotte(arr, mode) {
 function etatClass(e) {
   return e === "en_route" ? "etat-en_route"
        : e === "en_gare"  ? "etat-en_gare"
+       : e ==="en_attente" ? "etat-en_attente"
        : e === "termine"  ? "etat-termine"
        : "etat-inconnu";
 }
@@ -252,6 +253,7 @@ function etatClass(e) {
 function labelEtat(e) {
   return e === "en_route" ? "En route"
        : e === "en_gare"  ? "En gare"
+       : e ==="en_attente" ? "En attente"
        : e === "termine"  ? "Terminé"
        : "Inconnu";
 }
@@ -293,4 +295,5 @@ function renderGrid(data, container) {
     });
   });
 }
+
 
