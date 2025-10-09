@@ -64,5 +64,11 @@ export const lignes = [
   { gareA: "Obernai", gareB: "Bischoffsheim", longueur: 2.9, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Bischoffsheim", gareB: "Rosheim", longueur: 2.2, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Rosheim", gareB: "Molsheim", longueur: 3.6, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
-  { gareA: "Scherwiller", gareB: "Dambach-la-Ville", longueur: 3.9, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" }
+  { gareA: "Scherwiller", gareB: "Dambach-la-Ville", longueur: 3.9, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Vendenheim", gareB: "Mundolsheim", longueur: 2.4, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Mundolsheim", gareB: "_AiguillageStrasNord", longueur: 5.5, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "_AiguillageStrasNord", gareB: "Strasbourg", longueur: 2, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "_AiguillageStrasNord", gareB: "_courbeStrasSud", longueur: 4.3, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "_AiguillageStrasNord", gareB: "_VendenheimEvitement", longueur: 6.5, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "_VendenheimEvitement", gareB: "_SéparationNordStras", longueur: 1.4, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" }
 ];

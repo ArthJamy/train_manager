@@ -64,5 +64,10 @@ export const villes = [
   { nom: "Gertwiller", x: 123.7, y: -670.9, type: "petite", fluxPassager: 1355 },
   { nom: "Eichhoffen", x: 106.7, y: -640.1, type: "petite", fluxPassager: 300 },
   { nom: "Dambach-la-Ville", x: 92.7, y: -579.2, type: "petite", fluxPassager: 1200 },
-  { nom: "Scherwiller", x: 87.5, y: -544.6, type: "petite", fluxPassager: 1100 }
+  { nom: "Scherwiller", x: 87.5, y: -544.6, type: "petite", fluxPassager: 1100 },
+  { nom: "_AiguillageStrasNord", x: 389.8, y: -858.6, fantome: true },
+  { nom: "Mundolsheim", x: 378.6, y: -902.3, type: "petite", fluxPassager: 5300 },
+  { nom: "Vendenheim", x: 374.9, y: -923.5, type: "petite", fluxPassager: 8320 },
+  { nom: "_SéparationNordStras", x: 373.2, y: -938.3, fantome: true },
+  { nom: "_VendenheimEvitement", x: 374.5, y: -924.2, fantome: true }
 ];
