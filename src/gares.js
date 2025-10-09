@@ -80,5 +80,16 @@ export const villes = [
   { nom: "Gambsheim", x: 536.5, y: -952.6, type: "petite", fluxPassager: 1433 },
   { nom: "La Wantzenau", x: 480.1, y: -921.5, type: "petite", fluxPassager: 1431 },
   { nom: "Hoenheim Tram", x: 415.0, y: -886.2, type: "petite", fluxPassager: 2805 },
-  { nom: "Gare de Bischheim", x: 399.4, y: -869.4, type: "petite", fluxPassager: 3358 }
+  { nom: "Bischheim", x: 399.4, y: -869.4, type: "petite", fluxPassager: 3358 },
+  { nom: "Haguenau", x: 439.8, y: -1071.0, type: "moyenne", fluxPassager: 8017 },
+  { nom: "Marienthal", x: 480.5, y: -1039.4, type: "petite", fluxPassager: 570 },
+  { nom: "Bischwiller", x: 508.7, y: -1023.3, type: "petite", fluxPassager: 5606 },
+  { nom: "Kurtzenhouse", x: 470.3, y: -999.5, type: "petite", fluxPassager: 3382 },
+  { nom: "Weyersheim", x: 454.3, y: -975.5, type: "petite", fluxPassager: 1465 },
+  { nom: "Hoerdt", x: 436.9, y: -960.6, type: "petite", fluxPassager: 1611 },
+  { nom: "Saverne", x: 19.2, y: -1002.1, type: "moyenne", fluxPassager: 9534 },
+  { nom: "Steinbourg", x: 73.4, y: -1021.1, type: "petite", fluxPassager: 2481 },
+  { nom: "Wilwisheim", x: 164.8, y: -1003.4, type: "petite", fluxPassager: 2595 },
+  { nom: "Mommenheim", x: 298.6, y: -1013.4, type: "moyenne", fluxPassager: 7282 },
+  { nom: "Brumath", x: 357.6, y: -990.4, type: "petite", fluxPassager: 1191 }
 ];
