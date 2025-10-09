@@ -225,7 +225,7 @@ function getSnapshotFlotte() {
 }
 
 function sortFlotte(arr, mode) {
-  const orderEtat = { en_route: 0, en_gare: 1, termine: 2 };
+  const orderEtat = { en_route: 0, en_gare: 1,en_attente: 2, termine: 3 };
   const a = [...arr];
   if (mode === "etat") {
     a.sort((x, y) => {
@@ -295,5 +295,6 @@ function renderGrid(data, container) {
     });
   });
 }
+
 
 
