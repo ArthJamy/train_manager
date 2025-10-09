@@ -351,6 +351,7 @@
 }
 .etat-en_route  { background: #2563eb; }
 .etat-en_gare   { background: #059669; }
+.etat-en_attente { background: #48D068; }
 .etat-termine   { background: #6b7280; }
 .etat-inconnu   { background: #9ca3af; }
 
@@ -415,6 +416,11 @@
   background: linear-gradient(to bottom, #eff6ff 0%, white 30%);
 }
 
+.flotte-card.etat-en_attente {
+  border-color: #48D068;
+  background: linear-gradient(to bottom, #ecfdf5 0%, white 30%);
+}
+
 .flotte-card.etat-en_gare {
   border-color: #059669;
   background: linear-gradient(to bottom, #ecfdf5 0%, white 30%);
@@ -459,6 +465,11 @@
   color: white;
 }
 
+.etat-badge.etat-en_attente {
+  background: #48D068;
+  color: white;
+}
+
 .etat-badge.etat-termine {
   background: #6b7280;
   color: white;
@@ -493,4 +504,5 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
+
 }
