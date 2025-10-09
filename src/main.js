@@ -31,7 +31,6 @@ window.__trainRuntime = {
           etatSimple = "en_route";
         } else if (etat.statut.startsWith("en gare")) {
           etatSimple = "en_gare";
-        }
         } else if (etat.statut.startsWith("en attente")) {
           etatSimple = "en_attente";
         }
@@ -929,4 +928,5 @@ function majHeureReelle() {
 
 
 });
+
 
