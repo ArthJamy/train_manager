@@ -274,7 +274,7 @@ if (tNow >= tDepartEffectif && tNow < tB) {
 
       vitesseReelle = Math.max(0, Math.min(vitesseReelle, seg.vitesseEffective));
 
-      statut = `entre ${a.gare} et ${b.gare} (${vitesseReelle.toFixed(0)} km/h)`;
+      statut = `entre ${a.gare} et ${b.gare}`;
       return { trajet: trajetActuel, statut, position, vitesseActuelle: vitesseReelle };
     }
     tempsCible -= seg.tempsRelatif;
@@ -822,7 +822,7 @@ p.draw = function () {
     <p><b>Statut :</b> ${statut}</p>
     
     <p><b>Destination :</b> ${trajet ? trajet.dessertes.at(-1).gare : "—"}</p>
-    <p><b>Vitesse actuelle :</b> ${vitesseActuelle.toFixed(0)} km/h</p>
+    <p><b>Vitesse actuelle :</b> ${vitesseActuelle} km/h</p>
     <p><b>Prochaines gares :</b></p>
     <ul>${garesHTML}</ul>
     <button class="btn-popup" id="btn-trajets-train">📅 Voir les trajets du jour</button>
@@ -971,3 +971,4 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
