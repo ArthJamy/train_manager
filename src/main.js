@@ -227,7 +227,8 @@ if (tNow >= tDepartEffectif && tNow < tB) {
         accelDist *= 1.15;
         decelDist *= 1.10;
       }
-
+		
+// ====
       const kmSegment = seg.distance / 1000;
       let accelRatio = Math.min(accelDist / kmSegment, 0.5);
       let decelRatio = Math.min(decelDist / kmSegment, 0.5);
@@ -236,26 +237,56 @@ if (tNow >= tDepartEffectif && tNow < tB) {
 		  decelRatio = 0.1;
 	  }
 
-      // === 🔹 Appliquer easing selon le contexte ===
+      // === 🔹 Découpage virtuel en sous-segments avec vitesses variables ===
       let easedRatio = localRatio;
       
-      // Variables pour ajuster tempsCible après l'easing
-      let tempsConsomme = seg.tempsRelatif * localRatio;
-      
-      if (isStartOfTrip && localRatio < accelRatio) {
-        // Démarrage depuis gare de départ
+      if (isStartOfTrip && isEndOfTrip && segments.length === 1) {
+        // Cas spécial : segment unique avec accélération + croisière + freinage
+        const vMax = seg.vitesseEffective;
+        
+        // Découpage en 3 phases : accél (10%), croisière (80%), freinage (10%)
+        const subSegments = [
+          { start: 0, end: accelRatio, vStart: 0, vEnd: vMax },           // Accélération
+          { start: accelRatio, end: 1 - decelRatio, vStart: vMax, vEnd: vMax }, // Croisière
+          { start: 1 - decelRatio, end: 1, vStart: vMax, vEnd: 0 }        // Freinage
+        ];
+        
+        // Calcul du temps relatif par phase (en fonction de la vitesse moyenne)
+        let totalTempsRelatifSub = 0;
+        subSegments.forEach(sub => {
+          const distSub = (sub.end - sub.start) * seg.distance;
+          const vMoy = (sub.vStart + sub.vEnd) / 2 || 0.1; // éviter division par 0
+          sub.tempsRelatif = distSub / vMoy;
+          totalTempsRelatifSub += sub.tempsRelatif;
+        });
+        
+        // Trouver dans quelle phase on est
+        let tempsCibleSub = localRatio * totalTempsRelatifSub;
+        
+        for (const sub of subSegments) {
+          if (tempsCibleSub <= sub.tempsRelatif) {
+            const localRatioSub = sub.tempsRelatif > 0 ? tempsCibleSub / sub.tempsRelatif : 1;
+            // Interpolation linéaire dans la phase
+            easedRatio = sub.start + (sub.end - sub.start) * localRatioSub;
+            break;
+          }
+          tempsCibleSub -= sub.tempsRelatif;
+        }
+        
+      } else if (isStartOfTrip && localRatio < accelRatio) {
+        // Démarrage depuis gare de départ (multi-segments)
         const r = localRatio / accelRatio;
         easedRatio = accelRatio * 0.5 * r * r;
-        // Le temps réel consommé reste identique (localRatio)
       } 
       else if (isEndOfTrip && localRatio > 1 - decelRatio) {
-        // Approche de la gare d'arrivée
+        // Approche de la gare d'arrivée (multi-segments)
         const r = (localRatio - (1 - decelRatio)) / decelRatio;
         easedRatio = (1 - decelRatio) + decelRatio * (1 - 0.5 * (1 - r) * (1 - r));
       } 
       else if (speedChangeAhead) {
 	  // Transition douce entre deux vitesses différentes, sans inversion
 	  easedRatio = 0.5 - 0.5 * Math.cos(localRatio * Math.PI);
+	  }io = 0.5 - 0.5 * Math.cos(localRatio * Math.PI);
 	  }
 		
 
@@ -1032,6 +1063,7 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
 
