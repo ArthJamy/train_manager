@@ -266,11 +266,22 @@ if (tNow >= tDepartEffectif && tNow < tB) {
         vitesseReelle *= r;
       } 
       else if (speedChangeAhead) {
-        // Variation intermédiaire lors d’un changement de vitesse
-        const delta = vitesseSuivante - seg.vitesseEffective;
-        const facteur = Math.sin(localRatio * Math.PI);
-        vitesseReelle += delta * facteur * 0.5;
-      }
+	  // Transition de vitesse uniquement sur la fin du tronçon
+	  const v0 = seg.vitesseEffective;           // vitesse actuelle du tronçon (km/h)
+	  const v1 = vitesseSuivante;                // vitesse du tronçon suivant (km/h)
+	
+	  // Fenêtre de transition (20% de la fin du tronçon), bornée et ajustable
+	  const w = Math.max(0.05, Math.min(0.2, decelRatio)); // entre 5% et 20%, tient compte du profil
+	  const tRaw = (localRatio - (1 - w)) / w;             // 0 avant la fenêtre → 1 à la fin
+	  const t = p.constrain(tRaw, 0, 1);
+	
+	  // Interpolation lisse (smoothstep) strictement croissante, sans overshoot
+	  const s = t * t * (3 - 2 * t);
+	
+	  // Vitesse réelle = interpolation entre v0 et v1
+	  vitesseReelle = v0 + (v1 - v0) * s;
+	}
+
 
       vitesseReelle = Math.max(0, Math.min(vitesseReelle, seg.vitesseEffective));
 
@@ -971,5 +982,6 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
