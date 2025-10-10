@@ -284,10 +284,10 @@ if (tNow >= tDepartEffectif && tNow < tB) {
         easedRatio = (1 - decelRatio) + decelRatio * (1 - 0.5 * (1 - r) * (1 - r));
       } 
       else if (speedChangeAhead) {
-	  // Transition douce entre deux vitesses différentes, sans inversion
-	  easedRatio = 0.5 - 0.5 * Math.cos(localRatio * Math.PI);
-	  }io = 0.5 - 0.5 * Math.cos(localRatio * Math.PI);
-	  }
+		  // Transition douce entre deux vitesses différentes, sans inversion
+		  easedRatio = 0.5 - 0.5 * Math.cos(localRatio * Math.PI);
+		}
+
 		
 
 
@@ -1063,6 +1063,7 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
 
