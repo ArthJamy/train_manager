@@ -90,12 +90,76 @@
 }
 
 /* === Fiche horaire === */
-.fiche-horaire {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 10px;
+/* === Grille des trajets === */
+.trajets-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: stretch; /* ✅ égalise les hauteurs */
+  margin-top: 1rem;
 }
+
+/* Chaque bloc de trajet devient une “card” homogène */
+.trajet-bloc {
+  flex: 1 1 280px;        /* largeur mini : 280px */
+  max-width: 320px;       /* limite max pour garder une grille propre */
+  display: flex;
+  flex-direction: column; /* pour aligner les éléments internes */
+  justify-content: space-between;
+  background: linear-gradient(135deg, #e0e7ff, #f3f4f6);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 220px;      /* ✅ même taille visuelle */
+}
+
+.trajet-bloc:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.trajet-bloc h3 {
+  font-size: 1.05rem;
+  color: #1e3a8a;
+  border-bottom: 1px solid #c7d2fe;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.3rem;
+}
+
+/* Liste interne (horaires des gares) */
+.trajet-bloc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.trajet-bloc li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Consolas', monospace;
+  font-size: 0.9rem;
+  padding: 2px 0;
+}
+
+.trajet-bloc li .heure {
+  font-weight: bold;
+  color: #111827;
+}
+
+.trajet-bloc li .gare {
+  flex: 1;
+  text-align: right;
+  color: #374151;
+}
+
+
+
+/* ======*/
 
 .horaire-col.depart {
   background: linear-gradient(180deg, #1e3a8a, #3b82f6);
@@ -144,13 +208,6 @@
 }
 
 /* === Fiche horaire === */
-.fiche-horaire {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 10px;
-}
-
 .horaire-col.depart {
   background: linear-gradient(180deg, #1e3a8a, #3b82f6);
   color: white;
@@ -278,6 +335,12 @@
   white-space: nowrap;
 }
 
+.mini-popup li[style] {
+  background: #eff6ff;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
 /*=============== Affichage flotte ===============*/
 /* Bouton sombre cohérent avec #mode-heure */
 .btn-dark {
@@ -294,14 +357,6 @@
 .btn-dark:hover { background: #6b7280; }
 
 /* Popup Flotte : barre d’outils + layout */
-.flotte-toolbar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-.flotte-toolbar label { font-weight: 600; }
-
 .flotte-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;

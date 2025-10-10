@@ -1,4 +1,6 @@
-import { trains } from "./trains.js";
+import { trainsFR } from './trainsFR.js';
+import { trainsDE } from './trainsDE.js';
+export const trains = [...trainsFR, ...trainsDE];
 
 /** Crée et affiche une fenêtre popup principale */
 function ouvrirPopup(titre, contenuHTML) {
@@ -30,8 +32,9 @@ function addMinutesToTime(timeStr, minutes) {
   return d.toTimeString().slice(0, 5);
 }
 
+
 /** Mini-popup détaillant un trajet (côté gauche si 'arrivee') */
-function showMiniPopup(e, trajet, type) {
+function showMiniPopup(e, trajet, type, gareFocus) {
   hideMiniPopup();
 
   const tooltip = document.createElement("div");
@@ -41,9 +44,14 @@ function showMiniPopup(e, trajet, type) {
     <ul>
       ${trajet.dessertes.map((d, i) => {
         const heureFinale = (i < trajet.dessertes.length - 1)
-          ? addMinutesToTime(d.heure, d.arret || 0)  // départs = heure + arrêt
-          : d.heure;                                  // dernier arrêt = heure d'arrivée
-        return `<li>${heureFinale} — ${d.gare}</li>`;
+          ? addMinutesToTime(d.heure, d.arret || 0)
+          : d.heure;
+
+        // ✅ Si cette gare est celle sur laquelle on a cliqué, on la met en gras
+        const isFocus = d.gare === gareFocus;
+        const styleFocus = isFocus ? 'style="font-weight:700; color:#1e3a8a;"' : '';
+
+        return `<li ${styleFocus}>${heureFinale} — ${d.gare}</li>`;
       }).join("")}
     </ul>
   `;
@@ -68,6 +76,7 @@ function showMiniPopup(e, trajet, type) {
   tooltip.style.top = `${top}px`;
 }
 
+
 function hideMiniPopup() {
   document.querySelector(".mini-popup")?.remove();
 }
@@ -77,22 +86,27 @@ export function afficherTrajetsTrain(trainId) {
   const train = trains.find(t => t.id === trainId);
   if (!train) return;
 
-  const html = train.trajets.map(trajet => `
-    <div class="trajet-bloc">
-      <h3>${trajet.nom}</h3>
-      <ul>
-        ${trajet.dessertes.map((d, i) => {
-          const heure = (i < trajet.dessertes.length - 1)
-            ? addMinutesToTime(d.heure, d.arret || 0)
-            : d.heure;
-          return `<li><span class="heure">${heure}</span> — <span class="gare">${d.gare}</span></li>`;
-        }).join("")}
-      </ul>
+  const html = `
+    <div class="trajets-container">
+      ${train.trajets.map(trajet => `
+        <div class="trajet-bloc">
+          <h3>${trajet.nom}</h3>
+          <ul>
+            ${trajet.dessertes.map((d, i) => {
+              const heure = (i < trajet.dessertes.length - 1)
+                ? addMinutesToTime(d.heure, d.arret || 0)
+                : d.heure;
+              return `<li><span class="heure">${heure}</span> . > <span class="gare">${d.gare}</span></li>`;
+            }).join("")}
+          </ul>
+        </div>
+      `).join("")}
     </div>
-  `).join("");
+  `;
 
   ouvrirPopup(`🚅 Trajets prévus — ${train.id}`, html);
 }
+
 
 /** Fiche horaire d’une gare (liste synthétique + mini-popup au survol) */
 export function afficherFicheHoraire(gareNom) {
@@ -177,7 +191,8 @@ export function afficherFicheHoraire(gareNom) {
       const type = li.dataset.type;
       const train = trains.find(t => t.id === id);
       const trajet = train?.trajets[idx];
-      if (trajet) showMiniPopup(e, trajet, type);
+      if (trajet) showMiniPopup(e, trajet, type, gareNom);
+
     });
     li.addEventListener("mouseleave", hideMiniPopup);
   });
