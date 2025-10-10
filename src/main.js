@@ -507,7 +507,7 @@ if (tNow >= tDepartEffectif && tNow < tB) {
     } else {
       inputHeure.disabled = false;
       clearInterval(secondeTimer);
-      inputHeure.step = 60;
+      inputHeure.step = 1;
     }
   };
 
@@ -1063,6 +1063,7 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
 
