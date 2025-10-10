@@ -255,36 +255,50 @@ if (tNow >= tDepartEffectif && tNow < tB) {
       const y = p.lerp(seg.g1.y, seg.g2.y, easedRatio);
       position = { x, y };
 
-      // === 🔹 Calcul de la vitesse réelle approximative ===
-      let vitesseReelle = seg.vitesseEffective;
 
-      if (isStartOfTrip && localRatio < accelRatio) {
-        vitesseReelle *= (localRatio / accelRatio);
-      } 
-      else if (isEndOfTrip && localRatio > 1 - decelRatio) {
-        const r = (1 - localRatio) / decelRatio;
-        vitesseReelle *= r;
-      } 
-      else if (speedChangeAhead) {
-	  // Transition de vitesse uniquement sur la fin du tronçon
-	  const v0 = seg.vitesseEffective;           // vitesse actuelle du tronçon (km/h)
-	  const v1 = vitesseSuivante;                // vitesse du tronçon suivant (km/h)
-	
-	  // Fenêtre de transition (20% de la fin du tronçon), bornée et ajustable
-	  const w = Math.max(0.05, Math.min(0.2, decelRatio)); // entre 5% et 20%, tient compte du profil
-	  const tRaw = (localRatio - (1 - w)) / w;             // 0 avant la fenêtre → 1 à la fin
-	  const t = p.constrain(tRaw, 0, 1);
-	
-	  // Interpolation lisse (smoothstep) strictement croissante, sans overshoot
-	  const s = t * t * (3 - 2 * t);
-	
-	  // Vitesse réelle = interpolation entre v0 et v1
-	  vitesseReelle = v0 + (v1 - v0) * s;
-	}
+		      // === 🔹 Calcul de la vitesse réelle approximative V2===
+		let vitesseReelle = seg.vitesseEffective;
+		
+		// --- Départ ---
+		if (isStartOfTrip && localRatio < accelRatio) {
+		  vitesseReelle *= (localRatio / accelRatio);
+		}
+		// --- Arrivée ---
+		else if (isEndOfTrip && localRatio > 1 - decelRatio) {
+		  const r = (1 - localRatio) / decelRatio;
+		  vitesseReelle *= r;
+		}
+		// --- Changement de vitesse à venir (freinage anticipé) ---
+		else if (speedChangeAhead && localRatio > 1 - 0.2) {
+		  // Fin du tronçon courant : adaptation vers vitesse suivante
+		  const v0 = seg.vitesseEffective;
+		  const v1 = vitesseSuivante;
+		  const tRaw = (localRatio - 0.8) / 0.2; // transition sur les 20% de fin
+		  const t = p.constrain(tRaw, 0, 1);
+		  const s = t * t * (3 - 2 * t); // smoothstep
+		  vitesseReelle = v0 + (v1 - v0) * s;
+		}
+		// --- Changement de vitesse depuis le tronçon précédent (accélération début) ---
+		else {
+		  const prevSeg = segments[i - 1];
+		  const vitessePrecedente = prevSeg ? prevSeg.vitesseEffective : seg.vitesseEffective;
+		  const speedChangeBehind = prevSeg && Math.abs(vitessePrecedente - seg.vitesseEffective) >= 15;
+		  
+		  if (speedChangeBehind && localRatio < 0.1) {
+		    // Début du tronçon suivant : montée vers la nouvelle vitesse
+		    const v0 = vitessePrecedente;
+		    const v1 = seg.vitesseEffective;
+		    const tRaw = localRatio / 0.1;
+		    const t = p.constrain(tRaw, 0, 1);
+		    const s = t * t * (3 - 2 * t);
+		    vitesseReelle = v0 + (v1 - v0) * s;
+		  }
+		}
+		
+		vitesseReelle = Math.max(0, Math.min(vitesseReelle, seg.vitesseEffective));
 
-
-      vitesseReelle = Math.max(0, Math.min(vitesseReelle, seg.vitesseEffective));
-
+		
+	// === 🔹 Calcul de la vitesse réelle approximative ===
       statut = `entre ${a.gare} et ${b.gare}`;
       return { trajet: trajetActuel, statut, position, vitesseActuelle: vitesseReelle };
     }
@@ -982,6 +996,7 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
 
