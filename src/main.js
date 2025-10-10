@@ -245,10 +245,10 @@ if (tNow >= tDepartEffectif && tNow < tB) {
         easedRatio = 1 - 0.5 * (1 - r) * (1 - r);
       } 
       else if (speedChangeAhead) {
-        // Transition douce entre deux vitesses différentes
-        const r = localRatio < 0.5 ? localRatio / 0.5 : (1 - localRatio) / 0.5;
-        easedRatio = 0.5 + 0.5 * Math.sin((r - 0.5) * Math.PI);
-      }
+	  // Transition douce entre deux vitesses différentes, sans inversion
+	  easedRatio = 0.5 - 0.5 * Math.cos(localRatio * Math.PI);
+	  }
+
 
       // --- Position du train ---
       const x = p.lerp(seg.g1.x, seg.g2.x, easedRatio);
@@ -971,4 +971,5 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
