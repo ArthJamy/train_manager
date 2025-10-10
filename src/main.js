@@ -304,7 +304,7 @@ if (tNow >= tDepartEffectif && tNow < tB) {
 		
 	// === 🔹 Calcul de la vitesse réelle approximative ===
       statut = `entre ${a.gare} et ${b.gare}`;
-      return { trajet: trajetActuel, statut, position, vitesseActuelle: vitesseReelle };
+      return { trajet: trajetActuel, statut, position, vitesseActuelle: Math.round(vitesseReelle) };
     }
     tempsCible -= seg.tempsRelatif;
   }
@@ -878,6 +878,25 @@ p.draw = function () {
     }, 300);
   }
 
+	// === Rafraîchissement automatique de la vitesse actuelle toutes les secondes ===
+setInterval(() => {
+  const div = document.getElementById("info-content");
+  if (!div || !elementSelectionne || elementSelectionne.type !== "train") return;
+
+  const train = elementSelectionne.data;
+  const heureCourante = document.getElementById("heure")?.value || "08:00:00";
+  const etat = window.__getEtatTrain ? window.__getEtatTrain(train, heureCourante) : null;
+  if (!etat) return;
+
+  const vitesseActuelle = Math.round(etat.vitesseActuelle || 0);
+  const vitesseElem = div.querySelector("p b:contains('Vitesse actuelle')");
+  if (vitesseElem && vitesseElem.parentElement) {
+    vitesseElem.parentElement.innerHTML = `<b>Vitesse actuelle :</b> ${vitesseActuelle} km/h`;
+  }
+}, 1000);
+
+	
+	
   function afficherHorairesGare(nomGare) {
     const div = document.getElementById("info-content");
     if (!div) return;
@@ -1000,6 +1019,7 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
 
