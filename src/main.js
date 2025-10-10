@@ -234,24 +234,30 @@ if (tNow >= tDepartEffectif && tNow < tB) {
 	  if (segments.length === 1) {
 		  accelRatio = 0.1;
 		  decelRatio = 0.1;
-		}
+	  }
 
       // === 🔹 Appliquer easing selon le contexte ===
       let easedRatio = localRatio;
+      
+      // Variables pour ajuster tempsCible après l'easing
+      let tempsConsomme = seg.tempsRelatif * localRatio;
+      
       if (isStartOfTrip && localRatio < accelRatio) {
         // Démarrage depuis gare de départ
         const r = localRatio / accelRatio;
-        easedRatio = 0.5 * r * r;
+        easedRatio = accelRatio * 0.5 * r * r;
+        // Le temps réel consommé reste identique (localRatio)
       } 
       else if (isEndOfTrip && localRatio > 1 - decelRatio) {
-        // Approche de la gare d’arrivée
+        // Approche de la gare d'arrivée
         const r = (localRatio - (1 - decelRatio)) / decelRatio;
-        easedRatio = 1 - 0.5 * (1 - r) * (1 - r);
+        easedRatio = (1 - decelRatio) + decelRatio * (1 - 0.5 * (1 - r) * (1 - r));
       } 
       else if (speedChangeAhead) {
 	  // Transition douce entre deux vitesses différentes, sans inversion
 	  easedRatio = 0.5 - 0.5 * Math.cos(localRatio * Math.PI);
 	  }
+		
 
 
       // --- Position du train ---
@@ -1026,6 +1032,7 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
 
