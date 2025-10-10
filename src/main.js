@@ -229,8 +229,8 @@ if (tNow >= tDepartEffectif && tNow < tB) {
       }
 
       const kmSegment = seg.distance / 1000;
-      const accelRatio = Math.min(accelDist / kmSegment, 0.5);
-      const decelRatio = Math.min(decelDist / kmSegment, 0.5);
+      let accelRatio = Math.min(accelDist / kmSegment, 0.5);
+      let decelRatio = Math.min(decelDist / kmSegment, 0.5);
 	  if (segments.length === 1) {
 		  accelRatio = 0.1;
 		  decelRatio = 0.1;
@@ -1000,6 +1000,7 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
 
