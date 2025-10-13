@@ -102,5 +102,12 @@ export const villes = [
   { nom: "_Hoffen", x: 607.0, y: -1195.0, fantome: true },
   { nom: "Soultz-sous-Forêts", x: 539.7, y: -1192.3, type: "petite", fluxPassager: 412 },
   { nom: "Hoelschloch", x: 488.7, y: -1173.9, type: "petite", fluxPassager: 646 },
-  { nom: "Walbourg", x: 466.5, y: -1143.9, type: "petite", fluxPassager: 499 }
+  { nom: "Walbourg", x: 466.5, y: -1143.9, type: "petite", fluxPassager: 499 },
+  { nom: "Offenburg", x: 603.1, y: -734.2, type: "moyenne", fluxPassager: 7530 },
+  { nom: "Appenweier", x: 630.9, y: -799.2, type: "petite", fluxPassager: 1557 },
+  { nom: "Legelshurst", x: 571.0, y: -816.1, type: "petite", fluxPassager: 495 },
+  { nom: "Kork", x: 531.6, y: -827.8, type: "petite", fluxPassager: 363 },
+  { nom: "Kehl", x: 463.8, y: -833.9, type: "moyenne", fluxPassager: 7778 },
+  { nom: "_frontiereKehl", x: 451.5, y: -832.3, fantome: true },
+  { nom: "Krimmeri-Meinau", x: 409.9, y: -821.1, type: "petite", fluxPassager: 2457 }
 ];

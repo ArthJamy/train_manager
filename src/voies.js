@@ -103,5 +103,12 @@ export const lignes = [
   { gareA: "Gundershoffen", gareB: "Reichshoffen", longueur: 2.9, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Reichshoffen", gareB: "Niederbronn-les-Bains", longueur: 3.6, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Schweighouse-Sur-Moder", gareB: "Haguenau", longueur: 4.8, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
-  { gareA: "Haguenau", gareB: "Walbourg", longueur: 8.7, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" }
+  { gareA: "Haguenau", gareB: "Walbourg", longueur: 8.7, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Krimmeri-Meinau", gareB: "_frontiereKehl", longueur: 5.2, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" },
+  { gareA: "_frontiereKehl", gareB: "Kehl", longueur: 1.5, type: "classique", vitesse_max: 60, electrification: "15kV CA", signalisation: "PZB" },
+  { gareA: "Kehl", gareB: "Kork", longueur: 7.6, type: "classique", vitesse_max: 100, electrification: "15kV CA", signalisation: "PZB" },
+  { gareA: "Kork", gareB: "Legelshurst", longueur: 4.6, type: "classique", vitesse_max: 100, electrification: "15kV CA", signalisation: "PZB" },
+  { gareA: "Legelshurst", gareB: "Appenweier", longueur: 6.9, type: "classique", vitesse_max: 100, electrification: "15kV CA", signalisation: "PZB" },
+  { gareA: "Appenweier", gareB: "Offenburg", longueur: 7.8, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "PZB" },
+  { gareA: "Strasbourg", gareB: "Krimmeri-Meinau", longueur: 3.2, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" }
 ];
