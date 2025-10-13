@@ -135,7 +135,7 @@ export const lignes = [
   { gareA: "Bad Krozingen", gareB: "Heitersheim", longueur: 7.2, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Heitersheim", gareB: "Buggingen", longueur: 3.4, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Buggingen", gareB: "Muellheim", longueur: 5.9, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
-  { gareA: "Muellheim", gareB: "Schliengen Train Station", longueur: 6.4, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
+  { gareA: "Muellheim", gareB: "Schliengen", longueur: 6.4, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Offenburg", gareB: "Friesenheim (Baden)", longueur: 14, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Basel Bad Bf", gareB: "_BaselCentre", longueur: 2.5, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "ETCS" },
   { gareA: "_BaselCentre", gareB: "Basel SBB", longueur: 2.6, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "ETCS" }
