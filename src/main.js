@@ -246,121 +246,35 @@ if (tNow >= tDepartEffectif && tNow < tB) {
 
 
 		
-      // === 🔹 Découpage virtuel en sous-segments avec vitesses variables ===
-      let easedRatio = localRatio;
+
+		// === 🔹 Easing monotone (pas de repondération de temps) ===
+let easedRatio = localRatio;
+
+// 1) Accélération uniquement sur le tout 1er segment du chemin (départ réel)
+if (isStartOfTrip && localRatio < accelRatio) {
+  const t = localRatio / Math.max(accelRatio, 1e-6);
+  // 0→1 lissé sans rétrogradation
+  easedRatio = (0.5 - 0.5 * Math.cos(Math.PI * t)) * accelRatio
+             + (localRatio - t * accelRatio); // garde la continuité hors fenêtre
+}
+
+// 2) Décélération uniquement sur le tout dernier segment du chemin (arrivée réelle)
+if (isEndOfTrip && localRatio > 1 - decelRatio) {
+  const t = (localRatio - (1 - decelRatio)) / Math.max(decelRatio, 1e-6);
+  const tail = 0.5 - 0.5 * Math.cos(Math.PI * t); // 0→1
+  // on “arrondit” seulement la queue, sans changer le reste
+  easedRatio = (1 - decelRatio) + tail * decelRatio;
+}
+
+// 3) Transition de vitesse entre tronçons (optionnelle, mais sans retour arrière)
+//    Fin du segment N: lisser la queue (pas de repondération du temps)
+if (!isEndOfTrip && speedChangeAhead && localRatio > 0.85) {
+  const t = (localRatio - 0.85) / 0.15; // fenêtre de 15% en fin
+  const s = t * t * (3 - 2 * t); // smoothstep 0→1
+  easedRatio = (1 - 0.15) + s * 0.15; // compresse juste la queue
+}
+
       
-      if (isStartOfTrip && isEndOfTrip && segments.length === 1) {
-        // Cas spécial : segment unique avec accélération + croisière + freinage
-        const vMax = seg.vitesseEffective;
-        
-        // Découpage en 3 phases : accél (10%), croisière (80%), freinage (10%)
-        const subSegments = [
-          { start: 0, end: accelRatio, vStart: 0, vEnd: vMax },           // Accélération
-          { start: accelRatio, end: 1 - decelRatio, vStart: vMax, vEnd: vMax }, // Croisière
-          { start: 1 - decelRatio, end: 1, vStart: vMax, vEnd: 0 }        // Freinage
-        ];
-        
-        // Calcul du temps relatif par phase (en fonction de la vitesse moyenne)
-        let totalTempsRelatifSub = 0;
-        subSegments.forEach(sub => {
-          const distSub = (sub.end - sub.start) * seg.distance;
-          const vMoy = (sub.vStart + sub.vEnd) / 2 || 0.1; // éviter division par 0
-          sub.tempsRelatif = distSub / vMoy;
-          totalTempsRelatifSub += sub.tempsRelatif;
-        });
-        
-        // Trouver dans quelle phase on est
-        let tempsCibleSub = localRatio * totalTempsRelatifSub;
-        
-        for (const sub of subSegments) {
-          if (tempsCibleSub <= sub.tempsRelatif) {
-            const localRatioSub = sub.tempsRelatif > 0 ? tempsCibleSub / sub.tempsRelatif : 1;
-            // Interpolation linéaire dans la phase
-            easedRatio = sub.start + (sub.end - sub.start) * localRatioSub;
-            break;
-          }
-          tempsCibleSub -= sub.tempsRelatif;
-        }
-        
-      } else if (isStartOfTrip && localRatio < accelRatio) {
-        //  Démarrage depuis gare de départ (multi-segments) - système basé sur la vitesse
-        const vMax = seg.vitesseEffective;
-        const subSegments = [
-          { start: 0, end: accelRatio, vStart: 0, vEnd: vMax },
-          { start: accelRatio, end: 1, vStart: vMax, vEnd: vMax }
-        ];
-        
-        let totalTempsRelatifSub = 0;
-        subSegments.forEach(sub => {
-          const distSub = (sub.end - sub.start) * seg.distance;
-          const vMoy = (sub.vStart + sub.vEnd) / 2 || 0.1;
-          sub.tempsRelatif = distSub / vMoy;
-          totalTempsRelatifSub += sub.tempsRelatif;
-        });
-        
-        let tempsCibleSub = localRatio * totalTempsRelatifSub;
-        for (const sub of subSegments) {
-          if (tempsCibleSub <= sub.tempsRelatif) {
-            const localRatioSub = sub.tempsRelatif > 0 ? tempsCibleSub / sub.tempsRelatif : 1;
-            easedRatio = sub.start + (sub.end - sub.start) * localRatioSub;
-            break;
-          }
-          tempsCibleSub -= sub.tempsRelatif;
-        }
-      } 
-      else if (isEndOfTrip && localRatio > 1 - decelRatio) {
-        //  Approche de la gare d'arrivée (multi-segments) - système basé sur la vitesse
-        const vMax = seg.vitesseEffective;
-        const subSegments = [
-          { start: 0, end: 1 - decelRatio, vStart: vMax, vEnd: vMax },
-          { start: 1 - decelRatio, end: 1, vStart: vMax, vEnd: 0 }
-        ];
-        
-        let totalTempsRelatifSub = 0;
-        subSegments.forEach(sub => {
-          const distSub = (sub.end - sub.start) * seg.distance;
-          const vMoy = (sub.vStart + sub.vEnd) / 2 || 0.1;
-          sub.tempsRelatif = distSub / vMoy;
-          totalTempsRelatifSub += sub.tempsRelatif;
-        });
-        
-        let tempsCibleSub = localRatio * totalTempsRelatifSub;
-        for (const sub of subSegments) {
-          if (tempsCibleSub <= sub.tempsRelatif) {
-            const localRatioSub = sub.tempsRelatif > 0 ? tempsCibleSub / sub.tempsRelatif : 1;
-            easedRatio = sub.start + (sub.end - sub.start) * localRatioSub;
-            break;
-          }
-          tempsCibleSub -= sub.tempsRelatif;
-        }
-      } 
-      else if (speedChangeAhead && localRatio > 1 - 0.15) {
-        // ⚡ Transition vers nouvelle vitesse en fin de segment (derniers 15%)
-        const vMax = seg.vitesseEffective;
-        const vNext = vitesseSuivante;
-        const subSegments = [
-          { start: 0, end: 0.85, vStart: vMax, vEnd: vMax },
-          { start: 0.85, end: 1, vStart: vMax, vEnd: vNext }
-        ];
-        
-        let totalTempsRelatifSub = 0;
-        subSegments.forEach(sub => {
-          const distSub = (sub.end - sub.start) * seg.distance;
-          const vMoy = (sub.vStart + sub.vEnd) / 2 || 0.1;
-          sub.tempsRelatif = distSub / vMoy;
-          totalTempsRelatifSub += sub.tempsRelatif;
-        });
-        
-        let tempsCibleSub = localRatio * totalTempsRelatifSub;
-        for (const sub of subSegments) {
-          if (tempsCibleSub <= sub.tempsRelatif) {
-            const localRatioSub = sub.tempsRelatif > 0 ? tempsCibleSub / sub.tempsRelatif : 1;
-            easedRatio = sub.start + (sub.end - sub.start) * localRatioSub;
-            break;
-          }
-          tempsCibleSub -= sub.tempsRelatif;
-        }
-      }
 
 		
 
@@ -379,35 +293,32 @@ if (tNow >= tDepartEffectif && tNow < tB) {
 
 		// === 🔹 Calcul de la vitesse réelle approximative (synchronisé avec easedRatio) ===
       let vitesseReelle = seg.vitesseEffective;
-      
-      // Calcul basé sur la même logique que easedRatio
-      if (isStartOfTrip && isEndOfTrip && segments.length === 1) {
-        // Segment unique : phases accel/croisière/freinage
-        if (localRatio < accelRatio) {
-          vitesseReelle *= (localRatio / accelRatio);
-        } else if (localRatio > 1 - decelRatio) {
-          const r = (1 - localRatio) / decelRatio;
-          vitesseReelle *= r;
-        }
-      } else if (isStartOfTrip && localRatio < accelRatio) {
-        // Multi-segments : démarrage
-        vitesseReelle *= (localRatio / accelRatio);
-      } else if (isEndOfTrip && localRatio > 1 - decelRatio) {
-        // Multi-segments : arrivée
-        const r = (1 - localRatio) / decelRatio;
-        vitesseReelle *= r;
-      } else if (speedChangeAhead && localRatio > 0.85) {
-        // Transition vers nouvelle vitesse (derniers 15%)
-        const v0 = seg.vitesseEffective;
-        const v1 = vitesseSuivante;
-        const t = (localRatio - 0.85) / 0.15;
-        vitesseReelle = v0 + (v1 - v0) * t;
-      }
-      
-      vitesseReelle = Math.max(0, vitesseReelle);
+
+// départ
+if (isStartOfTrip && localRatio < accelRatio) {
+  const t = localRatio / Math.max(accelRatio, 1e-6);
+  vitesseReelle = seg.vitesseEffective * t; // simple et lisible
+}
+// arrivée
+else if (isEndOfTrip && localRatio > 1 - decelRatio) {
+  const t = (1 - localRatio) / Math.max(decelRatio, 1e-6);
+  vitesseReelle = seg.vitesseEffective * t;
+}
+// transition fin de segment vers vitesse suivante
+else if (!isEndOfTrip && speedChangeAhead && localRatio > 0.85) {
+  const v0 = seg.vitesseEffective;
+  const v1 = vitesseSuivante;
+  const t = (localRatio - 0.85) / 0.15;
+  const s = t * t * (3 - 2 * t);
+  vitesseReelle = v0 + (v1 - v0) * s;
+}
+
+vitesseReelle = Math.max(0, Math.round(vitesseReelle));
+
 
 		
-	// === 🔹 Calcul de la vitesse réelle approximative ===
+	// === FIN 🔹 Calcul de la vitesse réelle approximative ===
+		
       statut = `entre ${a.gare} et ${b.gare}`;
       return { trajet: trajetActuel, statut, position, vitesseActuelle: Math.round(vitesseReelle) };
     }
@@ -1131,6 +1042,7 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
 
