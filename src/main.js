@@ -377,37 +377,34 @@ if (tNow >= tDepartEffectif && tNow < tB) {
       position = { x, y };
 
 
-		      // === 🔹 Calcul de la vitesse réelle approximative V2===
 		// === 🔹 Calcul de la vitesse réelle approximative (synchronisé avec easedRatio) ===
-		let vitesseReelle = seg.vitesseEffective;
-		
-		// Calcul basé sur la même logique que easedRatio
-		if (isStartOfTrip && isEndOfTrip && segments.length === 1) {
-		  // Segment unique : phases accel/croisière/freinage
-		  if (localRatio < accelRatio) {
-		    vitesseReelle *= (localRatio / accelRatio);
-		  } else if (localRatio > 1 - decelRatio) {
-		    const r = (1 - localRatio) / decelRatio;
-		    vitesseReelle *= r;
-		  }
-		} else if (isStartOfTrip && localRatio < accelRatio) {
-		  // Multi-segments : démarrage
-		  vitesseReelle *= (localRatio / accelRatio);
-		} else if (isEndOfTrip && localRatio > 1 - decelRatio) {
-		  // Multi-segments : arrivée
-		  const r = (1 - localRatio) / decelRatio;
-		  vitesseReelle *= r;
-		} else if (speedChangeAhead && localRatio > 0.85) {
-		  // Transition vers nouvelle vitesse (derniers 15%)
-		  const v0 = seg.vitesseEffective;
-		  const v1 = vitesseSuivante;
-		  const t = (localRatio - 0.85) / 0.15;
-		  vitesseReelle = v0 + (v1 - v0) * t;
-		}
-		
-		vitesseReelle = Math.max(0, vitesseReelle);
-
-		
+      let vitesseReelle = seg.vitesseEffective;
+      
+      // Calcul basé sur la même logique que easedRatio
+      if (isStartOfTrip && isEndOfTrip && segments.length === 1) {
+        // Segment unique : phases accel/croisière/freinage
+        if (localRatio < accelRatio) {
+          vitesseReelle *= (localRatio / accelRatio);
+        } else if (localRatio > 1 - decelRatio) {
+          const r = (1 - localRatio) / decelRatio;
+          vitesseReelle *= r;
+        }
+      } else if (isStartOfTrip && localRatio < accelRatio) {
+        // Multi-segments : démarrage
+        vitesseReelle *= (localRatio / accelRatio);
+      } else if (isEndOfTrip && localRatio > 1 - decelRatio) {
+        // Multi-segments : arrivée
+        const r = (1 - localRatio) / decelRatio;
+        vitesseReelle *= r;
+      } else if (speedChangeAhead && localRatio > 0.85) {
+        // Transition vers nouvelle vitesse (derniers 15%)
+        const v0 = seg.vitesseEffective;
+        const v1 = vitesseSuivante;
+        const t = (localRatio - 0.85) / 0.15;
+        vitesseReelle = v0 + (v1 - v0) * t;
+      }
+      
+      vitesseReelle = Math.max(0, vitesseReelle);
 
 		
 	// === 🔹 Calcul de la vitesse réelle approximative ===
@@ -1134,6 +1131,7 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
 
