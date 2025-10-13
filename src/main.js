@@ -237,6 +237,15 @@ if (tNow >= tDepartEffectif && tNow < tB) {
 		  decelRatio = 0.1;
 	  }
 
+
+
+
+
+
+
+
+
+		
       // === 🔹 Découpage virtuel en sous-segments avec vitesses variables ===
       let easedRatio = localRatio;
       
@@ -274,22 +283,93 @@ if (tNow >= tDepartEffectif && tNow < tB) {
         }
         
       } else if (isStartOfTrip && localRatio < accelRatio) {
-        // Démarrage depuis gare de départ (multi-segments)
-        const r = localRatio / accelRatio;
-        easedRatio = accelRatio * 0.5 * r * r;
+        //  Démarrage depuis gare de départ (multi-segments) - système basé sur la vitesse
+        const vMax = seg.vitesseEffective;
+        const subSegments = [
+          { start: 0, end: accelRatio, vStart: 0, vEnd: vMax },
+          { start: accelRatio, end: 1, vStart: vMax, vEnd: vMax }
+        ];
+        
+        let totalTempsRelatifSub = 0;
+        subSegments.forEach(sub => {
+          const distSub = (sub.end - sub.start) * seg.distance;
+          const vMoy = (sub.vStart + sub.vEnd) / 2 || 0.1;
+          sub.tempsRelatif = distSub / vMoy;
+          totalTempsRelatifSub += sub.tempsRelatif;
+        });
+        
+        let tempsCibleSub = localRatio * totalTempsRelatifSub;
+        for (const sub of subSegments) {
+          if (tempsCibleSub <= sub.tempsRelatif) {
+            const localRatioSub = sub.tempsRelatif > 0 ? tempsCibleSub / sub.tempsRelatif : 1;
+            easedRatio = sub.start + (sub.end - sub.start) * localRatioSub;
+            break;
+          }
+          tempsCibleSub -= sub.tempsRelatif;
+        }
       } 
       else if (isEndOfTrip && localRatio > 1 - decelRatio) {
-        // Approche de la gare d'arrivée (multi-segments)
-        const r = (localRatio - (1 - decelRatio)) / decelRatio;
-        easedRatio = (1 - decelRatio) + decelRatio * (1 - 0.5 * (1 - r) * (1 - r));
+        //  Approche de la gare d'arrivée (multi-segments) - système basé sur la vitesse
+        const vMax = seg.vitesseEffective;
+        const subSegments = [
+          { start: 0, end: 1 - decelRatio, vStart: vMax, vEnd: vMax },
+          { start: 1 - decelRatio, end: 1, vStart: vMax, vEnd: 0 }
+        ];
+        
+        let totalTempsRelatifSub = 0;
+        subSegments.forEach(sub => {
+          const distSub = (sub.end - sub.start) * seg.distance;
+          const vMoy = (sub.vStart + sub.vEnd) / 2 || 0.1;
+          sub.tempsRelatif = distSub / vMoy;
+          totalTempsRelatifSub += sub.tempsRelatif;
+        });
+        
+        let tempsCibleSub = localRatio * totalTempsRelatifSub;
+        for (const sub of subSegments) {
+          if (tempsCibleSub <= sub.tempsRelatif) {
+            const localRatioSub = sub.tempsRelatif > 0 ? tempsCibleSub / sub.tempsRelatif : 1;
+            easedRatio = sub.start + (sub.end - sub.start) * localRatioSub;
+            break;
+          }
+          tempsCibleSub -= sub.tempsRelatif;
+        }
       } 
-      else if (speedChangeAhead) {
-		  // Transition douce entre deux vitesses différentes, sans inversion
-		  easedRatio = 0.5 - 0.5 * Math.cos(localRatio * Math.PI);
-		}
+      else if (speedChangeAhead && localRatio > 1 - 0.15) {
+        // ⚡ Transition vers nouvelle vitesse en fin de segment (derniers 15%)
+        const vMax = seg.vitesseEffective;
+        const vNext = vitesseSuivante;
+        const subSegments = [
+          { start: 0, end: 0.85, vStart: vMax, vEnd: vMax },
+          { start: 0.85, end: 1, vStart: vMax, vEnd: vNext }
+        ];
+        
+        let totalTempsRelatifSub = 0;
+        subSegments.forEach(sub => {
+          const distSub = (sub.end - sub.start) * seg.distance;
+          const vMoy = (sub.vStart + sub.vEnd) / 2 || 0.1;
+          sub.tempsRelatif = distSub / vMoy;
+          totalTempsRelatifSub += sub.tempsRelatif;
+        });
+        
+        let tempsCibleSub = localRatio * totalTempsRelatifSub;
+        for (const sub of subSegments) {
+          if (tempsCibleSub <= sub.tempsRelatif) {
+            const localRatioSub = sub.tempsRelatif > 0 ? tempsCibleSub / sub.tempsRelatif : 1;
+            easedRatio = sub.start + (sub.end - sub.start) * localRatioSub;
+            break;
+          }
+          tempsCibleSub -= sub.tempsRelatif;
+        }
+      }
 
 		
 
+
+
+
+
+
+		
 
       // --- Position du train ---
       const x = p.lerp(seg.g1.x, seg.g2.x, easedRatio);
@@ -1063,6 +1143,7 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
 
