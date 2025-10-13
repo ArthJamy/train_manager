@@ -91,5 +91,16 @@ export const villes = [
   { nom: "Steinbourg", x: 73.4, y: -1021.1, type: "petite", fluxPassager: 2481 },
   { nom: "Wilwisheim", x: 164.8, y: -1003.4, type: "petite", fluxPassager: 2595 },
   { nom: "Mommenheim", x: 298.6, y: -1013.4, type: "moyenne", fluxPassager: 7282 },
-  { nom: "Brumath", x: 357.6, y: -990.4, type: "petite", fluxPassager: 1191 }
+  { nom: "Brumath", x: 357.6, y: -990.4, type: "petite", fluxPassager: 1191 },
+  { nom: "Niederbronn-les-Bains", x: 291.0, y: -1209.9, type: "petite", fluxPassager: 1570 },
+  { nom: "Reichshoffen", x: 315.1, y: -1188.3, type: "petite", fluxPassager: 644 },
+  { nom: "Gundershoffen", x: 310.7, y: -1162.7, type: "petite", fluxPassager: 400 },
+  { nom: "Mertzwiller", x: 335.4, y: -1129.6, type: "petite", fluxPassager: 510 },
+  { nom: "Schweighouse-Sur-Moder", x: 399.7, y: -1086.2, type: "petite", fluxPassager: 250 },
+  { nom: "Wissembourg", x: 607.2, y: -1289.4, type: "moyenne", fluxPassager: 1833 },
+  { nom: "Riedseltz", x: 619.9, y: -1248.3, type: "petite", fluxPassager: 395 },
+  { nom: "_Hoffen", x: 607.0, y: -1195.0, fantome: true },
+  { nom: "Soultz-sous-Forêts", x: 539.7, y: -1192.3, type: "petite", fluxPassager: 412 },
+  { nom: "Hoelschloch", x: 488.7, y: -1173.9, type: "petite", fluxPassager: 646 },
+  { nom: "Walbourg", x: 466.5, y: -1143.9, type: "petite", fluxPassager: 499 }
 ];

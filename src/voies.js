@@ -92,5 +92,16 @@ export const lignes = [
   { gareA: "Bischwiller", gareB: "Marienthal", longueur: 3.6, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "KVB" },
   { gareA: "Marienthal", gareB: "Haguenau", longueur: 5.7, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "KVB" },
   { gareA: "_SéparationNordStras", gareB: "Hoerdt", longueur: 7.5, type: "classique", vitesse_max: 140, electrification: "25kV CA", signalisation: "KVB" },
-  { gareA: "Brumath", gareB: "_SéparationNordStras", longueur: 6, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" }
+  { gareA: "Brumath", gareB: "_SéparationNordStras", longueur: 6, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
+  { gareA: "Walbourg", gareB: "Hoelschloch", longueur: 4.2, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Hoelschloch", gareB: "Soultz-sous-Forêts", longueur: 6.2, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Soultz-sous-Forêts", gareB: "_Hoffen", longueur: 7.5, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "_Hoffen", gareB: "Riedseltz", longueur: 6.1, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Riedseltz", gareB: "Wissembourg", longueur: 4.9, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Schweighouse-Sur-Moder", gareB: "Mertzwiller", longueur: 8.6, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Mertzwiller", gareB: "Gundershoffen", longueur: 4.6, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Gundershoffen", gareB: "Reichshoffen", longueur: 2.9, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Reichshoffen", gareB: "Niederbronn-les-Bains", longueur: 3.6, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Schweighouse-Sur-Moder", gareB: "Haguenau", longueur: 4.8, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "Haguenau", gareB: "Walbourg", longueur: 8.7, type: "classique", vitesse_max: 100, electrification: "diesel", signalisation: "KVB" }
 ];
