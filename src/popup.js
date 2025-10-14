@@ -43,16 +43,16 @@ function showMiniPopup(e, trajet, type, gareFocus) {
     <h5>${trajet.nom}</h5>
     <ul>
       ${trajet.dessertes.map((d, i) => {
-        const heureFinale = (i < trajet.dessertes.length - 1)
-          ? addMinutesToTime(d.heure, d.arret || 0)
-          : d.heure;
+    const heureFinale = (i < trajet.dessertes.length - 1)
+      ? addMinutesToTime(d.heure, d.arret || 0)
+      : d.heure;
 
-        // ✅ Si cette gare est celle sur laquelle on a cliqué, on la met en gras
-        const isFocus = d.gare === gareFocus;
-        const styleFocus = isFocus ? 'style="font-weight:700; color:#1e3a8a;"' : '';
+    // ✅ Si cette gare est celle sur laquelle on a cliqué, on la met en gras
+    const isFocus = d.gare === gareFocus;
+    const styleFocus = isFocus ? 'style="font-weight:700; color:#1e3a8a;"' : '';
 
-        return `<li ${styleFocus}>${heureFinale} — ${d.gare}</li>`;
-      }).join("")}
+    return `<li ${styleFocus}>${heureFinale} — ${d.gare}</li>`;
+  }).join("")}
     </ul>
   `;
   document.body.appendChild(tooltip);
@@ -88,24 +88,36 @@ export function afficherTrajetsTrain(trainId) {
 
   const html = `
     <div class="trajets-container">
-      ${train.trajets.map(trajet => `
-        <div class="trajet-bloc">
-          <h3>${trajet.nom}</h3>
-          <ul>
-            ${trajet.dessertes.map((d, i) => {
-              const heure = (i < trajet.dessertes.length - 1)
-                ? addMinutesToTime(d.heure, d.arret || 0)
-                : d.heure;
-              return `<li><span class="heure">${heure}</span> . > <span class="gare">${d.gare}</span></li>`;
-            }).join("")}
-          </ul>
-        </div>
-      `).join("")}
+      ${train.trajets.map(trajet => {
+    // 🔹 Extraire tous les jours valides présents dans le trajet
+    const joursSets = new Set();
+    trajet.dessertes.forEach(d => {
+      const joursValides = d.jours || ["Tous"];
+      joursValides.forEach(j => joursSets.add(j));
+    });
+    const joursTexte = Array.from(joursSets).join(", ");
+
+    return `
+          <div class="trajet-bloc">
+            <h3>${trajet.nom}</h3>
+            <p class="jours-valables">Jour(s) valable(s) : ${joursTexte}</p>
+            <ul>
+              ${trajet.dessertes.map((d, i) => {
+      const heure = (i < trajet.dessertes.length - 1)
+        ? addMinutesToTime(d.heure, d.arret || 0)
+        : d.heure;
+      return `<li><span class="heure">${heure}</span> . > <span class="gare">${d.gare}</span></li>`;
+    }).join("")}
+            </ul>
+          </div>
+        `;
+  }).join("")}
     </div>
   `;
 
   ouvrirPopup(`🚅 Trajets prévus — ${train.id}`, html);
 }
+
 
 
 /** Fiche horaire d’une gare (liste synthétique + mini-popup au survol) */
@@ -114,9 +126,20 @@ export function afficherFicheHoraire(gareNom) {
   const arrivees = [];
 
   trains.forEach(train => {
-    train.trajets.forEach((trajet, idxTrajet) => {
+    train.trajets.forEach((trajet, idxTrajet) => {      
+      const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+      const now = new Date();
+      const jourActuel = joursSemaine[
+        new Date(now.toLocaleString("en-US", { timeZone: "Europe/Paris" })).getDay()
+      ];
+
       trajet.dessertes.forEach((d, i, arr) => {
         if (d.gare !== gareNom) return;
+        // Vérifie si cette desserte est valable aujourd’hui
+        const joursValides = d.jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+
+        //if (!joursValides.includes(jourActuel)) return; Si on veut pas afficher dans fiche horraire
+
 
         if (i < arr.length - 1) {
           // Départ depuis cette gare : heure = heure + arrêt
@@ -126,9 +149,11 @@ export function afficherFicheHoraire(gareNom) {
             trajet,
             idxTrajet,
             heure: addMinutesToTime(d.heure, d.arret || 0),
-            destination: arr[arr.length - 1].gare
+            destination: arr[arr.length - 1].gare,
+            jours: d.jours
           });
         }
+
         if (i > 0) {
           // Arrivée à cette gare
           arrivees.push({
@@ -137,15 +162,16 @@ export function afficherFicheHoraire(gareNom) {
             trajet,
             idxTrajet,
             heure: d.heure,
-            provenance: arr[0].gare
+            provenance: arr[0].gare,
+            jours: d.jours  // ✅ Ajouter les jours
           });
         }
       });
     });
   });
 
-  departs.sort((a,b)=>a.heure.localeCompare(b.heure));
-  arrivees.sort((a,b)=>a.heure.localeCompare(b.heure));
+  departs.sort((a, b) => a.heure.localeCompare(b.heure));
+  arrivees.sort((a, b) => a.heure.localeCompare(b.heure));
 
   const html = `
     <div class="fiche-horaire">
@@ -159,6 +185,7 @@ export function afficherFicheHoraire(gareNom) {
                 data-trajet-index="${d.idxTrajet}">
               <span class="heure">${d.heure}</span>
               <span class="destination"> → ${d.destination}</span>
+              <span class="jours">(${(d.jours || ["Tous"]).join(", ")})</span>
               <span class="train-id">${d.trainId}</span>
             </li>`).join("")}
         </ul>
@@ -174,6 +201,7 @@ export function afficherFicheHoraire(gareNom) {
                 data-trajet-index="${a.idxTrajet}">
               <span class="heure">${a.heure}</span>
               <span class="destination"> ← ${a.provenance}</span>
+              <span class="jours">(${(a.jours || ["Tous"]).join(", ")})</span>
               <span class="train-id">${a.trainId}</span>
             </li>`).join("")}
         </ul>
@@ -240,7 +268,7 @@ function getSnapshotFlotte() {
 }
 
 function sortFlotte(arr, mode) {
-  const orderEtat = { en_route: 0, en_gare: 1,en_attente: 2, termine: 3 };
+  const orderEtat = { en_route: 0, en_gare: 1, en_attente: 2, termine: 3, pas_service: 4 };
   const a = [...arr];
   if (mode === "etat") {
     a.sort((x, y) => {
@@ -259,18 +287,20 @@ function sortFlotte(arr, mode) {
 
 function etatClass(e) {
   return e === "en_route" ? "etat-en_route"
-       : e === "en_gare"  ? "etat-en_gare"
-       : e ==="en_attente" ? "etat-en_attente"
-       : e === "termine"  ? "etat-termine"
-       : "etat-inconnu";
+    : e === "en_gare" ? "etat-en_gare"
+      : e === "en_attente" ? "etat-en_attente"
+        : e === "termine" ? "etat-termine"
+          : e === "pas_service" ? "etat-pas-service"
+            : "etat-inconnu";
 }
 
 function labelEtat(e) {
   return e === "en_route" ? "En route"
-       : e === "en_gare"  ? "En gare"
-       : e ==="en_attente" ? "En attente"
-       : e === "termine"  ? "Terminé"
-       : "Inconnu";
+    : e === "en_gare" ? "En gare"
+      : e === "en_attente" ? "En attente"
+        : e === "termine" ? "Terminé"
+          : e === "pas_service" ? "Pas en service"
+            : "Inconnu";
 }
 
 function renderGrid(data, container) {
@@ -299,17 +329,15 @@ function renderGrid(data, container) {
       const trainId = card.dataset.trainId;
       const x = parseFloat(card.dataset.x);
       const y = parseFloat(card.dataset.y);
-      
+
       // Appeler la fonction globale pour centrer la carte
       if (window.__centrerSurTrain) {
         window.__centrerSurTrain(x, y, trainId);
       }
-      
+
       // Fermer la popup
       card.closest('.popup-overlay')?.remove();
     });
   });
 }
-
-
 

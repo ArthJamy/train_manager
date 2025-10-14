@@ -214,23 +214,22 @@ input[type="time"] {
 
 #mode-heure {
   margin-left: 10px;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border: none;
   border-radius: 6px;
-  background: #4b5563;
-  color: white;
+  background: linear-gradient(180deg, #008a2e 0%, #006d24 100%);
+  color: #fff;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
-}
-
-#mode-heure:hover {
-  background: #6b7280;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 #mode-heure.active {
-  background: #16a34a; /* vert quand actif */
+  background: linear-gradient(180deg, #0059b3 0%, #003b73 100%);
+  transform: translateY(-1px);
 }
+
 
 #info-content {
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -481,4 +480,125 @@ input[type="time"] {
   100% {
     transform: translateX(-100%);
   }
+}
+
+
+/* Affichage légende */
+.legende {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.legende li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.coul {
+  width: 20px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+
+/* Bouton sombre cohérent avec #mode-heure */
+.btn-dark {
+  margin-left: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #0059b3 0%, #003b73 100%);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn-dark:hover {
+  background: linear-gradient(180deg, #0070d1 0%, #004b94 100%);
+  transform: translateY(-1px);
+}
+
+/* 🔽 Menu déroulant interne */
+#select-affichage option {
+  background: #003b73;
+  color: #fff;
+  font-weight: 500;
+}
+
+#select-affichage:hover{
+  transform: translateY(0px);
+}
+
+#header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* bouton de base  */
+.btn-dark {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #0059b3 0%, #003b73 100%);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn-dark:hover {
+  background: linear-gradient(180deg, #0070d1 0%, #004b94 100%);
+  transform: translateY(-1px);
+}
+
+/* ===================== */
+/* 🔽 Menu déroulant pages */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 105%;
+  right: 0;
+  background-color: #003b73;
+  border-radius: 6px;
+  min-width: 180px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.dropdown-content a {
+  color: #fff;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+  background-color: #0070d1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* === Afficher jour === */
+.jours {
+  color: #d6d6d6;
+  font-size: 0.75rem;
+  margin-left: 6px;
 }

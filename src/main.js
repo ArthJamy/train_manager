@@ -26,10 +26,10 @@ function timeToMinutes(h) {
 window.__trainRuntime = {
   getSnapshot: () => {
     const heureCourante = document.getElementById("heure")?.value || "08:00";
-    
+
     return trains.map(train => {
       const etat = window.__getEtatTrain ? window.__getEtatTrain(train, heureCourante) : null;
-      
+
       let etatSimple = "termine";
       if (etat?.statut) {
         if (etat.statut.startsWith("entre")) {
@@ -38,12 +38,15 @@ window.__trainRuntime = {
           etatSimple = "en_gare";
         } else if (etat.statut.startsWith("en attente")) {
           etatSimple = "en_attente";
+        } else if (etat.statut.startsWith("Pas de service")) {
+          etatSimple = "pas_service";
         }
+        
       }
-      
+
       const imageName = train.nom.replaceAll(" ", "_") + ".png";
       const imageUrl = `./assets/trains/${imageName}`;
-      
+
       return {
         id: train.id,
         nom: train.nom,
@@ -104,6 +107,9 @@ new p5((p) => {
   let fondDoitEtreRedessine = true;
   let cachedTrainStates = [];
 
+  let affichageLignes = "electrification";
+
+
   p.preload = function () {
     frontieres = p.loadJSON('./src/frontieres.geojson');
   };
@@ -111,11 +117,40 @@ new p5((p) => {
   // ===== Fonction état du train =====
   function getEtatTrain(train, heureCourante) {
     const tNow = timeToMinutes(heureCourante);
+    
+    // Calcul du jour courant (LU, MA, ME, JE, VE, SA, DI)
+    const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+    const now = new Date();
+    const jourActuel = joursSemaine[
+      new Date(now.toLocaleString("en-US", { timeZone: "Europe/Paris" })).getDay()
+    ];
+
     let trajetActuel = null;
     let statut = "";
     let position = null;
 
-    for (const trajet of train.trajets) {
+    // Filtrer les trajets valides pour le jour actuel
+    const trajetsValides = train.trajets.filter(trajet =>
+      trajet.dessertes.some(d => {
+        const joursValides = d.jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+        return joursValides.includes(jourActuel);
+      })
+    );
+
+    if (trajetsValides.length === 0) {
+      // Aucun trajet prévu ce jour → le train reste au dépôt
+      const dernierTrajet = train.trajets.at(-1);
+      const gFin = villes.find(v => v.nom === dernierTrajet.dessertes.at(-1).gare);
+      if (gFin) position = { x: gFin.x, y: gFin.y };
+      return {
+        trajet: null,
+        statut: `Pas de service ce jour (${jourActuel})`,
+        position
+      };
+    }
+
+
+    for (const trajet of trajetsValides) {
       const debut = timeToMinutes(trajet.dessertes[0].heure);
       const fin = timeToMinutes(trajet.dessertes.at(-1).heure);
       if (tNow >= debut && tNow <= fin) {
@@ -145,188 +180,169 @@ new p5((p) => {
         }
 
 
+        // 🚆 Après départ effectif → suivre le trajet entre A et B
+        if (tNow >= tDepartEffectif && tNow < tB) {
+          const ratio = (tNow - tDepartEffectif) / (tB - tDepartEffectif);
+
+          // 🔹 Récupération du chemin réel
+          const chemin = trouverCheminEntreGares(a.gare, b.gare);
+          const points = chemin.map(nom => villes.find(v => v.nom === nom)).filter(Boolean);
+          if (points.length < 2) return;
+
+          // --- Calcul des vitesses effectives par segment ---
+          let totalTempsRelatif = 0;
+          const segments = [];
+
+          for (let j = 0; j < points.length - 1; j++) {
+            const g1 = points[j];
+            const g2 = points[j + 1];
+            const ligne = lignes.find(l =>
+              (l.gareA === g1.nom && l.gareB === g2.nom) ||
+              (l.gareA === g2.nom && l.gareB === g1.nom)
+            );
+
+            const distance = p.dist(g1.x, g1.y, g2.x, g2.y);
+            const vitesseVoie = ligne?.vitesse_max || 100;
+            const vitesseTrain = train.vitesseMax || 120;
+            const vitesseEffective = Math.min(vitesseVoie, vitesseTrain);
+
+            const tempsRelatif = distance / vitesseEffective;
+            totalTempsRelatif += tempsRelatif;
+
+            segments.push({ g1, g2, distance, vitesseEffective, tempsRelatif, ligne });
+          }
+
+          // --- Trouver le segment courant ---
+          let tempsCible = ratio * totalTempsRelatif;
+
+          for (let i = 0; i < segments.length; i++) {
+            const seg = segments[i];
+            if (tempsCible <= seg.tempsRelatif) {
+              const localRatio = seg.tempsRelatif > 0 ? tempsCible / seg.tempsRelatif : 1;
+
+              // === 🔹 Détermination des phases à appliquer ===
+              const premierSegmentGareDepart = segments[0].g1.nom;
+              const dernierSegmentGareArrivee = segments[segments.length - 1].g2.nom;
+
+              let isStartOfTrip = (seg.g1.nom === premierSegmentGareDepart);
+              let isEndOfTrip = (seg.g2.nom === dernierSegmentGareArrivee);
+
+              // Cas spécial : un seul segment dans le trajet
+              if (segments.length === 1) {
+                isStartOfTrip = true;
+                isEndOfTrip = true;
+              }
+
+              const nextSeg = segments[i + 1];
+              const vitesseSuivante = nextSeg ? nextSeg.vitesseEffective : seg.vitesseEffective;
+              const speedChangeAhead = Math.abs(vitesseSuivante - seg.vitesseEffective) >= 15; // changement notable
+
+              // === 🔹 Paramètres selon le type de train ===
+              const vTrain = train.vitesseMax || 120;
+              const moteur = (train.moteurs || []).join(" ").toLowerCase();
+              const isDiesel = moteur.includes("diesel");
+
+              let accelDist, decelDist;
+              if (vTrain <= 160) { accelDist = 0.6; decelDist = 0.6; }          // TER
+              else if (vTrain <= 200) { accelDist = 1.2; decelDist = 1.2; }     // Intercités
+              else { accelDist = 2.0; decelDist = 2.0; }                        // TGV
+
+              if (isDiesel) {
+                accelDist *= 1.15;
+                decelDist *= 1.10;
+              }
+
+              const kmSegment = seg.distance / 1000;
+              let accelRatio = Math.min(accelDist / kmSegment, 0.5);
+              let decelRatio = Math.min(decelDist / kmSegment, 0.5);
+              if (segments.length === 1) {
+                accelRatio = 0.1;
+                decelRatio = 0.1;
+              }
+
+              // === 🔹 Easing monotone (pas de repondération de temps) ===
+              let easedRatio = localRatio;
+
+              // 1) Accélération uniquement sur le tout 1er segment du chemin (départ réel)
+              if (isStartOfTrip && localRatio < accelRatio) {
+                const t = localRatio / Math.max(accelRatio, 1e-6);
+                // 0→1 lissé sans rétrogradation
+                easedRatio = (0.5 - 0.5 * Math.cos(Math.PI * t)) * accelRatio
+                  + (localRatio - t * accelRatio); // garde la continuité hors fenêtre
+              }
+
+              // 2) Décélération uniquement sur le tout dernier segment du chemin (arrivée réelle)
+              if (isEndOfTrip && localRatio > 1 - decelRatio) {
+                const t = (localRatio - (1 - decelRatio)) / Math.max(decelRatio, 1e-6);
+                const tail = 0.5 - 0.5 * Math.cos(Math.PI * t); // 0→1
+                // on “arrondit” seulement la queue, sans changer le reste
+                easedRatio = (1 - decelRatio) + tail * decelRatio;
+              }
+
+              // 3) Transition de vitesse entre tronçons (optionnelle, mais sans retour arrière)
+              //    Fin du segment N: lisser la queue (pas de repondération du temps)
+              if (!isEndOfTrip && speedChangeAhead && localRatio > 0.85) {
+                const t = (localRatio - 0.85) / 0.15; // fenêtre de 15% en fin
+                const s = t * t * (3 - 2 * t); // smoothstep 0→1
+                easedRatio = (1 - 0.15) + s * 0.15; // compresse juste la queue
+              }
 
 
+              // --- Position du train ---
+              const x = p.lerp(seg.g1.x, seg.g2.x, easedRatio);
+              const y = p.lerp(seg.g1.y, seg.g2.y, easedRatio);
+              position = { x, y };
 
 
+              // === 🔹 Calcul de la vitesse réelle approximative (synchronisé avec easedRatio) ===
+              let vitesseReelle = seg.vitesseEffective;
+
+              // départ
+              if (isStartOfTrip && localRatio < accelRatio) {
+                const t = localRatio / Math.max(accelRatio, 1e-6);
+                vitesseReelle = seg.vitesseEffective * t; // simple et lisible
+              }
+              // arrivée
+              else if (isEndOfTrip && localRatio > 1 - decelRatio) {
+                const t = (1 - localRatio) / Math.max(decelRatio, 1e-6);
+                vitesseReelle = seg.vitesseEffective * t;
+              }
+
+              // --- Adaptation de la vitesse entre tronçons ---
+              else {
+                const prevSeg = segments[i - 1];
+                const nextSeg = segments[i + 1];
+                const vitessePrecedente = prevSeg ? prevSeg.vitesseEffective : seg.vitesseEffective;
+                const vitesseSuivante = nextSeg ? nextSeg.vitesseEffective : seg.vitesseEffective;
+                const decelAhead = nextSeg && vitesseSuivante < seg.vitesseEffective;
+                const accelBehind = prevSeg && seg.vitesseEffective > vitessePrecedente;
+
+                // 🔻 Décélération anticipée (avant le tronçon lent)
+                if (decelAhead && localRatio > 0.85) {
+                  const t = (localRatio - 0.85) / 0.15;
+                  const s = t * t * (3 - 2 * t);
+                  vitesseReelle = seg.vitesseEffective + (vitesseSuivante - seg.vitesseEffective) * s;
+                }
+
+                // 🔺 Accélération retardée (au début du tronçon rapide)
+                else if (accelBehind && localRatio < 0.15) {
+                  const t = localRatio / 0.15;
+                  const s = t * t * (3 - 2 * t);
+                  vitesseReelle = vitessePrecedente + (seg.vitesseEffective - vitessePrecedente) * s;
+                }
+              }
 
 
+              vitesseReelle = Math.max(0, Math.round(vitesseReelle));
 
+              // === FIN 🔹 Calcul de la vitesse réelle approximative ===
 
-
-
-
-	// 🚆 Après départ effectif → suivre le trajet entre A et B
-if (tNow >= tDepartEffectif && tNow < tB) {
-  const ratio = (tNow - tDepartEffectif) / (tB - tDepartEffectif);
-
-  // 🔹 Récupération du chemin réel
-  const chemin = trouverCheminEntreGares(a.gare, b.gare);
-  const points = chemin.map(nom => villes.find(v => v.nom === nom)).filter(Boolean);
-  if (points.length < 2) return;
-
-  // --- Calcul des vitesses effectives par segment ---
-  let totalTempsRelatif = 0;
-  const segments = [];
-
-  for (let j = 0; j < points.length - 1; j++) {
-    const g1 = points[j];
-    const g2 = points[j + 1];
-    const ligne = lignes.find(l =>
-      (l.gareA === g1.nom && l.gareB === g2.nom) ||
-      (l.gareA === g2.nom && l.gareB === g1.nom)
-    );
-
-    const distance = p.dist(g1.x, g1.y, g2.x, g2.y);
-    const vitesseVoie = ligne?.vitesse_max || 100;
-    const vitesseTrain = train.vitesseMax || 120;
-    const vitesseEffective = Math.min(vitesseVoie, vitesseTrain);
-
-    const tempsRelatif = distance / vitesseEffective;
-    totalTempsRelatif += tempsRelatif;
-
-    segments.push({ g1, g2, distance, vitesseEffective, tempsRelatif, ligne });
-  }
-
-  // --- Trouver le segment courant ---
-  let tempsCible = ratio * totalTempsRelatif;
-
-  for (let i = 0; i < segments.length; i++) {
-    const seg = segments[i];
-    if (tempsCible <= seg.tempsRelatif) {
-      const localRatio = seg.tempsRelatif > 0 ? tempsCible / seg.tempsRelatif : 1;
-
-      // === 🔹 Détermination des phases à appliquer ===
-      const premierSegmentGareDepart = segments[0].g1.nom;
-      const dernierSegmentGareArrivee = segments[segments.length - 1].g2.nom;
-
-      let isStartOfTrip = (seg.g1.nom === premierSegmentGareDepart);
-      let isEndOfTrip = (seg.g2.nom === dernierSegmentGareArrivee);
-
-      // Cas spécial : un seul segment dans le trajet
-      if (segments.length === 1) {
-        isStartOfTrip = true;
-        isEndOfTrip = true;
-      }
-
-      const nextSeg = segments[i + 1];
-      const vitesseSuivante = nextSeg ? nextSeg.vitesseEffective : seg.vitesseEffective;
-      const speedChangeAhead = Math.abs(vitesseSuivante - seg.vitesseEffective) >= 15; // changement notable
-
-      // === 🔹 Paramètres selon le type de train ===
-      const vTrain = train.vitesseMax || 120;
-      const moteur = (train.moteurs || []).join(" ").toLowerCase();
-      const isDiesel = moteur.includes("diesel");
-
-      let accelDist, decelDist;
-      if (vTrain <= 160) { accelDist = 0.6; decelDist = 0.6; }          // TER
-      else if (vTrain <= 200) { accelDist = 1.2; decelDist = 1.2; }     // Intercités
-      else { accelDist = 2.0; decelDist = 2.0; }                        // TGV
-
-      if (isDiesel) {
-        accelDist *= 1.15;
-        decelDist *= 1.10;
-      }
-		
-// ====
-      const kmSegment = seg.distance / 1000;
-      let accelRatio = Math.min(accelDist / kmSegment, 0.5);
-      let decelRatio = Math.min(decelDist / kmSegment, 0.5);
-	  if (segments.length === 1) {
-		  accelRatio = 0.1;
-		  decelRatio = 0.1;
-	  }
-
-
-
-
-
-
-
-
-
-		
-
-		// === 🔹 Easing monotone (pas de repondération de temps) ===
-let easedRatio = localRatio;
-
-// 1) Accélération uniquement sur le tout 1er segment du chemin (départ réel)
-if (isStartOfTrip && localRatio < accelRatio) {
-  const t = localRatio / Math.max(accelRatio, 1e-6);
-  // 0→1 lissé sans rétrogradation
-  easedRatio = (0.5 - 0.5 * Math.cos(Math.PI * t)) * accelRatio
-             + (localRatio - t * accelRatio); // garde la continuité hors fenêtre
-}
-
-// 2) Décélération uniquement sur le tout dernier segment du chemin (arrivée réelle)
-if (isEndOfTrip && localRatio > 1 - decelRatio) {
-  const t = (localRatio - (1 - decelRatio)) / Math.max(decelRatio, 1e-6);
-  const tail = 0.5 - 0.5 * Math.cos(Math.PI * t); // 0→1
-  // on “arrondit” seulement la queue, sans changer le reste
-  easedRatio = (1 - decelRatio) + tail * decelRatio;
-}
-
-// 3) Transition de vitesse entre tronçons (optionnelle, mais sans retour arrière)
-//    Fin du segment N: lisser la queue (pas de repondération du temps)
-if (!isEndOfTrip && speedChangeAhead && localRatio > 0.85) {
-  const t = (localRatio - 0.85) / 0.15; // fenêtre de 15% en fin
-  const s = t * t * (3 - 2 * t); // smoothstep 0→1
-  easedRatio = (1 - 0.15) + s * 0.15; // compresse juste la queue
-}
-
-      
-
-		
-
-
-
-
-
-
-		
-
-      // --- Position du train ---
-      const x = p.lerp(seg.g1.x, seg.g2.x, easedRatio);
-      const y = p.lerp(seg.g1.y, seg.g2.y, easedRatio);
-      position = { x, y };
-
-
-		// === 🔹 Calcul de la vitesse réelle approximative (synchronisé avec easedRatio) ===
-      let vitesseReelle = seg.vitesseEffective;
-
-// départ
-if (isStartOfTrip && localRatio < accelRatio) {
-  const t = localRatio / Math.max(accelRatio, 1e-6);
-  vitesseReelle = seg.vitesseEffective * t; // simple et lisible
-}
-// arrivée
-else if (isEndOfTrip && localRatio > 1 - decelRatio) {
-  const t = (1 - localRatio) / Math.max(decelRatio, 1e-6);
-  vitesseReelle = seg.vitesseEffective * t;
-}
-// transition fin de segment vers vitesse suivante
-else if (!isEndOfTrip && speedChangeAhead && localRatio > 0.85) {
-  const v0 = seg.vitesseEffective;
-  const v1 = vitesseSuivante;
-  const t = (localRatio - 0.85) / 0.15;
-  const s = t * t * (3 - 2 * t);
-  vitesseReelle = v0 + (v1 - v0) * s;
-}
-
-vitesseReelle = Math.max(0, Math.round(vitesseReelle));
-
-
-		
-	// === FIN 🔹 Calcul de la vitesse réelle approximative ===
-		
-      statut = `entre ${a.gare} et ${b.gare}`;
-      return { trajet: trajetActuel, statut, position, vitesseActuelle: Math.round(vitesseReelle) };
-    }
-    tempsCible -= seg.tempsRelatif;
-  }
-}
-
-
+              statut = `entre ${a.gare} et ${b.gare}`;
+              return { trajet: trajetActuel, statut, position, vitesseActuelle: Math.round(vitesseReelle) };
+            }
+            tempsCible -= seg.tempsRelatif;
+          }
+        }
 
 
       }
@@ -358,11 +374,11 @@ vitesseReelle = Math.max(0, Math.round(vitesseReelle));
   window.__getEtatTrain = getEtatTrain;
 
   window.__centrerSurTrain = (x, y, trainId) => {
-    const targetZoom = 1.5;
+    const targetZoom = 2.5;
     zoom = targetZoom;
     offsetX = p.width / 2 - x * zoom;
     offsetY = p.height / 2 - y * zoom;
-    
+
     const train = trains.find(t => t.id === trainId);
     if (train) {
       elementSelectionne = { type: "train", data: train };
@@ -417,7 +433,7 @@ vitesseReelle = Math.max(0, Math.round(vitesseReelle));
 
     document.getElementById("zoom-in").onclick = () => zoomOnPoint(p.width / 2, p.height / 2, 1);
     document.getElementById("zoom-out").onclick = () => zoomOnPoint(p.width / 2, p.height / 2, -1);
-    
+
     offsetX = p.width / 2;
     offsetY = p.height / 2;
 
@@ -490,22 +506,22 @@ vitesseReelle = Math.max(0, Math.round(vitesseReelle));
     }
   };
 
-function majHeureReelle() {
-  const now = new Date();
-  const h = String(now.getHours()).padStart(2, "0");
-  const m = String(now.getMinutes()).padStart(2, "0");
-  const s = String(now.getSeconds()).padStart(2, "0");
+  function majHeureReelle() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, "0");
+    const m = String(now.getMinutes()).padStart(2, "0");
+    const s = String(now.getSeconds()).padStart(2, "0");
 
-  // affichage complet HH:MM:SS
-  inputHeure.value = `${h}:${m}:${s}`;
+    // affichage complet HH:MM:SS
+    inputHeure.value = `${h}:${m}:${s}`;
 
-  // on ne rafraîchit les infos que si la minute change
-  const minuteCourante = `${h}:${m}`;
-  if (minuteCourante !== derniereHeureConnue) {
-    derniereHeureConnue = minuteCourante;
-    rafraichirSelection(); // maj du panneau seulement 1×/min
+    // on ne rafraîchit les infos que si la minute change
+    const minuteCourante = `${h}:${m}`;
+    if (minuteCourante !== derniereHeureConnue) {
+      derniereHeureConnue = minuteCourante;
+      rafraichirSelection(); // maj du panneau seulement 1×/min
+    }
   }
-}
 
 
 
@@ -538,10 +554,42 @@ function majHeureReelle() {
 
       if (l.type === "tunnel") fondBuffer.drawingContext.setLineDash([2 / zoom, 6 / zoom]);
       else fondBuffer.drawingContext.setLineDash([]);
+      //Affichage dynamique
+      switch (affichageLignes) {
+        case "electrification":
+          if (l.electrification === "25kV CA") fondBuffer.stroke(254, 52, 52);
+          else if (l.electrification === "15kV CA") fondBuffer.stroke(87, 186, 52);
+          else if (l.electrification === "diesel") fondBuffer.stroke(100);
+          else fondBuffer.stroke(0);
+          break;
 
-      if (l.electrification === "25kV CA") fondBuffer.stroke(254, 52, 52);
-      else if (l.electrification === "15kV CA") fondBuffer.stroke(87, 186, 52);
-      else fondBuffer.stroke(0);
+        case "type":
+          if (l.type === "LGV") fondBuffer.stroke(220, 0, 0);
+          else if (l.type === "tunnel") fondBuffer.stroke(60);
+          else fondBuffer.stroke(0, 100, 255);
+          break;
+
+        case "vitesse":
+          const v = l.vitesse_max || 100;
+
+          if (v >= 260) fondBuffer.stroke(220, 0, 0);          // rouge bordeaux
+          else if (v >= 200) fondBuffer.stroke(255, 215, 0);   // jaune
+          else if (v >= 160) fondBuffer.stroke(0, 100, 0);     // vert foncé
+          else if (v >= 120) fondBuffer.stroke(50, 205, 50);   // vert clair
+          else if (v >= 90) fondBuffer.stroke(135, 206, 250); // bleu clair
+          else fondBuffer.stroke(0, 0, 128);     // bleu foncé
+          break;
+
+
+        case "signalisation":
+          if (l.signalisation === "ETCS") fondBuffer.stroke(255, 0, 255);
+          else if (l.signalisation === "KVB") fondBuffer.stroke(0, 0, 255);
+          else if (l.signalisation === "PZB") fondBuffer.stroke(255, 200, 0);
+          else if (l.signalisation === "LZB") fondBuffer.stroke(0, 200, 255);
+          else fondBuffer.stroke(80);
+          break;
+      }
+
 
       fondBuffer.line(g1.x, g1.y, g2.x, g2.y);
     });
@@ -580,75 +628,78 @@ function majHeureReelle() {
   }
 
   // ===== Boucle draw optimisée =====
-p.draw = function () {
-  const now = p.millis();
+  p.draw = function () {
+    const now = p.millis();
 
-  // détecter zoom ou déplacement
-  if (zoom !== lastZoom || offsetX !== lastOffsetX || offsetY !== lastOffsetY) {
-    fondDoitEtreRedessine = true;
-    lastZoom = zoom;
-    lastOffsetX = offsetX;
-    lastOffsetY = offsetY;
-  }
-
-  if (fondDoitEtreRedessine) {
-    dessinerFond();
-    fondDoitEtreRedessine = false;
-  }
-
-  p.image(fondBuffer, 0, 0);
-
-  // intervalle dynamique selon le zoom
-  const TRAIN_UPDATE_INTERVAL = p.map(zoom, 0.5, 3, 1000, 50, true);
-
-  // recalculer les positions à intervalle dynamique
-  if (now - lastTrainUpdate >= TRAIN_UPDATE_INTERVAL || cachedTrainStates.length === 0) {
-    lastTrainUpdate = now;
-    const heureCourante = document.getElementById("heure")?.value || "08:00:00";
-    cachedTrainStates = trains.map(train => ({
-      train,
-      etat: getEtatTrain(train, heureCourante)
-    }));
-  }
-
-  // affichage continu (pas de clignotement)
-  p.push();
-  p.translate(offsetX, offsetY);
-  p.scale(zoom);
-
-  cachedTrainStates.forEach(({ train, etat }) => {
-    if (!etat?.position) return;
-    const { position, statut } = etat;
-
-    const scaleFactor = Math.min(2, 1.2 / zoom);
-    const size = 9 * scaleFactor;
-    const textSize = 12 * scaleFactor;
-
-    if (statut.startsWith("entre")) p.fill("blue");
-    else if (statut.startsWith("en gare")) p.fill(0, 179, 255);
-    else if (statut.startsWith("en attente")) p.fill(113, 114, 122);
-    else p.fill(170, 171, 180);
-
-    p.noStroke();
-    p.circle(position.x, position.y, size);
-
-    if (zoom > 0.5  ) {
-      // Affichage du texte (ID) → toujours visible sauf service fini
-      if (!statut.toLowerCase().includes("service fini")) {
-        p.textSize(textSize);
-        p.textAlign(p.CENTER, p.CENTER);
-        p.fill(25, 46, 232);
-        p.text(train.id, position.x, position.y - textSize);
-      }
+    // détecter zoom ou déplacement
+    if (zoom !== lastZoom || offsetX !== lastOffsetX || offsetY !== lastOffsetY) {
+      fondDoitEtreRedessine = true;
+      lastZoom = zoom;
+      lastOffsetX = offsetX;
+      lastOffsetY = offsetY;
     }
 
-    train._screenPos = position;
-    train._statut = statut;
-    train._trajetActuel = etat.trajet;
-  });
+    if (fondDoitEtreRedessine) {
+      dessinerFond();
+      fondDoitEtreRedessine = false;
+    }
 
-  p.pop();
-};
+    p.image(fondBuffer, 0, 0);
+
+    // intervalle dynamique selon le zoom
+    const TRAIN_UPDATE_INTERVAL = p.map(zoom, 0.5, 3, 1000, 50, true);
+
+    // recalculer les positions à intervalle dynamique
+    if (now - lastTrainUpdate >= TRAIN_UPDATE_INTERVAL || cachedTrainStates.length === 0) {
+      lastTrainUpdate = now;
+      const heureCourante = document.getElementById("heure")?.value || "08:00:00";
+      cachedTrainStates = trains.map(train => ({
+        train,
+        etat: getEtatTrain(train, heureCourante)
+      }));
+    }
+
+    // affichage continu (pas de clignotement)
+    p.push();
+    p.translate(offsetX, offsetY);
+    p.scale(zoom);
+
+    cachedTrainStates.forEach(({ train, etat }) => {
+      if (!etat?.position) return;
+      const { position, statut } = etat;
+
+      const scaleFactor = Math.min(2, 1.2 / zoom);
+      const size = 9 * scaleFactor;
+      const textSize = 12 * scaleFactor;
+
+      if (statut.startsWith("entre")) p.fill("blue");
+      else if (statut.startsWith("en gare")) p.fill(0, 179, 255);
+      else if (statut.startsWith("en attente")) p.fill(113, 114, 122);
+      else p.fill(170, 171, 180);
+
+      p.noStroke();
+      p.circle(position.x, position.y, size);
+
+      if (zoom > 0.5) {
+        // Affichage du texte (ID) → toujours visible sauf service fini et pas en service ajd
+        if (
+          !statut.toLowerCase().includes("service fini") &&
+          !statut.toLowerCase().includes("pas de service")
+        ) {
+          p.textSize(textSize);
+          p.textAlign(p.CENTER, p.CENTER);
+          p.fill(25, 46, 232);
+          p.text(train.id, position.x, position.y - textSize);
+        }
+      }
+
+      train._screenPos = position;
+      train._statut = statut;
+      train._trajetActuel = etat.trajet;
+    });
+
+    p.pop();
+  };
 
 
 
@@ -656,7 +707,7 @@ p.draw = function () {
     const canvasRect = p.canvas.getBoundingClientRect();
     const clickX = event.clientX || (canvasRect.left + p.mouseX);
     const clickY = event.clientY || (canvasRect.top + p.mouseY);
-    
+
     if (clickX < canvasRect.left || clickX > canvasRect.right || clickY < canvasRect.top || clickY > canvasRect.bottom) {
       return;
     }
@@ -764,7 +815,7 @@ p.draw = function () {
 
   function rafraichirSelection() {
     if (!elementSelectionne) return;
-    
+
     if (elementSelectionne.type === "train") {
       afficherInfosTrain(elementSelectionne.data);
     } else if (elementSelectionne.type === "gare") {
@@ -799,6 +850,7 @@ p.draw = function () {
         const tNext = prochain ? timeToMinutes(prochain.heure) : t;
         const arret = d.arret || 0;
         const tDepartEffectif = t + arret;
+        
 
         let etat = "futur";
         if (tNow >= tNext) {
@@ -815,12 +867,14 @@ p.draw = function () {
         }
 
         const heureAffichee = minutesToTime(tDepartEffectif);
+        const joursHTML = d.jours ? `<span class="jours">(${d.jours.join(", ")})</span>` : "";
+        
         if (i < trajet.dessertes.length - 1) {
           garesHTML += `
         <div class="timeline-step ${etat}">
           <div class="dot"></div>
           <div class="info">
-            <span class="heure">${d.heure} 🡺 ${heureAffichee}</span>
+            <span class="heure">${d.heure} 🡺 ${heureAffichee} ${joursHTML}</span>
             <span class="gare">${d.gare}</span>
           </div>
         </div>
@@ -830,7 +884,7 @@ p.draw = function () {
         <div class="timeline-step ${etat}">
           <div class="dot"></div>
           <div class="info">
-            <span class="heure">${heureAffichee}</span>
+            <span class="heure">${heureAffichee} ${joursHTML}</span>
             <span class="gare">${d.gare}</span>
           </div>
         </div>
@@ -854,7 +908,7 @@ p.draw = function () {
     div.style.transition = "opacity 0.3s ease, transform 0.3s ease";
     div.style.opacity = 0;
     div.style.transform = "translateX(-10px)";
-    
+
     setTimeout(() => {
       div.innerHTML = `
     <h3>${train.nom}${rame.length > 1 ? " (UM" + rame.length + ")" : ""}</h3>
@@ -882,7 +936,7 @@ p.draw = function () {
         e.stopPropagation();
         imgView.scrollBy({ left: 150, behavior: "smooth" });
       };
-      
+
       document.getElementById("btn-trajets-train").addEventListener("click", () => {
         afficherTrajetsTrain(train.id);
       });
@@ -895,31 +949,31 @@ p.draw = function () {
   }
 
 
-	// === Rafraîchissement automatique de la vitesse actuelle toutes les secondes ===
-	setInterval(() => {
-	  const div = document.getElementById("info-content");
-	  if (!div || !elementSelectionne || elementSelectionne.type !== "train") return;
-	
-	  const train = elementSelectionne.data;
-	  const heureCourante = document.getElementById("heure")?.value || "08:00:00";
-	  const etat = window.__getEtatTrain ? window.__getEtatTrain(train, heureCourante) : null;
-	  if (!etat) return;
-	
-	  const vitesseActuelle = Math.round(etat.vitesseActuelle || 0);
-	  
-	  // Trouver l'élément contenant "Vitesse actuelle"
-	  const paragraphes = div.querySelectorAll("p");
-	  for (const p of paragraphes) {
-	    const bold = p.querySelector("b");
-	    if (bold && bold.textContent.includes("Vitesse actuelle")) {
-	      p.innerHTML = `<b>Vitesse actuelle :</b> ${vitesseActuelle} km/h`;
-	      break;
-	    }
-	  }
-	}, 1000);
+  // === Rafraîchissement automatique de la vitesse actuelle toutes les secondes ===
+  setInterval(() => {
+    const div = document.getElementById("info-content");
+    if (!div || !elementSelectionne || elementSelectionne.type !== "train") return;
 
-	
-	
+    const train = elementSelectionne.data;
+    const heureCourante = document.getElementById("heure")?.value || "08:00:00";
+    const etat = window.__getEtatTrain ? window.__getEtatTrain(train, heureCourante) : null;
+    if (!etat) return;
+
+    const vitesseActuelle = Math.round(etat.vitesseActuelle || 0);
+
+    // Trouver l'élément contenant "Vitesse actuelle"
+    const paragraphes = div.querySelectorAll("p");
+    for (const p of paragraphes) {
+      const bold = p.querySelector("b");
+      if (bold && bold.textContent.includes("Vitesse actuelle")) {
+        p.innerHTML = `<b>Vitesse actuelle :</b> ${vitesseActuelle} km/h`;
+        break;
+      }
+    }
+  }, 1000);
+
+
+
   function afficherHorairesGare(nomGare) {
     const div = document.getElementById("info-content");
     if (!div) return;
@@ -934,12 +988,36 @@ p.draw = function () {
 
         dess.forEach((d, i) => {
           if (d.gare === nomGare) {
+            // Vérifie si cette desserte est valable aujourd’hui ou demain
+            const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+            const now = new Date();
+            const todayIndex = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Paris" })).getDay();
+            const jourActuel = joursSemaine[todayIndex];
+            const jourDemain = joursSemaine[(todayIndex + 1) % 7];
+            const joursValides = d.jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+
+
+            const minutes = timeToMinutes(d.heure);
+            const circuleAujourdhui = joursValides.includes(jourActuel);
+            const circuleDemain = joursValides.includes(jourDemain);
+
+            // Si le train ne circule ni aujourd’hui ni demain → on ignore
+            if (!circuleAujourdhui && !circuleDemain) return;
+
+
+            // Si le train circule aujourd’hui mais que son horaire est déjà passé → on n’affiche pas
+            if (circuleAujourdhui && minutes < tNow && !circuleDemain) return;
+            
+            // Calcul correct du drapeau "lendemain"
+          const isTomorrow =
+            (!circuleAujourdhui && circuleDemain) ||
+            (circuleAujourdhui && minutes < tNow && circuleDemain);
+
+
             if (i < dess.length - 1) {
               const destinationFinale = dess.at(-1).gare;
               const heureArrivee = timeToMinutes(d.heure);
               const heureDepart = heureArrivee + (d.arret || 0);
-              const isTomorrow = heureDepart < tNow;
-
               const heureFormatee = minutesToTime(heureDepart);
 
               const garesDesservies = dess
@@ -952,19 +1030,19 @@ p.draw = function () {
                 heure: heureFormatee,
                 vers: destinationFinale,
                 demain: isTomorrow,
-                gares: garesDesservies
+                gares: garesDesservies,
+                jours: d.jours
               });
             }
 
             if (i > 0) {
               const origine = dess[0].gare;
-              const minutes = timeToMinutes(d.heure);
-              const isTomorrow = minutes < tNow;
               arrivees.push({
                 train: train.id,
                 heure: d.heure,
                 de: origine,
                 demain: isTomorrow,
+                jours: d.jours
               });
             }
           }
@@ -985,11 +1063,11 @@ p.draw = function () {
       .filter(a => !a.demain)
       .concat(arrivees.filter(a => a.demain))
       .slice(0, 5);
-      
+
     div.style.transition = "opacity 0.3s ease, transform 0.3s ease";
     div.style.opacity = 0;
     div.style.transform = "translateX(-10px)";
-    
+
     setTimeout(() => {
       const html = `
     <h3>🕓 Gare de ${nomGare}</h3>
@@ -999,7 +1077,7 @@ p.draw = function () {
       <ul>
         ${prochainsDeparts.map(d => `
           <li class="depart ${d.demain ? "lendemain" : ""}">
-            <span class="heure">${d.heure}</span> 
+            <span class="heure">${d.heure}</span>
             <span class="vers">→ ${d.vers}</span> 
             <span class="gares-defile">
               <span class="gares-txt">${d.gares}</span>
@@ -1014,7 +1092,7 @@ p.draw = function () {
       <ul>
         ${prochainesArrivees.map(a => `
           <li class="arrivee ${a.demain ? "lendemain" : ""}">
-            <span class="heure">${a.heure}</span> 
+            <span class="heure">${a.heure}</span>
             <span class="de">← ${a.de}</span> 
             <span class="train-id">(${a.train})</span>
             ${a.demain ? '<span class="next-day">Lendemain</span>' : ""}
@@ -1028,12 +1106,78 @@ p.draw = function () {
       document.getElementById("btn-fiche-gare").addEventListener("click", () => {
         afficherFicheHoraire(nomGare);
       });
-      
+
       setTimeout(() => {
         div.style.opacity = 1;
         div.style.transform = "translateX(0)";
       }, 50);
     }, 300);
+  }
+
+  // Affichage ligne + légende 
+  const selectAffichage = document.getElementById("select-affichage");
+  // Gère à la fois un changement et un reclique sur la même option
+  selectAffichage.addEventListener("click", (e) => {
+    afficherLegendeAffichage(); // même si la valeur est identique
+  });
+
+  selectAffichage.addEventListener("change", (e) => {
+    affichageLignes = e.target.value;
+    fondDoitEtreRedessine = true;
+    afficherLegendeAffichage();
+  });
+
+  function afficherLegendeAffichage() {
+    const div = document.getElementById("info-content");
+    if (!div) return;
+
+    let html = `<h3>Légende – ${selectAffichage.options[selectAffichage.selectedIndex].text}</h3>`;
+
+    switch (affichageLignes) {
+      case "electrification":
+        html += `
+        <ul class="legende">
+          <li><span class="coul" style="background:#fe3434"></span> 25 kV CA</li>
+          <li><span class="coul" style="background:#57ba34"></span> 15 kV CA</li>
+          <li><span class="coul" style="background:#666"></span> Diesel / non électrifiée</li>
+        </ul>`;
+        break;
+
+      case "type":
+        html += `
+        <ul class="legende">
+          <li><span class="coul" style="background:#dc0000"></span> LGV</li>
+          <li><span class="coul" style="background:#0064ff"></span> Ligne classique</li>
+          <li><span class="coul" style="background:#555;border:dashed 1px #999"></span> Tunnel</li>
+        </ul>`;
+        break;
+
+      case "vitesse":
+        html += `
+    <ul class="legende">
+      <li><span class="coul" style="background:#dc0000"></span> ≥ 260 km/h</li>
+      <li><span class="coul" style="background:#ffd700"></span> ≥ 200 km/h</li>
+      <li><span class="coul" style="background:#006400"></span> ≥ 160 km/h</li>
+      <li><span class="coul" style="background:#32cd32"></span> ≥ 120 km/h</li>
+      <li><span class="coul" style="background:#87cefa"></span> ≥ 90 km/h</li>
+      <li><span class="coul" style="background:#000080"></span> < 90 km/h</li>
+    </ul>`;
+        break;
+
+
+      case "signalisation":
+        html += `
+        <ul class="legende">
+          <li><span class="coul" style="background:#ff00ff"></span> ETCS</li>
+          <li><span class="coul" style="background:#0000ff"></span> KVB</li>
+          <li><span class="coul" style="background:#ffc800"></span> PZB</li>
+          <li><span class="coul" style="background:#00c8ff"></span> LZB</li>
+          <li><span class="coul" style="background:#666"></span> Autre</li>
+        </ul>`;
+        break;
+    }
+
+    div.innerHTML = html;
   }
 
   function minutesToTime(minutes) {
@@ -1042,19 +1186,4 @@ p.draw = function () {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

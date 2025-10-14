@@ -18,17 +18,28 @@
             <input type="time" id="heure" step="1" value="08:15:00">
             <button id="mode-heure">⏰ Heure réelle</button>
         </div>
-        <h2 class="header-center">🛤️ Simulateur ferroviaire — Est de la France</h2>
+        <h2 class="header-center">Simulateur ferroviaire — Est de la France</h2>
         <div class="header-right">
-            <a href="./creationGareLigne.html" target="_blank">
-            <button id="save-trains">💾 Créer gares / lignes</button>
-            </a>
             <button id="btn-flotte" class="btn-dark">🗺️ Flotte</button>
+    
+            <select id="select-affichage" class="btn-dark">
+                <option value="electrification">Électrification</option>
+                <option value="vitesse">Vitesse</option>
+                <option value="signalisation">Signalisation</option>
+                <option value="type">Type</option>
+            </select>
+    
+            <div class="dropdown">
+                <button id="btn-pages" class="btn-dark">⚙️ Outils</button>
+                <div class="dropdown-content">
+                    <a href="./creationGareLigne.html" target="_blank">Créer gares / lignes</a>
+                    <a href="#0" target="_blank">Autre outil</a>
+                    <a href="#0" target="_blank">Debug / test</a>
+                </div>
+            </div>
         </div>
     </header>
-
-
-
+    
     <div id="app">
         <div id="info-panel">
             <h2>Informations</h2>

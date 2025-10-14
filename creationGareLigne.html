@@ -10,7 +10,7 @@
     margin: 0;
   }
   header {
-    background: #2b6df2;
+    background: #2e3b4e;
     color: white;
     padding: 10px 20px;
     display: flex;
@@ -19,10 +19,10 @@
   }
   header h1 { font-size: 1.2rem; margin: 0; }
   header button {
-    background: white; color: #2b6df2; border: none; border-radius: 5px;
-    padding: 6px 12px; margin-left: 6px; cursor: pointer; font-weight: bold;
+    margin-left: 10px; padding: 6px 12px; border: none; border-radius: 6px; background: linear-gradient(180deg, #0059b3 0%, #003b73 100%);
+    color: #fff;   font-weight: 600;   cursor: pointer;   transition: all 0.2s ease;   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
-  header button:hover { background: #eef3fa; }
+  header button:hover { background: linear-gradient(180deg, #0070d1 0%, #004b94 100%);   transform: translateY(-1px); }
   main { display: flex; gap: 2rem; padding: 1rem 2rem; }
   h2 { text-align: center; margin-bottom: 0.5rem; }
   .colonne {
@@ -40,10 +40,10 @@
   }
   input[readonly] { background:#f2f2f2; }
   button {
-    background: #2b6df2; color: white; border: none; border-radius: 5px;
+    background: #003b73; color: white; border: none; border-radius: 5px;
     padding: 6px 10px; margin-top: 6px; cursor: pointer;
   }
-  button:hover { background: #1f4eb8; }
+  button:hover { background: #0059b3; }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .list {
     font-family: monospace; background: #f8f8f8; border: 1px solid #ccc;
@@ -58,7 +58,7 @@
 <body>
 
 <header>
-  <h1><a href="./index.html">🏠</a> Éditeur de gares & lignes ferroviaires</h1>
+  <h1><a href="./index.html"><button>🏠</button></a> Éditeur de gares & lignes ferroviaires</h1>
   <div>
     <button onclick="copierGares()">📋 Copier gares.js</button>
     <button onclick="copierLignes()">📋 Copier voies.js</button>
@@ -463,6 +463,7 @@ function ajouterCarteLigne() {
     <select class="type">
       <option value="classique" selected>classique</option>
       <option value="LGV">LGV</option>
+      <option value="tunnel">tunnel</option>
     </select>
     <label>Vitesse max (km/h)</label>
     <input type="number" class="vitesse" value="140">

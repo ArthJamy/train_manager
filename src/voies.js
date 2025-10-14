@@ -138,5 +138,6 @@ export const lignes = [
   { gareA: "Muellheim", gareB: "Schliengen", longueur: 6.4, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Offenburg", gareB: "Friesenheim (Baden)", longueur: 14, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Basel Bad Bf", gareB: "_BaselCentre", longueur: 2.5, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "ETCS" },
-  { gareA: "_BaselCentre", gareB: "Basel SBB", longueur: 2.6, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "ETCS" }
+  { gareA: "_BaselCentre", gareB: "Basel SBB", longueur: 2.6, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "ETCS" },
+  { gareA: "Eimeldingen", gareB: "Schliengen", longueur: 16.1, type: "tunnel", vitesse_max: 260, electrification: "15kV CA", signalisation: "LZB" }
 ];

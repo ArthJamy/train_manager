@@ -342,20 +342,6 @@
 }
 
 /*=============== Affichage flotte ===============*/
-/* Bouton sombre cohérent avec #mode-heure */
-.btn-dark {
-  margin-left: 10px;
-  padding: 6px 10px;
-  border: none;
-  border-radius: 6px;
-  background: #4b5563;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.btn-dark:hover { background: #6b7280; }
-
 /* Popup Flotte : barre d’outils + layout */
 .flotte-layout {
   display: grid;
@@ -408,7 +394,8 @@
 .etat-en_gare   { background: #059669; }
 .etat-en_attente { background: #48D068; }
 .etat-termine   { background: #6b7280; }
-.etat-inconnu   { background: #9ca3af; }
+.etat-pas-service   { background: #9ca3af; }
+.etat-inconnu   { background: #000000; }
 
 /* Légende sous la carte (facultatif) */
 .flotte-legend {
@@ -482,6 +469,12 @@
 }
 
 .flotte-card.etat-termine {
+  border-color: #6b7280;
+  background: linear-gradient(to bottom, #f9fafb 0%, white 30%);
+  opacity: 0.7;
+}
+
+.flotte-card.etat-pas-service {
   border-color: #9ca3af;
   background: linear-gradient(to bottom, #f9fafb 0%, white 30%);
   opacity: 0.7;
@@ -527,6 +520,11 @@
 
 .etat-badge.etat-termine {
   background: #6b7280;
+  color: white;
+}
+
+.etat-badge.etat-pas-service {
+  background: #9ca3af;
   color: white;
 }
 

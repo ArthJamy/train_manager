@@ -225,17 +225,31 @@ export const trainsFR = [
       {
         nom: "Basel SBB → Strasbourg",
         dessertes: [
-        { gare: "Basel SBB", heure: "11:15", arret: 3 },
-        { gare: "Mulhouse", heure: "11:35", arret: 3 },
-        { gare: "Strasbourg", heure: "12:25", arret: 0 }
+        { gare: "Basel SBB", heure: "09:15", arret: 3, jours: ["LU","JE", "VE"]},
+        { gare: "Mulhouse", heure: "09:35", arret: 3, jours: ["JE", "VE"] },
+        { gare: "Strasbourg", heure: "09:55", arret: 0, jours: ["LU","JE", "VE"] }
       ]
       },
       {
         nom: "Strasbourg → Basel SBB",
         dessertes: [
-          { gare: "Strasbourg", heure: "13:00", arret: 4 },
-          { gare: "Mulhouse", heure: "13:55", arret: 4 },
-          { gare: "Basel SBB", heure: "14:15", arret: 0 }
+          { gare: "Strasbourg", heure: "20:00", arret: 4, jours: ["LU","JE", "VE"] },
+          { gare: "Mulhouse", heure: "20:40", arret: 4, jours: ["JE", "VE"] },
+          { gare: "Basel SBB", heure: "20:55", arret: 0, jours: ["LU","JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Basel SBB → Strasbourg",
+        dessertes: [
+        { gare: "Basel SBB", heure: "09:15", arret: 3, jours: ["MA"]},
+        { gare: "Strasbourg", heure: "09:55", arret: 0, jours: ["MA"] }
+      ]
+      },
+      {
+        nom: "Strasbourg → Basel SBB",
+        dessertes: [
+          { gare: "Strasbourg", heure: "20:00", arret: 4, jours: ["MA"] },
+          { gare: "Basel SBB", heure: "20:55", arret: 0, jours: ["MA"] }
         ]
       }
     ]
