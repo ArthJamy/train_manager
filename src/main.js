@@ -9,7 +9,7 @@ import { accouplements } from "./um.js";
 import { afficherTrajetsTrain, afficherFicheHoraire, afficherCarteFlotte } from "./popup.js";
 
 // Flux passagers
-import {etatTrains, initTrainsState, majOccupants } from "./etatTrains.js";
+import { etatTrains, initTrainsState, majOccupants } from "./etatTrains.js";
 
 // Déterminer le nombre d’UM actif pour chaque train
 function getUMCount(trainId, heure, jour) {
@@ -56,7 +56,7 @@ window.__trainRuntime = {
         } else if (etat.statut.startsWith("Pas de service")) {
           etatSimple = "pas_service";
         }
-        
+
       }
 
       const imageName = train.nom.replaceAll(" ", "_") + ".png";
@@ -707,7 +707,7 @@ new p5((p) => {
     fondBuffer.pop();
   }
 
-  
+
   // En dehors du draw(), ajoute une mémoire pour éviter de répéter :
   const derniersStatuts = new Map();
 
@@ -962,7 +962,7 @@ new p5((p) => {
         const tNext = prochain ? timeToMinutes(prochain.heure) : t;
         const arret = d.arret || 0;
         const tDepartEffectif = t + arret;
-        
+
 
         let etat = "futur";
         if (tNow >= tNext) {
@@ -980,7 +980,7 @@ new p5((p) => {
 
         const heureAffichee = minutesToTime(tDepartEffectif);
         const joursHTML = d.jours ? `<span class="jours">(${d.jours.join(", ")})</span>` : "";
-        
+
         if (i < trajet.dessertes.length - 1) {
           garesHTML += `
         <div class="timeline-step ${etat}">
@@ -1023,13 +1023,19 @@ new p5((p) => {
 
     setTimeout(() => {
       div.innerHTML = `
-    <h3>${train.nom} ${(() => {
-      const heureCourante = document.getElementById("heure")?.value || "08:00";
-      const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
-      const jourActuel = joursSemaine[new Date().getDay()];
-      const umCount = getUMCount(train.id, heureCourante, jourActuel);
-      return umCount > 1 ? `(UM${umCount})` : "";
-    })()}</h3>
+    <h3 class="train-nom"
+    style="cursor:pointer; color:#1e3a8a"
+    onclick="ouvrirCatalogue('${train.nom}')">
+    ${train.nom}
+    ${(() => {
+          const heureCourante = document.getElementById("heure")?.value || "08:00";
+          const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+          const jourActuel = joursSemaine[new Date().getDay()];
+          const umCount = getUMCount(train.id, heureCourante, jourActuel);
+          return umCount > 1 ? `<span style='color:#555;font-weight:normal;'> (UM${umCount})</span>` : "";
+        })()}
+    </h3>
+
 
     <div id="train-image-container">
       <button id="img-left" class="img-nav">◀</button>
@@ -1043,22 +1049,22 @@ new p5((p) => {
     <p><b>Vitesse actuelle :</b> ${vitesseActuelle} km/h</p>
 
     ${etatDynamique && (
-      statut.startsWith("en gare") || statut.startsWith("entre")
-    ) ? (() => {
-      const taux = etatDynamique.tauxRemplissage * 100;
-      let couleur;
-      if (taux > 80) couleur = "#e74c3c";        // rouge
-      else if (taux > 50) couleur = "#f39c12";   // orange
-      else couleur = "#2ecc71";                  // vert
+          statut.startsWith("en gare") || statut.startsWith("entre")
+        ) ? (() => {
+          const taux = etatDynamique.tauxRemplissage * 100;
+          let couleur;
+          if (taux > 80) couleur = "#e74c3c";        // rouge
+          else if (taux > 50) couleur = "#f39c12";   // orange
+          else couleur = "#2ecc71";                  // vert
 
-      return `
+          return `
         <p><b>Occupants :</b>
           1ʳᵉ classe : ${Math.round(etatDynamique.occupants.premiere)} &nbsp;–&nbsp;
           2ᵉ classe : ${Math.round(etatDynamique.occupants.seconde)}
           <span style="color:${couleur};">(${taux.toFixed(1)} %)</span>
         </p>
       `;
-    })() : ""}
+        })() : ""}
 
 
 
@@ -1145,7 +1151,7 @@ new p5((p) => {
             if (!circuleAujourdhui && !circuleDemain) return;
 
             // ✅ AJOUT POUR AUJOURD'HUI
-            if (circuleAujourdhui && minutes + (d.arret || 0) >= tNow){
+            if (circuleAujourdhui && minutes + (d.arret || 0) >= tNow) {
 
               if (i < dess.length - 1) {
                 const destinationFinale = dess.at(-1).gare;
@@ -1368,6 +1374,7 @@ new p5((p) => {
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
 });
+
 
 
 document.getElementById("heure").addEventListener("change", () => {

@@ -3,53 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <title>Éditeur ferroviaire - Gares & Lignes</title>
+<link rel="stylesheet" href="outils.css">
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #eef3fa;
-    margin: 0;
-  }
-  header {
-    background: #2e3b4e;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  header h1 { font-size: 1.2rem; margin: 0; }
-  header button {
-    margin-left: 10px; padding: 6px 12px; border: none; border-radius: 6px; background: linear-gradient(180deg, #0059b3 0%, #003b73 100%);
-    color: #fff;   font-weight: 600;   cursor: pointer;   transition: all 0.2s ease;   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  }
-  header button:hover { background: linear-gradient(180deg, #0070d1 0%, #004b94 100%);   transform: translateY(-1px); }
-  main { display: flex; gap: 2rem; padding: 1rem 2rem; }
-  h2 { text-align: center; margin-bottom: 0.5rem; }
-  .colonne {
-    flex: 1; background: #fff; border-radius: 10px; padding: 1rem;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  }
-  .card {
-    border: 1px solid #ccc; border-radius: 8px; padding: 1rem;
-    margin-bottom: 1rem; background: #fafafa;
-  }
-  label { font-weight: 600; display:block; margin-top: 6px; }
-  input, select {
-    padding: 6px; margin: 4px 0; width: 100%;
-    border-radius: 4px; border: 1px solid #aaa;
-  }
-  input[readonly] { background:#f2f2f2; }
   button {
-    background: #003b73; color: white; border: none; border-radius: 5px;
-    padding: 6px 10px; margin-top: 6px; cursor: pointer;
+    padding: 6px 10px;
   }
-  button:hover { background: #0059b3; }
-  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  .colonne {
+    flex: 1;
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+
+  input,
+  select {
+    padding: 6px;
+    margin: 4px 0;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+  }
+
+  input[readonly] {
+    background: #f2f2f2;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
   .list {
-    font-family: monospace; background: #f8f8f8; border: 1px solid #ccc;
-    padding: 6px; border-radius: 5px; max-height: 240px; overflow-y: auto; margin-top: 6px;
+    font-family: monospace;
+    background: #f8f8f8;
+    border: 1px solid #ccc;
+    padding: 6px;
+    border-radius: 5px;
+    max-height: 240px;
+    overflow-y: auto;
+    margin-top: 6px;
   }
-  .small { font-size: 12px; color:#666; }
+
+  .small {
+    font-size: 12px;
+    color: #666;
+  }
 </style>
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">

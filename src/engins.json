@@ -1,0 +1,32 @@
+{
+  "trains": [
+    {
+      "nom": "Regiolis fluoGrandEst 5C",
+      "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 210 },
+      "longueur": 72,
+      "pays": "FR",
+      "dateSortie": "2014",
+      "remarque": "Regiolis du Grand Est"
+    },
+    {
+      "nom": "BR 1462 bwegt",
+      "moteurs": ["15kV CA"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 16, "seconde": 394 },
+      "pays": "DE"
+    }
+  ],
+  "wagons": [
+    {
+      "nom": "VTU Fluo",
+      "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 88 },
+      "poids": 40,
+      "longueur": 26,
+      "pays": "FR",
+      "dateSortie": "1990"
+    }
+  ]
+}

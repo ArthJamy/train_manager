@@ -255,7 +255,7 @@ export function majOccupants(train, gareNom, heureActuelle) {
   const jourActuel = getJourActuel();
   const facteurJour = facteurJourSemaine[jourActuel] || 1.0;
 
-  const base = 800; // constante globale (ajuste le volume global)
+  const base = 200; // constante globale (ajuste le volume global)
   const ratio = gare.fluxPassager / etat.potentielLigne;
 
   
