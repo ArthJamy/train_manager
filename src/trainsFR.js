@@ -223,33 +223,33 @@ export const trainsFR = [
     },
     trajets: [
       {
-        nom: "Basel SBB → Strasbourg",
+        nom: "Basel SBB → Strasbourg (via Mulhouse)",
         dessertes: [
-        { gare: "Basel SBB", heure: "09:15", arret: 3, jours: ["LU","JE", "VE"]},
+        { gare: "Basel SBB", heure: "09:15", arret: 3, jours: ["JE", "VE"]},
         { gare: "Mulhouse", heure: "09:35", arret: 3, jours: ["JE", "VE"] },
-        { gare: "Strasbourg", heure: "09:55", arret: 0, jours: ["LU","JE", "VE"] }
+        { gare: "Strasbourg", heure: "09:55", arret: 0, jours: ["JE", "VE"] }
       ]
       },
       {
-        nom: "Strasbourg → Basel SBB",
+        nom: "Strasbourg → Basel SBB (via Mulhouse)",
         dessertes: [
-          { gare: "Strasbourg", heure: "20:00", arret: 4, jours: ["LU","JE", "VE"] },
+          { gare: "Strasbourg", heure: "20:00", arret: 4, jours: ["JE", "VE"] },
           { gare: "Mulhouse", heure: "20:40", arret: 4, jours: ["JE", "VE"] },
-          { gare: "Basel SBB", heure: "20:55", arret: 0, jours: ["LU","JE", "VE"] }
+          { gare: "Basel SBB", heure: "20:55", arret: 0, jours: ["JE", "VE"] }
         ]
       },
       {
-        nom: "Basel SBB → Strasbourg",
+        nom: "Basel SBB → Strasbourg (direct)",
         dessertes: [
-        { gare: "Basel SBB", heure: "09:15", arret: 3, jours: ["MA"]},
-        { gare: "Strasbourg", heure: "09:55", arret: 0, jours: ["MA"] }
+        { gare: "Basel SBB", heure: "09:15", arret: 3, jours: ["ME"]},
+        { gare: "Strasbourg", heure: "09:55", arret: 0, jours: ["ME"] }
       ]
       },
       {
-        nom: "Strasbourg → Basel SBB",
+        nom: "Strasbourg → Basel SBB (direct)",
         dessertes: [
-          { gare: "Strasbourg", heure: "20:00", arret: 4, jours: ["MA"] },
-          { gare: "Basel SBB", heure: "20:55", arret: 0, jours: ["MA"] }
+          { gare: "Strasbourg", heure: "20:00", arret: 4, jours: ["ME"] },
+          { gare: "Basel SBB", heure: "20:55", arret: 0, jours: ["ME"] }
         ]
       }
     ]
