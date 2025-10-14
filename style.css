@@ -442,7 +442,7 @@ input[type="time"] {
 
 /* ID train + tag lendemain */
 .horaire-section li .train-id {
-  flex: 0 0 70px;
+  /*lex: 0 0 70px; Pour afficher proprement UM*/
   text-align: right;
 }
 

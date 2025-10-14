@@ -3,8 +3,20 @@ import { lignes } from './voies.js';
 import { trainsFR } from './trainsFR.js';
 import { trainsDE } from './trainsDE.js';
 export const trains = [...trainsFR, ...trainsDE];
+import { accouplements } from "./um.js";
+
 
 import { afficherTrajetsTrain, afficherFicheHoraire, afficherCarteFlotte } from "./popup.js";
+
+// Déterminer le nombre d’UM actif pour chaque train
+function getUMCount(trainId, heure, jour) {
+  return accouplements.filter(a =>
+    (a.idA === trainId || a.idB === trainId) &&
+    a.heureDebut <= heure &&
+    a.heureFin >= heure &&
+    a.jours.includes(jour)
+  ).length + 1; // +1 = le train lui-même
+}
 
 // bouton en header
 document.getElementById("btn-flotte").addEventListener("click", () => {
@@ -720,7 +732,7 @@ new p5((p) => {
       }));
     }
 
-    // affichage continu (pas de clignotement)
+    // affichage continu
     p.push();
     p.translate(offsetX, offsetY);
     p.scale(zoom);
@@ -750,7 +762,15 @@ new p5((p) => {
           p.textSize(textSize);
           p.textAlign(p.CENTER, p.CENTER);
           p.fill(25, 46, 232);
-          p.text(train.id, position.x, position.y - textSize);
+
+          const heureCourante = document.getElementById("heure")?.value || "08:00";
+          const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+          const jourActuel = joursSemaine[new Date().getDay()];
+          const umCount = getUMCount(train.id, heureCourante, jourActuel);
+
+          const label = umCount > 1 ? `${train.id} (UM${umCount})` : train.id;
+          p.text(label, position.x, position.y - textSize);
+          //p.text(train.id, position.x, position.y - textSize);
         }
       }
 
@@ -972,7 +992,14 @@ new p5((p) => {
 
     setTimeout(() => {
       div.innerHTML = `
-    <h3>${train.nom}${rame.length > 1 ? " (UM" + rame.length + ")" : ""}</h3>
+    <h3>${train.nom} ${(() => {
+      const heureCourante = document.getElementById("heure")?.value || "08:00";
+      const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+      const jourActuel = joursSemaine[new Date().getDay()];
+      const umCount = getUMCount(train.id, heureCourante, jourActuel);
+      return umCount > 1 ? `(UM${umCount})` : "";
+    })()}</h3>
+
     <div id="train-image-container">
       <button id="img-left" class="img-nav">◀</button>
       <div id="train-image-view">${imagesHTML}</div>
@@ -1149,8 +1176,22 @@ new p5((p) => {
     departs.sort(sortByTimeAndDay);
     arrivees.sort(sortByTimeAndDay);
 
-    const prochainsDeparts = departs.slice(0, 5); // Augmenté pour voir plus de trajets
-    const prochainesArrivees = arrivees.slice(0, 5);
+    //const prochainsDeparts = departs.slice(0, 5); // Augmenté pour voir plus de trajets
+    //const prochainesArrivees = arrivees.slice(0, 5);
+    const prochainsDeparts = departs.slice(0, 5).map(d => {
+      const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+      const jourActuel = joursSemaine[new Date().getDay()];
+      const umCount = getUMCount(d.train, d.heure, jourActuel);
+      return { ...d, umCount };
+    });
+
+    const prochainesArrivees = arrivees.slice(0, 5).map(a => {
+      const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+      const jourActuel = joursSemaine[new Date().getDay()];
+      const umCount = getUMCount(a.train, a.heure, jourActuel);
+      return { ...a, umCount };
+    });
+
 
     div.style.transition = "opacity 0.3s ease, transform 0.3s ease";
     div.style.opacity = 0;
@@ -1170,7 +1211,7 @@ new p5((p) => {
           <span class="gares-defile">
             <span class="gares-txt">${d.gares}</span>
           </span>
-          <span class="train-id">(${d.train})</span>
+          <span class="train-id">(${d.train}${d.umCount > 1 ? ` – UM${d.umCount}` : ""})</span>
           ${d.demain ? '<span class="next-day">Lendemain</span>' : ""}
         </li>`).join("")}
     </ul>
@@ -1183,7 +1224,7 @@ new p5((p) => {
         <li class="arrivee ${a.demain ? "lendemain" : ""}">
           <span class="heure">${a.heure}</span>
           <span class="de">← ${a.de}</span> 
-          <span class="train-id">(${a.train})</span>
+          <span class="train-id">(${a.train}${a.umCount > 1 ? ` – UM${a.umCount}` : ""})</span>
           ${a.demain ? '<span class="next-day">Lendemain</span>' : ""}
         </li>`).join("")}
     </ul>
