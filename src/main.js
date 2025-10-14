@@ -114,10 +114,13 @@ new p5((p) => {
     frontieres = p.loadJSON('./src/frontieres.geojson');
   };
 
+
+
+
   // ===== Fonction état du train =====
   function getEtatTrain(train, heureCourante) {
     const tNow = timeToMinutes(heureCourante);
-    
+
     // Calcul du jour courant (LU, MA, ME, JE, VE, SA, DI)
     const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
     const now = new Date();
@@ -155,9 +158,8 @@ new p5((p) => {
       const debut = timeToMinutes(trajet.dessertes[0].heure);
       const fin = timeToMinutes(trajet.dessertes.at(-1).heure);
 
-      // 🔹 Vérifier si le trajet circule aujourd’hui
-      const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
-      const jourActuel = joursSemaine[new Date().getDay()];
+      // 🔹 Vérifier si le trajet circule aujourd'hui
+      // ✅ CORRECTIF 1 : Suppression de la double déclaration de joursSemaine et jourActuel
       const joursValides = trajet.dessertes[0].jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
       const circuleAujourdhui = joursValides.includes(jourActuel);
 
@@ -286,7 +288,7 @@ new p5((p) => {
               if (isEndOfTrip && localRatio > 1 - decelRatio) {
                 const t = (localRatio - (1 - decelRatio)) / Math.max(decelRatio, 1e-6);
                 const tail = 0.5 - 0.5 * Math.cos(Math.PI * t); // 0→1
-                // on “arrondit” seulement la queue, sans changer le reste
+                // on "arrondit" seulement la queue, sans changer le reste
                 easedRatio = (1 - decelRatio) + tail * decelRatio;
               }
 
@@ -366,13 +368,12 @@ new p5((p) => {
     }
 
     // --- Cas 2 : pas de trajet en cours ---
-    //const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
-    //const jourActuel = joursSemaine[new Date().getDay()];
-    const jourDemain = joursSemaine[(new Date().getDay() + 1) % 7];
+    // ✅ CORRECTIF 2 : Calcul correct de jourDemain avec le fuseau horaire
+    const jourDemain = joursSemaine[(new Date(now.toLocaleString("en-US", { timeZone: "Europe/Paris" })).getDay() + 1) % 7];
 
     let prochain = null;
 
-    // 🔹 On cherche le premier trajet valide aujourd’hui (même si plus tard dans la journée)
+    // 🔹 On cherche le premier trajet valide aujourd'hui (même si plus tard dans la journée)
     for (const trajet of train.trajets) {
       const joursValides = trajet.dessertes[0].jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
       if (!joursValides.includes(jourActuel)) continue;
@@ -384,7 +385,8 @@ new p5((p) => {
       }
     }
 
-    // 🔹 Si aucun trajet valide aujourd’hui → on cherche celui de demain
+    // 🔹 Si aucun trajet valide aujourd'hui → on cherche celui de demain
+    /*
     if (!prochain) {
       for (const trajet of train.trajets) {
         const joursValides = trajet.dessertes[0].jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
@@ -393,9 +395,15 @@ new p5((p) => {
         break;
       }
     }
-
+*/
     if (prochain) {
-      const precedent = train.trajets.findLast(t => timeToMinutes(t.dessertes.at(-1).heure) <= tNow);
+      // ✅ CORRECTIF 3 : Vérifier que le trajet précédent circule bien aujourd'hui
+      const precedent = train.trajets.findLast(t => {
+        const joursValides = t.dessertes[0].jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+        const circuleAujourdhui = joursValides.includes(jourActuel);
+        return circuleAujourdhui && timeToMinutes(t.dessertes.at(-1).heure) <= tNow;
+      });
+
       const gareRef = precedent ? precedent.dessertes.at(-1).gare : prochain.dessertes[0].gare;
       const g = villes.find(v => v.nom === gareRef);
       if (g) position = { x: g.x, y: g.y };
@@ -403,7 +411,26 @@ new p5((p) => {
       return { trajet: prochain, statut, position };
     }
 
+    // ✅ CORRECTIF 4 : Nouveau cas "Service fini pour aujourd'hui"
+    // 🔹 Aucun prochain trajet trouvé → service terminé pour aujourd'hui
+    const dernierTrajetAujourdhui = train.trajets.findLast(t => {
+      const joursValides = t.dessertes[0].jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+      return joursValides.includes(jourActuel);
+    });
+
+    if (dernierTrajetAujourdhui) {
+      const gFin = villes.find(v => v.nom === dernierTrajetAujourdhui.dessertes.at(-1).gare);
+      if (gFin) position = { x: gFin.x, y: gFin.y };
+      statut = `Service fini pour aujourd'hui`;
+      return { trajet: null, statut, position };
+    }
+
+    // ✅ CORRECTIF 5 : Cas par défaut pour gérer les situations imprévues
+    // Cas par défaut : on ne sait pas où est le train
+    return { trajet: null, statut: "Position inconnue", position: null };
   }
+
+
 
   window.__getEtatTrain = getEtatTrain;
 
@@ -1016,87 +1043,114 @@ new p5((p) => {
     const arrivees = [];
     const tNow = timeToMinutes(document.getElementById("heure").value || "00:00");
 
+    // Calcul des jours
+    const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+    const now = new Date();
+    const todayIndex = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Paris" })).getDay();
+    const jourActuel = joursSemaine[todayIndex];
+    const jourDemain = joursSemaine[(todayIndex + 1) % 7];
+
     trains.forEach(train => {
       train.trajets.forEach(trajet => {
         const dess = trajet.dessertes;
 
         dess.forEach((d, i) => {
           if (d.gare === nomGare) {
-            // Vérifie si cette desserte est valable aujourd’hui ou demain
-            const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
-            const now = new Date();
-            const todayIndex = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Paris" })).getDay();
-            const jourActuel = joursSemaine[todayIndex];
-            const jourDemain = joursSemaine[(todayIndex + 1) % 7];
             const joursValides = d.jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
-
-
             const minutes = timeToMinutes(d.heure);
+
             const circuleAujourdhui = joursValides.includes(jourActuel);
             const circuleDemain = joursValides.includes(jourDemain);
 
-            // Si le train ne circule ni aujourd’hui ni demain → on ignore
+            // Si le train ne circule ni aujourd'hui ni demain → on ignore
             if (!circuleAujourdhui && !circuleDemain) return;
 
+            // ✅ AJOUT POUR AUJOURD'HUI
+            if (circuleAujourdhui && minutes + (d.arret || 0) >= tNow){
 
-            // Si le train circule aujourd’hui mais que son horaire est déjà passé → on n’affiche pas
-            if (circuleAujourdhui && minutes < tNow && !circuleDemain) return;
-            
-            // Calcul correct du drapeau "lendemain"
-          const isTomorrow =
-            (!circuleAujourdhui && circuleDemain) ||
-            (circuleAujourdhui && minutes < tNow && circuleDemain);
+              if (i < dess.length - 1) {
+                const destinationFinale = dess.at(-1).gare;
+                const heureArrivee = timeToMinutes(d.heure);
+                const heureDepart = heureArrivee + (d.arret || 0);
+                const heureFormatee = minutesToTime(heureDepart);
 
+                const garesDesservies = dess
+                  .slice(i + 1)
+                  .map(x => x.gare)
+                  .join(" – ");
 
-            if (i < dess.length - 1) {
-              const destinationFinale = dess.at(-1).gare;
-              const heureArrivee = timeToMinutes(d.heure);
-              const heureDepart = heureArrivee + (d.arret || 0);
-              const heureFormatee = minutesToTime(heureDepart);
+                departs.push({
+                  train: train.id,
+                  heure: heureFormatee,
+                  vers: destinationFinale,
+                  demain: false,
+                  gares: garesDesservies,
+                  jours: d.jours
+                });
+              }
 
-              const garesDesservies = dess
-                .slice(i + 1)
-                .map(x => x.gare)
-                .join(" — ");
-
-              departs.push({
-                train: train.id,
-                heure: heureFormatee,
-                vers: destinationFinale,
-                demain: isTomorrow,
-                gares: garesDesservies,
-                jours: d.jours
-              });
+              if (i > 0) {
+                const origine = dess[0].gare;
+                arrivees.push({
+                  train: train.id,
+                  heure: d.heure,
+                  de: origine,
+                  demain: false,
+                  jours: d.jours
+                });
+              }
             }
 
-            if (i > 0) {
-              const origine = dess[0].gare;
-              arrivees.push({
-                train: train.id,
-                heure: d.heure,
-                de: origine,
-                demain: isTomorrow,
-                jours: d.jours
-              });
+            // ✅ AJOUT POUR DEMAIN
+            if (circuleDemain) {
+              if (i < dess.length - 1) {
+                const destinationFinale = dess.at(-1).gare;
+                const heureArrivee = timeToMinutes(d.heure);
+                const heureDepart = heureArrivee + (d.arret || 0);
+                const heureFormatee = minutesToTime(heureDepart);
+
+                const garesDesservies = dess
+                  .slice(i + 1)
+                  .map(x => x.gare)
+                  .join(" – ");
+
+                departs.push({
+                  train: train.id,
+                  heure: heureFormatee,
+                  vers: destinationFinale,
+                  demain: true,
+                  gares: garesDesservies,
+                  jours: d.jours
+                });
+              }
+
+              if (i > 0) {
+                const origine = dess[0].gare;
+                arrivees.push({
+                  train: train.id,
+                  heure: d.heure,
+                  de: origine,
+                  demain: true,
+                  jours: d.jours
+                });
+              }
             }
           }
         });
       });
     });
 
-    const sortByTime = (a, b) => timeToMinutes(a.heure) - timeToMinutes(b.heure);
-    departs.sort(sortByTime);
-    arrivees.sort(sortByTime);
+    // Tri : d'abord par jour (aujourd'hui puis demain), puis par heure
+    const sortByTimeAndDay = (a, b) => {
+      if (a.demain !== b.demain) return a.demain ? 1 : -1; // aujourd'hui avant demain
+      return timeToMinutes(a.heure) - timeToMinutes(b.heure);
+    };
 
-    const prochainsDeparts = departs
-      .filter(d => !d.demain)
-      .concat(departs.filter(d => d.demain))
-      .slice(0, 5);
+    departs.sort(sortByTimeAndDay);
+    arrivees.sort(sortByTimeAndDay);
 
-    const prochainesArrivees = arrivees
-      .filter(a => !a.demain)
-      .concat(arrivees.filter(a => a.demain))
-      .slice(0, 5);
+    const prochainsDeparts = departs.slice(0, 5); // Augmenté pour voir plus de trajets
+    const prochainesArrivees = arrivees.slice(0, 5);
 
     div.style.transition = "opacity 0.3s ease, transform 0.3s ease";
     div.style.opacity = 0;
@@ -1104,37 +1158,38 @@ new p5((p) => {
 
     setTimeout(() => {
       const html = `
-    <h3>🕓 Gare de ${nomGare}</h3>
+  <h3>🕓 Gare de ${nomGare}</h3>
 
-    <div class="horaire-section depart">
-      <h4>🚆 Départs</h4>
-      <ul>
-        ${prochainsDeparts.map(d => `
-          <li class="depart ${d.demain ? "lendemain" : ""}">
-            <span class="heure">${d.heure}</span>
-            <span class="vers">→ ${d.vers}</span> 
-            <span class="gares-defile">
-              <span class="gares-txt">${d.gares}</span>
-            </span>
-            <span class="train-id">(${d.train})</span>
-          </li>`).join("")}
-      </ul>
-    </div>
+  <div class="horaire-section depart">
+    <h4>🚆 Départs</h4>
+    <ul>
+      ${prochainsDeparts.map(d => `
+        <li class="depart ${d.demain ? "lendemain" : ""}">
+          <span class="heure">${d.heure}</span>
+          <span class="vers">→ ${d.vers}</span> 
+          <span class="gares-defile">
+            <span class="gares-txt">${d.gares}</span>
+          </span>
+          <span class="train-id">(${d.train})</span>
+          ${d.demain ? '<span class="next-day">Lendemain</span>' : ""}
+        </li>`).join("")}
+    </ul>
+  </div>
 
-    <div class="horaire-section arrivee">
-      <h4>🚉 Arrivées</h4>
-      <ul>
-        ${prochainesArrivees.map(a => `
-          <li class="arrivee ${a.demain ? "lendemain" : ""}">
-            <span class="heure">${a.heure}</span>
-            <span class="de">← ${a.de}</span> 
-            <span class="train-id">(${a.train})</span>
-            ${a.demain ? '<span class="next-day">Lendemain</span>' : ""}
-          </li>`).join("")}
-      </ul>
-    </div>
-    <button class="btn-popup" id="btn-fiche-gare">🕓 Voir la fiche horaire</button>
-    `;
+  <div class="horaire-section arrivee">
+    <h4>🚉 Arrivées</h4>
+    <ul>
+      ${prochainesArrivees.map(a => `
+        <li class="arrivee ${a.demain ? "lendemain" : ""}">
+          <span class="heure">${a.heure}</span>
+          <span class="de">← ${a.de}</span> 
+          <span class="train-id">(${a.train})</span>
+          ${a.demain ? '<span class="next-day">Lendemain</span>' : ""}
+        </li>`).join("")}
+    </ul>
+  </div>
+  <button class="btn-popup" id="btn-fiche-gare">🕐 Voir la fiche horaire</button>
+  `;
 
       div.innerHTML = html;
       document.getElementById("btn-fiche-gare").addEventListener("click", () => {
