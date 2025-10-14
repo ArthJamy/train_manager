@@ -150,15 +150,26 @@ new p5((p) => {
     }
 
 
-    for (const trajet of trajetsValides) {
+    // --- Trouver trajet en cours ---
+    for (const trajet of train.trajets) {
       const debut = timeToMinutes(trajet.dessertes[0].heure);
       const fin = timeToMinutes(trajet.dessertes.at(-1).heure);
+
+      // 🔹 Vérifier si le trajet circule aujourd’hui
+      const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+      const jourActuel = joursSemaine[new Date().getDay()];
+      const joursValides = trajet.dessertes[0].jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+      const circuleAujourdhui = joursValides.includes(jourActuel);
+
+      if (!circuleAujourdhui) continue; // ⚠️ on ignore les trajets non valides ce jour
+
       if (tNow >= debut && tNow <= fin) {
         trajetActuel = trajet;
         statut = "en circulation";
         break;
       }
     }
+
 
     if (trajetActuel) {
       const dess = trajetActuel.dessertes;
@@ -354,7 +365,35 @@ new p5((p) => {
       return { trajet: trajetActuel, statut, position };
     }
 
-    const prochain = train.trajets.find(t => timeToMinutes(t.dessertes[0].heure) > tNow);
+    // --- Cas 2 : pas de trajet en cours ---
+    //const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+    //const jourActuel = joursSemaine[new Date().getDay()];
+    const jourDemain = joursSemaine[(new Date().getDay() + 1) % 7];
+
+    let prochain = null;
+
+    // 🔹 On cherche le premier trajet valide aujourd’hui (même si plus tard dans la journée)
+    for (const trajet of train.trajets) {
+      const joursValides = trajet.dessertes[0].jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+      if (!joursValides.includes(jourActuel)) continue;
+
+      const debut = timeToMinutes(trajet.dessertes[0].heure);
+      if (debut > tNow) {
+        prochain = trajet;
+        break;
+      }
+    }
+
+    // 🔹 Si aucun trajet valide aujourd’hui → on cherche celui de demain
+    if (!prochain) {
+      for (const trajet of train.trajets) {
+        const joursValides = trajet.dessertes[0].jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+        if (!joursValides.includes(jourDemain)) continue;
+        prochain = trajet;
+        break;
+      }
+    }
+
     if (prochain) {
       const precedent = train.trajets.findLast(t => timeToMinutes(t.dessertes.at(-1).heure) <= tNow);
       const gareRef = precedent ? precedent.dessertes.at(-1).gare : prochain.dessertes[0].gare;
@@ -364,11 +403,6 @@ new p5((p) => {
       return { trajet: prochain, statut, position };
     }
 
-    const dernier = train.trajets.at(-1);
-    const gFin = villes.find(v => v.nom === dernier.dessertes.at(-1).gare);
-    if (gFin) position = { x: gFin.x, y: gFin.y };
-    statut = `Service fini. En gare à ${dernier.dessertes.at(-1).gare}`;
-    return { trajet: dernier, statut, position };
   }
 
   window.__getEtatTrain = getEtatTrain;
