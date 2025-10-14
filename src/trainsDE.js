@@ -12,7 +12,7 @@ export const trainsDE = [
         dessertes: [
           { gare: "Mulhouse", heure: "08:30", arret: 4 },
           { gare: "Bantzenheim", heure: "08:45", arret: 1 },
-          { gare: "Neuenburg (Baden)", heure: "09:55", arret: 1 },
+          { gare: "Neuenburg (Baden)", heure: "08:55", arret: 1 },
           { gare: "Muellheim", heure: "09:02", arret: 2 },
           { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "09:20", arret: 0 },
         ]
@@ -42,7 +42,7 @@ export const trainsDE = [
         dessertes: [
           { gare: "Mulhouse", heure: "08:30", arret: 4 ,jours: ["MA", "VE"]},
           { gare: "Bantzenheim", heure: "08:45", arret: 1 ,jours: ["MA", "VE"]},
-          { gare: "Neuenburg (Baden)", heure: "09:55", arret: 1 ,jours: ["MA", "VE"]},
+          { gare: "Neuenburg (Baden)", heure: "08:55", arret: 1 ,jours: ["MA", "VE"]},
           { gare: "Muellheim", heure: "09:02", arret: 0 ,jours: ["MA", "VE"]}
         ]
       },

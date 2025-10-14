@@ -8,6 +8,9 @@ import { accouplements } from "./um.js";
 
 import { afficherTrajetsTrain, afficherFicheHoraire, afficherCarteFlotte } from "./popup.js";
 
+// Flux passagers
+import {etatTrains, initTrainsState, majOccupants } from "./etatTrains.js";
+
 // Déterminer le nombre d’UM actif pour chaque train
 function getUMCount(trainId, heure, jour) {
   return accouplements.filter(a =>
@@ -512,6 +515,10 @@ new p5((p) => {
 
     boutonMode.click();
     precomputeFrontieres();
+
+    // Flux passagerq
+    initTrainsState(document.getElementById("heure").value || "08:00");
+
   };
 
   function precomputeFrontieres() {
@@ -700,6 +707,10 @@ new p5((p) => {
     fondBuffer.pop();
   }
 
+  
+  // En dehors du draw(), ajoute une mémoire pour éviter de répéter :
+  const derniersStatuts = new Map();
+
   // ===== Boucle draw optimisée =====
   p.draw = function () {
     const now = p.millis();
@@ -739,6 +750,23 @@ new p5((p) => {
 
     cachedTrainStates.forEach(({ train, etat }) => {
       if (!etat?.position) return;
+
+      //Flux passagers
+      const prev = derniersStatuts.get(train.id);
+      const statutActuel = etat.statut;
+      // ✅ On détecte une entrée en gare (nouvel arrêt)
+      if (
+        statutActuel.startsWith("en gare à") &&
+        (!prev || !prev.startsWith("en gare à") || prev !== statutActuel)
+      ) {
+        const nomGare = statutActuel.replace("en gare à ", "").trim();
+        const heureCourante = document.getElementById("heure")?.value || "08:00";
+        majOccupants(train, nomGare, heureCourante);
+      }
+
+      derniersStatuts.set(train.id, statutActuel);
+
+      //fin
       const { position, statut } = etat;
 
       const scaleFactor = Math.min(2, 1.2 / zoom);
@@ -910,6 +938,9 @@ new p5((p) => {
 
     const heureCourante = document.getElementById("heure").value;
     const etat = getEtatTrain(train, heureCourante);
+    // Chercher l’état dynamique du train (passagers)
+    const etatDynamique = etatTrains.find(e => e.id === train.id);
+
     const statut = etat?.statut || "indisponible";
     const vitesseActuelle = etat?.vitesseActuelle || "—";
     const trajet = etat?.trajet;
@@ -1010,6 +1041,27 @@ new p5((p) => {
     
     <p><b>Destination :</b> ${trajet ? trajet.dessertes.at(-1).gare : "—"}</p>
     <p><b>Vitesse actuelle :</b> ${vitesseActuelle} km/h</p>
+
+    ${etatDynamique && (
+      statut.startsWith("en gare") || statut.startsWith("entre")
+    ) ? (() => {
+      const taux = etatDynamique.tauxRemplissage * 100;
+      let couleur;
+      if (taux > 80) couleur = "#e74c3c";        // rouge
+      else if (taux > 50) couleur = "#f39c12";   // orange
+      else couleur = "#2ecc71";                  // vert
+
+      return `
+        <p><b>Occupants :</b>
+          1ʳᵉ classe : ${Math.round(etatDynamique.occupants.premiere)} &nbsp;–&nbsp;
+          2ᵉ classe : ${Math.round(etatDynamique.occupants.seconde)}
+          <span style="color:${couleur};">(${taux.toFixed(1)} %)</span>
+        </p>
+      `;
+    })() : ""}
+
+
+
     <p><b>Prochaines gares :</b></p>
     <ul>${garesHTML}</ul>
     <button class="btn-popup" id="btn-trajets-train">📅 Voir les trajets du jour</button>
@@ -1315,5 +1367,12 @@ new p5((p) => {
     const m = minutes % 60;
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
+});
+
+
+document.getElementById("heure").addEventListener("change", () => {
+  const nouvelleHeure = document.getElementById("heure").value;
+  initTrainsState(nouvelleHeure);
+  console.log(`[Reinit] Réinitialisation des états à ${nouvelleHeure}`);
 });
 
