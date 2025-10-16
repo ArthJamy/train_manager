@@ -328,6 +328,11 @@ select {
     border-color: #ffcc00;
 }
 
+#paysSel.CH {
+  background: #ffc4c4;   /* rouge clair */
+  border-color: #b62626;
+}
+
 .trajet-card.active {
     border: 2px solid #6478ff;
     box-shadow: 0 0 0 3px rgba(100, 120, 255, .12);
