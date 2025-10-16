@@ -3,7 +3,6 @@ import { trainsDE } from './trains/trainsDE.js';
 import { trainsCH } from './trains/trainsCH.js';
 export const trains = [...trainsFR, ...trainsDE, ...trainsCH];
 
-
 /** Crée et affiche une fenêtre popup principale */
 function ouvrirPopup(titre, contenuHTML) {
   const overlay = document.createElement("div");
@@ -128,7 +127,7 @@ export function afficherFicheHoraire(gareNom) {
   const arrivees = [];
 
   trains.forEach(train => {
-    train.trajets.forEach((trajet, idxTrajet) => {      
+    train.trajets.forEach((trajet, idxTrajet) => {
       const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
       const now = new Date();
       const jourActuel = joursSemaine[
@@ -240,7 +239,10 @@ export function afficherCarteFlotte() {
         <option value="etat">État du train</option>
         <option value="id">ID</option>
         <option value="nom">Nom</option>
+        <option value="pays">Pays</option>
+        <option value="vitesse">Vitesse max</option>
       </select>
+
     </div>
 
     <div id="flotte-grid" class="flotte-grid"></div>
@@ -254,13 +256,15 @@ export function afficherCarteFlotte() {
   const selTri = document.getElementById("tri-flotte");
 
   // Tri par défaut : état
-  data = sortFlotte(data, "etat");
-  renderGrid(data, grid);
-
-  selTri.addEventListener("change", () => {
-    data = sortFlotte(data, selTri.value);
-    renderGrid(data, grid);
+  sortFlotte(data, "etat").then(sorted => {
+    renderGrid(sorted, grid);
   });
+
+  selTri.addEventListener("change", async () => {
+    const sorted = await sortFlotte(data, selTri.value);
+    renderGrid(sorted, grid);
+  });
+
 }
 
 function getSnapshotFlotte() {
@@ -269,9 +273,31 @@ function getSnapshotFlotte() {
   return [];
 }
 
-function sortFlotte(arr, mode) {
+async function sortFlotte(arr, mode) {
   const orderEtat = { en_route: 0, en_gare: 1, en_attente: 2, termine: 3, pas_service: 4 };
   const a = [...arr];
+
+  // 🔹 Charger le fichier engins.json une seule fois
+  if (!window.__enginsData) {
+    try {
+      const res = await fetch("./src/engins.json");
+      window.__enginsData = await res.json();
+    } catch (e) {
+      console.warn("⚠️ Impossible de charger engins.json :", e);
+      window.__enginsData = { trains: [] };
+    }
+  }
+
+  const enginsData = window.__enginsData;
+  const paysMap = {};
+  const vitesseMaxMap = {};
+
+  enginsData.trains.forEach(t => {
+    paysMap[t.nom] = t.pays;
+    vitesseMaxMap[t.nom] = t.vitesseMax || 0;
+  });
+
+  // 🟦 Tri par état
   if (mode === "etat") {
     a.sort((x, y) => {
       const ox = orderEtat[x.etat] ?? 99;
@@ -279,13 +305,61 @@ function sortFlotte(arr, mode) {
       if (ox !== oy) return ox - oy;
       return x.id.localeCompare(y.id);
     });
-  } else if (mode === "id") {
+  }
+
+  // 🟦 Tri par ID
+  else if (mode === "id") {
     a.sort((x, y) => x.id.localeCompare(y.id));
-  } else if (mode === "nom") {
+  }
+
+  // 🟦 Tri par nom
+  else if (mode === "nom") {
     a.sort((x, y) => (x.nom || "").localeCompare(y.nom || ""));
   }
+
+  // 🟦 Tri par pays + priorité aux actifs
+  else if (mode === "pays") {
+    const orderEtat = { en_route: 0, en_gare: 1, en_attente: 2, termine: 3, pas_service: 4, inconnu: 5 };
+    a.sort((x, y) => {
+      const px = paysMap[x.nom] || "ZZZ"; // ZZZ = fin si non trouvé
+      const py = paysMap[y.nom] || "ZZZ";
+
+      if (px !== py) return px.localeCompare(py);
+
+      const ox = orderEtat[x.etat] ?? orderEtat.inconnu;
+      const oy = orderEtat[y.etat] ?? orderEtat.inconnu;
+      if (ox !== oy) return ox - oy;
+
+      return (x.nom || "").localeCompare(y.nom || "");
+    });
+  }
+
+  // 🟦 Tri par vitesse (réelle actuelle si dispo)
+  else if (mode === "vitesse") {
+    a.sort((x, y) => {
+      // vitesse réelle envoyée par main.js
+      const vx = (x.vitesseActuelle ?? 0);
+      const vy = (y.vitesseActuelle ?? 0);
+
+      // 1) priorité à la vitesse réelle décroissante
+      if (vx !== vy) return vy - vx;
+
+      // 2) si égalité (souvent 0 = 0), départage par vitesseMax (desc.)
+      const mx = vitesseMaxMap[x.nom] || 0;
+      const my = vitesseMaxMap[y.nom] || 0;
+      if (mx !== my) return my - mx;
+
+      // 3) tie-breakers stables
+      return (x.nom || "").localeCompare(y.nom || "");
+    });
+  }
+
+
   return a;
 }
+
+
+
 
 function etatClass(e) {
   return e === "en_route" ? "etat-en_route"
@@ -311,35 +385,61 @@ function renderGrid(data, container) {
     return;
   }
 
-  container.innerHTML = data.map(t => `
-    <div class="flotte-card ${etatClass(t.etat)}" data-train-id="${t.id}" data-x="${t.x}" data-y="${t.y}">
-      <div class="card-header">
-        <span class="card-id">${t.id}</span>
-        <span class="etat-badge ${etatClass(t.etat)}">${labelEtat(t.etat)}</span>
-      </div>
-      <div class="card-body">
-        ${t.imageUrl ? `<img src="${t.imageUrl}" alt="${t.nom || t.id}" class="card-image">` : ''}
-        <div class="card-nom">${t.nom || '—'}</div>
-        ${t.statut ? `<div class="card-info">📍 ${t.statut}</div>` : ''}
-      </div>
-    </div>
-  `).join("");
+  // 🔹 Récupérer le mode de tri courant
+  const currentSort = document.getElementById("tri-flotte")?.value || "";
 
-  // Ajouter les événements click sur chaque carte
+  // 🔹 Charger infos depuis engins.json si dispo
+  const paysMap = {};
+  const vitesseMap = {};
+  if (window.__enginsData?.trains) {
+    window.__enginsData.trains.forEach(t => {
+      paysMap[t.nom] = t.pays;
+      vitesseMap[t.nom] = t.vitesseMax || 0;
+    });
+  }
+
+  container.innerHTML = data.map(t => {
+    const pays = paysMap[t.nom] || "??";
+    const vmax = vitesseMap[t.nom] || null;
+
+    // ✅ badge dynamique selon le mode actif
+    let infoBadge = "";
+    if (currentSort === "pays") {
+      infoBadge = `<span class="info-badge" style="margin-left:6px; color:#777; font-size:0.65em;">(${pays})</span>`;
+    } else if (currentSort === "vitesse") {
+      const vactu = t.vitesseActuelle || 0;
+      infoBadge = `<span class="info-badge" style="margin-left:6px; color:#777; font-size:0.75em;"><br>(${vactu} km/h)</span>`;
+    }
+
+
+
+    return `
+      <div class="flotte-card ${etatClass(t.etat)}" 
+           data-train-id="${t.id}" 
+           data-x="${t.x}" data-y="${t.y}">
+        <div class="card-header">
+          <span class="card-id">${t.id}${infoBadge}</span>
+          <span class="etat-badge ${etatClass(t.etat)}">${labelEtat(t.etat)}</span>
+        </div>
+        <div class="card-body">
+          ${t.imageUrl ? `<img src="${t.imageUrl}" alt="${t.nom || t.id}" class="card-image">` : ''}
+          <div class="card-nom">${t.nom || '—'}</div>
+          ${t.statut ? `<div class="card-info">📍 ${t.statut}</div>` : ''}
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  // 🎯 Click : centrer sur le train
   container.querySelectorAll('.flotte-card').forEach(card => {
     card.addEventListener('click', () => {
       const trainId = card.dataset.trainId;
       const x = parseFloat(card.dataset.x);
       const y = parseFloat(card.dataset.y);
-
-      // Appeler la fonction globale pour centrer la carte
-      if (window.__centrerSurTrain) {
-        window.__centrerSurTrain(x, y, trainId);
-      }
-
-      // Fermer la popup
+      if (window.__centrerSurTrain) window.__centrerSurTrain(x, y, trainId);
       card.closest('.popup-overlay')?.remove();
     });
   });
 }
+
 

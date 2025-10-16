@@ -136,6 +136,7 @@ window.__trainRuntime = {
         statut: etat?.statut || "Aucune information",
         x: etat?.position?.x || 0,
         y: etat?.position?.y || 0,
+        vitesseActuelle: etat?.vitesseActuelle || 0,
         imageUrl
       };
     });
