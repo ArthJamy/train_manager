@@ -868,106 +868,6 @@ new p5((p) => {
   };
 
 
-
-  p.mousePressed = function (event) {
-    const canvasRect = p.canvas.getBoundingClientRect();
-    const clickX = event.clientX || (canvasRect.left + p.mouseX);
-    const clickY = event.clientY || (canvasRect.top + p.mouseY);
-
-    if (clickX < canvasRect.left || clickX > canvasRect.right || clickY < canvasRect.top || clickY > canvasRect.bottom) {
-      return;
-    }
-
-    const menu = document.getElementById("context-menu");
-    if (menu && menu.style.display === "block") {
-      const menuRect = menu.getBoundingClientRect();
-      const mx = event.clientX || p.mouseX + canvasRect.left;
-      const my = event.clientY || p.mouseY + canvasRect.top;
-
-      if (mx >= menuRect.left && mx <= menuRect.right && my >= menuRect.top && my <= menuRect.bottom) {
-        return;
-      }
-    }
-
-    const worldX = (p.mouseX - offsetX) / zoom;
-    const worldY = (p.mouseY - offsetY) / zoom;
-
-    const nearbyTrains = [];
-    let gareCliquee = null;
-
-    for (const train of trains) {
-      if (!train._screenPos) continue;
-      const d = p.dist(worldX, worldY, train._screenPos.x, train._screenPos.y);
-      if (d < 10 / zoom) nearbyTrains.push(train);
-    }
-
-    for (const v of villes) {
-      if (v.fantome) continue;
-      const d = p.dist(worldX, worldY, v.x, v.y);
-      if (d < 10 / zoom) gareCliquee = v;
-    }
-
-    if (nearbyTrains.length === 0 && !gareCliquee) {
-      cacherMenu();
-      reinitialiserInfoPanel();
-      elementSelectionne = null;
-      return;
-    }
-
-    if (nearbyTrains.length + (gareCliquee ? 1 : 0) === 1) {
-      cacherMenu();
-      if (gareCliquee) {
-        elementSelectionne = { type: "gare", data: gareCliquee.nom };
-        afficherHorairesGare(gareCliquee.nom);
-      } else {
-        elementSelectionne = { type: "train", data: nearbyTrains[0] };
-        afficherInfosTrain(nearbyTrains[0]);
-      }
-      return;
-    }
-
-    menu.innerHTML = "";
-
-    if (gareCliquee) {
-      const btn = document.createElement("button");
-      btn.textContent = `🅶 Gare : ${gareCliquee.nom}`;
-      btn.onclick = () => {
-        elementSelectionne = { type: "gare", data: gareCliquee.nom };
-        afficherHorairesGare(gareCliquee.nom);
-        cacherMenu();
-      };
-      menu.appendChild(btn);
-    }
-
-    nearbyTrains.forEach(train => {
-      const btn = document.createElement("button");
-      btn.classList.add("train-option");
-
-      let color = "gray";
-      if (train._statut?.startsWith("entre")) color = "blue";
-      else if (train._statut?.startsWith("en gare")) color = "rgb(0, 179, 255)";
-
-      btn.innerHTML = `
-        <span class="train-dot" style="background:${color};"></span>
-        🚆 <b>${train.id}</b> (${train.nom})
-      `;
-
-      btn.onclick = () => {
-        elementSelectionne = { type: "train", data: train };
-        afficherInfosTrain(train);
-        cacherMenu();
-      };
-
-      menu.appendChild(btn);
-    });
-
-    const screenX = canvasRect.left + p.mouseX;
-    const screenY = canvasRect.top + p.mouseY;
-    menu.style.left = `${screenX + 8}px`;
-    menu.style.top = `${screenY + 8}px`;
-    menu.style.display = "block";
-  };
-
   function cacherMenu() {
     const menu = document.getElementById("context-menu");
     if (menu) menu.style.display = "none";
@@ -1445,46 +1345,139 @@ new p5((p) => {
   }
 
 
-  // === Déplacement à la souris ===
+  // === Déplacement + clic sur la carte ===
   let isDragging = false;
   let lastMouseX = 0;
   let lastMouseY = 0;
+  let dragDistance = 0;
 
+  // Gérer la pression de la souris
   p.mousePressed = function (event) {
-    // clic gauche normal → déplacement
     if (event.button === 0) {
       isDragging = true;
       lastMouseX = p.mouseX;
       lastMouseY = p.mouseY;
+      dragDistance = 0;
     }
   };
 
-  p.mouseReleased = function (event) {
-    if (event.button === 0) {
-      isDragging = false;
-    }
-  };
-
+  // Gérer le déplacement
   p.mouseDragged = function () {
     if (isDragging) {
       const dx = p.mouseX - lastMouseX;
       const dy = p.mouseY - lastMouseY;
       offsetX += dx;
       offsetY += dy;
+      dragDistance += Math.abs(dx) + Math.abs(dy);
       lastMouseX = p.mouseX;
       lastMouseY = p.mouseY;
       fondDoitEtreRedessine = true;
     }
   };
 
-  // === Zoom à la molette ===
-  p.mouseWheel = function (event) {
-    const direction = event.delta > 0 ? -1 : 1; // sens de la molette
-    zoomOnPoint(p.mouseX, p.mouseY, direction);
-    fondDoitEtreRedessine = true;
-    return false; // empêche le scroll de la page
+  // Relâchement de la souris : clic si peu de mouvement
+  p.mouseReleased = function (event) {
+    if (event.button === 0) {
+      isDragging = false;
+      if (dragDistance < 5) {
+        // 💡 Clic détecté → appeler la logique existante de sélection
+        handleClick(event);
+      }
+    }
   };
 
+  // === Zoom à la molette ===
+  p.mouseWheel = function (event) {
+    const direction = event.delta > 0 ? -1 : 1;
+    zoomOnPoint(p.mouseX, p.mouseY, direction);
+    fondDoitEtreRedessine = true;
+    return false;
+  };
+
+  // === Fonction séparée : clic simple sur la carte ===
+  function handleClick(event) {
+    const canvasRect = p.canvas.getBoundingClientRect();
+    const clickX = event.clientX || (canvasRect.left + p.mouseX);
+    const clickY = event.clientY || (canvasRect.top + p.mouseY);
+
+    if (clickX < canvasRect.left || clickX > canvasRect.right || clickY < canvasRect.top || clickY > canvasRect.bottom) {
+      return;
+    }
+
+    const worldX = (p.mouseX - offsetX) / zoom;
+    const worldY = (p.mouseY - offsetY) / zoom;
+
+    const nearbyTrains = [];
+    let gareCliquee = null;
+
+    for (const train of trains) {
+      if (!train._screenPos) continue;
+      const d = p.dist(worldX, worldY, train._screenPos.x, train._screenPos.y);
+      if (d < 10 / zoom) nearbyTrains.push(train);
+    }
+
+    for (const v of villes) {
+      if (v.fantome) continue;
+      const d = p.dist(worldX, worldY, v.x, v.y);
+      if (d < 10 / zoom) gareCliquee = v;
+    }
+
+    // Même logique qu’avant
+    if (nearbyTrains.length === 0 && !gareCliquee) {
+      cacherMenu();
+      reinitialiserInfoPanel();
+      elementSelectionne = null;
+      return;
+    }
+
+    if (nearbyTrains.length + (gareCliquee ? 1 : 0) === 1) {
+      cacherMenu();
+      if (gareCliquee) {
+        elementSelectionne = { type: "gare", data: gareCliquee.nom };
+        afficherHorairesGare(gareCliquee.nom);
+      } else {
+        elementSelectionne = { type: "train", data: nearbyTrains[0] };
+        afficherInfosTrain(nearbyTrains[0]);
+      }
+      return;
+    }
+
+    // Menu contextuel si plusieurs objets proches
+    const menu = document.getElementById("context-menu");
+    menu.innerHTML = "";
+    if (gareCliquee) {
+      const btn = document.createElement("button");
+      btn.textContent = `🅶 Gare : ${gareCliquee.nom}`;
+      btn.onclick = () => {
+        elementSelectionne = { type: "gare", data: gareCliquee.nom };
+        afficherHorairesGare(gareCliquee.nom);
+        cacherMenu();
+      };
+      menu.appendChild(btn);
+    }
+    nearbyTrains.forEach(train => {
+      const btn = document.createElement("button");
+      btn.classList.add("train-option");
+      let color = "gray";
+      if (train._statut?.startsWith("entre")) color = "blue";
+      else if (train._statut?.startsWith("en gare")) color = "rgb(0, 179, 255)";
+      btn.innerHTML = `
+      <span class="train-dot" style="background:${color};"></span>
+      🚆 <b>${train.id}</b> (${train.nom})
+    `;
+      btn.onclick = () => {
+        elementSelectionne = { type: "train", data: train };
+        afficherInfosTrain(train);
+        cacherMenu();
+      };
+      menu.appendChild(btn);
+    });
+    const screenX = canvasRect.left + p.mouseX;
+    const screenY = canvasRect.top + p.mouseY;
+    menu.style.left = `${screenX + 8}px`;
+    menu.style.top = `${screenY + 8}px`;
+    menu.style.display = "block";
+  }
 
 });
 
