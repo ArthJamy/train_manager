@@ -11,11 +11,25 @@
       "remarque": "Regiolis du Grand Est"
     },
     {
-      "nom": "BR 1462 bwegt",
+      "nom": "BR1462 bwegt",
       "moteurs": ["15kV CA"],
       "vitesseMax": 160,
       "capacite": { "premiere": 16, "seconde": 394 },
       "pays": "DE"
+    },
+    {
+      "nom": "BB 26000 GrandEst",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR"
+    },
+    {
+      "nom": "AGC fluoGrandEst 3C",
+      "moteurs": ["diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 134 },
+      "pays": "FR"
     }
   ],
   "wagons": [

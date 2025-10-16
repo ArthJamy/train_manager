@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Création Trains & Trajets</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+
+  <link rel="stylesheet" href="./outils.css">
+  <link rel="stylesheet" href="./outilsTrain.css">
+</head>
+
+<body>
+  <header class="header">
+    <h1><a href="./index.html"><button>🏠</button></a> Création Trains & Trajets</h1>
+    <div class="header-actions">
+      <button class="btn btn-ghost btn-mini" id="btn-load-train">✏️ Modifier un train existant</button>
+      <button id="btn-new-train" class="btn btn-ok btn-mini">✅ Valider ce train / Nouveau</button>
+      <button id="btn-export">💾 Télécharger trainsFR.js & trainsDE.js</button>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="card">
+      <!-- Formulaire train -->
+      <div class="row">
+
+        <div class="box train-box">
+
+          <!-- Ligne principale -->
+          <div class="train-main">
+            <div>
+              <div class="label">Pays</div>
+              <select id="paysSel">
+                <option value="FR" selected>France (FR)</option>
+                <option value="DE">Allemagne (DE)</option>
+              </select>
+            </div>
+
+            <div>
+              <div class="label">Nom d’engin (base)</div>
+              <button id="btnSelectEngin" class="btn btn-ghost" style="width:100%; text-align:left;">
+                🔍 Choisir un engin…
+              </button>
+              <span id="enginChoisi" style="font-size:0.9rem; color:#444; display:block; margin-top:4px;">Aucun engin
+                sélectionné</span>
+            </div>
+
+            <div>
+              <div class="label">ID (unique)</div>
+              <input type="text" id="trainId" placeholder="Ex : TER2001">
+            </div>
+
+            <div>
+              <div class="label">Vitesse max (déduite)</div>
+              <input type="number" id="vmax" min="40" max="350" step="5" disabled>
+            </div>
+
+            <div>
+              <div class="label">Capacité totale (1ʳᵉ / 2ᵉ)</div>
+              <div class="hstack">
+                <input type="number" id="capPrem" min="0" step="1" disabled>
+                <input type="number" id="capSec" min="0" step="1" disabled>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloc composition -->
+          <div class="train-compo">
+            <div class="section-title">Composition</div>
+            <div class="compo-controls">
+              <button class="btn btn-ghost btn-mini" id="btn-add-compo">📂 Ajouter à la rame</button>
+            </div>
+            <div id="compoList" class="compo-list"></div>
+          </div>
+          <div class="divider"></div>
+          <!-- Boutons -->
+          <div class="actions train-actions">
+            <button class="btn btn-primary" id="btn-start-trajet">➕ Ajouter trajet</button>
+            <button class="btn btn-ok" id="btn-validate">✅ Valider les modifications</button>
+            <p>&nbsp | &nbsp</p>
+            <button class="btn btn-ghost" id="btn-suggest">🧠 Suggérer horaires</button>
+            <button class="btn btn-ghost" id="btn-return">🔁 Générer retour inversé (+30 min)</button>
+
+          </div>
+
+        </div>
+
+        <!-- Éditeur de trajets -->
+        <div class="box trajet-box" style="margin-top:20px;">
+          <div class="grid2">
+            <div><span class="label">Distance cumulée</span>
+              <div id="distTot" class="muted">— km</div>
+            </div>
+            <div><span class="label">Temps total estimé</span>
+              <div id="timeTot" class="muted">— min</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="grid2">
+            <div>
+              <div class="label">Nom du trajet</div>
+              <input type="text" id="trajetNom" placeholder="Ex: Mulhouse → Strasbourg (TER)">
+            </div>
+            <div>
+              <div class="label">Départ (HH:MM)</div>
+              <input type="time" id="heureDepart" value="08:00" step="60">
+            </div>
+            <p>&nbsp &nbsp &nbsp &nbsp</p>
+            <div>
+              <div class="label">Types de gares</div>
+              <select id="filtreTypeGare">
+                <option value="all" selected>Toutes</option>
+                <option value="grande">Grandes</option>
+                <option value="moyenne">Moyennes</option>
+                <option value="petite">Petites</option>
+                <option value="vaste">Vastes</option>
+              </select>
+            </div>
+            <div>
+              <div class="label">Profondeur (rayon)</div>
+              <input type="number" id="suggestDepth" min="0" value="0" style="width:100%;">
+            </div>
+
+            <div>
+              <div class="label">Nb de suggestions max</div>
+              <input type="number" id="suggestMax" min="1" value="20" style="width:100%;">
+            </div>
+          </div>
+          <div class="grid3" style="margin-top:8px;">
+          </div>
+
+          <div class="label" style="margin-top:10px;">Dessertes (double-clique sur “Gare” pour autocompléter)</div>
+          <table class="table" id="dessertesTbl">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Gare</th>
+                <th class="right">Arrêt (min)</th>
+                <th class="right">Heure (HH:MM)</th>
+                <th class="right">Jours (vide = tous)</th>
+                <th class="right">Traction</th>
+                <th class="right"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- lignes dynamiques -->
+            </tbody>
+          </table>
+
+          <div class="actions" style="margin-top:8px;">
+            <button class="btn btn-ghost btn-mini" id="btn-add-gare">➕ Ajouter une gare</button>
+          </div>
+          <div class="divider"></div>
+          <!-- Conteneur pour toutes les cards de trajets -->
+          <div class="section-title">Trajets du train</div>
+          <div id="trajetsContainer" style="margin-top:10px; display:flex; flex-direction:column; gap:12px;"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- === Popup de sélection d'engin === -->
+  <div id="popupEngins" class="popup-overlay" style="display:none;">
+    <div class="popup-content" style="
+    background:white; border-radius:12px; padding:16px;
+    width:90%; margin:auto; box-shadow:0 6px 24px rgba(0,0,0,0.3);
+    overflow-y:auto; max-height:85vh; position:relative;">
+
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+
+        <!-- Filtres pays -->
+        <div id="filtrePays" style="display:flex; justify-content: center; align-items: center; gap:6px;">
+          <h3>Sélectionner un engin</h3>
+          <p>&nbsp &nbsp &nbsp &nbsp</p>
+          <button style="flex: 0 0 auto;" data-pays="all" class="btn btn-mini btn-ghost active">🌍 Tous</button>
+          <button style="flex: 0 0 auto;" data-pays="FR" class="btn btn-mini btn-ghost">🇫🇷 France</button>
+          <button style="flex: 0 0 auto;" data-pays="DE" class="btn btn-mini btn-ghost">🇩🇪 Allemagne</button>
+        </div>
+        <button id="closePopupEngins" class="btn btn-mini btn-danger">✕</button>
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:10px;">
+        <!-- Popup engins -->
+        <input type="text" id="searchEngin" placeholder="Rechercher un engin…">
+        <select id="sortEngins">
+          <option value="nom">Trier par nom</option>
+          <option value="pays">Trier par pays</option>
+          <option value="vitesse">Trier par vitesse</option>
+          <option value="moteur">Trier par type de moteur</option>
+        </select>
+      </div>
+
+      <div id="gridEngins" class="grid"></div>
+    </div>
+  </div>
+
+  <!-- === Popup de sélection de compositions === -->
+  <div id="popupCompo" class="popup-overlay" style="display:none;">
+    <div class="popup-content" style="
+    background:white; border-radius:12px; padding:16px; max-width:900px;
+    width:90%; margin:auto; box-shadow:0 6px 24px rgba(0,0,0,0.3);
+    overflow-y:auto; max-height:85vh; position:relative;">
+
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+        <h3 style="margin:0;">Sélectionner des éléments de rame</h3>
+        <p style="font-size:13px; color:#666; margin:4px 0 10px;">
+          Affichage limité aux compositions compatibles avec l’engin sélectionné.
+        </p>
+
+        <button id="closePopupCompo" class="btn btn-mini btn-danger">✕</button>
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:10px;">
+        <input type="text" id="searchCompo" placeholder="Rechercher un élément…">
+        <select id="sortCompo">
+          <option value="nom">Trier par nom</option>
+          <option value="pays">Trier par pays</option>
+          <option value="vitesse">Trier par vitesse</option>
+        </select>
+
+        <div class="hstack" style="gap:6px; align-items:center;">
+          <label for="qtyCompo" class="label" style="margin:0; text-align: right;">Qté</label>
+          <input type="number" id="qtyCompo" value="1" min="1" max="12"
+            style="width:80px; padding:6px 10px; border:1px solid #ccd; border-radius:8px;">
+        </div>
+      </div>
+
+      <div id="gridCompo" class="grid"></div>
+
+      <div style="display:flex; justify-content:flex-end; margin-top:12px;">
+        <button id="btnConfirmCompo" class="btn btn-primary btn-mini">➕ Ajouter à la rame</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- === Popup de sélection de trains existants === -->
+  <div id="popupTrains" class="popup-overlay" style="display:none;">
+    <div class="popup-content" style="
+    background:white; border-radius:12px; padding:16px;
+    width:90%; margin:auto; box-shadow:0 6px 24px rgba(0,0,0,0.3);
+    overflow-y:auto; max-height:85vh; position:relative;">
+
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+        <h3 style="margin:0;">Modifier un train existant</h3>
+        <button id="closePopupTrains" class="btn btn-mini btn-danger">✕</button>
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:10px;">
+        <input type="text" id="searchTrain" placeholder="Rechercher (nom ou ID)..."
+          style="flex:1; padding:6px 10px; border:1px solid #ccd; border-radius:8px;">
+
+        <select id="sortTrains" style="padding:6px 10px; border:1px solid #ccd; border-radius:8px;">
+          <option value="id">Trier par ID</option>
+          <option value="nom">Trier par nom</option>
+          <option value="pays">Trier par pays</option>
+        </select>
+      </div>
+
+      <div id="gridTrains" class="grid"></div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/creationTrains.js"></script>
+</body>
+
+</html>

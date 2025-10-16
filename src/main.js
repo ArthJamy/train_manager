@@ -5,11 +5,17 @@ import { trainsDE } from './trainsDE.js';
 export const trains = [...trainsFR, ...trainsDE];
 import { accouplements } from "./um.js";
 
-
 import { afficherTrajetsTrain, afficherFicheHoraire, afficherCarteFlotte } from "./popup.js";
 
 // Flux passagers
 import { etatTrains, initTrainsState, majOccupants } from "./etatTrains.js";
+
+//Statistiques
+import { afficherStatsReseau } from "./statistiques.js";
+document.getElementById("btn-stats").addEventListener("click", () => {
+  afficherStatsReseau();
+});
+
 
 // Déterminer le nombre d’UM actif pour chaque train
 function getUMCount(trainId, heure, jour) {
@@ -25,6 +31,41 @@ function getUMCount(trainId, heure, jour) {
 document.getElementById("btn-flotte").addEventListener("click", () => {
   afficherCarteFlotte();
 });
+
+// === Barre de recherche de gares ===
+const inputGare = document.getElementById("search-gare");
+const datalist = document.getElementById("liste-gares");
+
+// Remplir la datalist avec toutes les gares non fantômes
+villes
+  .filter(v => !v.fantome)
+  .forEach(v => {
+    const option = document.createElement("option");
+    option.value = v.nom;
+    datalist.appendChild(option);
+  });
+
+// Lancer la recherche quand on appuie sur Entrée
+inputGare.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    const nom = inputGare.value.trim();
+    const gare = villes.find(v => v.nom.toLowerCase() === nom.toLowerCase());
+
+    if (!gare) {
+      alert("Aucune gare trouvée pour ce nom.");
+      return;
+    }
+
+    // Centrer la carte et afficher la fiche horaire
+    const event = new CustomEvent("centrerSurGare", { detail: gare });
+    window.dispatchEvent(event);
+
+    // Optionnel : effacer le champ après la recherche
+    // inputGare.value = "";
+  }
+});
+
+
 
 // Fonction helper globale
 function timeToMinutes(h) {
@@ -75,7 +116,8 @@ window.__trainRuntime = {
   }
 };
 
-// Affichage gares intermédiaires
+
+// Affichage gares intermédiaires V2 (gares fantomes)
 function trouverCheminEntreGares(gareA, gareB) {
   const graph = {};
   lignes.forEach(l => {
@@ -93,9 +135,23 @@ function trouverCheminEntreGares(gareA, gareB) {
     const last = path[path.length - 1];
     if (last === gareB) return path;
 
-    for (const voisin of graph[last] || []) {
-      if (!visited.has(voisin)) {
-        visited.add(voisin);
+    const voisins = graph[last] || [];
+    for (const voisin of voisins) {
+      if (visited.has(voisin)) continue;
+      visited.add(voisin);
+
+      const g = villes.find(v => v.nom === voisin);
+      if (!g) continue;
+
+      if (g.fantome) {
+        // 🚧 Traverse les gares fantômes sans augmenter la "distance"
+        // On continue directement derrière elles
+        for (const next of graph[voisin] || []) {
+          if (!visited.has(next)) {
+            queue.push([...path, voisin, next]);
+          }
+        }
+      } else {
         queue.push([...path, voisin]);
       }
     }
@@ -103,6 +159,7 @@ function trouverCheminEntreGares(gareA, gareB) {
 
   return [gareA, gareB];
 }
+
 
 new p5((p) => {
   let offsetX = 0;
@@ -410,7 +467,7 @@ new p5((p) => {
         break;
       }
     }
-*/
+  */
     if (prochain) {
       // ✅ CORRECTIF 3 : Vérifier que le trajet précédent circule bien aujourd'hui
       const precedent = train.trajets.findLast(t => {
@@ -1368,11 +1425,67 @@ new p5((p) => {
     div.innerHTML = html;
   }
 
+  window.addEventListener("centrerSurGare", (e) => {
+    const gare = e.detail;
+    if (!gare) return;
+
+    zoom = 2.2;
+    offsetX = p.width / 2 - gare.x * zoom;
+    offsetY = p.height / 2 - gare.y * zoom;
+
+    // afficher la fiche horaire directement
+    afficherHorairesGare(gare.nom);
+  });
+
+
   function minutesToTime(minutes) {
     const h = Math.floor(minutes / 60);
     const m = minutes % 60;
     return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
   }
+
+
+  // === Déplacement à la souris ===
+  let isDragging = false;
+  let lastMouseX = 0;
+  let lastMouseY = 0;
+
+  p.mousePressed = function (event) {
+    // clic gauche normal → déplacement
+    if (event.button === 0) {
+      isDragging = true;
+      lastMouseX = p.mouseX;
+      lastMouseY = p.mouseY;
+    }
+  };
+
+  p.mouseReleased = function (event) {
+    if (event.button === 0) {
+      isDragging = false;
+    }
+  };
+
+  p.mouseDragged = function () {
+    if (isDragging) {
+      const dx = p.mouseX - lastMouseX;
+      const dy = p.mouseY - lastMouseY;
+      offsetX += dx;
+      offsetY += dy;
+      lastMouseX = p.mouseX;
+      lastMouseY = p.mouseY;
+      fondDoitEtreRedessine = true;
+    }
+  };
+
+  // === Zoom à la molette ===
+  p.mouseWheel = function (event) {
+    const direction = event.delta > 0 ? -1 : 1; // sens de la molette
+    zoomOnPoint(p.mouseX, p.mouseY, direction);
+    fondDoitEtreRedessine = true;
+    return false; // empêche le scroll de la page
+  };
+
+
 });
 
 

@@ -6,7 +6,6 @@ export const trainsFR = [
     vitesseMax: 160,
     capacite: { premiere: 80, seconde: 360 },
     composition: ["Regiolis fluoGrandEst 5C"],
-
     trajets: [
       {
         nom: "Mulhouse → Strasbourg",

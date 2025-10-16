@@ -20,6 +20,9 @@
         </div>
         <h2 class="header-center">Simulateur ferroviaire — Est de la France</h2>
         <div class="header-right">
+            <input type="text" id="search-gare" list="liste-gares" placeholder="Rechercher une gare..."
+                class="input-header" />
+            <datalist id="liste-gares"></datalist>
             <button id="btn-flotte" class="btn-dark">🗺️ Flotte</button>
 
             <select id="select-affichage" class="btn-dark">
@@ -32,9 +35,10 @@
             <div class="dropdown">
                 <button id="btn-pages" class="btn-dark">⚙️ Outils</button>
                 <div class="dropdown-content">
-                    <a href="./creationGareLigne.html" target="_blank">Éditeur gares / lignes</a>
-                    <a href="./catalogueEngins.html" target="_blank">Catalogue des trains</a>
-                    <a href="#0" target="_blank">Debug / test</a>
+                    <a href="./creationGareLigne.html" target="_blank">🛠️ Éditeur gares / lignes</a>
+                    <a href="./creationTrains.html" target="_blank">🛠️ Création trains / trajets</a>
+                    <a href="./catalogueEngins.html" target="_blank">🚞 Catalogue des trains</a>
+                    <a href="#0" id="btn-stats">📊 Statistiques réseau</a>
                 </div>
             </div>
         </div>

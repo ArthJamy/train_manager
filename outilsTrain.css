@@ -1,0 +1,479 @@
+:root {
+    --card: #fff;
+    --ink: #111;
+    --muted: #666;
+    --accent: #1e3a8a;
+    --ok: #2ecc71;
+    --warn: #f39c12;
+    --err: #e74c3c;
+}
+
+body {
+    background: #f5f7fb;
+    font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--ink);
+}
+
+.wrap {
+    padding-left: clamp(10px, 10vw, 25%);
+    padding-right: clamp(10px, 10vw, 25%);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, .08);
+    padding: 18px 20px;
+}
+
+.hstack {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.hstack>* {
+    flex: 1
+}
+
+
+.row .box {
+    background: #fafbff;
+    border: 1px solid #e7ebf5;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.label {
+    font-size: 12px;
+    letter-spacing: .02em;
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="time"],
+input[type="number"],
+select {
+    padding: 10px 12px;
+    border: 1px solid #d9e1f2;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.btn {
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+}
+
+.btn-ghost {
+    background: #eef2ff;
+    color: #1e3a8a;
+}
+
+.btn-danger {
+    background: #ffe8e6;
+    color: #b1200e;
+}
+
+.btn-danger:hover {
+    background: #b1200e;
+    color: #ffe8e6;
+}
+
+.btn-mini {
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #eef2ff;
+    color: #1e3a8a;
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+.box {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.table {
+    min-width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    color: #334155;
+}
+
+.table td.right,
+.table th.right {
+    text-align: left;
+}
+
+.table th {
+    font-weight: 600;
+    background: #f6f8fe;
+}
+
+
+.muted {
+    color: var(--muted)
+}
+
+.toast-container {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+}
+
+.toast {
+    width: 300px;
+    padding: 10px 20px;
+    color: white;
+    background: #3498db;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-family: sans-serif;
+    animation: fadeIn 0.3s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.badge {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: #eef2ff;
+    color: #1e3a8a;
+}
+
+.section-title {
+    margin: 10px 0 6px;
+    font-weight: 700;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.divider {
+    height: 1px;
+    background: #86a9ff;
+    margin: 10px 0;
+}
+
+.trajet-card .trajet-header:hover {
+    background: #e0e7ff;
+}
+
+.trajet-card .trajet-body {
+    transition: all 0.2s ease;
+}
+
+.btn-ok {
+    background: #2ecc71;
+    color: #fff;
+}
+
+.btn-ok:hover {
+    background: #29b765;
+}
+
+.btn-ghost:hover {
+    background: #cacef3;
+}
+
+
+/* === Ligne principale (Pays, ID, Nom, Vmax, Capacité) === */
+.train-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.train-main>div {
+    flex: 1 1 140px;
+    display: flex;
+    flex-direction: column;
+}
+
+.train-main .hstack {
+    gap: 4px;
+}
+
+.train-main input,
+.train-main select {
+    padding: 8px 10px;
+    border: 1px solid #d9e1f2;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.grid2 {
+    display: flex;
+    gap: 10px;
+}
+
+
+.grid2 input,
+.grid2 select {
+    box-sizing: border-box;
+    min-height: 45px;
+
+}
+
+#trajetNom {
+    min-width: 350px;
+}
+
+#suggestDepth,
+#suggestMax {
+    max-width: 70px;
+}
+
+/* === Bloc composition === */
+.train-compo .compo-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.train-compo input#compPrefix {
+    min-width: 260px;
+}
+
+.compo-list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 6px;
+    padding: 6px 0 2px 0;
+    scrollbar-width: thin;
+}
+
+.compo-list::-webkit-scrollbar {
+    height: 6px;
+}
+
+.compo-list::-webkit-scrollbar-thumb {
+    background: #c6d1f2;
+    border-radius: 4px;
+}
+
+/* === Boutons === */
+.train-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* === Couleur du sélecteur pays === */
+#paysSel.FR {
+    background: #b9d5ff;
+    border-color: #006eff;
+}
+
+#paysSel.DE {
+    background: #fdf2b5;
+    border-color: #ffcc00;
+}
+
+.trajet-card.active {
+    border: 2px solid #6478ff;
+    box-shadow: 0 0 0 3px rgba(100, 120, 255, .12);
+}
+
+.trajet-card .trajet-header {
+    cursor: pointer;
+}
+
+.trajet-body {
+    transition: max-height 0.25s ease, opacity 0.25s ease;
+    overflow: hidden;
+}
+
+.trajet-body[style*="display: block"] {
+    max-height: 1000px;
+    opacity: 1;
+}
+
+.trajet-body[style*="display: none"] {
+    max-height: 0;
+    opacity: 0;
+}
+
+.btn-fill {
+    background: transparent;
+    color: #334;
+    border: 1px dashed #ccd;
+    transition: all .2s;
+}
+
+.btn-fill:hover {
+    opacity: 1;
+    border-color: #889;
+    background: #eef2ff;
+}
+
+.grid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+#filtreTypeGare,
+#suggestDepth,
+#suggestMax {
+    padding: 6px 8px;
+    border: 1px solid #d9e1f2;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 0.9rem;
+}
+
+/* ====== PopUp ====== */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.card-train {
+    background: white;
+    border: 1px solid #d7dbe9;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.card-train:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-train img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    background: #f7f7f7;
+}
+
+.card-train h4 {
+    margin: 6px 0 4px 0;
+    font-size: 0.95rem;
+    color: #222;
+}
+
+.card-train p {
+    font-size: 0.8rem;
+    color: #555;
+    margin: 0 0 6px 0;
+}
+
+/* === Filtres pays === */
+#filtrePays button.active {
+    background: #1e3a8a;
+    color: white;
+}
+
+/* === Cards d'engins === */
+.card-train {
+    border: 1px solid #d7dbe9;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    transition: transform .2s, box-shadow .2s;
+    color: #222;
+}
+
+.card-train:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-train img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.card-train h4 {
+    margin: 6px 0 2px 0;
+    font-size: 0.95rem;
+}
+
+.card-train p {
+    font-size: 0.8rem;
+    margin: 0 0 6px 0;
+    color: #333;
+}
+
+.card-train:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.08);
+}

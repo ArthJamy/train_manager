@@ -155,7 +155,7 @@ input[type="time"] {
 #train-image-container {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* ✅ aligne les images en bas */
   justify-content: center;
   margin: 10px 0;
   width: 100%;
@@ -165,7 +165,7 @@ input[type="time"] {
 /* Vue défilable */
 #train-image-view {
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* ✅ aligne les images en bas */
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
@@ -180,7 +180,8 @@ input[type="time"] {
 
 /* Images de rames */
 .train-segment {
-  height: 60px;      /* ✅ assure une hauteur uniforme */
+  max-height: 60px;
+  height: auto;       /* ✅ conserve le ratio original */
   object-fit: contain;
   flex-shrink: 0;
   
@@ -601,4 +602,17 @@ input[type="time"] {
   color: #d6d6d6;
   font-size: 0.75rem;
   margin-left: 6px;
+}
+
+.input-header {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #f7f7f7;
+  font-size: 0.9rem;
+  width: 160px;
+}
+.input-header:focus {
+  outline: none;
+  border-color: #1e3a8a;
 }
