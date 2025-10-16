@@ -16,6 +16,31 @@ document.getElementById("btn-stats").addEventListener("click", () => {
   afficherStatsReseau();
 });
 
+// === Sauvegarde du canvas en image ===
+document.getElementById("btn-save-map").addEventListener("click", () => {
+  const canvasEl = document.querySelector("canvas");
+  if (!canvasEl) {
+    alert("Canvas introuvable !");
+    return;
+  }
+
+  const stamp = new Date().toISOString().replace(/[:T]/g, "-").split(".")[0];
+  const filename = `Carte_Ferroviaire_${stamp}.png`;
+
+  canvasEl.toBlob((blob) => {
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }, "image/png");
+});
+
+
 
 // Déterminer le nombre d’UM actif pour chaque train
 function getUMCount(trainId, heure, jour) {
@@ -575,6 +600,8 @@ new p5((p) => {
 
     // Flux passagerq
     initTrainsState(document.getElementById("heure").value || "08:00");
+    // Désactive totalement le menu contextuel par défaut sur le canvas
+    p.canvas.oncontextmenu = (e) => e.preventDefault();
 
   };
 
@@ -1352,19 +1379,64 @@ new p5((p) => {
   let dragDistance = 0;
 
   // Gérer la pression de la souris
+  // === Clic droit sur une gare ===
   p.mousePressed = function (event) {
+    // 🖱️ Clic gauche = drag classique
     if (event.button === 0) {
       isDragging = true;
       lastMouseX = p.mouseX;
       lastMouseY = p.mouseY;
       dragDistance = 0;
     }
+
+    // 🖱️ Clic droit = ouvrir directement la gare (si présente)
+    if (event.button === 2) {
+      const rect = p.canvas.getBoundingClientRect();
+      const inside =
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom;
+
+      if (!inside) return; // ignorer si en dehors du canvas
+
+      const worldX = (p.mouseX - offsetX) / zoom;
+      const worldY = (p.mouseY - offsetY) / zoom;
+
+      // Cherche la gare la plus proche
+      const gareCliquee = villes.find(v => {
+        if (v.fantome) return false;
+        const d = p.dist(worldX, worldY, v.x, v.y);
+        return d < 10 / zoom; // seuil de détection
+      });
+
+      if (gareCliquee) {
+        elementSelectionne = { type: "gare", data: gareCliquee.nom };
+        afficherHorairesGare(gareCliquee.nom);
+      }
+
+      // empêcher le menu contextuel natif
+      event.preventDefault();
+    }
   };
 
+
+
+
   // Gérer le déplacement
-  p.mouseDragged = function () {
+  p.mouseDragged = function (event) {
+    // 🧩 Ignorer le drag si on clique sur autre chose que la carte
+    if (event.target !== p.canvas) return;
     if (isDragging) {
-       p.canvas.style.cursor = "grabbing";
+      const rect = p.canvas.getBoundingClientRect();
+      const inside =
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom;
+
+      if (!inside) return; // ⛔ ignorer la molette si la souris n’est pas sur la carte
+      p.canvas.style.cursor = "grabbing";
       const dx = p.mouseX - lastMouseX;
       const dy = p.mouseY - lastMouseY;
       offsetX += dx;
@@ -1390,6 +1462,8 @@ new p5((p) => {
 
   // === Zoom à la molette (actif uniquement sur le canvas) ===
   p.mouseWheel = function (event) {
+    // 🧩 Ne pas zoomer si la souris est sur un élément autre que le canvas
+    if (event.target !== p.canvas) return;
     const rect = p.canvas.getBoundingClientRect();
     const inside =
       event.clientX >= rect.left &&
