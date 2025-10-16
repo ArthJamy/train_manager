@@ -1364,6 +1364,7 @@ new p5((p) => {
   // Gérer le déplacement
   p.mouseDragged = function () {
     if (isDragging) {
+       p.canvas.style.cursor = "grabbing";
       const dx = p.mouseX - lastMouseX;
       const dy = p.mouseY - lastMouseY;
       offsetX += dx;
@@ -1379,6 +1380,7 @@ new p5((p) => {
   p.mouseReleased = function (event) {
     if (event.button === 0) {
       isDragging = false;
+      p.canvas.style.cursor = "default";
       if (dragDistance < 5) {
         // 💡 Clic détecté → appeler la logique existante de sélection
         handleClick(event);
@@ -1386,13 +1388,23 @@ new p5((p) => {
     }
   };
 
-  // === Zoom à la molette ===
+  // === Zoom à la molette (actif uniquement sur le canvas) ===
   p.mouseWheel = function (event) {
+    const rect = p.canvas.getBoundingClientRect();
+    const inside =
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right &&
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom;
+
+    if (!inside) return; // ⛔ ignorer la molette si la souris n’est pas sur la carte
+
     const direction = event.delta > 0 ? -1 : 1;
     zoomOnPoint(p.mouseX, p.mouseY, direction);
     fondDoitEtreRedessine = true;
-    return false;
+    return false; // empêche le scroll de la page
   };
+
 
   // === Fonction séparée : clic simple sur la carte ===
   function handleClick(event) {

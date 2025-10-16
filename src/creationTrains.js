@@ -723,75 +723,152 @@ function dureeCheminMinutes(path) {
 }
 
 
+/**
+ * Détermine le type de traction nécessaire entre deux gares
+ * @returns {Object} { type: string, icon: string, color: string }
+ */
 function determinerTractionEntre(ga, gb) {
   const base = state.current.engin;
-  const moteurs = base?.moteurs?.map(m => m.toLowerCase()) || [];
+  if (!base) {
+    return { type: "inconnu", icon: "?", color: "#999" };
+  }
 
+  // 📋 Capacités de l'engin
+  const capacites = {
+    diesel: base.moteurs?.some(m => m.toLowerCase().includes("diesel")) || false,
+    "25kv": base.moteurs?.some(m => m.toLowerCase().includes("25kv")) || false,
+    "15kv": base.moteurs?.some(m => m.toLowerCase().includes("15kv")) || false,
+    "1.5kv": base.moteurs?.some(m => m.toLowerCase().includes("1.5kv")) || false
+  };
+
+  // 🛤️ Récupération des types d'électrification sur le chemin
   const path = trouverCheminEntreGares(ga, gb);
   if (!path || path.length < 2) {
     return { type: "inconnu", icon: "?", color: "#999" };
   }
 
-  const types = new Set();
+  const typesElec = new Set();
   for (let i = 0; i < path.length - 1; i++) {
-    const l = lignes.find(L =>
+    const ligne = lignes.find(L =>
       (L.gareA === path[i] && L.gareB === path[i + 1]) ||
       (L.gareA === path[i + 1] && L.gareB === path[i])
     );
-    if (l?.electrification) {
-      types.add(l.electrification.toLowerCase());
+    if (ligne?.electrification) {
+      typesElec.add(ligne.electrification.toLowerCase());
     }
   }
 
-  if (types.size === 0) {
+  if (typesElec.size === 0) {
     return { type: "inconnu", icon: "?", color: "#999" };
   }
 
-  const allTypes = Array.from(types);
+  // 🔍 Analyse de compatibilité
+  let modeUtilise = null;
   let compatible = true;
-  let besoinDiesel = false;
-  const hasDiesel = moteurs.includes("diesel");
-  const hasElectrique = moteurs.some(m => m.includes("kv"));
 
-  for (const t of allTypes) {
-    if (t.includes("diesel")) {
-      // voie diesel → il faut du diesel
-      if (!hasDiesel) compatible = false;
-      besoinDiesel = true;
-    } else if (t.includes("25kv")) {
-      if (!moteurs.some(m => m.includes("25kv"))) {
-        if (hasDiesel) besoinDiesel = true;  // ⚙️ hybride bascule en diesel
-        else compatible = false;
+  for (const typeVoie of typesElec) {
+    // Cas 1️⃣ : Voie diesel
+    if (typeVoie.includes("diesel")) {
+      if (capacites.diesel) {
+        modeUtilise = "diesel";
+      } else {
+        compatible = false;
+        break;
       }
-    } else if (t.includes("15kv")) {
-      if (!moteurs.some(m => m.includes("15kv"))) {
-        if (hasDiesel) besoinDiesel = true;
-        else compatible = false;
+    }
+    // Cas 2️⃣ : Voie électrifiée
+    else if (typeVoie.includes("25kv") || typeVoie.includes("15kv") || typeVoie.includes("1.5kv")) {
+      const typeExact = typeVoie.includes("25kv") ? "25kv"
+        : typeVoie.includes("15kv") ? "15kv"
+          : "1.5kv";
+
+      if (capacites[typeExact]) {
+        // ✅ Compatible en électrique
+        if (!modeUtilise) modeUtilise = "electrique";
+      } else if (capacites.diesel) {
+        // ⚡➡️🔥 Bascule en diesel (hybride)
+        modeUtilise = "diesel";
+      } else {
+        // ❌ Incompatible
+        compatible = false;
+        break;
       }
-    } else if (t.includes("1.5kv")) {
-      if (!moteurs.some(m => m.includes("1.5kv"))) {
-        if (hasDiesel) besoinDiesel = true;
-        else compatible = false;
+    }
+    // Cas 3️⃣ : Type inconnu
+    else {
+      if (capacites.diesel) {
+        modeUtilise = "diesel";
+      } else {
+        compatible = false;
+        break;
       }
-    } else {
-      // type inconnu → on peut supposer diesel si dispo
-      if (hasDiesel) besoinDiesel = true;
-      else compatible = false;
     }
   }
 
-  // 🧠 décision finale
+  // 🎯 Décision finale
   if (!compatible) {
-    return { type: "incompatible", icon: "⚠️", color: "#e74c3c" };
+    return { type: "incompatible", icon: "❌", color: "#e74c3c" };
   }
 
-  if (besoinDiesel) {
+  if (modeUtilise === "diesel") {
     return { type: "diesel", icon: "⛽", color: "#d0a060" };
   }
 
   return { type: "electrique", icon: "⚡", color: "#1e90ff" };
 }
 
+/**
+ * Vérifie la compatibilité de traction sur TOUS les segments de TOUS les trajets
+ * @returns {Object} { valid: boolean, errors: string[] }
+ */
+function verifierCompatibiliteTraction() {
+  const errors = [];
+  const c = state.current;
+
+  if (!c.engin) {
+    return { valid: false, errors: ["Aucun engin sélectionné"] };
+  }
+
+  if (!c.trajets || c.trajets.length === 0) {
+    return { valid: true, errors: [] }; // Pas de trajet = pas d'incompatibilité
+  }
+
+  // 🔍 Parcourt chaque trajet
+  c.trajets.forEach((trajet, tIndex) => {
+    if (!trajet.dessertes || trajet.dessertes.length < 2) return;
+
+    const nomTrajet = trajet.nom || `Trajet #${tIndex + 1}`;
+
+    // 🔍 Vérifie chaque segment du trajet
+    for (let i = 0; i < trajet.dessertes.length - 1; i++) {
+      const gareA = trajet.dessertes[i].gare;
+      const gareB = trajet.dessertes[i + 1].gare;
+
+      if (!gareA || !gareB) continue;
+
+      const traction = determinerTractionEntre(gareA, gareB);
+
+      // Segment incompatible détecté
+      if (traction.type === "incompatible") {
+        errors.push(
+          `${nomTrajet} : segment "${gareA} → ${gareB}" incompatible avec ${c.engin.nom}`
+        );
+      }
+
+      // Segment inconnu (pas de données d'électrification)
+      if (traction.type === "inconnu") {
+        errors.push(
+          `${nomTrajet} : segment "${gareA} → ${gareB}" - type de traction indéterminé`
+        );
+      }
+    }
+  });
+
+  return {
+    valid: errors.length === 0,
+    errors
+  };
+}
 
 /* ============================================================
  * CALCUL HORAIRES SUGGÉRÉS
@@ -906,7 +983,6 @@ function validateTrainBeforeSave() {
     return "ID déjà utilisé. Modifie l'ID ou charge l'existant pour l'éditer.";
   }
 
-
   // Validation trajets
   for (const [i, tr] of c.trajets.entries()) {
     if (!tr.dessertes || tr.dessertes.length < 2) {
@@ -925,6 +1001,12 @@ function validateTrainBeforeSave() {
       }
       prev = currMins;
     }
+  }
+  // NOUVELLE VALIDATION : compatibilité de traction
+  const tractionCheck = verifierCompatibiliteTraction();
+  if (!tractionCheck.valid) {
+    // Retourne la première erreur (ou toutes si tu préfères)
+    return `❌ Incompatibilité de traction détectée :\n\n${tractionCheck.errors.join('\n')}`;
   }
   return null;
 }
@@ -1585,7 +1667,7 @@ function bindActions() {
     renderAllTrajets();     // affiche la card “(Trajet sans nom)”
   });
 
-  
+
 
 }
 

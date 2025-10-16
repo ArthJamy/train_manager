@@ -1,213 +1,216 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8">
-<title>Éditeur ferroviaire - Gares & Lignes</title>
-<link rel="stylesheet" href="outils.css">
-<style>
-  button {
-    padding: 6px 10px;
-  }
+  <meta charset="UTF-8">
+  <title>Éditeur ferroviaire - Gares & Lignes</title>
+  <link rel="stylesheet" href="outils.css">
+  <style>
+    button {
+      padding: 6px 10px;
+    }
 
-  .colonne {
-    flex: 1;
-    background: #fff;
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  }
+    .colonne {
+      flex: 1;
+      background: #fff;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
 
-  input,
-  select {
-    padding: 6px;
-    margin: 4px 0;
-    width: 100%;
-    border-radius: 4px;
-    border: 1px solid #aaa;
-  }
+    input,
+    select {
+      padding: 6px;
+      margin: 4px 0;
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid #aaa;
+    }
 
-  input[readonly] {
-    background: #f2f2f2;
-  }
+    input[readonly] {
+      background: #f2f2f2;
+    }
 
-  .row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
 
-  .list {
-    font-family: monospace;
-    background: #f8f8f8;
-    border: 1px solid #ccc;
-    padding: 6px;
-    border-radius: 5px;
-    max-height: 240px;
-    overflow-y: auto;
-    margin-top: 6px;
-  }
+    .list {
+      font-family: monospace;
+      background: #f8f8f8;
+      border: 1px solid #ccc;
+      padding: 6px;
+      border-radius: 5px;
+      max-height: 240px;
+      overflow-y: auto;
+      margin-top: 6px;
+    }
 
-  .small {
-    font-size: 12px;
-    color: #666;
-  }
-</style>
-<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    .small {
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
 </head>
+
 <body>
 
-<header>
-  <h1><a href="./index.html"><button>🏠</button></a> Éditeur de gares & lignes ferroviaires</h1>
-  <div>
-    <button onclick="copierGares()">📋 Copier gares.js</button>
-    <button onclick="copierLignes()">📋 Copier voies.js</button>
-    <button onclick="telechargerGares()">💾 Télécharger gares.js</button>
-    <button onclick="telechargerLignes()">💾 Télécharger voies.js</button>
-  </div>
-</header>
-
-<main>
-  <!-- GARes -->
-  <div class="colonne" id="colGares">
-    <h2>Gares</h2>
-    <div id="garesContainer"></div>
-    <div style="display:flex; gap:8px; justify-content:center; margin-bottom:6px;">
-      <button onclick="ajouterCarteGare()">➕ Ajouter une gare</button>
-      <button onclick="ajouterCarteFantome()">👻 Ajouter une gare fantôme</button>
+  <header>
+    <h1><a href="./index.html"><button>🏠</button></a> Éditeur de gares & lignes ferroviaires</h1>
+    <div>
+      <button onclick="copierGares()">📋 Copier gares.js</button>
+      <button onclick="copierLignes()">📋 Copier voies.js</button>
+      <button onclick="telechargerGares()">💾 Télécharger gares.js</button>
+      <button onclick="telechargerLignes()">💾 Télécharger voies.js</button>
     </div>
-    <div class="list" id="listeGares"></div>
-    <div class="small">Astuce : colle un lien Google Maps (formats variés acceptés). Le nom encodé sera décodé automatiquement.</div>
-  </div>
+  </header>
 
-  <!-- LIGNES -->
-  <div class="colonne" id="colLignes">
-    <h2>Lignes</h2>
-    <div id="lignesContainer"></div>
-    <button onclick="ajouterCarteLigne()">+ Ajouter une ligne</button>
-    <div class="list" id="listeLignes"></div>
-  </div>
-</main>
+  <main>
+    <!-- GARes -->
+    <div class="colonne" id="colGares">
+      <h2>Gares</h2>
+      <div id="garesContainer"></div>
+      <div style="display:flex; gap:8px; justify-content:center; margin-bottom:6px;">
+        <button onclick="ajouterCarteGare()">➕ Ajouter une gare</button>
+        <button onclick="ajouterCarteFantome()">👻 Ajouter une gare fantôme</button>
+      </div>
+      <div class="list" id="listeGares"></div>
+      <div class="small">Astuce : colle un lien Google Maps (formats variés acceptés). Le nom encodé sera décodé
+        automatiquement.</div>
+    </div>
 
-<script>
+    <!-- LIGNES -->
+    <div class="colonne" id="colLignes">
+      <h2>Lignes</h2>
+      <div id="lignesContainer"></div>
+      <button onclick="ajouterCarteLigne()">+ Ajouter une ligne</button>
+      <div class="list" id="listeLignes"></div>
+    </div>
+  </main>
 
-/* ================== !!!!!!!!!!!  PARAMS CARTE !!!!!!!!!!!   ================== */
-const origine = { lat: 47.742426, lon: 7.3428351 }; // Mulhouse = (0,0)
-const echelle = 1000; // nombre de pixels par degré 
-const FLUX_PAR_TAILLE = { petite:1500, moyenne:8000, grande:15000, vaste:40000 };
-/* ================== !!!!!!!!!!!  PARAMS CARTE !!!!!!!!!!!   ================== */
+  <script>
 
-/* ================== Pré remplir ==================*/
-let dernierContexteLigne = {
-  gareA: null,
-  gareB: null,
-  type: "classique",
-  vitesse: 140,
-  elec: "diesel",
-  sign: "KVB"
-};
+    /* ================== !!!!!!!!!!!  PARAMS CARTE !!!!!!!!!!!   ================== */
+    const origine = { lat: 47.742426, lon: 7.3428351 }; // Mulhouse = (0,0)
+    const echelle = 1000; // nombre de pixels par degré 
+    const FLUX_PAR_TAILLE = { petite: 1500, moyenne: 8000, grande: 15000, vaste: 40000 };
+    /* ================== !!!!!!!!!!!  PARAMS CARTE !!!!!!!!!!!   ================== */
 
-/* ================== ETATS ================== */
-let garesExistantes = [];   // normalisées: {nom,x,y,type,fluxPassager}
-let lignesExistantes = [];  // tel le fichier
-let nouvellesGares = [];
-let nouvellesLignes = [];
-let indexProchainSegment = null; // index dans nouvellesGares pour proposer A
-
-
-/* ================== OUTILS ================== */
-function latLonToXY(lat, lon) {
-  const x = (lon - origine.lon) * echelle;
-  const y = (origine.lat - lat) * echelle;
-  return {x,y};
-}
-
-function normaliserGare(g) {
-  // 🪄 Si c’est une gare fantôme, on ne touche à rien
-  if (g.fantome) {
-    return {
-      nom: g.nom,
-      x: Number(g.x),
-      y: Number(g.y),
-      fantome: true
+    /* ================== Pré remplir ==================*/
+    let dernierContexteLigne = {
+      gareA: null,
+      gareB: null,
+      type: "classique",
+      vitesse: 140,
+      elec: "diesel",
+      sign: "KVB"
     };
-  }
 
-  // 🚉 Sinon, gare normale : on complète les champs manquants
-  const type = g.type ?? g.taille ?? "petite";
-  const flux =
-    g.fluxPassager != null
-      ? g.fluxPassager
-      : FLUX_PAR_TAILLE[type] ?? FLUX_PAR_TAILLE.petite;
-
-  return {
-    nom: g.nom,
-    x: Number(g.x),
-    y: Number(g.y),
-    type,
-    fluxPassager: Number(flux)
-  };
-}
-
-function extraireArrayDepuisTexte(texte, varName) {
-  // 1) export const villes = [ ... ]
-  let re = new RegExp(`export\\s+(?:const|let|var)\\s+${varName}\\s*=\\s*(\\[[\\s\\S]*?\\])`, 'm');
-  let m = re.exec(texte);
-  if (m) { try { return eval(m[1]); } catch(e) {} }
-  // 2) export default [ ... ]
-  re = /export\s+default\s+(\[[\s\S]*?\])/m;
-  m = re.exec(texte);
-  if (m) { try { return eval(m[1]); } catch(e) {} }
-  // 3) premier tableau trouvé
-  m = /\[[\s\S]*\]/m.exec(texte);
-  if (m) { try { return eval(m[0]); } catch(e) {} }
-  return [];
-}
+    /* ================== ETATS ================== */
+    let garesExistantes = [];   // normalisées: {nom,x,y,type,fluxPassager}
+    let lignesExistantes = [];  // tel le fichier
+    let nouvellesGares = [];
+    let nouvellesLignes = [];
+    let indexProchainSegment = null; // index dans nouvellesGares pour proposer A
 
 
-/* ================== CHARGEMENT EXISTANT ================== */
-async function chargerDonnees() {
-  try {
-    // 👉 Chemins désormais fixes et corrects
-    const g = await fetch("./src/gares.js", {cache:"no-store"});
-    const v = await fetch("./src/voies.js", {cache:"no-store"});
+    /* ================== OUTILS ================== */
+    function latLonToXY(lat, lon) {
+      const x = (lon - origine.lon) * echelle;
+      const y = (origine.lat - lat) * echelle;
+      return { x, y };
+    }
 
-    if (!g.ok || !v.ok) throw new Error("Fichiers introuvables");
+    function normaliserGare(g) {
+      // 🪄 Si c’est une gare fantôme, on ne touche à rien
+      if (g.fantome) {
+        return {
+          nom: g.nom,
+          x: Number(g.x),
+          y: Number(g.y),
+          fantome: true
+        };
+      }
 
-    const texteG = await g.text();
-    const texteV = await v.text();
+      // 🚉 Sinon, gare normale : on complète les champs manquants
+      const type = g.type ?? g.taille ?? "petite";
+      const flux =
+        g.fluxPassager != null
+          ? g.fluxPassager
+          : FLUX_PAR_TAILLE[type] ?? FLUX_PAR_TAILLE.petite;
 
-    // Extraction propre des tableaux
-    const villes = extraireArrayDepuisTexte(texteG, "villes");
-    const lignes = extraireArrayDepuisTexte(texteV, "lignes");
+      return {
+        nom: g.nom,
+        x: Number(g.x),
+        y: Number(g.y),
+        type,
+        fluxPassager: Number(flux)
+      };
+    }
 
-    // Normalisation et affichage
-    garesExistantes = villes.map(normaliserGare);
-    console.log("✅ Gares chargées :", garesExistantes);
+    function extraireArrayDepuisTexte(texte, varName) {
+      // 1) export const villes = [ ... ]
+      let re = new RegExp(`export\\s+(?:const|let|var)\\s+${varName}\\s*=\\s*(\\[[\\s\\S]*?\\])`, 'm');
+      let m = re.exec(texte);
+      if (m) { try { return eval(m[1]); } catch (e) { } }
+      // 2) export default [ ... ]
+      re = /export\s+default\s+(\[[\s\S]*?\])/m;
+      m = re.exec(texte);
+      if (m) { try { return eval(m[1]); } catch (e) { } }
+      // 3) premier tableau trouvé
+      m = /\[[\s\S]*\]/m.exec(texte);
+      if (m) { try { return eval(m[0]); } catch (e) { } }
+      return [];
+    }
 
-    lignesExistantes = lignes;
 
-    majListeGares();
-    majListeLignes();
-    majSelectsGares();
-    console.log("✅ Données chargées depuis ./src/");
-  } catch (e) {
-    console.error("⚠️ Impossible de charger les fichiers :", e);
-  }
-}
-chargerDonnees();
+    /* ================== CHARGEMENT EXISTANT ================== */
+    async function chargerDonnees() {
+      try {
+        // 👉 Chemins désormais fixes et corrects
+        const g = await fetch("./src/gares.js", { cache: "no-store" });
+        const v = await fetch("./src/voies.js", { cache: "no-store" });
+
+        if (!g.ok || !v.ok) throw new Error("Fichiers introuvables");
+
+        const texteG = await g.text();
+        const texteV = await v.text();
+
+        // Extraction propre des tableaux
+        const villes = extraireArrayDepuisTexte(texteG, "villes");
+        const lignes = extraireArrayDepuisTexte(texteV, "lignes");
+
+        // Normalisation et affichage
+        garesExistantes = villes.map(normaliserGare);
+        console.log("✅ Gares chargées :", garesExistantes);
+
+        lignesExistantes = lignes;
+
+        majListeGares();
+        majListeLignes();
+        majListesAutocomplete();
+        console.log("✅ Données chargées depuis ./src/");
+      } catch (e) {
+        console.error("⚠️ Impossible de charger les fichiers :", e);
+      }
+    }
+    chargerDonnees();
 
 
-/* ================== GARes ================== */
-function ajouterCarteGare() {
-  const baseFlux = FLUX_PAR_TAILLE.petite;
-  const fluxAleatoire = Math.round(baseFlux * (0.9 + Math.random() * 0.2)); // ±10%
+    /* ================== GARes ================== */
+    function ajouterCarteGare() {
+      const baseFlux = FLUX_PAR_TAILLE.petite;
+      const fluxAleatoire = Math.round(baseFlux * (0.9 + Math.random() * 0.2)); // ±10%
 
-  const container = document.getElementById("garesContainer");
-  const div = document.createElement("div");
-  div.className = "card";
-  div.innerHTML = `
+      const container = document.getElementById("garesContainer");
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
     <label>Lien Google Maps</label>
     <input type="text" placeholder="Coller ici (place, search, ?q=..., etc.)" onblur="extraireDepuisLien(this)">
     <div class="row">
@@ -246,15 +249,15 @@ function ajouterCarteGare() {
       </div>
     </div>
   `;
-  container.appendChild(div);
-}
+      container.appendChild(div);
+    }
 
-function ajouterCarteFantome() {
-  const container = document.getElementById("garesContainer");
-  const div = document.createElement("div");
-  div.className = "card";
+    function ajouterCarteFantome() {
+      const container = document.getElementById("garesContainer");
+      const div = document.createElement("div");
+      div.className = "card";
 
-  div.innerHTML = `
+      div.innerHTML = `
     <label>Lien Google Maps (facultatif)</label>
     <input type="text" placeholder="Coller ici (pour récupérer coordonnées)" onblur="extraireDepuisLien(this)">
     
@@ -282,175 +285,184 @@ function ajouterCarteFantome() {
     </div>
   `;
 
-  container.appendChild(div);
-}
-function validerGareFantome(btn) {
-  const card = btn.closest(".card");
-  const nom = card.querySelector(".nom").value.trim();
-  const lat = parseFloat(card.querySelector(".lat").value);
-  const lon = parseFloat(card.querySelector(".lon").value);
-
-  if (!nom || isNaN(lat) || isNaN(lon)) {
-    alert("⚠️ Remplis au moins le nom, la latitude et la longitude.");
-    return;
-  }
-
-  const { x, y } = latLonToXY(lat, lon);
-  const gare = {
-    nom: nom.startsWith("_") ? nom : "_" + nom,
-    x,
-    y,
-    fantome: true
-  };
-
-  nouvellesGares.push(gare);
-  indexProchainSegment = nouvellesGares.length - 1; // reset le pointeur sur la dernière gare ajoutée
-  majListeGares();
-  majSelectsGares();
-  card.remove();
-}
-
-function majFluxPourCarte(sel) {
-  const card = sel.closest(".card");
-  const taille = sel.value;
-  const fluxInput = card.querySelector(".flux");
-
-  // flux recalculé à ±10 % du flux de base
-  const base = FLUX_PAR_TAILLE[taille];
-  const alea = Math.round(base * (0.9 + Math.random() * 0.2));
-  fluxInput.value = alea;
-}
-
-function setLatLon(card, lat, lon) {
-  if (lat != null) card.querySelector(".lat").value = parseFloat(lat);
-  if (lon != null) card.querySelector(".lon").value = parseFloat(lon);
-}
-function extraireDepuisLien(input) {
-  const s = input.value.trim();
-  const card = input.closest(".card");
-
-  // Nom (plusieurs cas : /place/XXX, /search/XXX, ?q=XXX, etc.)
-  let nom = null, m;
-  m = s.match(/place\/([^/@?]+)/); if (m) nom = m[1];
-  if (!nom) { m = s.match(/maps\/search\/([^/@?]+)/); if (m) nom = m[1]; }
-  if (!nom) { m = s.match(/[?&]q=([^&]+)/); if (m) nom = m[1]; }
-  if (nom) {
-    nom = decodeURIComponent(nom).replace(/\+/g,' ');
-    card.querySelector(".nom").value = nom;
-  }
-
-    // Coordonnées stables : uniquement !3dLAT!4dLON
-  m = s.match(/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/);
-  if (m) {
-    setLatLon(card, m[1], m[2]);
-  } else {
-    alert("⚠️ Impossible de trouver les coordonnées stables (!3d / !4d) dans ce lien.\n\n" +
-          "Vérifie que tu as bien cliqué sur un lieu (et non juste la carte).");
-    card.querySelector(".lat").value = "";
-    card.querySelector(".lon").value = "";
-  }
-
-}
-function calculerXYApercu(btn){
-  const card = btn.closest(".card");
-  const lat = parseFloat(card.querySelector(".lat").value);
-  const lon = parseFloat(card.querySelector(".lon").value);
-  if (isNaN(lat)||isNaN(lon)) { alert("Lat/Lon manquants"); return; }
-  const {x,y} = latLonToXY(lat,lon);
-  alert(`x: ${x.toFixed(1)}  |  y: ${y.toFixed(1)}`);
-}
-function validerGare(btn){
-  const card = btn.closest(".card");
-  const nom = card.querySelector(".nom").value.trim();
-  const lat = parseFloat(card.querySelector(".lat").value);
-  const lon = parseFloat(card.querySelector(".lon").value);
-  const type = card.querySelector(".type").value;
-  const flux = parseInt(card.querySelector(".flux").value, 10);
-
-  if(!nom || isNaN(lat) || isNaN(lon)){ alert("Champs incomplets"); return; }
-  const {x,y} = latLonToXY(lat,lon);
-  nouvellesGares.push({nom, x, y, type, fluxPassager: flux});
-  
-  indexProchainSegment = nouvellesGares.length - 1; // reset le pointeur sur la dernière gare ajoutée
-  majListeGares();
-  majSelectsGares();
-  card.remove();
-}
-
-function validerGareFantome(btn) {
-  const card = btn.closest(".card");
-  const nom = card.querySelector(".nom").value.trim();
-  const lat = parseFloat(card.querySelector(".lat").value);
-  const lon = parseFloat(card.querySelector(".lon").value);
-
-  if (!nom || isNaN(lat) || isNaN(lon)) {
-    alert("⚠️ Remplis au moins le nom, la latitude et la longitude.");
-    return;
-  }
-
-  const { x, y } = latLonToXY(lat, lon);
-  const gare = {
-    nom: nom.startsWith("_") ? nom : "_" + nom,
-    x,
-    y,
-    fantome: true
-  };
-
-  nouvellesGares.push(gare);
-  majListeGares();
-  majSelectsGares();
-  card.remove();
-}
-
-function majListeGares() {
-  const toutes = [...garesExistantes, ...nouvellesGares];
-
-  const out = toutes.map(g => {
-    // 💡 Si c’est une gare fantôme → affichage simplifié
-    if (g.fantome) {
-      return `${g.nom} → x:${g.x.toFixed(1)}, y:${g.y.toFixed(1)}, fantome: true`;
+      container.appendChild(div);
     }
-    // 🚉 Sinon gare normale
-    return `${g.nom} → x:${g.x.toFixed(1)}, y:${g.y.toFixed(1)}, ${g.type}, flux:${g.fluxPassager}`;
-  }).join("\n");
+    function validerGareFantome(btn) {
+      const card = btn.closest(".card");
+      const nom = card.querySelector(".nom").value.trim();
+      const lat = parseFloat(card.querySelector(".lat").value);
+      const lon = parseFloat(card.querySelector(".lon").value);
 
-  document.getElementById("listeGares").innerHTML =
-    (out || "(aucune gare)").replaceAll("\n", "<br>");
-}
+      if (!nom || isNaN(lat) || isNaN(lon)) {
+        alert("⚠️ Remplis au moins le nom, la latitude et la longitude.");
+        return;
+      }
 
-function majSelectsGares() {
-  const noms = [...garesExistantes, ...nouvellesGares]
-    .map(g => g.nom)
-    .sort((a, b) => {
-      const aFantome = a.startsWith("_");
-      const bFantome = b.startsWith("_");
-      if (aFantome && !bFantome) return 1;
-      if (!aFantome && bFantome) return -1;
-      return a.localeCompare(b, 'fr', { sensitivity: 'base' });
-    });
+      const { x, y } = latLonToXY(lat, lon);
+      const gare = {
+        nom: nom.startsWith("_") ? nom : "_" + nom,
+        x,
+        y,
+        fantome: true
+      };
 
-  document.querySelectorAll(".selectGare").forEach(sel => {
-    const current = sel.value;
-    sel.innerHTML = "";
-    noms.forEach(n => {
-      const opt = document.createElement("option");
-      opt.textContent = n;
-      opt.value = n;
-      sel.appendChild(opt);
-    });
-    if (current && noms.includes(current)) sel.value = current;
-  });
-}
+      nouvellesGares.push(gare);
+      indexProchainSegment = nouvellesGares.length - 1; // reset le pointeur sur la dernière gare ajoutée
+      majListeGares();
+      majListesAutocomplete();
+      card.remove();
+    }
+
+    function majFluxPourCarte(sel) {
+      const card = sel.closest(".card");
+      const taille = sel.value;
+      const fluxInput = card.querySelector(".flux");
+
+      // flux recalculé à ±10 % du flux de base
+      const base = FLUX_PAR_TAILLE[taille];
+      const alea = Math.round(base * (0.9 + Math.random() * 0.2));
+      fluxInput.value = alea;
+    }
+
+    function setLatLon(card, lat, lon) {
+      if (lat != null) card.querySelector(".lat").value = parseFloat(lat);
+      if (lon != null) card.querySelector(".lon").value = parseFloat(lon);
+    }
+    function extraireDepuisLien(input) {
+      const s = input.value.trim();
+      const card = input.closest(".card");
+
+      // Nom (plusieurs cas : /place/XXX, /search/XXX, ?q=XXX, etc.)
+      let nom = null, m;
+      m = s.match(/place\/([^/@?]+)/); if (m) nom = m[1];
+      if (!nom) { m = s.match(/maps\/search\/([^/@?]+)/); if (m) nom = m[1]; }
+      if (!nom) { m = s.match(/[?&]q=([^&]+)/); if (m) nom = m[1]; }
+      if (nom) {
+        nom = decodeURIComponent(nom).replace(/\+/g, ' ');
+        card.querySelector(".nom").value = nom;
+      }
+
+      // Coordonnées stables : uniquement !3dLAT!4dLON
+      m = s.match(/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/);
+      if (m) {
+        setLatLon(card, m[1], m[2]);
+      } else {
+        alert("⚠️ Impossible de trouver les coordonnées stables (!3d / !4d) dans ce lien.\n\n" +
+          "Vérifie que tu as bien cliqué sur un lieu (et non juste la carte).");
+        card.querySelector(".lat").value = "";
+        card.querySelector(".lon").value = "";
+      }
+
+    }
+    function calculerXYApercu(btn) {
+      const card = btn.closest(".card");
+      const lat = parseFloat(card.querySelector(".lat").value);
+      const lon = parseFloat(card.querySelector(".lon").value);
+      if (isNaN(lat) || isNaN(lon)) { alert("Lat/Lon manquants"); return; }
+      const { x, y } = latLonToXY(lat, lon);
+      alert(`x: ${x.toFixed(1)}  |  y: ${y.toFixed(1)}`);
+    }
+    function validerGare(btn) {
+      const card = btn.closest(".card");
+      const nom = card.querySelector(".nom").value.trim();
+      const lat = parseFloat(card.querySelector(".lat").value);
+      const lon = parseFloat(card.querySelector(".lon").value);
+      const type = card.querySelector(".type").value;
+      const flux = parseInt(card.querySelector(".flux").value, 10);
+
+      if (!nom || isNaN(lat) || isNaN(lon)) { alert("Champs incomplets"); return; }
+      const { x, y } = latLonToXY(lat, lon);
+      nouvellesGares.push({ nom, x, y, type, fluxPassager: flux });
+
+      indexProchainSegment = nouvellesGares.length - 1; // reset le pointeur sur la dernière gare ajoutée
+      majListeGares();
+      majListesAutocomplete();
+      card.remove();
+    }
+
+    function validerGareFantome(btn) {
+      const card = btn.closest(".card");
+      const nom = card.querySelector(".nom").value.trim();
+      const lat = parseFloat(card.querySelector(".lat").value);
+      const lon = parseFloat(card.querySelector(".lon").value);
+
+      if (!nom || isNaN(lat) || isNaN(lon)) {
+        alert("⚠️ Remplis au moins le nom, la latitude et la longitude.");
+        return;
+      }
+
+      const { x, y } = latLonToXY(lat, lon);
+      const gare = {
+        nom: nom.startsWith("_") ? nom : "_" + nom,
+        x,
+        y,
+        fantome: true
+      };
+
+      nouvellesGares.push(gare);
+      majListeGares();
+      majListesAutocomplete();
+      card.remove();
+    }
+
+    function majListeGares() {
+      const toutes = [...garesExistantes, ...nouvellesGares];
+
+      const out = toutes.map(g => {
+        // 💡 Si c’est une gare fantôme → affichage simplifié
+        if (g.fantome) {
+          return `${g.nom} → x:${g.x.toFixed(1)}, y:${g.y.toFixed(1)}, fantome: true`;
+        }
+        // 🚉 Sinon gare normale
+        return `${g.nom} → x:${g.x.toFixed(1)}, y:${g.y.toFixed(1)}, ${g.type}, flux:${g.fluxPassager}`;
+      }).join("\n");
+
+      document.getElementById("listeGares").innerHTML =
+        (out || "(aucune gare)").replaceAll("\n", "<br>");
+    }
+
+    function majListesAutocomplete() {
+      const listA = document.getElementById("listeGaresA");
+      const listB = document.getElementById("listeGaresB");
+      if (!listA || !listB) return; 
+
+      const noms = [...garesExistantes, ...nouvellesGares]
+        .filter(g => !g.fantome)
+        .map(g => g.nom)
+        .sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
+
+      listA.innerHTML = "";
+      listB.innerHTML = "";
+
+      noms.forEach(n => {
+        const optA = document.createElement("option");
+        optA.value = n;
+        listA.appendChild(optA);
+
+        const optB = document.createElement("option");
+        optB.value = n;
+        listB.appendChild(optB);
+      });
+    }
 
 
-/* ================== LIGNES ================== */
-function ajouterCarteLigne() {
-  const container = document.getElementById("lignesContainer");
-  const div = document.createElement("div");
-  div.className = "card";
-  div.innerHTML = `
-    <label>Gare A</label><select class="selectGare gareA"></select>
-    <label>Gare B</label><select class="selectGare gareB"></select>
+
+
+    /* ================== LIGNES ================== */
+    function ajouterCarteLigne() {
+      const container = document.getElementById("lignesContainer");
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+
+    <label>Gare A</label>
+    <input type="text" class="gareA" list="listeGaresA" placeholder="Rechercher une gare...">
+    <datalist id="listeGaresA"></datalist>
+
+    <label>Gare B</label>
+    <input type="text" class="gareB" list="listeGaresB" placeholder="Rechercher une gare...">
+    <datalist id="listeGaresB"></datalist>
+
     <div class="row">
       <div>
         <label>Longueur (km)</label>
@@ -484,185 +496,182 @@ function ajouterCarteLigne() {
     </select>
     <button onclick="validerLigne(this)">✅ Ajouter</button>
   `;
-  container.appendChild(div);
-  majSelectsGares();
+      container.appendChild(div);
+      majListesAutocomplete();
 
-  const selectA = div.querySelector(".gareA");
-  const selectB = div.querySelector(".gareB");
+      const selectA = div.querySelector(".gareA");
+      const selectB = div.querySelector(".gareB");
 
-  // --- Pré-remplissage intelligent basé UNIQUEMENT sur l'ordre d'ajout des nouvelles gares ---
-  if (nouvellesGares.length >= 1) {
-    // Initialise/recale le pointeur si besoin
-    if (indexProchainSegment == null || indexProchainSegment >= nouvellesGares.length) {
-      indexProchainSegment = nouvellesGares.length - 1;
+      // --- Pré-remplissage intelligent basé UNIQUEMENT sur l'ordre d'ajout des nouvelles gares ---
+      if (nouvellesGares.length >= 1) {
+        // Initialise/recale le pointeur si besoin
+        if (indexProchainSegment == null || indexProchainSegment >= nouvellesGares.length) {
+          indexProchainSegment = nouvellesGares.length - 1;
+        }
+        const idxA = indexProchainSegment;
+        const idxB = indexProchainSegment - 1;
+
+        selectA.value = nouvellesGares[idxA].nom;
+        if (idxB >= 0) {
+          selectB.value = nouvellesGares[idxB].nom;
+        } else {
+          selectB.value = ""; // pas de B proposé si A est la première du lot
+        }
+      } else {
+        // Fallback (aucune nouvelle gare) : garder le dernier contexte si dispo
+        if (dernierContexteLigne.gareB) selectA.value = dernierContexteLigne.gareB;
+      }
+
+      // Récupération des autres paramètres depuis le dernier contexte
+      div.querySelector(".type").value = dernierContexteLigne.type;
+      div.querySelector(".vitesse").value = dernierContexteLigne.vitesse;
+      div.querySelector(".elec").value = dernierContexteLigne.elec;
+      div.querySelector(".sign").value = dernierContexteLigne.sign;
+
+      // Calcul auto immédiat de la distance après le pré-remplissage
+      calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"));
+
+      // --- Quand A change, B = la gare juste AVANT A dans l'ordre d'ajout des nouvelles gares ---
+      selectA.addEventListener("change", () => {
+        const idx = nouvellesGares.findIndex(g => g.nom === selectA.value);
+        if (idx > 0) {
+          selectB.value = nouvellesGares[idx - 1].nom;
+        } else {
+          // si A est la première du lot (ou pas trouvée), on efface B
+          selectB.value = "";
+        }
+        calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"));
+      });
+
+      // Recalcul auto si B change manuellement
+      selectB.addEventListener("change", () => {
+        calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"));
+      });
     }
-    const idxA = indexProchainSegment;
-    const idxB = indexProchainSegment - 1;
 
-    selectA.value = nouvellesGares[idxA].nom;
-    if (idxB >= 0) {
-      selectB.value = nouvellesGares[idxB].nom;
-    } else {
-      selectB.value = ""; // pas de B proposé si A est la première du lot
+
+
+    function getXYByName(nom) {
+      const g = [...garesExistantes, ...nouvellesGares].find(x => x.nom === nom);
+      return g ? { x: g.x, y: g.y } : null;
     }
-  } else {
-    // Fallback (aucune nouvelle gare) : garder le dernier contexte si dispo
-    if (dernierContexteLigne.gareB) selectA.value = dernierContexteLigne.gareB;
-  }
-
-  // Récupération des autres paramètres depuis le dernier contexte
-  div.querySelector(".type").value = dernierContexteLigne.type;
-  div.querySelector(".vitesse").value = dernierContexteLigne.vitesse;
-  div.querySelector(".elec").value = dernierContexteLigne.elec;
-  div.querySelector(".sign").value = dernierContexteLigne.sign;
-
-  // Calcul auto immédiat de la distance après le pré-remplissage
-  calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"));
-
-  // --- Quand A change, B = la gare juste AVANT A dans l'ordre d'ajout des nouvelles gares ---
-  selectA.addEventListener("change", () => {
-    const idx = nouvellesGares.findIndex(g => g.nom === selectA.value);
-    if (idx > 0) {
-      selectB.value = nouvellesGares[idx - 1].nom;
-    } else {
-      // si A est la première du lot (ou pas trouvée), on efface B
-      selectB.value = "";
+    function calculerDistanceLigne(triggerBtn) {
+      const card = triggerBtn.closest(".card");
+      const gareA = card.querySelector(".gareA").value;
+      const gareB = card.querySelector(".gareB").value;
+      const a = getXYByName(gareA);
+      const b = getXYByName(gareB);
+      if (!a || !b) { console.warn("Coordonnées manquantes"); return; }
+      // distance approximative à partir des x/y (1° ≈ 111 km)
+      const dx = a.x - b.x, dy = a.y - b.y;
+      const distKm = Math.sqrt(dx * dx + dy * dy) / echelle * 111;
+      card.querySelector(".longueur").value = distKm.toFixed(1);
     }
-    calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"));
-  });
+    function validerLigne(btn) {
+      const card = btn.closest(".card");
+      const gareA = card.querySelector(".gareA").value;
+      const gareB = card.querySelector(".gareB").value;
+      const longueur = parseFloat(card.querySelector(".longueur").value) || 0;
+      const type = card.querySelector(".type").value;
+      const vitesse = parseInt(card.querySelector(".vitesse").value) || 140;
+      const elec = card.querySelector(".elec").value;
+      const sign = card.querySelector(".sign").value;
 
-  // Recalcul auto si B change manuellement
-  selectB.addEventListener("change", () => {
-    calculerDistanceLigne(div.querySelector("button[onclick^='calculerDistanceLigne']"));
-  });
-}
+      nouvellesLignes.push({ gareA, gareB, longueur, type, vitesse_max: vitesse, electrification: elec, signalisation: sign });
 
+      dernierContexteLigne = { gareA, gareB, type, vitesse, elec, sign };   // 🔁 Sauvegarde du dernier contexte
 
-  
-function getXYByName(nom){
-  const g = [...garesExistantes, ...nouvellesGares].find(x=>x.nom===nom);
-  return g ? {x:g.x, y:g.y} : null;
-}
-function calculerDistanceLigne(triggerBtn){
-  const card = triggerBtn.closest(".card");
-  const gareA = card.querySelector(".gareA").value;
-  const gareB = card.querySelector(".gareB").value;
-  const a = getXYByName(gareA);
-  const b = getXYByName(gareB);
-  if(!a||!b){ alert("Coordonnées manquantes"); return; }
-  // distance approximative à partir des x/y (1° ≈ 111 km)
-  const dx = a.x - b.x, dy = a.y - b.y;
-  const distKm = Math.sqrt(dx*dx + dy*dy) / echelle * 111;
-  card.querySelector(".longueur").value = distKm.toFixed(1);
-}
-function validerLigne(btn){
-  const card = btn.closest(".card");
-  const gareA = card.querySelector(".gareA").value;
-  const gareB = card.querySelector(".gareB").value;
-  const longueur = parseFloat(card.querySelector(".longueur").value)||0;
-  const type = card.querySelector(".type").value;
-  const vitesse = parseInt(card.querySelector(".vitesse").value)||140;
-  const elec = card.querySelector(".elec").value;
-  const sign = card.querySelector(".sign").value;
-  
-  nouvellesLignes.push({gareA,gareB,longueur,type,vitesse_max:vitesse,electrification:elec,signalisation:sign});
-  
-  dernierContexteLigne = { gareA, gareB, type, vitesse, elec, sign };   // 🔁 Sauvegarde du dernier contexte
+      // 🔁 Avance le pointeur pour le prochain segment (on remonte la chaîne)
+      if (indexProchainSegment != null) {
+        indexProchainSegment = Math.max(0, indexProchainSegment - 1);
+      }
 
-   // 🔁 Avance le pointeur pour le prochain segment (on remonte la chaîne)
-  if (indexProchainSegment != null) {
-    indexProchainSegment = Math.max(0, indexProchainSegment - 1);
-  }
-  
-  majListeLignes();
-  card.remove();
-}
-function majListeLignes(){
-  const toutes = [...lignesExistantes, ...nouvellesLignes];
-  const out = toutes.map(l => `${l.gareA} ↔ ${l.gareB} (${l.longueur} km) [${l.type}, ${l.vitesse_max} km/h, ${l.electrification}, ${l.signalisation}]`).join("\n");
-  document.getElementById("listeLignes").innerHTML =
-  (out || "(aucune ligne)").replaceAll("\n", "<br>");
-}
-
-/* ================== EXPORT ================== */
-function telechargerGares() {
-  const toutes = [...garesExistantes, ...nouvellesGares];
-
-  const lignes = toutes.map(g => {
-    if (g.fantome) {
-      return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, fantome: true }`;
-    } else {
-      return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", fluxPassager: ${g.fluxPassager} }`;
+      majListeLignes();
+      card.remove();
     }
-  }).join(",\n");
+    function majListeLignes() {
+      const toutes = [...lignesExistantes, ...nouvellesLignes];
+      const out = toutes.map(l => `${l.gareA} ↔ ${l.gareB} (${l.longueur} km) [${l.type}, ${l.vitesse_max} km/h, ${l.electrification}, ${l.signalisation}]`).join("\n");
+      document.getElementById("listeLignes").innerHTML =
+        (out || "(aucune ligne)").replaceAll("\n", "<br>");
+    }
 
-  const contenu = `export const villes = [\n${lignes}\n];`;
-  telechargerFichier("gares.js", contenu);
-}
+    /* ================== EXPORT ================== */
+    function telechargerGares() {
+      const toutes = [...garesExistantes, ...nouvellesGares];
+
+      const lignes = toutes.map(g => {
+        if (g.fantome) {
+          return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, fantome: true }`;
+        } else {
+          return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", fluxPassager: ${g.fluxPassager} }`;
+        }
+      }).join(",\n");
+
+      const contenu = `export const villes = [\n${lignes}\n];`;
+      telechargerFichier("gares.js", contenu);
+    }
 
 
-function telechargerLignes(){
-  const toutes = [...lignesExistantes, ...nouvellesLignes];
-  const contenu =
-`export const lignes = [
-${toutes.map(l=>`  { gareA: "${l.gareA}", gareB: "${l.gareB}", longueur: ${l.longueur}, type: "${l.type}", vitesse_max: ${l.vitesse_max}, electrification: "${l.electrification}", signalisation: "${l.signalisation}" }`).join(",\n")}
+    function telechargerLignes() {
+      const toutes = [...lignesExistantes, ...nouvellesLignes];
+      const contenu =
+        `export const lignes = [
+${toutes.map(l => `  { gareA: "${l.gareA}", gareB: "${l.gareB}", longueur: ${l.longueur}, type: "${l.type}", vitesse_max: ${l.vitesse_max}, electrification: "${l.electrification}", signalisation: "${l.signalisation}" }`).join(",\n")}
 ];`;
-  telechargerFichier("voies.js", contenu);
-}
-
-function telechargerFichier(nom, contenu){
-  const blob = new Blob([contenu], {type:"text/javascript"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = nom;
-  a.click();
-}
-
-/* ================== COPIE ================== */
-async function copierGares() {
-  const toutes = [...garesExistantes, ...nouvellesGares];
-
-  const lignes = toutes.map(g => {
-    if (g.fantome) {
-      return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, fantome: true }`;
-    } else {
-      return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", fluxPassager: ${g.fluxPassager} }`;
+      telechargerFichier("voies.js", contenu);
     }
-  }).join(",\n");
 
-  const contenu = `export const villes = [\n${lignes}\n];`;
-  await navigator.clipboard.writeText(contenu);
-  alert("📋 Contenu de gares.js copié dans le presse-papier !");
-}
+    function telechargerFichier(nom, contenu) {
+      const blob = new Blob([contenu], { type: "text/javascript" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = nom;
+      a.click();
+    }
+
+    /* ================== COPIE ================== */
+    async function copierGares() {
+      const toutes = [...garesExistantes, ...nouvellesGares];
+
+      const lignes = toutes.map(g => {
+        if (g.fantome) {
+          return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, fantome: true }`;
+        } else {
+          return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", fluxPassager: ${g.fluxPassager} }`;
+        }
+      }).join(",\n");
+
+      const contenu = `export const villes = [\n${lignes}\n];`;
+      await navigator.clipboard.writeText(contenu);
+      alert("📋 Contenu de gares.js copié dans le presse-papier !");
+    }
 
 
-async function copierLignes() {
-  const toutes = [...lignesExistantes, ...nouvellesLignes];
-  const contenu =
-`export const lignes = [
-${toutes.map(l=>`  { gareA: "${l.gareA}", gareB: "${l.gareB}", longueur: ${l.longueur}, type: "${l.type}", vitesse_max: ${l.vitesse_max}, electrification: "${l.electrification}", signalisation: "${l.signalisation}" }`).join(",\n")}
+    async function copierLignes() {
+      const toutes = [...lignesExistantes, ...nouvellesLignes];
+      const contenu =
+        `export const lignes = [
+${toutes.map(l => `  { gareA: "${l.gareA}", gareB: "${l.gareB}", longueur: ${l.longueur}, type: "${l.type}", vitesse_max: ${l.vitesse_max}, electrification: "${l.electrification}", signalisation: "${l.signalisation}" }`).join(",\n")}
 ];`;
-  await navigator.clipboard.writeText(contenu);
-  alert("📋 Contenu de voies.js copié dans le presse-papier !");
-}
+      await navigator.clipboard.writeText(contenu);
+      alert("📋 Contenu de voies.js copié dans le presse-papier !");
+    }
 
-/* ================== CONFIRMATION FERMETURE ================== */
-window.addEventListener("beforeunload", function (e) {
-  // Si tu veux désactiver la confirmation, mets ce flag à false
-  const protectionActive = true;
+    /* ================== CONFIRMATION FERMETURE ================== */
+    window.addEventListener("beforeunload", function (e) {
+      // Si tu veux désactiver la confirmation, mets ce flag à false
+      const protectionActive = true;
 
-  if (protectionActive && (nouvellesGares.length > 0 || nouvellesLignes.length > 0)) {
-    e.preventDefault();
-    // Message non modifiable sur Chrome/Edge, mais requis pour déclencher la popup
-    e.returnValue = "Des données non enregistrées seront perdues si vous quittez ou rafraîchissez la page.";
-  }
-});
+      if (protectionActive && (nouvellesGares.length > 0 || nouvellesLignes.length > 0)) {
+        e.preventDefault();
+        // Message non modifiable sur Chrome/Edge, mais requis pour déclencher la popup
+        e.returnValue = "Des données non enregistrées seront perdues si vous quittez ou rafraîchissez la page.";
+      }
+    });
 
 
-</script>
+  </script>
 </body>
+
 </html>
-
-
-
-
