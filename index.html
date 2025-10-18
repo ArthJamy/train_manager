@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Simulateur ferroviaire</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-mobile.css">
     <link rel="stylesheet" href="popup.css">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
@@ -43,10 +45,21 @@
                 </div>
             </div>
         </div>
+
+        <!-- 🔽 Menu mobile -->
+        <button id="menu-toggle">☰</button>
+        <div id="menu-mobile">
+            <button id="btn-flotte-mobile">🚄 Flotte</button>
+            <button id="btn-stats-mobile">📊 Statistiques réseau</button>
+            <button id="btn-save-map-mobile">📷 Enregistrer la carte</button>
+        </div>
+
+
     </header>
 
     <div id="app">
         <div id="info-panel">
+            <button id="close-info-mobile">✕</button>
             <h2>Informations</h2>
             <div id="info-content">Cliquez sur un train ou une gare</div>
         </div>
@@ -80,6 +93,152 @@
             const lien = `catalogueEngins.html?train=${urlNom}`;
             window.open(lien, "_blank");
         }
+    </script>
+
+    <script>
+        //Mode téléphone - Utiliser touchend et click pour une meilleure compatibilité
+        const menuToggle = document.getElementById("menu-toggle");
+        const menuMobile = document.getElementById("menu-mobile");
+        const infoPanel = document.getElementById("info-panel");
+        const closeInfoBtn = document.getElementById("close-info-mobile");
+
+        // Toggle menu avec support tactile
+        function toggleMenu(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const isOpen = menuMobile.classList.contains("open");
+
+            if (isOpen) {
+                menuMobile.classList.remove("open");
+                document.body.classList.remove("menu-open");
+            } else {
+                menuMobile.classList.add("open");
+                document.body.classList.add("menu-open");
+            }
+        }
+
+        menuToggle.addEventListener("touchend", toggleMenu);
+        menuToggle.addEventListener("click", toggleMenu);
+
+        document.addEventListener("touchend", (e) => {
+            if (window.innerWidth > 800) return;
+
+            const contextMenu = document.getElementById("context-menu");
+            if (contextMenu && contextMenu.contains(e.target)) return;
+
+            // Fermer le menu mobile sinon
+            if (!menuMobile.contains(e.target) && e.target !== menuToggle) {
+                menuMobile.classList.remove("open");
+                document.body.classList.remove("menu-open");
+            }
+
+            // Fermer panneau infos
+            if (document.body.classList.contains("info-open") && !infoPanel.contains(e.target)) {
+                infoPanel.classList.remove("open");
+                document.body.classList.remove("info-open");
+            }
+        });
+
+
+        document.addEventListener("click", (e) => {
+            if (window.innerWidth > 800) return;
+
+            if (!menuMobile.contains(e.target) && e.target !== menuToggle) {
+                menuMobile.classList.remove("open");
+                document.body.classList.remove("menu-open");
+            }
+
+            if (document.body.classList.contains("info-open") &&
+                !infoPanel.contains(e.target)) {
+                infoPanel.classList.remove("open");
+                document.body.classList.remove("info-open");
+            }
+        });
+
+        // Empêcher la propagation des touches dans le menu
+        menuMobile.addEventListener("touchend", (e) => {
+            e.stopPropagation();
+        });
+
+        menuMobile.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+
+        infoPanel.addEventListener("touchend", (e) => {
+            e.stopPropagation();
+        });
+
+        infoPanel.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+
+        // Bouton fermeture panneau info mobile
+        function closeInfo(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            infoPanel.classList.remove("open");
+            document.body.classList.remove("info-open");
+        }
+
+        closeInfoBtn.addEventListener("touchend", closeInfo);
+        closeInfoBtn.addEventListener("click", closeInfo);
+
+        // Dupliquer les actions de base
+        document.getElementById("btn-flotte-mobile").addEventListener("click", () => {
+            menuMobile.classList.remove("open");
+            document.body.classList.remove("menu-open");
+            document.getElementById("btn-flotte").click();
+        });
+
+        // Copier les actions des boutons PC
+        document.getElementById("btn-stats-mobile").addEventListener("click", () => {
+            document.getElementById("btn-stats").click();
+        });
+
+        document.getElementById("btn-save-map-mobile").addEventListener("click", () => {
+            document.getElementById("btn-save-map").click();
+        });
+        // === Boutons tactiles du menu mobile ===
+        // Bouton flotte mobile
+        function openFlotteMobile(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById("btn-flotte").click();
+            menuMobile.classList.remove("open");
+            document.body.classList.remove("menu-open");
+        }
+        document.getElementById("btn-flotte-mobile").addEventListener("click", openFlotteMobile);
+        document.getElementById("btn-flotte-mobile").addEventListener("touchend", openFlotteMobile);
+
+
+        // Liens outils
+        ["btn-stats-mobile", "btn-save-map-mobile"].forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.addEventListener("click", () => document.getElementById(id.replace("-mobile", "")).click());
+            el.addEventListener("touchend", () => document.getElementById(id.replace("-mobile", "")).click());
+        });
+
+        // === Boutons mobiles ===
+        // Flotte mobile
+        document.getElementById("btn-flotte-mobile").addEventListener("click", () => {
+            document.getElementById("btn-flotte").click();
+            menuMobile.classList.remove("open");
+            document.body.classList.remove("menu-open");
+        });
+
+        // Statistiques réseau
+        document.getElementById("btn-stats-mobile").addEventListener("click", () => {
+            document.getElementById("btn-stats").click();
+            menuMobile.classList.remove("open");
+            document.body.classList.remove("menu-open");
+        });
+        // Sauvegarde carte
+        document.getElementById("btn-save-map-mobile").addEventListener("click", () => {
+            document.getElementById("btn-save-map").click();
+            menuMobile.classList.remove("open");
+            document.body.classList.remove("menu-open");
+        });
     </script>
 </body>
 

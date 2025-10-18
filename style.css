@@ -128,10 +128,16 @@ input[type="time"] {
   text-align: left;
   padding: 4px 8px;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 #context-menu button:hover {
   background: #e0e7ff;
+}
+
+#context-menu button:active {
+  background: #c7d2fe;
 }
 
 #context-menu button.train-option {
@@ -616,5 +622,3 @@ input[type="time"] {
   outline: none;
   border-color: #1e3a8a;
 }
-
-
