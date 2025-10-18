@@ -2,7 +2,6 @@ import { trainsFR } from './trains/trainsFR.js';
 import { trainsDE } from './trains/trainsDE.js';
 import { trainsCH } from './trains/trainsCH.js';
 export const trains = [...trainsFR, ...trainsDE, ...trainsCH];
-import { activerCompatibilitePopup } from "./main.js";
 
 /** Crée et affiche une fenêtre popup principale */
 function ouvrirPopup(titre, contenuHTML) {
@@ -19,8 +18,6 @@ function ouvrirPopup(titre, contenuHTML) {
 
   overlay.appendChild(popup);
   document.body.appendChild(overlay);
-  activerCompatibilitePopup(overlay);
-
 
   overlay.querySelector(".popup-close").addEventListener("click", () => overlay.remove());
   overlay.addEventListener("click", (e) => {
@@ -245,12 +242,11 @@ export function afficherCarteFlotte() {
         <option value="pays">Pays</option>
         <option value="vitesse">Vitesse max</option>
       </select>
-      <button id="apply-tri" class="btn-popup mobile-only">Appliquer</button>
+
     </div>
 
     <div id="flotte-grid" class="flotte-grid"></div>
   `;
-
 
   ouvrirPopup("🚆 Flotte complète", contenu);
 
@@ -268,31 +264,6 @@ export function afficherCarteFlotte() {
     const sorted = await sortFlotte(data, selTri.value);
     renderGrid(sorted, grid);
   });
-
-
-  // -- Mobile: éviter qu'un touch ferme/empêche l'ouverture du sélecteur
-  selTri.addEventListener("touchstart", (e) => e.stopPropagation(), { passive: true });
-  selTri.addEventListener("touchend", (e) => e.stopPropagation());
-
-  // -- Desktop: tri immédiat avec 'change'
-  selTri.addEventListener("change", async () => {
-    const sorted = await sortFlotte(data, selTri.value);
-    renderGrid(sorted, grid);
-  });
-
-  // -- Mobile: bouton "Appliquer" (si besoin)
-  const btnApply = document.getElementById("apply-tri");
-  if (btnApply) {
-    const apply = async (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const sorted = await sortFlotte(data, selTri.value);
-      renderGrid(sorted, grid);
-    };
-    btnApply.addEventListener("click", apply);
-    btnApply.addEventListener("touchend", apply);
-  }
-
 
 }
 

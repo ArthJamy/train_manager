@@ -559,9 +559,3 @@
   gap: 0.25rem;
 
 }
-
-.popup-window button {
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-  touch-action: manipulation;
-}

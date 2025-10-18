@@ -914,12 +914,6 @@ new p5((p) => {
     const div = document.getElementById("info-content");
     if (!div) return;
     div.innerHTML = `<div>Cliquez sur un train ou une gare</div>`;
-
-    // Fermer le panneau sur mobile
-    if (window.innerWidth <= 800) {
-      document.getElementById("info-panel").classList.remove("open");
-      document.body.classList.remove("info-open");
-    }
   }
 
   function rafraichirSelection() {
@@ -935,11 +929,6 @@ new p5((p) => {
   function afficherInfosTrain(train) {
     const div = document.getElementById("info-content");
     if (!div) return;
-    // Ouvrir le panneau sur mobile
-    if (window.innerWidth <= 800) {
-      document.getElementById("info-panel").classList.add("open");
-      document.body.classList.add("info-open");
-    }
 
     const heureCourante = document.getElementById("heure").value;
     const etat = getEtatTrain(train, heureCourante);
@@ -1128,11 +1117,6 @@ new p5((p) => {
   function afficherHorairesGare(nomGare) {
     const div = document.getElementById("info-content");
     if (!div) return;
-    // Ouvrir le panneau sur mobile
-    if (window.innerWidth <= 800) {
-      document.getElementById("info-panel").classList.add("open");
-      document.body.classList.add("info-open");
-    }
 
     const departs = [];
     const arrivees = [];
@@ -1328,11 +1312,6 @@ new p5((p) => {
   function afficherLegendeAffichage() {
     const div = document.getElementById("info-content");
     if (!div) return;
-    // Ouvrir le panneau sur mobile
-    if (window.innerWidth <= 800) {
-      document.getElementById("info-panel").classList.add("open");
-      document.body.classList.add("info-open");
-    }
 
     let html = `<h3>Légende – ${selectAffichage.options[selectAffichage.selectedIndex].text}</h3>`;
 
@@ -1567,21 +1546,13 @@ new p5((p) => {
     if (gareCliquee) {
       const btn = document.createElement("button");
       btn.textContent = `🅶 Gare : ${gareCliquee.nom}`;
-
-      // Ajouter les gestionnaires tactiles ET souris
-      const handleGareClick = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+      btn.onclick = () => {
         elementSelectionne = { type: "gare", data: gareCliquee.nom };
         afficherHorairesGare(gareCliquee.nom);
         cacherMenu();
       };
-
-      btn.addEventListener("click", handleGareClick);
-      btn.addEventListener("touchend", handleGareClick);
       menu.appendChild(btn);
     }
-
     nearbyTrains.forEach(train => {
       const btn = document.createElement("button");
       btn.classList.add("train-option");
@@ -1592,21 +1563,13 @@ new p5((p) => {
       <span class="train-dot" style="background:${color};"></span>
       🚆 <b>${train.id}</b> (${train.nom})
     `;
-
-      // Ajouter les gestionnaires tactiles ET souris
-      const handleTrainClick = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+      btn.onclick = () => {
         elementSelectionne = { type: "train", data: train };
         afficherInfosTrain(train);
         cacherMenu();
       };
-
-      btn.addEventListener("click", handleTrainClick);
-      btn.addEventListener("touchend", handleTrainClick);
       menu.appendChild(btn);
     });
-
     const screenX = canvasRect.left + p.mouseX;
     const screenY = canvasRect.top + p.mouseY;
     menu.style.left = `${screenX + 8}px`;
@@ -1614,107 +1577,8 @@ new p5((p) => {
     menu.style.display = "block";
   }
 
-
-
-  // === Support tactile (mobile/tablette) ===
-  let startX, startY, startDist, startZoom = 1;
-  let touchStartTime = 0;
-  let hasMoved = false;
-
-  p.touchStarted = function () {
-    touchStartTime = Date.now();
-    hasMoved = false;
-
-    if (p.touches.length === 1) {
-      startX = p.touches[0].x - offsetX;
-      startY = p.touches[0].y - offsetY;
-    } else if (p.touches.length === 2) {
-      // début du pinch
-      const dx = p.touches[0].x - p.touches[1].x;
-      const dy = p.touches[0].y - p.touches[1].y;
-      startDist = Math.sqrt(dx * dx + dy * dy);
-      startZoom = zoom;
-    }
-    return false;
-  };
-
-  p.touchMoved = function () {
-    hasMoved = true;
-
-    if (p.touches.length === 1) {
-      // déplacement à 1 doigt
-      offsetX = p.touches[0].x - startX;
-      offsetY = p.touches[0].y - startY;
-      fondDoitEtreRedessine = true;
-    } else if (p.touches.length === 2) {
-      // zoom à 2 doigts
-      const dx = p.touches[0].x - p.touches[1].x;
-      const dy = p.touches[0].y - p.touches[1].y;
-      const newDist = Math.sqrt(dx * dx + dy * dy);
-      zoom = p.constrain(startZoom * (newDist / startDist), 0.5, 3);
-      fondDoitEtreRedessine = true;
-    }
-    return false; // empêche le scroll de la page
-  };
-
-  p.touchEnded = function () {
-    // Si le toucher était court et sans mouvement, c'est un tap
-    const touchDuration = Date.now() - touchStartTime;
-
-    if (!hasMoved && touchDuration < 300 && p.touches.length === 0) {
-      // Simuler un clic
-      const fakeEvent = {
-        button: 0,
-        clientX: p.mouseX + p.canvas.getBoundingClientRect().left,
-        clientY: p.mouseY + p.canvas.getBoundingClientRect().top,
-        target: p.canvas
-      };
-      handleClick(fakeEvent);
-    }
-
-    if (p.touches.length < 2) startDist = null;
-    return false;
-  };
-
 });
 
-/**
- * Rend un popup interactif sur mobile et PC :
- * - ferme sur ✖
- * - empêche les fermetures accidentelles par touchend global
- * - active les boutons internes
- */
-export function activerCompatibilitePopup(overlay) {
-  const popupWin = overlay.querySelector(".popup-window");
-  const btnClose = overlay.querySelector(".popup-close");
-
-  function closePopup(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    overlay.remove();
-  }
-
-  // ✅ Bouton fermeture
-  if (btnClose) {
-    btnClose.addEventListener("click", closePopup);
-    btnClose.addEventListener("touchend", closePopup);
-  }
-
-  // ✅ Empêche propagation sur la fenêtre
-  if (popupWin) {
-    popupWin.addEventListener("touchend", (e) => e.stopPropagation());
-    popupWin.addEventListener("click", (e) => e.stopPropagation());
-  }
-
-  // ✅ Support tactile global pour tous les boutons du popup
-  overlay.querySelectorAll("button").forEach((b) => {
-    b.addEventListener("touchend", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      b.click(); // simule le clic
-    });
-  });
-}
 
 
 document.getElementById("heure").addEventListener("change", () => {

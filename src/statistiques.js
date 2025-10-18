@@ -7,7 +7,6 @@ import { villes } from './gares.js';
 
 export const trains = [...trainsFR, ...trainsDE, ...trainsCH];
 
-import { activerCompatibilitePopup } from "./main.js";
 
 export function afficherStatsReseau() {
   const snapshot = window.__trainRuntime.getSnapshot();
@@ -139,9 +138,6 @@ export function afficherStatsReseau() {
       ${html}
     </div>
   `;
-
-
-
   document.body.appendChild(overlay);
-  activerCompatibilitePopup(overlay);
+  overlay.querySelector(".popup-close").addEventListener("click", () => overlay.remove());
 }
