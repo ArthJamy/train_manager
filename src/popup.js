@@ -233,20 +233,25 @@ export function afficherFicheHoraire(gareNom) {
 // ===================== Flotte : popup carte + liste triable par état ===================
 export function afficherCarteFlotte() {
   const contenu = `
-    <div class="flotte-toolbar">
-      <label for="tri-flotte">Trier par :</label>
-      <select id="tri-flotte">
-        <option value="etat">État du train</option>
-        <option value="id">ID</option>
-        <option value="nom">Nom</option>
-        <option value="pays">Pays</option>
-        <option value="vitesse">Vitesse max</option>
-      </select>
+    <div class="flotte-toolbar" style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <label for="tri-flotte">Trier par :</label>
+        <select id="tri-flotte">
+          <option value="etat">État du train</option>
+          <option value="id">ID</option>
+          <option value="nom">Nom</option>
+          <option value="pays">Pays</option>
+          <option value="vitesse">Vitesse</option>
+        </select>
+      </div>
 
+      <input type="text" id="recherche-flotte" placeholder="Rechercher un train..." 
+            style="padding:4px 8px; font-size:0.9em; border-radius:4px; border:1px solid #aaa; width:160px;">
     </div>
 
     <div id="flotte-grid" class="flotte-grid"></div>
   `;
+
 
   ouvrirPopup("🚆 Flotte complète", contenu);
 
@@ -263,6 +268,27 @@ export function afficherCarteFlotte() {
   selTri.addEventListener("change", async () => {
     const sorted = await sortFlotte(data, selTri.value);
     renderGrid(sorted, grid);
+  });
+
+  
+  // Gérer la  barre de recherche
+  const inputSearch = document.getElementById("recherche-flotte");
+  // Tri par défaut
+  sortFlotte(data, "etat").then(sorted => renderGrid(sorted, grid));
+  // Quand on change le tri
+  selTri.addEventListener("change", async () => {
+    const sorted = await sortFlotte(data, selTri.value);
+    renderGrid(sorted, grid);
+  });
+  // Quand on tape dans la barre de recherche
+  inputSearch.addEventListener("input", async () => {
+    const term = inputSearch.value.toLowerCase().trim();
+    const sorted = await sortFlotte(data, selTri.value);
+    const filtered = sorted.filter(t =>
+      t.id.toLowerCase().includes(term) ||
+      (t.nom || "").toLowerCase().includes(term)
+    );
+    renderGrid(filtered, grid);
   });
 
 }
@@ -353,8 +379,6 @@ async function sortFlotte(arr, mode) {
       return (x.nom || "").localeCompare(y.nom || "");
     });
   }
-
-
   return a;
 }
 

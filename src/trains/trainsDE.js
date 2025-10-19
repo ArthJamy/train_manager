@@ -39,19 +39,19 @@ export const trainsDE = [
       {
         nom: "Mulhouse → Muellheim",
         dessertes: [
-          { gare: "Mulhouse", heure: "08:30", arret: 4 ,jours: ["MA", "VE"]},
-          { gare: "Bantzenheim", heure: "08:45", arret: 1 ,jours: ["MA", "VE"]},
-          { gare: "Neuenburg (Baden)", heure: "08:55", arret: 1 ,jours: ["MA", "VE"]},
-          { gare: "Muellheim", heure: "09:02", arret: 0 ,jours: ["MA", "VE"]}
+          { gare: "Mulhouse", heure: "08:30", arret: 4 ,jours: ["LU", "VE"]},
+          { gare: "Bantzenheim", heure: "08:45", arret: 1 ,jours: ["LU", "VE"]},
+          { gare: "Neuenburg (Baden)", heure: "08:55", arret: 1 ,jours: ["LU", "VE"]},
+          { gare: "Muellheim", heure: "09:02", arret: 0 ,jours: ["LU", "VE"]}
         ]
       },
       {
         nom: "Muellheim → Mulhouse",
         dessertes: [
-          { gare: "Muellheim", heure: "12:15", arret: 4 ,jours: ["MA", "VE"]},
-          { gare: "Neuenburg (Baden)", heure: "12:22", arret: 1 ,jours: ["MA", "VE"]},
-          { gare: "Bantzenheim", heure: "12:30", arret: 1 ,jours: ["MA", "VE"]},
-          { gare: "Mulhouse", heure: "12:50", arret: 0,jours: ["MA", "VE"] }
+          { gare: "Muellheim", heure: "12:15", arret: 4 ,jours: ["LU", "VE"]},
+          { gare: "Neuenburg (Baden)", heure: "12:22", arret: 1 ,jours: ["LU", "VE"]},
+          { gare: "Bantzenheim", heure: "12:30", arret: 1 ,jours: ["LU", "VE"]},
+          { gare: "Mulhouse", heure: "12:50", arret: 0,jours: ["LU", "VE"] }
         ]
       }
     ]

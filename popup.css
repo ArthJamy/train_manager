@@ -559,3 +559,9 @@
   gap: 0.25rem;
 
 }
+
+.flotte-toolbar input[type="text"]:focus {
+  outline: none;
+  border-color: #1e3a8a;
+  box-shadow: 0 0 3px rgba(30, 58, 138, 0.4);
+}

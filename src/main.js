@@ -45,12 +45,20 @@ document.getElementById("btn-save-map").addEventListener("click", () => {
 
 // Déterminer le nombre d’UM actif pour chaque train
 function getUMCount(trainId, heure, jour) {
-  return accouplements.filter(a =>
-    (a.idA === trainId || a.idB === trainId) &&
-    a.heureDebut <= heure &&
-    a.heureFin >= heure &&
-    a.jours.includes(jour)
-  ).length + 1; // +1 = le train lui-même
+  // On récupère toutes les associations uniques dans lesquelles le train apparaît
+  const idsAssocies = new Set();
+  accouplements.forEach(a => {
+    if (
+      a.jours.includes(jour) &&
+      a.heureDebut <= heure &&
+      a.heureFin >= heure
+    ) {
+      if (a.idA === trainId) idsAssocies.add(a.idB);
+      if (a.idB === trainId) idsAssocies.add(a.idA);
+    }
+  });
+  // +1 pour lui-même
+  return idsAssocies.size + 1;
 }
 
 // bouton en header
