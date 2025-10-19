@@ -44,12 +44,12 @@ document.getElementById("btn-save-map").addEventListener("click", () => {
 
 
 // Déterminer le nombre d’UM actif pour chaque train
-function getUMCount(trainId, heure, jour) {
-  // On récupère toutes les associations uniques dans lesquelles le train apparaît
+function getUMCount(trainId, heure, jourCible) {
   const idsAssocies = new Set();
+
   accouplements.forEach(a => {
     if (
-      a.jours.includes(jour) &&
+      a.jours.includes(jourCible) &&  // ← on teste bien le jour voulu
       a.heureDebut <= heure &&
       a.heureFin >= heure
     ) {
@@ -57,9 +57,10 @@ function getUMCount(trainId, heure, jour) {
       if (a.idB === trainId) idsAssocies.add(a.idA);
     }
   });
-  // +1 pour lui-même
+
   return idsAssocies.size + 1;
 }
+
 
 // bouton en header
 document.getElementById("btn-flotte").addEventListener("click", () => {
@@ -1137,6 +1138,7 @@ new p5((p) => {
     const jourActuel = joursSemaine[todayIndex];
     const jourDemain = joursSemaine[(todayIndex + 1) % 7];
 
+
     trains.forEach(train => {
       train.trajets.forEach(trajet => {
         const dess = trajet.dessertes;
@@ -1237,20 +1239,19 @@ new p5((p) => {
     arrivees.sort(sortByTimeAndDay);
 
     //const prochainsDeparts = departs.slice(0, 5); // Augmenté pour voir plus de trajets
-    //const prochainesArrivees = arrivees.slice(0, 5);
+    // On prépare les bons jours (aujourd’hui / demain)
     const prochainsDeparts = departs.slice(0, 5).map(d => {
-      const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
-      const jourActuel = joursSemaine[new Date().getDay()];
-      const umCount = getUMCount(d.train, d.heure, jourActuel);
+      const jourCible = d.demain ? jourDemain : jourActuel; // ✅ bon jour selon le train
+      const umCount = getUMCount(d.train, d.heure, jourCible);
       return { ...d, umCount };
     });
 
     const prochainesArrivees = arrivees.slice(0, 5).map(a => {
-      const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
-      const jourActuel = joursSemaine[new Date().getDay()];
-      const umCount = getUMCount(a.train, a.heure, jourActuel);
+      const jourCible = a.demain ? jourDemain : jourActuel; // ✅ bon jour selon le train
+      const umCount = getUMCount(a.train, a.heure, jourCible);
       return { ...a, umCount };
     });
+
 
 
     div.style.transition = "opacity 0.3s ease, transform 0.3s ease";
