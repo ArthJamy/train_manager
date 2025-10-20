@@ -1238,7 +1238,7 @@ new p5((p) => {
     departs.sort(sortByTimeAndDay);
     arrivees.sort(sortByTimeAndDay);
 
-    //const prochainsDeparts = departs.slice(0, 5); // Augmenté pour voir plus de trajets
+
     // On prépare les bons jours (aujourd’hui / demain)
     const prochainsDeparts = departs.slice(0, 5).map(d => {
       const jourCible = d.demain ? jourDemain : jourActuel; // ✅ bon jour selon le train
@@ -1253,45 +1253,75 @@ new p5((p) => {
     });
 
 
+    // === 🔹 Calcul du flux dynamique actuel ===
+    const gareObj = villes.find(v => v.nom === nomGare);
+    const fluxNormal = gareObj?.flux || gareObj?.fluxPassager || 0;
+    let fluxActuel = 0;
 
+
+    // Somme du nombre de passagers présents dans les trains desservant cette gare
+    const heureCourante = document.getElementById("heure")?.value || "08:00";
+    etatTrains.forEach(e => {
+      const train = trains.find(t => t.id === e.id);
+      if (!train) return;
+      train.trajets.forEach(trajet => {
+        const dess = trajet.dessertes;
+        const index = dess.findIndex(d => d.gare === nomGare);
+        if (index === -1) return;
+        const hGare = timeToMinutes(dess[index].heure);
+        const hNow = timeToMinutes(heureCourante);
+        if (Math.abs(hNow - hGare) <= 15) { // train proche de la gare (±15 min)
+          fluxActuel += e.occupants.premiere + e.occupants.seconde;
+        }
+      });
+    });
+
+      const fluxActuelTexte = fluxActuel > 0
+    ? `${fluxActuel.toLocaleString()} passagers (≈ ${Math.round((fluxActuel / fluxNormal) * 100)} % du flux journalier)`
+    : `Aucun train actuellement en approche`;
+    
     div.style.transition = "opacity 0.3s ease, transform 0.3s ease";
     div.style.opacity = 0;
     div.style.transform = "translateX(-10px)";
 
     setTimeout(() => {
       const html = `
-  <h3>🕓 Gare de ${nomGare}</h3>
+      <h3>🕓 Gare de ${nomGare}</h3>
 
-  <div class="horaire-section depart">
-    <h4>🚆 Départs</h4>
-    <ul>
-      ${prochainsDeparts.map(d => `
-        <li class="depart ${d.demain ? "lendemain" : ""}">
-          <span class="heure">${d.heure}</span>
-          <span class="vers">→ ${d.vers}</span> 
-          <span class="gares-defile">
-            <span class="gares-txt">${d.gares}</span>
-          </span>
-          <span class="train-id">(${d.train}${d.umCount > 1 ? ` – UM${d.umCount}` : ""})</span>
-          ${d.demain ? '<span class="next-day">Lendemain</span>' : ""}
-        </li>`).join("")}
-    </ul>
-  </div>
+      <div class="horaire-section depart">
+        <h4>🚆 Départs</h4>
+        <ul>
+          ${prochainsDeparts.map(d => `
+            <li class="depart ${d.demain ? "lendemain" : ""}">
+              <span class="heure">${d.heure}</span>
+              <span class="vers">→ ${d.vers}</span> 
+              <span class="gares-defile">
+                <span class="gares-txt">${d.gares}</span>
+              </span>
+              <span class="train-id">(${d.train}${d.umCount > 1 ? ` – UM${d.umCount}` : ""})</span>
+              ${d.demain ? '<span class="next-day">Lendemain</span>' : ""}
+            </li>`).join("")}
+        </ul>
+      </div>
 
-  <div class="horaire-section arrivee">
-    <h4>🚉 Arrivées</h4>
-    <ul>
-      ${prochainesArrivees.map(a => `
-        <li class="arrivee ${a.demain ? "lendemain" : ""}">
-          <span class="heure">${a.heure}</span>
-          <span class="de">← ${a.de}</span> 
-          <span class="train-id">(${a.train}${a.umCount > 1 ? ` – UM${a.umCount}` : ""})</span>
-          ${a.demain ? '<span class="next-day">Lendemain</span>' : ""}
-        </li>`).join("")}
-    </ul>
-  </div>
-  <button class="btn-popup" id="btn-fiche-gare">🕐 Voir la fiche horaire</button>
-  `;
+      <div class="horaire-section arrivee">
+        <h4>🚉 Arrivées</h4>
+        <ul>
+          ${prochainesArrivees.map(a => `
+            <li class="arrivee ${a.demain ? "lendemain" : ""}">
+              <span class="heure">${a.heure}</span>
+              <span class="de">← ${a.de}</span> 
+              <span class="train-id">(${a.train}${a.umCount > 1 ? ` – UM${a.umCount}` : ""})</span>
+              ${a.demain ? '<span class="next-day">Lendemain</span>' : ""}
+            </li>`).join("")}
+        </ul>
+      </div>
+      <button class="btn-popup" id="btn-fiche-gare">🕐 Voir la fiche horaire</button>
+      <p style="margin-top:8px; color:#444;">
+            <b>Flux actuel :</b> ${fluxActuelTexte}
+            &nbsp; <span style="color:#777;">(Flux total : ${fluxNormal.toLocaleString()}/jour)</span>
+          </p>
+      `;
 
       div.innerHTML = html;
       document.getElementById("btn-fiche-gare").addEventListener("click", () => {

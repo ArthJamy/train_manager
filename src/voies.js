@@ -82,7 +82,7 @@ export const lignes = [
   { gareA: "Seltz", gareB: "Mothern", longueur: 8.2, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Mothern", gareB: "Lauterbourg", longueur: 4.3, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
   { gareA: "_AiguillageStrasNord", gareB: "Bischheim", longueur: 1.6, type: "classique", vitesse_max: 90, electrification: "diesel", signalisation: "KVB" },
-  { gareA: "Brumath", gareB: "Mommenheim", longueur: 7, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "KVB" },
+  { gareA: "Brumath", gareB: "Mommenheim", longueur: 7, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Mommenheim", gareB: "Wilwisheim", longueur: 14.9, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Wilwisheim", gareB: "Steinbourg", longueur: 10.3, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },
   { gareA: "Steinbourg", gareB: "Saverne", longueur: 6.4, type: "classique", vitesse_max: 160, electrification: "25kV CA", signalisation: "ETCS" },

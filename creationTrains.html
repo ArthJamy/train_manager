@@ -84,8 +84,11 @@
             <p>&nbsp | &nbsp</p>
             <button class="btn btn-ghost" id="btn-suggest">🧠 Suggérer horaires</button>
             <button class="btn btn-ghost" id="btn-return">🔁 Générer retour inversé (+30 min)</button>
-
+            <label>
           </div>
+          <input type="checkbox" id="ignoreConflitsUM">
+          Ignorer les conflits (création d'UM)
+          </label>
 
         </div>
 
@@ -114,10 +117,10 @@
               <div class="label">Types de gares</div>
               <select id="filtreTypeGare">
                 <option value="all" selected>Toutes</option>
-                <option value="grande">Grandes</option>
-                <option value="moyenne">Moyennes</option>
-                <option value="petite">Petites</option>
-                <option value="vaste">Vastes</option>
+                <option value="petite">≥ Petites</option>
+                <option value="moyenne">≥ Moyennes</option>
+                <option value="grande">≥ Grandes</option>
+                <option value="vaste">Vastes uniquement</option>
               </select>
             </div>
             <div>

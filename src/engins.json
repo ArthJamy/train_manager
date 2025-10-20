@@ -103,6 +103,13 @@
       "pays": "FR"
     },
     {
+      "nom": "CC72100 SNCF",
+      "moteurs": ["diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR"
+    },
+    {
       "nom": "AGC fluoGrandEst 3C",
       "moteurs": ["diesel"],
       "vitesseMax": 160,
@@ -188,9 +195,16 @@
     },
     {
       "nom": "RS1 bwegt",
-      "moteurs": ["15kV CA"],
+      "moteurs": ["diesel"],
       "vitesseMax": 120,
       "capacite": { "premiere": 0, "seconde": 101 },
+      "pays": "DE"
+    },
+    {
+      "nom": "BR146.0 DB",
+      "moteurs": ["15kV CA"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 0 },
       "pays": "DE"
     }
   ],
@@ -224,6 +238,27 @@
       "capacite": { "premiere": 20, "seconde": 216 },
       "longueur": 26,
       "pays": "FR"
+    }
+    ,
+    {
+      "nom": "DBpza 784 DB",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 120 },
+      "pays": "DE"
+    }
+    ,
+    {
+      "nom": "DBpza 789 DB",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 40, "seconde": 80 },
+      "pays": "DE"
+    }
+    ,
+    {
+      "nom": "DBpbzfa 765 DB",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 168 },
+      "pays": "DE"
     }
   ]
 }
