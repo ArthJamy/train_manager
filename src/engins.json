@@ -1,7 +1,28 @@
 {
   "trains": [
     {
-      "nom": "Regiolis fluoGrandEst 5C",
+      "nom": "TGVEuroDuplex lyria 8C",
+      "moteurs": ["25kV CA", "1.5kV CC", "15kV CA"],
+      "vitesseMax": 320,
+      "capacite": { "premiere": 158, "seconde": 398 },
+      "pays": "FR"
+    },
+    {
+      "nom": "TGVEuroDuplex InOui 8C",
+      "moteurs": ["25kV CA", "1.5kV CC", "15kV CA"],
+      "vitesseMax": 320,
+      "capacite": { "premiere": 158, "seconde": 398 },
+      "pays": "FR"
+    },
+    {
+      "nom": "BR406 (ICE 3M)",
+      "moteurs": ["25kV CA", "1.5kV CC","3kV CC", "15kV CA"],
+      "vitesseMax": 320,
+      "capacite": { "premiere": 91, "seconde": 334 },
+      "pays": "DE"
+    },
+    {
+      "nom": "Regiolis fluoGrandEst 4C",
       "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
       "vitesseMax": 160,
       "capacite": { "premiere": 24, "seconde": 210 },
@@ -11,6 +32,42 @@
       "remarque": "Regiolis du Grand Est"
     },
     {
+      "nom": "Regiolis blueFluoEurope 4C",
+      "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 210 },
+      "longueur": 72,
+      "pays": "FR"
+    },
+    {
+      "nom": "Regiolis fluoGrandEst 6C",
+      "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 304 },
+      "longueur": 110,
+      "pays": "FR",
+      "dateSortie": "2014",
+      "remarque": "Regiolis du Grand Est"
+    },
+    {
+      "nom": "CoradiaLiner fluoGrandEst 6C",
+      "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 90, "seconde": 270 },
+      "longueur": 110,
+      "pays": "FR",
+      "remarque": "Intercité du Grand Est"
+    },
+    {
+      "nom": "CoradiaLiner 6C",
+      "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 90, "seconde": 270 },
+      "longueur": 110,
+      "pays": "FR",
+      "remarque": "Intercité"
+    },
+    {
       "nom": "BR1462 bwegt",
       "moteurs": ["15kV CA"],
       "vitesseMax": 160,
@@ -18,9 +75,30 @@
       "pays": "DE"
     },
     {
-      "nom": "BB 26000 GrandEst",
+      "nom": "BR1440.1 bwegt",
+      "moteurs": ["15kV CA"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 16, "seconde": 174 },
+      "pays": "DE"
+    },
+    {
+      "nom": "BR442.2 Baden-Württemberg",
+      "moteurs": ["15kV CA"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 8, "seconde": 242 },
+      "pays": "DE"
+    },
+    {
+      "nom": "BB26000 GrandEst",
       "moteurs": ["25kV CA", "1.5kV CC"],
       "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR"
+    },
+    {
+      "nom": "BB22200 RC Fluo",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
       "capacite": { "premiere": 0, "seconde": 0 },
       "pays": "FR"
     },
@@ -32,11 +110,88 @@
       "pays": "FR"
     },
     {
+      "nom": "AGC fluoGrandEst 4C",
+      "moteurs": ["diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 183 },
+      "pays": "FR"
+    },
+    {
+      "nom": "AGC Alsace 3C",
+      "moteurs": ["diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 134 },
+      "pays": "FR"
+    },
+    {
+      "nom": "AGC blueMetrolorLorraine 3C",
+      "moteurs": ["diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 134 },
+      "pays": "FR"
+    },
+    {
+      "nom": "AGC greenMobigo 3C",
+      "moteurs": ["diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 134 },
+      "pays": "FR"
+    },
+    {
+      "nom": "AGC blueAlsace 4C",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 183 },
+      "pays": "FR"
+    },
+    {
+      "nom": "X73900 Grand Est",
+      "moteurs": ["diesel"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 0, "seconde": 61 },
+      "pays": "FR"
+    },
+    {
+      "nom": "X73900 TER Alsace",
+      "moteurs": ["diesel"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 0, "seconde": 61 },
+      "pays": "FR"
+    },
+    {
       "nom": "RABe522 Leman Express",
       "moteurs": ["15kV CA", "25kV CA"],
       "vitesseMax": 160,
       "capacite": { "premiere": 59, "seconde": 211 },
       "pays": "CH"
+    },
+    {
+      "nom": "RABe522 CFF",
+      "moteurs": ["15kV CA", "25kV CA"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 59, "seconde": 211 },
+      "pays": "CH"
+    },
+    {
+      "nom": "Re450 DPZ CFF",
+      "moteurs": ["15kV CA"],
+      "vitesseMax": 130,
+      "capacite": { "premiere": 88, "seconde": 400 },
+      "pays": "CH"
+    },
+    {
+      "nom": "AGC Champagne-Ardenne",
+      "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 183 },
+      "pays": "FR"
+    },
+    {
+      "nom": "RS1 bwegt",
+      "moteurs": ["15kV CA"],
+      "vitesseMax": 120,
+      "capacite": { "premiere": 0, "seconde": 101 },
+      "pays": "DE"
     }
   ],
   "wagons": [
@@ -46,8 +201,29 @@
       "capacite": { "premiere": 0, "seconde": 88 },
       "poids": 40,
       "longueur": 26,
-      "pays": "FR",
-      "dateSortie": "1990"
+      "pays": "FR"
+    },
+    {
+      "nom": "VTU A Fluo",
+      "vitesseMax": 200,
+      "capacite": { "premiere": 60, "seconde": 0 },
+      "poids": 40,
+      "longueur": 26,
+      "pays": "FR"
+    },
+    {
+      "nom": "VTU B5uxh FluoGdEst",
+      "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 40 },
+      "longueur": 26,
+      "pays": "FR"
+    },
+    {
+      "nom": "RRR Régionales FLUO",
+      "vitesseMax": 140,
+      "capacite": { "premiere": 20, "seconde": 216 },
+      "longueur": 26,
+      "pays": "FR"
     }
   ]
 }
