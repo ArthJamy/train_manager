@@ -1,7 +1,7 @@
 export const trainsFR = [
   {
     id: "TER2001",
-    nom: "Regiolis fluoGrandEst 5C",
+    nom: "Regiolis fluoGrandEst 4C",
     moteurs: ["25kV CA", "1.5kV CC"],
     vitesseMax: 160,
     capacite: { premiere: 80, seconde: 360 },
