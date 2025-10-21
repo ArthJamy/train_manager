@@ -54,7 +54,7 @@ export const trainsFR = [
     moteurs: ["25kV CA", "1.5kV CC"],
     vitesseMax: 200,
     capacite: { premiere: 120, seconde: 352 },
-    composition: ["VTU A Fluo", "VTU A Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo"],
+    composition: ["VTU A Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU B5uxh FluoGdEst"],
     trajets: [
       {
         nom: "Basel SBB → Strasbourg",
@@ -593,119 +593,6 @@ export const trainsFR = [
       }
     ]
   },
-
-  {
-    id: "TER2045",
-    nom: "X73900 TER Alsace",
-    moteurs: ["diesel"],
-    vitesseMax: 140,
-    capacite: { premiere: 0, seconde: 61 },
-    trajets: [
-      {
-        nom: "Kruth → Mulhouse",
-        dessertes: [
-          { gare: "Kruth", heure: "07:00", arret: 1 },
-          { gare: "Oderen", heure: "07:04", arret: 1 },
-          { gare: "Wesserling", heure: "07:10", arret: 1 },
-          { gare: "Saint-Amarin", heure: "07:16", arret: 1 },
-          { gare: "Willer-sur-Thur", heure: "07:24", arret: 1 },
-          { gare: "Bitschwiller-lès-Thann", heure: "07:28", arret: 1 },
-          { gare: "Thann Gare", heure: "07:34", arret: 1 },
-          { gare: "Cernay", heure: "07:45", arret: 1 },
-          { gare: "Graffenwald", heure: "07:51", arret: 1 },
-          { gare: "Lutterbach", heure: "07:57", arret: 1 },
-          { gare: "Mulhouse Dornach", heure: "08:01", arret: 1 },
-          { gare: "Mulhouse", heure: "08:07", arret: 1 }
-        ]
-      },
-      {
-        nom: "Mulhouse → Kruth",
-        dessertes: [
-          { gare: "Mulhouse", heure: "09:00", arret: 1 },
-          { gare: "Mulhouse Dornach", heure: "09:06", arret: 1 },
-          { gare: "Lutterbach", heure: "09:10", arret: 1 },
-          { gare: "Graffenwald", heure: "09:16", arret: 1 },
-          { gare: "Cernay", heure: "09:22", arret: 1 },
-          { gare: "Thann Gare", heure: "09:33", arret: 1 },
-          { gare: "Bitschwiller-lès-Thann", heure: "09:39", arret: 1 },
-          { gare: "Willer-sur-Thur", heure: "09:43", arret: 1 },
-          { gare: "Saint-Amarin", heure: "09:51", arret: 1 },
-          { gare: "Wesserling", heure: "09:57", arret: 1 },
-          { gare: "Oderen", heure: "10:03", arret: 1 },
-          { gare: "Kruth", heure: "10:07", arret: 1 }
-        ]
-      },
-      {
-        nom: "Kruth → Mulhouse",
-        dessertes: [
-          { gare: "Kruth", heure: "11:37", arret: 1 },
-          { gare: "Oderen", heure: "11:41", arret: 1 },
-          { gare: "Wesserling", heure: "11:47", arret: 1 },
-          { gare: "Saint-Amarin", heure: "11:53", arret: 1 },
-          { gare: "Willer-sur-Thur", heure: "12:01", arret: 1 },
-          { gare: "Bitschwiller-lès-Thann", heure: "12:05", arret: 1 },
-          { gare: "Thann Gare", heure: "12:11", arret: 1 },
-          { gare: "Cernay", heure: "12:22", arret: 1 },
-          { gare: "Graffenwald", heure: "12:28", arret: 1 },
-          { gare: "Lutterbach", heure: "12:34", arret: 1 },
-          { gare: "Mulhouse Dornach", heure: "12:38", arret: 1 },
-          { gare: "Mulhouse", heure: "12:44", arret: 1 }
-        ]
-      },
-      {
-        nom: "Mulhouse → Kruth",
-        dessertes: [
-          { gare: "Mulhouse", heure: "13:30", arret: 1 },
-          { gare: "Mulhouse Dornach", heure: "13:36", arret: 1 },
-          { gare: "Lutterbach", heure: "13:40", arret: 1 },
-          { gare: "Graffenwald", heure: "13:46", arret: 1 },
-          { gare: "Cernay", heure: "13:52", arret: 1 },
-          { gare: "Thann Gare", heure: "14:03", arret: 1 },
-          { gare: "Bitschwiller-lès-Thann", heure: "14:09", arret: 1 },
-          { gare: "Willer-sur-Thur", heure: "14:13", arret: 1 },
-          { gare: "Saint-Amarin", heure: "14:21", arret: 1 },
-          { gare: "Wesserling", heure: "14:27", arret: 1 },
-          { gare: "Oderen", heure: "14:33", arret: 1 },
-          { gare: "Kruth", heure: "14:37", arret: 1 }
-        ]
-      },
-      {
-        nom: "Kruth → Mulhouse",
-        dessertes: [
-          { gare: "Kruth", heure: "15:00", arret: 1 },
-          { gare: "Oderen", heure: "15:04", arret: 1 },
-          { gare: "Wesserling", heure: "15:10", arret: 1 },
-          { gare: "Saint-Amarin", heure: "15:16", arret: 1 },
-          { gare: "Willer-sur-Thur", heure: "15:24", arret: 1 },
-          { gare: "Bitschwiller-lès-Thann", heure: "15:28", arret: 1 },
-          { gare: "Thann Gare", heure: "15:34", arret: 1 },
-          { gare: "Cernay", heure: "15:45", arret: 1 },
-          { gare: "Graffenwald", heure: "15:51", arret: 1 },
-          { gare: "Lutterbach", heure: "15:57", arret: 1 },
-          { gare: "Mulhouse Dornach", heure: "16:01", arret: 1 },
-          { gare: "Mulhouse", heure: "16:07", arret: 1 }
-        ]
-      },
-      {
-        nom: "Mulhouse → Kruth",
-        dessertes: [
-          { gare: "Mulhouse", heure: "16:37", arret: 1 },
-          { gare: "Mulhouse Dornach", heure: "16:43", arret: 1 },
-          { gare: "Lutterbach", heure: "16:47", arret: 1 },
-          { gare: "Graffenwald", heure: "16:53", arret: 1 },
-          { gare: "Cernay", heure: "16:59", arret: 1 },
-          { gare: "Thann Gare", heure: "17:10", arret: 1 },
-          { gare: "Bitschwiller-lès-Thann", heure: "17:16", arret: 1 },
-          { gare: "Willer-sur-Thur", heure: "17:20", arret: 1 },
-          { gare: "Saint-Amarin", heure: "17:28", arret: 1 },
-          { gare: "Wesserling", heure: "17:34", arret: 1 },
-          { gare: "Oderen", heure: "17:40", arret: 1 },
-          { gare: "Kruth", heure: "17:44", arret: 1 }
-        ]
-      }
-    ]
-  },
-
   {
     id: "TER2055",
     nom: "AGC Alsace 3C",

@@ -222,8 +222,7 @@ new p5((p) => {
     frontieres = p.loadJSON('./src/frontieres.geojson');
   };
 
-
-
+  let trajetSelectionne = null; // AFficher trajet actuel train
 
   // ===== Fonction état du train =====
   function getEtatTrain(train, heureCourante) {
@@ -695,6 +694,7 @@ new p5((p) => {
     if (minuteCourante !== derniereHeureConnue) {
       derniereHeureConnue = minuteCourante;
       rafraichirSelection(); // maj du panneau seulement 1×/min
+      if (affichageLignes === "occupation") fondDoitEtreRedessine = true;
     }
   }
 
@@ -763,7 +763,6 @@ new p5((p) => {
           else fondBuffer.stroke(0, 0, 128);     // bleu foncé
           break;
 
-
         case "signalisation":
           if (l.signalisation === "ETCS") fondBuffer.stroke(255, 0, 255);
           else if (l.signalisation === "KVB") fondBuffer.stroke(0, 0, 255);
@@ -771,13 +770,101 @@ new p5((p) => {
           else if (l.signalisation === "LZB") fondBuffer.stroke(0, 200, 255);
           else fondBuffer.stroke(80);
           break;
+
+        case "occupation": {
+          const heureCourante = document.getElementById("heure")?.value || "08:00";
+          const tNow = timeToMinutes(heureCourante);
+
+          // Récupération des gares
+          const g1 = villes.find(v => v.nom === l.gareA);
+          const g2 = villes.find(v => v.nom === l.gareB);
+          if (!g1 || !g2) break;
+
+          // Distance et facteur
+          const distance = p.dist(g1.x, g1.y, g2.x, g2.y);
+          const distanceRef = 120;
+          const facteurLongueur = Math.max(0.5, Math.sqrt(distance / distanceRef));
+
+          // === Compte combien de trains circulent sur ce tronçon ===
+          let trainsSurLigne = 0;
+          trains.forEach(train => {
+            train.trajets.forEach(trajet => {
+              const dess = trajet.dessertes;
+              for (let i = 0; i < dess.length - 1; i++) {
+                const gA = dess[i].gare;
+                const gB = dess[i + 1].gare;
+                if (
+                  (gA === l.gareA && gB === l.gareB) ||
+                  (gA === l.gareB && gB === l.gareA)
+                ) {
+                  const tA = timeToMinutes(dess[i].heure);
+                  const tB = timeToMinutes(dess[i + 1].heure);
+                  if (tNow >= tA && tNow <= tB) {
+                    trainsSurLigne++;
+                    break;
+                  }
+                }
+              }
+            });
+          });
+
+          // === Capacité max horaire selon signalisation (dérivée de la tolérance)
+          const tolerances = {
+            "ETCS": 3,
+            "LZB": 4,
+            "PZB": 5,
+            "KVB": 6,
+            "BAL": 5,
+            "BAPR": 8,
+            "TVM": 2,
+            "inconnue": 10
+          };
+
+          // Capacité théorique par sens (trains/h)
+          const intervalle = tolerances[l.signalisation] || tolerances["inconnue"];
+          const trainsParHeureParSens = 60 / intervalle;
+          const trainsParHeureTotal = trainsParHeureParSens * 2; // double sens
+
+          // Capacité "instantanée" (trains simultanés supportables)
+          const capEffective = trainsParHeureTotal * 0.1 * facteurLongueur;
+          // 0.1 ≈ proportion du trafic horaire présent simultanément (~6 min de parcours moyen)
+
+          // === Calcul du taux ===
+          const taux = Math.min(1, trainsSurLigne / capEffective);
+
+
+          // === Couleur du vert clair → rouge ===
+          const r = Math.round(255 * taux);
+          const g = Math.round(255 * (1 - taux));
+          fondBuffer.stroke(r, g, 0);
+          break;
+        }
       }
+
 
 
       fondBuffer.line(g1.x, g1.y, g2.x, g2.y);
     });
 
     fondBuffer.drawingContext.setLineDash([]);
+
+    if (trajetSelectionne) {
+      fondBuffer.stroke(135, 206, 255); // bleu clair
+      fondBuffer.strokeWeight(8 / zoom); // plus large
+      fondBuffer.noFill();
+
+      const dess = trajetSelectionne.dessertes;
+      for (let i = 0; i < dess.length - 1; i++) {
+        const chemin = trouverCheminEntreGares(dess[i].gare, dess[i + 1].gare);
+        const points = chemin.map(nom => villes.find(v => v.nom === nom)).filter(Boolean);
+
+        for (let j = 0; j < points.length - 1; j++) {
+          const a = points[j];
+          const b = points[j + 1];
+          fondBuffer.line(a.x, a.y, b.x, b.y);
+        }
+      }
+    }
 
     // Gares
     villes.forEach(v => {
@@ -926,14 +1013,26 @@ new p5((p) => {
   }
 
   function rafraichirSelection() {
-    if (!elementSelectionne) return;
+    if (!elementSelectionne) {
+      trajetSelectionne = null;
+      fondDoitEtreRedessine = true;
+      return;
+    }
 
     if (elementSelectionne.type === "train") {
-      afficherInfosTrain(elementSelectionne.data);
+      const t = elementSelectionne.data;
+      afficherInfosTrain(t);
+      const etat = getEtatTrain(t, document.getElementById("heure").value);
+      trajetSelectionne = etat?.trajet || null;
+      fondDoitEtreRedessine = true;
+
     } else if (elementSelectionne.type === "gare") {
       afficherHorairesGare(elementSelectionne.data);
+      trajetSelectionne = null;
+      fondDoitEtreRedessine = true;
     }
   }
+
 
   function afficherInfosTrain(train) {
     const div = document.getElementById("info-content");
@@ -941,6 +1040,9 @@ new p5((p) => {
 
     const heureCourante = document.getElementById("heure").value;
     const etat = getEtatTrain(train, heureCourante);
+    trajetSelectionne = etat?.trajet || null;
+    fondDoitEtreRedessine = true;
+
     // Chercher l’état dynamique du train (passagers)
     const etatDynamique = etatTrains.find(e => e.id === train.id);
 
@@ -1276,10 +1378,10 @@ new p5((p) => {
       });
     });
 
-      const fluxActuelTexte = fluxActuel > 0
-    ? `${fluxActuel.toLocaleString()} passagers (≈ ${Math.round((fluxActuel / fluxNormal) * 100)} % du flux journalier)`
-    : `Aucun train actuellement en approche`;
-    
+    const fluxActuelTexte = fluxActuel > 0
+      ? `${fluxActuel.toLocaleString()} passagers (≈ ${Math.round((fluxActuel / fluxNormal) * 100)} % du flux journalier)`
+      : `Aucun train actuellement en approche`;
+
     div.style.transition = "opacity 0.3s ease, transform 0.3s ease";
     div.style.opacity = 0;
     div.style.transform = "translateX(-10px)";
@@ -1398,6 +1500,16 @@ new p5((p) => {
           <li><span class="coul" style="background:#666"></span> Autre</li>
         </ul>`;
         break;
+
+      case "occupation":
+        html += `
+        <ul class="legende">
+          <li><span class="coul" style="background:#00ff00"></span> 0 % (très fluide)</li>
+          <li><span class="coul" style="background:#ffff00"></span> 50 % (modéré)</li>
+          <li><span class="coul" style="background:#ff0000"></span> 100 % (saturé)</li>
+        </ul>`;
+        break;
+
     }
 
     div.innerHTML = html;
@@ -1410,6 +1522,9 @@ new p5((p) => {
     zoom = 2.2;
     offsetX = p.width / 2 - gare.x * zoom;
     offsetY = p.height / 2 - gare.y * zoom;
+    trajetSelectionne = null;
+    fondDoitEtreRedessine = true;
+
 
     // afficher la fiche horaire directement
     afficherHorairesGare(gare.nom);
@@ -1463,6 +1578,8 @@ new p5((p) => {
 
       if (gareCliquee) {
         elementSelectionne = { type: "gare", data: gareCliquee.nom };
+        trajetSelectionne = null;                 // ⇐ ajout
+        fondDoitEtreRedessine = true;
         afficherHorairesGare(gareCliquee.nom);
       }
 
@@ -1564,6 +1681,8 @@ new p5((p) => {
       cacherMenu();
       reinitialiserInfoPanel();
       elementSelectionne = null;
+      trajetSelectionne = null;
+      fondDoitEtreRedessine = true;
       return;
     }
 
@@ -1571,6 +1690,8 @@ new p5((p) => {
       cacherMenu();
       if (gareCliquee) {
         elementSelectionne = { type: "gare", data: gareCliquee.nom };
+        trajetSelectionne = null;                 // ⇐ ajout
+        fondDoitEtreRedessine = true;
         afficherHorairesGare(gareCliquee.nom);
       } else {
         elementSelectionne = { type: "train", data: nearbyTrains[0] };
@@ -1623,6 +1744,7 @@ new p5((p) => {
 document.getElementById("heure").addEventListener("change", () => {
   const nouvelleHeure = document.getElementById("heure").value;
   initTrainsState(nouvelleHeure);
+  fondDoitEtreRedessine = true; // 🔹 redessine le fond pour maj du mode occupation
   console.log(`[Reinit] Réinitialisation des états à ${nouvelleHeure}`);
 });
 

@@ -233,14 +233,18 @@ function suggestionsDepuis(gareSource, maxSuggestions, maxDepth) {
       // 🟨 Ajout aux résultats uniquement si gare réelle et type OK
       if (!g.fantome) {
         // 🧩 Filtre hiérarchique : inclut les types supérieurs au seuil choisi
-        const ordre = ["petite", "moyenne", "grande", "vaste"];
-        const idxFiltre = ordre.indexOf(filtreType);
-        const idxGare = ordre.indexOf(g.type);
+        let typeOK = false;
 
-        const typeOK =
-          filtreType === "all" ||
-          idxFiltre === -1 ||
-          idxGare >= idxFiltre; // on garde la gare si son type est >= au seuil choisi
+        if (filtreType === "all") {
+          typeOK = true;
+        } else {
+          const ordre = ["petite", "moyenne", "grande", "vaste"];
+          const idxFiltre = ordre.indexOf(filtreType);
+          const idxGare = ordre.indexOf(g.type);
+
+          // ✅ Vérifie que les deux types sont valides ET que la gare est >= au seuil
+          typeOK = idxFiltre !== -1 && idxGare !== -1 && idxGare >= idxFiltre;
+        }
 
         if (typeOK) {
           results.add(v);
@@ -589,7 +593,10 @@ function renderDessertes() {
         .filter(g => {
           if (!g || g.fantome) return false;
           if (typeFiltre === "all") return true;
-          return g.type === typeFiltre;
+          const ordre = ["petite", "moyenne", "grande", "vaste"];
+          const idxFiltre = ordre.indexOf(typeFiltre);
+          const idxGare = ordre.indexOf(g.type);
+          return idxFiltre !== -1 && idxGare !== -1 && idxGare >= idxFiltre;
         })
         .map(g => g.nom);
 
@@ -923,9 +930,17 @@ function suggestHoraires() {
     }
 
     renderDessertes();
-
-
     toast('Horaires suggérés appliqués.', 'ok');
+    // ✅ Lance automatiquement la validation après suggestion
+    setTimeout(() => {
+      const err = validateTrainBeforeSave();
+      if (err) {
+        toast(err, 'err', 5000);
+      } else {
+        toast('✅ Trajet validé sans conflit.', 'ok');
+      }
+    }, 500);
+
   } catch (err) {
     console.error(err);
     toast(`Erreur : ${err.message}`, 'err', 4000);
@@ -982,7 +997,7 @@ function genererRetourInverse() {
 /* ============================================================
  * Détection conflit
  * ============================================================ */
-function detectConflitTroncons(nouveauTrajet, ignoreConflits = false) {
+function detectConflitTroncons(ignoreConflits = false) {
   if (ignoreConflits) return []; // ✅ Support UM
 
   const allTrains = [...state.trainsFR, ...state.trainsDE, ...state.trainsCH];
@@ -1028,93 +1043,98 @@ function detectConflitTroncons(nouveauTrajet, ignoreConflits = false) {
     return passages;
   }
 
-  const passagesNew = calculerPassages(nouveauTrajet.dessertes);
+  // 🔄 Parcourt TOUS les trajets du train en cours
+  for (const nouveauTrajet of state.current.trajets || []) {
+    if (!nouveauTrajet.dessertes || nouveauTrajet.dessertes.length < 2) continue;
 
-  for (const train of allTrains) {
-    if (state.editingExistingId && train.id === state.editingExistingId) continue;
+    const passagesNew = calculerPassages(nouveauTrajet.dessertes);
 
-    for (const trajet of train.trajets || []) {
-      if (!trajet.dessertes || trajet.dessertes.length < 2) continue;
+    for (const train of allTrains) {
+      if (state.editingExistingId && train.id === state.editingExistingId) continue;
 
-      // ✅ Filtre jours
-      const jNew = nouveauTrajet.dessertes[0]?.jours || null;
-      const jOther = trajet.dessertes[0]?.jours || null;
-      if (!joursChevauchent(jNew, jOther)) continue;
+      for (const trajet of train.trajets || []) {
+        if (!trajet.dessertes || trajet.dessertes.length < 2) continue;
 
-      const passagesAutre = calculerPassages(trajet.dessertes);
+        // ✅ Filtre jours
+        const jNew = nouveauTrajet.dessertes[0]?.jours || null;
+        const jOther = trajet.dessertes[0]?.jours || null;
+        if (!joursChevauchent(jNew, jOther)) continue;
 
-      for (let j = 0; j < nouveauTrajet.dessertes.length - 1; j++) {
-        const nA = nouveauTrajet.dessertes[j].gare;
-        const nB = nouveauTrajet.dessertes[j + 1].gare;
-        const pathNew = trouverCheminEntreGares(nA, nB);
+        const passagesAutre = calculerPassages(trajet.dessertes);
 
-        for (let i = 0; i < trajet.dessertes.length - 1; i++) {
-          const gA = trajet.dessertes[i].gare;
-          const gB = trajet.dessertes[i + 1].gare;
-          const pathAutre = trouverCheminEntreGares(gA, gB);
+        for (let j = 0; j < nouveauTrajet.dessertes.length - 1; j++) {
+          const nA = nouveauTrajet.dessertes[j].gare;
+          const nB = nouveauTrajet.dessertes[j + 1].gare;
+          const pathNew = trouverCheminEntreGares(nA, nB);
 
-          // ✅ Sécurité
-          if (pathNew.length <= 1 || pathAutre.length <= 1) continue;
+          for (let i = 0; i < trajet.dessertes.length - 1; i++) {
+            const gA = trajet.dessertes[i].gare;
+            const gB = trajet.dessertes[i + 1].gare;
+            const pathAutre = trouverCheminEntreGares(gA, gB);
 
-          const segmentsAutreSet = new Set(
-            pathAutre.slice(0, -1).map((gare, idx) => `${gare}__${pathAutre[idx + 1]}`)
-          );
+            // ✅ Sécurité
+            if (pathNew.length <= 1 || pathAutre.length <= 1) continue;
 
-          const segmentsCommuns = [];
-
-          for (let k = 0; k < pathNew.length - 1; k++) {
-            const segA = pathNew[k];
-            const segB = pathNew[k + 1];
-            const key = `${segA}__${segB}`;
-
-            if (!segmentsAutreSet.has(key)) continue;
-
-            const tNewA = passagesNew.get(segA);
-            const tNewB = passagesNew.get(segB);
-            const tOtherA = passagesAutre.get(segA);
-            const tOtherB = passagesAutre.get(segB);
-
-            if (tNewA != null && tNewB != null && tOtherA != null && tOtherB != null) {
-              segmentsCommuns.push({
-                segA, segB,
-                tNewA, tNewB,
-                tOtherA, tOtherB
-              });
-            }
-          }
-
-          if (segmentsCommuns.length === 0) continue;
-
-          for (const seg of segmentsCommuns) {
-            const chevauchement = seg.tNewB > seg.tOtherA && seg.tNewA < seg.tOtherB;
-
-            if (!chevauchement) continue;
-
-            const ligne = lignes.find(L =>
-              (L.gareA === seg.segA && L.gareB === seg.segB) ||
-              (L.gareA === seg.segB && L.gareB === seg.segA)
+            const segmentsAutreSet = new Set(
+              pathAutre.slice(0, -1).map((gare, idx) => `${gare}__${pathAutre[idx + 1]}`)
             );
 
-            const typeSig = ligne?.signalisation || "inconnue";
+            const segmentsCommuns = [];
 
-            const tolerances = {
-              "ETCS": 3,
-              "LZB": 4,
-              "PZB": 5,
-              "KVB": 6,
-              "inconnue": 10
-            };
+            for (let k = 0; k < pathNew.length - 1; k++) {
+              const segA = pathNew[k];
+              const segB = pathNew[k + 1];
+              const key = `${segA}__${segB}`;
 
-            const tol = tolerances[typeSig] || 6;
-            const ecart = Math.abs(seg.tNewA - seg.tOtherA);
+              if (!segmentsAutreSet.has(key)) continue;
 
-            if (ecart < tol) {
-              // ✅ Message amélioré
-              conflits.push(
-                `⚠️ Conflit ${minutesToTime(Math.round(Math.max(seg.tNewA, seg.tOtherA)))} ` +
-                `sur ${seg.segA}→${seg.segB} avec ${train.id} ` +
-                `(${typeSig}, tol ${tol} min, écart ${Math.round(ecart)} min)`
+              const tNewA = passagesNew.get(segA);
+              const tNewB = passagesNew.get(segB);
+              const tOtherA = passagesAutre.get(segA);
+              const tOtherB = passagesAutre.get(segB);
+
+              if (tNewA != null && tNewB != null && tOtherA != null && tOtherB != null) {
+                segmentsCommuns.push({
+                  segA, segB,
+                  tNewA, tNewB,
+                  tOtherA, tOtherB
+                });
+              }
+            }
+
+            if (segmentsCommuns.length === 0) continue;
+
+            for (const seg of segmentsCommuns) {
+              const chevauchement = seg.tNewB > seg.tOtherA && seg.tNewA < seg.tOtherB;
+
+              if (!chevauchement) continue;
+
+              const ligne = lignes.find(L =>
+                (L.gareA === seg.segA && L.gareB === seg.segB) ||
+                (L.gareA === seg.segB && L.gareB === seg.segA)
               );
+
+              const typeSig = ligne?.signalisation || "inconnue";
+
+              const tolerances = {
+                "ETCS": 3,
+                "LZB": 4,
+                "PZB": 5,
+                "KVB": 6,
+                "inconnue": 10
+              };
+
+              const tol = tolerances[typeSig] || 6;
+              const ecart = Math.abs(seg.tNewA - seg.tOtherA);
+
+              if (ecart < tol) {
+                // ✅ Message amélioré
+                conflits.push(
+                  `⚠️ Trajet "${nouveauTrajet.nom || 'sans nom'}" : Conflit ${minutesToTime(Math.round(Math.max(seg.tNewA, seg.tOtherA)))} ` +
+                  `sur ${seg.segA}→${seg.segB} avec ${train.id} ` +
+                  `(${typeSig}, tol ${tol} min, écart ${Math.round(ecart)} min)`
+                );
+              }
             }
           }
         }
@@ -1171,13 +1191,11 @@ function validateTrainBeforeSave() {
   }
 
   // Vérifie les conflits de sillons avec d'autres trains
-  const t = activeTrajet();
-  if (t) {
-    const ignoreUM = document.getElementById("ignoreConflitsUM")?.checked; // cas UM
-    const conflits = detectConflitTroncons(t, ignoreUM);
-    if (conflits.length > 0 && !ignoreUM) {
-      return `❌ Conflits détectés :\n${conflits.join("\n")}`;
-    }
+  // Vérifie les conflits de sillons avec d'autres trains (TOUS LES TRAJETS)
+  const ignoreUM = document.getElementById("ignoreConflitsUM")?.checked;
+  const conflits = detectConflitTroncons(ignoreUM);
+  if (conflits.length > 0 && !ignoreUM) {
+    return `❌ Conflits détectés :\n${conflits.join("\n")}`;
   }
 
 
@@ -1529,6 +1547,16 @@ function bindActions() {
     updateTractionIcons();
     // 🔄 Rafraîchit la liste des cards
     renderAllTrajets();
+
+    // ✅ Lance automatiquement la validation après suggestion
+    setTimeout(() => {
+      const err = validateTrainBeforeSave();
+      if (err) {
+        toast(err, 'err', 5000);
+      } else {
+        toast('✅ Trajet validé sans conflit.', 'ok');
+      }
+    }, 500);
 
     toast(`Modifications enregistrées pour "${t.nom}".`, "ok");
   });
