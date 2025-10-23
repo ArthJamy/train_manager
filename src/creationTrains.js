@@ -1089,7 +1089,7 @@ function genererRetourInverse() {
 function detectConflitTroncons(ignoreConflits = false) {
   if (ignoreConflits) return []; // ✅ Support UM
 
-  const allTrains = [...state.trainsFR, ...state.trainsDE, ...state.trainsCH];
+  const allTrains = [...state.trainsFR, ...state.trainsDE, ...state.trainsCH, ...state.trainsFRET];
   const conflits = [];
 
   // ✅ Helper jours
@@ -1829,6 +1829,9 @@ function bindActions() {
         if (isLoco) {
           // 🚂 Locomotive : propose uniquement les wagons
           items = [...state.enginsWagons];
+          
+          // ✅ Inclut la motrice actuelle (pour double ou triple traction)
+          items.unshift(base);
           const isFRET = state.current.pays === "FRET";
           if (isFRET) {
             items = items.filter(e => e.type === "Fret");
