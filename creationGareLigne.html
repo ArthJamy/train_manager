@@ -128,7 +128,7 @@
     }
 
     function normaliserGare(g) {
-      // 🪄 Si c’est une gare fantôme, on ne touche à rien
+      // 🪄 Cas 1 : gare fantôme
       if (g.fantome) {
         return {
           nom: g.nom,
@@ -137,8 +137,17 @@
           fantome: true
         };
       }
-
-      // 🚉 Sinon, gare normale : on complète les champs manquants
+      // 🟤 Cas 2 : gare FRET → on la garde telle quelle
+      if (g.gareFRET) {
+        return {
+          nom: g.nom,
+          x: Number(g.x),
+          y: Number(g.y),
+          type: g.type ?? "petite",
+          gareFRET: true
+        };
+      }
+      // 🚉 Cas 3 : gare voyageur
       const type = g.type ?? g.taille ?? "petite";
       const flux =
         g.fluxPassager != null
@@ -153,6 +162,7 @@
         fluxPassager: Number(flux)
       };
     }
+
 
     function extraireArrayDepuisTexte(texte, varName) {
       // 1) export const villes = [ ... ]
@@ -505,7 +515,7 @@
       if (!listA || !listB) return;
 
       const noms = [...garesExistantes, ...nouvellesGares]
-        .filter(g => !g.fantome)
+        .filter(g => !g.supprime)
         .map(g => g.nom)
         .sort((a, b) => a.localeCompare(b, "fr", { sensitivity: "base" }));
 
