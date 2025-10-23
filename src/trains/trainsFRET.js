@@ -17,8 +17,8 @@ export const trainsFRET = [
       {
         nom: "FRET Strasbourg → Mulhouse",
         dessertes: [
-          { gare: "Strasbourg", heure: "22:00", arret: 30 },
-          { gare: "BT Energie France S.A.S", heure: "23:50", arret: 45 }
+          { gare: "Strasbourg", heure: "22:00", arret: 5 },
+          { gare: "BT Energie France S.A.S", heure: "23:50", arret: 2 }
         ]
       }
     ]
