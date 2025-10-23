@@ -150,7 +150,19 @@ function segmentDistanceKm(gareNomA, gareNomB) {
   return null;
 }
 
-function trouverCheminEntreGares(gareA, gareB) {
+// Affichage gares intermédiaires V2 (gares fantomes)
+function trouverCheminEntreGares(gareA, gareB, vitesseTrain = Infinity) {
+  const graph = {};
+  lignes.forEach(l => {
+    // 🚄 Si la ligne est une LGV (>201 km/h) et que le train ne dépasse pas 201 → on l'ignore
+    if ((l.vitesse_max || 0) > 201 && vitesseTrain <= 201) return;
+
+    if (!graph[l.gareA]) graph[l.gareA] = [];
+    if (!graph[l.gareB]) graph[l.gareB] = [];
+    graph[l.gareA].push(l.gareB);
+    graph[l.gareB].push(l.gareA);
+  });
+
   const queue = [[gareA]];
   const visited = new Set([gareA]);
 
@@ -159,17 +171,17 @@ function trouverCheminEntreGares(gareA, gareB) {
     const last = path[path.length - 1];
     if (last === gareB) return path;
 
-    for (const voisin of graph[last] || []) {
+    const voisins = graph[last] || [];
+    for (const voisin of voisins) {
       if (visited.has(voisin)) continue;
       visited.add(voisin);
 
-      const g = getGareAny(voisin);
+      const g = villes.find(v => v.nom === voisin);
       if (!g) continue;
 
-      // ⚙️ On ne "compte" pas les gares fantômes : elles ne pénalisent pas le chemin
-      // On les traverse librement mais on garde la continuité du chemin
       if (g.fantome) {
-        // exploration directe derrière la gare fantôme
+        // 🚧 Traverse les gares fantômes sans augmenter la "distance"
+        // On continue directement derrière elles
         for (const next of graph[voisin] || []) {
           if (!visited.has(next)) {
             queue.push([...path, voisin, next]);
@@ -188,8 +200,7 @@ function trouverCheminEntreGares(gareA, gareB) {
 
 /**
  * Renvoie les premières gares réelles atteignables depuis une gare source,
- * en traversant librement les gares fantômes.
- * Les paramètres de filtrage et de recherche proviennent de l'état global.
+ * en traversant librement les gares fantômes (et en ignorant les gares FRET en mode voyageur).
  * 
  * @param {string} gareSource
  * @param {number} maxSuggestions  nb max de gares à retourner (facultatif)
@@ -199,6 +210,7 @@ function suggestionsDepuis(gareSource, maxSuggestions, maxDepth) {
   const maxSugg = maxSuggestions ?? (state.suggestionMax || 10);
   const depthMax = maxDepth ?? (state.suggestionRadius || 1);
   const filtreType = state.filtreTypeGare || "all";
+  const isFRET = state.current.pays === "FRET";
 
   function sortByTypePriority(noms) {
     const prio = { petite: 0, moyenne: 1, grande: 2, vaste: 3 };
@@ -224,16 +236,19 @@ function suggestionsDepuis(gareSource, maxSuggestions, maxDepth) {
       const g = getGareAny(v);
       if (!g) continue;
 
-      // 🟩 Calcul de la profondeur :
-      // on n’incrémente que si la gare n’est PAS fantôme
-      const nextDepth = g.fantome ? depth : depth + 1;
+      // 🟪 En mode voyageur : on saute les gares FRET comme les fantômes
+      const isIgnorable = g.fantome || (!isFRET && g.gareFRET === true);
+
+      // 🧭 Calcul de la profondeur :
+      // on n’incrémente que si la gare n’est PAS ignorée (ni fantôme ni gareFRET si voyageur)
+      const nextDepth = isIgnorable ? depth : depth + 1;
 
       if (nextDepth <= depthMax) {
         queue.push([v, nextDepth]);
       }
 
-      // 🟨 Ajout aux résultats uniquement si gare réelle et type OK
-      if (!g.fantome) {
+      // 🟩 Ajout aux résultats uniquement si gare réelle, non fantôme et autorisée
+      if (!g.fantome && (isFRET || g.gareFRET !== true)) {
         // 🧩 Filtre hiérarchique : inclut les types supérieurs au seuil choisi
         let typeOK = false;
 
@@ -243,8 +258,6 @@ function suggestionsDepuis(gareSource, maxSuggestions, maxDepth) {
           const ordre = ["petite", "moyenne", "grande", "vaste"];
           const idxFiltre = ordre.indexOf(filtreType);
           const idxGare = ordre.indexOf(g.type);
-
-          // ✅ Vérifie que les deux types sont valides ET que la gare est >= au seuil
           typeOK = idxFiltre !== -1 && idxGare !== -1 && idxGare >= idxFiltre;
         }
 
@@ -253,10 +266,8 @@ function suggestionsDepuis(gareSource, maxSuggestions, maxDepth) {
           if (results.size >= maxSugg) break;
         }
       }
-
     }
   }
-
   return sortByTypePriority(Array.from(results)).slice(0, maxSugg);
 }
 
@@ -300,13 +311,44 @@ function updatePaysColor() {
   sel.classList.add(sel.value);
 }
 
-function bindTrainForm() {
-  // Pays
-  $('#paysSel').addEventListener('change', e => {
-    state.current.pays = e.target.value;
-    updatePaysColor();
-  });
+function getCapacityBlock() {
+  // On repère la ligne qui contient le label "Capacité totale"
+  const labels = document.querySelectorAll('.train-main .label');
+  for (const lab of labels) {
+    if ((lab.textContent || '').includes('Capacité totale')) {
+      return lab.parentElement; // le <div> enveloppant les inputs capPrem/capSec
+    }
+  }
+  return null;
+}
 
+function applyFreightUI(isFRET) {
+  // masque/affiche la ligne Capacité
+  const capaBlock = getCapacityBlock();
+  if (capaBlock) capaBlock.style.display = isFRET ? 'none' : '';
+
+  // ajoute/supprime la ligne Tonnage
+  let tonnageRow = document.getElementById('tonnageRow');
+  if (isFRET) {
+    if (!tonnageRow) {
+      tonnageRow = document.createElement('div');
+      tonnageRow.id = 'tonnageRow';
+      tonnageRow.innerHTML = `
+        <div class="label">Tonnage total</div>
+        <input type="number" id="tonnageTotal" min="0" step="1" disabled>
+      `;
+      if (capaBlock && capaBlock.parentElement) {
+        capaBlock.parentElement.insertAdjacentElement('afterend', tonnageRow);
+      } else {
+        document.querySelector('.train-main')?.appendChild(tonnageRow);
+      }
+    }
+  } else if (tonnageRow) {
+    tonnageRow.remove();
+  }
+}
+
+function bindTrainForm() {
   // ID
   $('#trainId').addEventListener('input', e => {
     state.current.id = e.target.value.trim();
@@ -314,10 +356,16 @@ function bindTrainForm() {
   });
 
   $('#paysSel').addEventListener('change', e => {
-    const sel = e.target;
-    state.current.pays = sel.value;
+    state.current.pays = e.target.value;
     updatePaysColor();
+
+    const isFRET = state.current.pays === 'FRET';
+    applyFreightUI(isFRET);
+    useGaresDatalist();
+    recalcCapaciteGlobale();
   });
+
+
   updatePaysColor();
 }
 
@@ -325,39 +373,51 @@ function bindTrainForm() {
  * COMPOSITION: LISTE & CANDIDATS
  * ============================================================ */
 function recalcCapaciteGlobale() {
-  let prem = 0, sec = 0;
+  const isFRET = state.current.pays === "FRET";
+
+  let prem = 0, sec = 0, tonnage = 0;
   let vmax = Infinity;
-  // 🟦 inclure la motrice principale si présente
+
+  // Engin de base
   if (state.current.engin) {
     const e = state.current.engin;
-    if (e.capacite) {
+    if (!isFRET && e.capacite) {
       prem += e.capacite.premiere || 0;
       sec += e.capacite.seconde || 0;
     }
+    if (e.tonnage) tonnage += e.tonnage;
     if (e.vitesseMax) vmax = e.vitesseMax;
   }
-  // ajouter toutes les compositions
+
+  // Éléments de composition
   (state.current.composition || []).forEach(name => {
     const compo = state.engins.find(x => x.nom === name);
-    if (compo) {
-      if (compo.capacite) {
-        prem += compo.capacite.premiere || 0;
-        sec += compo.capacite.seconde || 0;
-      }
-      if (compo.vitesseMax)
-        vmax = Math.min(vmax, compo.vitesseMax);
+    if (!compo) return;
+    if (!isFRET && compo.capacite) {
+      prem += compo.capacite.premiere || 0;
+      sec += compo.capacite.seconde || 0;
     }
+    if (compo.tonnage) tonnage += compo.tonnage;
+    if (compo.vitesseMax) vmax = Math.min(vmax, compo.vitesseMax);
   });
-  // si aucun vmax trouvé (ex : engin seul)
-  if (!isFinite(vmax) || vmax === 0) vmax = state.current.engin?.vitesseMax || 0;
-  // met à jour l'affichage
-  $('#capPrem').value = prem;
-  $('#capSec').value = sec;
-  $('#vmax').value = vmax;
-  // 🔄 synchronisation du state avec l’affichage
-  state.current.capacite = { premiere: prem, seconde: sec };
-  state.current.vmax = vmax;
 
+  if (!isFinite(vmax) || vmax === 0) vmax = state.current.engin?.vitesseMax || 0;
+
+  // ➜ pousse dans l'UI / state selon le mode
+  if (isFRET) {
+    const tonInp = document.getElementById('tonnageTotal');
+    if (tonInp) tonInp.value = tonnage;
+    state.current.tonnage = tonnage;
+    // on n'affiche pas capPrem/capSec en FRET (déjà masqués visuellement)
+  } else {
+    document.getElementById('capPrem').value = prem;
+    document.getElementById('capSec').value = sec;
+    state.current.capacite = { premiere: prem, seconde: sec };
+    delete state.current.tonnage;
+  }
+
+  document.getElementById('vmax').value = vmax;
+  state.current.vmax = vmax;
 }
 
 
@@ -377,18 +437,27 @@ function addCompoTag(name) {
   btn.addEventListener('click', () => {
     // retire du state
     state.current.composition = (state.current.composition || []).filter(n => n !== name);
-    // retirer la capacité correspondante
+
+    const isFRET = state.current.pays === "FRET";
     const e = state.engins.find(x => x.nom === name);
-    if (e && e.capacite) {
-      const prem = parseInt($('#capPrem').value || 0) - (e.capacite.premiere || 0);
-      const sec = parseInt($('#capSec').value || 0) - (e.capacite.seconde || 0);
-      $('#capPrem').value = Math.max(prem, 0);
-      $('#capSec').value = Math.max(sec, 0);
+    if (e) {
+      if (!isFRET && e.capacite) {
+        const prem = parseInt($('#capPrem').value || 0) - (e.capacite.premiere || 0);
+        const sec = parseInt($('#capSec').value || 0) - (e.capacite.seconde || 0);
+        $('#capPrem').value = Math.max(prem, 0);
+        $('#capSec').value = Math.max(sec, 0);
+      }
+      if (isFRET && e.tonnage) {
+        const tonInp = document.getElementById('tonnageTotal');
+        if (tonInp) tonInp.value = Math.max((parseInt(tonInp.value || 0) - e.tonnage), 0);
+        state.current.tonnage = parseInt(tonInp?.value || '0', 10);
+      }
     }
 
     // retire du DOM
     tag.remove();
   });
+
   list.appendChild(tag);
 }
 
@@ -583,7 +652,7 @@ function renderDessertes() {
       }
 
       // Cherche le chemin complet
-      const path = trouverCheminEntreGares(curr.gare, next.gare);
+      const path = trouverCheminEntreGares(curr.gare, next.gare, state.current.vmax || 9999);
       if (!path || path.length <= 2) {
         toast("Aucune gare intermédiaire trouvée.", "warn");
         return;
@@ -596,12 +665,21 @@ function renderDessertes() {
         .map(nom => getGareAny(nom))
         .filter(g => {
           if (!g || g.fantome) return false;
+
+          const isFRET = state.current.pays === "FRET";
+
+          // 🔹 En mode FRET : on prend tout
+          // 🔹 En mode voyageur : on exclut les gares FRET
+          if (!isFRET && g.gareFRET === true) return false;
+
           if (typeFiltre === "all") return true;
+
           const ordre = ["petite", "moyenne", "grande", "vaste"];
           const idxFiltre = ordre.indexOf(typeFiltre);
           const idxGare = ordre.indexOf(g.type);
           return idxFiltre !== -1 && idxGare !== -1 && idxGare >= idxFiltre;
         })
+
         .map(g => g.nom);
 
 
@@ -682,7 +760,6 @@ function updateTractionIcons() {
 
 
 function useGaresDatalist() {
-  // datalist complète (fallback global)
   let dl = document.getElementById('garesList');
   if (!dl) {
     dl = document.createElement('datalist');
@@ -690,14 +767,22 @@ function useGaresDatalist() {
     document.body.appendChild(dl);
   }
   dl.innerHTML = '';
-  villes.filter(v => !v.fantome).forEach(g => {
-    const opt = document.createElement('option');
-    opt.value = g.nom;
-    dl.appendChild(opt);
-  });
-  // applique list=garesList partout
+  const isFRET = state.current.pays === "FRET";
+  villes
+    .filter(v => !v.fantome)
+    // 🔹 En mode FRET : toutes les gares
+    // 🔹 En mode voyageur : on exclut juste les gares purement FRET
+    .filter(v => isFRET ? true : v.gareFRET !== true)
+    .forEach(g => {
+      const opt = document.createElement('option');
+      opt.value = g.nom;
+      dl.appendChild(opt);
+    });
   $$('#dessertesTbl .in-gare').forEach(inp => inp.setAttribute('list', 'garesList'));
 }
+
+
+
 
 /* ============================================================
  * CALCUL VITESSE & DURÉE
@@ -769,7 +854,7 @@ function determinerTractionEntre(ga, gb) {
   };
 
   // 🛤️ Récupération des types d'électrification sur le chemin
-  const path = trouverCheminEntreGares(ga, gb);
+  const path = trouverCheminEntreGares(ga, gb, state.current.vmax || 9999);
   if (!path || path.length < 2) {
     return { type: "inconnu", icon: "?", color: "#999" };
   }
@@ -920,7 +1005,7 @@ function suggestHoraires() {
         return;
       }
 
-      const path = trouverCheminEntreGares(prev.gare, curr.gare);
+      const path = trouverCheminEntreGares(prev.gare, curr.gare, state.current.vmax || 9999);
       const arretPrev = Number(prev.arret ?? state.defaultArretMin);
       const baseMins = timeToMinutes(prev.heure || startTime);
       try {
@@ -1023,7 +1108,7 @@ function detectConflitTroncons(ignoreConflits = false) {
 
       if (!curr.heure || !next.heure) continue;
 
-      const path = trouverCheminEntreGares(curr.gare, next.gare);
+      const path = trouverCheminEntreGares(curr.gare, next.gare, state.current.vmax || 9999);
       if (!path || path.length <= 1) continue; // ✅ Sécurité
 
       const tDepart = timeToMinutes(curr.heure) + (curr.arret ?? state.defaultArretMin);
@@ -1069,12 +1154,12 @@ function detectConflitTroncons(ignoreConflits = false) {
         for (let j = 0; j < nouveauTrajet.dessertes.length - 1; j++) {
           const nA = nouveauTrajet.dessertes[j].gare;
           const nB = nouveauTrajet.dessertes[j + 1].gare;
-          const pathNew = trouverCheminEntreGares(nA, nB);
+          const pathNew = trouverCheminEntreGares(nA, nB, state.current.vmax || 9999);
 
           for (let i = 0; i < trajet.dessertes.length - 1; i++) {
             const gA = trajet.dessertes[i].gare;
             const gB = trajet.dessertes[i + 1].gare;
-            const pathAutre = trouverCheminEntreGares(gA, gB);
+            const pathAutre = trouverCheminEntreGares(gA, gB, state.current.vmax || 9999);
 
             // ✅ Sécurité
             if (pathNew.length <= 1 || pathAutre.length <= 1) continue;
@@ -1211,12 +1296,14 @@ function validateTrainBeforeSave() {
  * ============================================================ */
 function toTrainObjectForSave() {
   const c = state.current;
+  const isFRET = c.pays === "FRET";
   return {
     id: c.id,
     nom: c.engin?.nom || '(sans nom)',
-    vitesseMax: c.vmax,
     moteurs: c.engin?.moteurs || [],
-    capacite: { ...c.capacite },
+    vitesseMax: c.vmax,
+    ...(isFRET ? { tonnage: c.tonnage || 0 }
+      : { capacite: { ...c.capacite } }),
     composition: [...c.composition],
     trajets: c.trajets.map(t => ({
       nom: t.nom || undefined,
@@ -1240,7 +1327,7 @@ function download(filename, content) {
 
 function prettyJSExport(varName, arr) {
   const sorted = [...arr].sort((a, b) => String(a.id).localeCompare(String(b.id), 'fr'));
-
+  const isFretExport = varName.toLowerCase().includes('fret');
   const formatDessertes = (dessertes) => {
     return "[\n" + dessertes.map(d => {
       const parts = [
@@ -1255,7 +1342,6 @@ function prettyJSExport(varName, arr) {
     }).join(",\n") + "\n        ]";
   };
 
-
   const formatTrajets = (trajets) => {
     return "[\n" + trajets.map(t =>
       `      {\n        nom: "${t.nom}",\n        dessertes: ${formatDessertes(t.dessertes)}\n      }`
@@ -1264,18 +1350,23 @@ function prettyJSExport(varName, arr) {
 
   const formatTrain = (t) => {
     const moteurs = `[${(t.moteurs || []).map(m => `"${m}"`).join(", ")}]`;
-    const capacite = `{ premiere: ${t.capacite?.premiere || 0}, seconde: ${t.capacite?.seconde || 0} }`;
     const composition = (t.composition && t.composition.length)
       ? `,\n    composition: [${t.composition.map(c => `"${c}"`).join(", ")}]`
       : "";
 
-    return `  {\n    id: "${t.id}",\n    nom: "${t.nom}",\n    moteurs: ${moteurs},\n    vitesseMax: ${t.vitesseMax},\n    capacite: ${capacite}${composition},\n    trajets: ${formatTrajets(t.trajets)}\n  }`;
-  };
+    // 🚧 Choix entre tonnage et capacité
+    const useTonnage = isFretExport || ('tonnage' in t);
+    const middleLine = useTonnage
+      ? `tonnage: ${t.tonnage || 0}`
+      : `capacite: { premiere: ${t.capacite?.premiere || 0}, seconde: ${t.capacite?.seconde || 0} }`;
 
+    return `  {\n    id: "${t.id}",\n    nom: "${t.nom}",\n    moteurs: ${moteurs},\n    vitesseMax: ${t.vitesseMax},\n    ${middleLine}${composition},\n    trajets: ${formatTrajets(t.trajets)}\n  }`;
+  };
 
   const trainsText = sorted.map(formatTrain).join(",\n\n");
   return `export const ${varName} = [\n${trainsText}\n];\n`;
 }
+
 
 // ============================================================
 //  UTILITAIRE : détermine le pays d'un train à partir de son ID
@@ -1431,8 +1522,28 @@ function loadTrainData(train) {
   // on met à jour les champs encore existants
   $('#trainId').value = train.id || '';
   $('#vmax').value = train.vitesseMax || '';
-  $('#capPrem').value = train.capacite?.premiere || 0;
-  $('#capSec').value = train.capacite?.seconde || 0;
+
+  const isFRET = (train.pays === 'FRET') || ('tonnage' in train);
+
+  // synchronise le sélecteur pays
+  const paysSel = $('#paysSel');
+  paysSel.value = isFRET ? 'FRET' : (train.pays || 'FR');
+  state.current.pays = paysSel.value;
+
+  // applique l’UI FRET/Voyageur
+  applyFreightUI(isFRET);
+
+  // alimenter les champs selon le mode
+  if (isFRET) {
+    // on ignore l’affichage capacité et on remplit le tonnage
+    const tonInp = document.getElementById('tonnageTotal');
+    if (tonInp) tonInp.value = Number(train.tonnage || 0);
+    state.current.tonnage = Number(train.tonnage || 0);
+  } else {
+    $('#capPrem').value = train.capacite?.premiere || 0;
+    $('#capSec').value = train.capacite?.seconde || 0;
+    state.current.capacite = { premiere: +$('#capPrem').value, seconde: +$('#capSec').value };
+  }
 
   // mise à jour du sélecteur d’engin
   const e = state.engins.find(x => x.nom === train.nom);
@@ -1456,10 +1567,8 @@ function loadTrainData(train) {
   // 🔧 Enregistre l'ID du train chargé (pour autoriser son remplacement à l'export)
   state.editingExistingId = train.id;
   // 🟦 synchronise le sélecteur de pays (visuel et logique)
-  const paysSel = $('#paysSel');
-  paysSel.value = train.pays || 'FR';
-  state.current.pays = paysSel.value;
   updatePaysColor();
+  useGaresDatalist();
   toast(`✅ Train "${train.nom}" chargé avec succès.`, 'ok');
 }
 
@@ -1612,6 +1721,14 @@ function bindActions() {
       const q = search.value.toLowerCase();
       let engins = [...state.enginsTrains]; // ✅ uniquement les trains motorisés
 
+      const isFRET = state.current.pays === "FRET";
+      if (isFRET) {
+        engins = engins.filter(e => e.type === "Fret" || e.type === "Poly");
+      } else {
+        engins = engins.filter(e => e.type !== "Fret");
+      }
+
+
       if (q) engins = engins.filter(e => e.nom.toLowerCase().includes(q));
       if (paysFiltre !== "all") engins = engins.filter(e => (e.pays || "").toUpperCase() === paysFiltre);
 
@@ -1712,6 +1829,13 @@ function bindActions() {
         if (isLoco) {
           // 🚂 Locomotive : propose uniquement les wagons
           items = [...state.enginsWagons];
+          const isFRET = state.current.pays === "FRET";
+          if (isFRET) {
+            items = items.filter(e => e.type === "Fret");
+          } else {
+            items = items.filter(e => e.type !== "Fret");
+          }
+
         } else {
           // util: premier "mot" avant espace(s) et/ou underscore(s), en minuscules
           const token = (s) => (s || "")
@@ -2091,7 +2215,7 @@ function renderResumeTrajet() {
     const g1 = getGare(a.gare), g2 = getGare(b.gare);
     if (!g1 || !g2) continue;
 
-    const path = trouverCheminEntreGares(a.gare, b.gare);
+    const path = trouverCheminEntreGares(a.gare, b.gare, state.current.vmax || 9999);
 
     // km cumulés le long du chemin
     for (let j = 0; j < path.length - 1; j++) {

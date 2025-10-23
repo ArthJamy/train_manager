@@ -159,10 +159,13 @@ window.__trainRuntime = {
 };
 
 
-// Affichage gares intermédiaires V2 (gares fantomes)
-function trouverCheminEntreGares(gareA, gareB) {
+// Affichage gares intermédiaires V3 (gares fantomes, LGV)
+function trouverCheminEntreGares(gareA, gareB, vitesseTrain = Infinity) {
   const graph = {};
   lignes.forEach(l => {
+    // 🚄 Si la ligne est une LGV (>201 km/h) et que le train ne dépasse pas 201 → on l'ignore
+    if ((l.vitesse_max || 0) > 201 && vitesseTrain <= 201) return;
+
     if (!graph[l.gareA]) graph[l.gareA] = [];
     if (!graph[l.gareB]) graph[l.gareB] = [];
     graph[l.gareA].push(l.gareB);
@@ -311,7 +314,7 @@ new p5((p) => {
           const ratio = (tNow - tDepartEffectif) / (tB - tDepartEffectif);
 
           // 🔹 Récupération du chemin réel
-          const chemin = trouverCheminEntreGares(a.gare, b.gare);
+          const chemin = trouverCheminEntreGares(a.gare, b.gare, train.vitesseMax || 9999);
           const points = chemin.map(nom => villes.find(v => v.nom === nom)).filter(Boolean);
           if (points.length < 2) return;
 
@@ -753,11 +756,31 @@ new p5((p) => {
 
 
         case "type":
-          if (l.type === "LGV") fondBuffer.stroke(220, 0, 0);
-          else if (l.type === "tunnel") fondBuffer.stroke(60);
-          else if (l.type === "FRET") fondBuffer.stroke("#8B4513"); // brun
-          else fondBuffer.stroke(0, 100, 255);
+          if (l.type === "LGV") {
+            fondBuffer.stroke(220, 0, 0); // rouge plein
+          }
+          else if (l.type === "tunnel") {
+            const vMax = l.vitesse_max || 0;
+            if (vMax > 201) {
+              // LGV en tunnel → rouge pointillé
+              fondBuffer.drawingContext.setLineDash([6 / zoom, 6 / zoom]);
+              fondBuffer.stroke(220, 0, 0);
+            } else {
+              // tunnel classique → gris pointillé
+              fondBuffer.drawingContext.setLineDash([6 / zoom, 6 / zoom]);
+              fondBuffer.stroke(0, 100, 255);
+            }
+          }
+          else if (l.type === "FRET") {
+            fondBuffer.drawingContext.setLineDash([]);
+            fondBuffer.stroke("#8B4513"); // brun
+          }
+          else {
+            fondBuffer.drawingContext.setLineDash([]);
+            fondBuffer.stroke(0, 100, 255); // classique
+          }
           break;
+
 
 
         case "vitesse":
@@ -867,7 +890,8 @@ new p5((p) => {
 
       const dess = trajetSelectionne.dessertes;
       for (let i = 0; i < dess.length - 1; i++) {
-        const chemin = trouverCheminEntreGares(dess[i].gare, dess[i + 1].gare);
+        const vitesseTrain = elementSelectionne?.data?.vitesseMax || 9999;
+        const chemin = trouverCheminEntreGares(dess[i].gare, dess[i + 1].gare, vitesseTrain);
         const points = chemin.map(nom => villes.find(v => v.nom === nom)).filter(Boolean);
 
         for (let j = 0; j < points.length - 1; j++) {
@@ -1474,10 +1498,23 @@ new p5((p) => {
         afficherFicheHoraire(nomGare);
       });
 
-      // === 📦 Comptage automatique du trafic FRET à cette gare ===
+      // === 📦 Comptage automatique du trafic FRET à cette gare (aujourd’hui + demain) ===
       let countFret = 0;
+
+      const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+      const now = new Date();
+      const todayIndex = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Paris" })).getDay();
+      const jourActuel = joursSemaine[todayIndex];
+      const jourDemain = joursSemaine[(todayIndex + 1) % 7];
+
       trainsFRET.forEach(train => {
         train.trajets.forEach(trajet => {
+          const circuleAujourdHuiOuDemain = trajet.dessertes.some(d => {
+            const joursValides = d.jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+            return joursValides.includes(jourActuel) || joursValides.includes(jourDemain);
+          });
+          if (!circuleAujourdHuiOuDemain) return;
+
           if (trajet.dessertes.some(d => d.gare === nomGare)) countFret++;
         });
       });
@@ -1485,7 +1522,7 @@ new p5((p) => {
       // --- Si au moins 1 train FRET passe par cette gare ---
       if (countFret > 0) {
         const pFret = document.createElement("p");
-        pFret.innerHTML = `<b style="color:#8B4513;">📦 Activité FRET :</b> ${countFret} train${countFret > 1 ? "s" : ""} prévu${countFret > 1 ? "s" : ""} aujourd’hui`;
+        pFret.innerHTML = `<b style="color:#8B4513;">📦 Activité FRET :</b> ${countFret} train${countFret > 1 ? "s" : ""} prévu${countFret > 1 ? "s" : ""} aujourd’hui ou demain`;
         pFret.style.margin = "10px";
         pFret.style.color = "#5C4033";
         div.appendChild(pFret);
@@ -1499,6 +1536,7 @@ new p5((p) => {
         btnFret.onclick = () => afficherHorairesFRET(nomGare);
         div.appendChild(btnFret);
       }
+
 
       setTimeout(() => {
         div.style.opacity = 1;
@@ -1520,6 +1558,7 @@ new p5((p) => {
     const now = new Date();
     const todayIndex = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Paris" })).getDay();
     const jourActuel = joursSemaine[todayIndex];
+    const jourDemain = joursSemaine[(todayIndex + 1) % 7];
     const gareObj = villes.find(v => v.nom === nomGare);
 
     // --- Récupération des trajets FRET ---
@@ -1527,26 +1566,66 @@ new p5((p) => {
       train.trajets.forEach(trajet => {
         const dess = trajet.dessertes;
         dess.forEach((d, i) => {
-          if (d.gare === nomGare) {
-            // Départs
-            if (i < dess.length - 1) {
-              const destination = dess.at(-1).gare;
-              const heureDepart = timeToMinutes(d.heure) + (d.arret || 0);
+          if (d.gare !== nomGare) return;
+
+          const joursValides = d.jours || ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+          const circuleAujourdhui = joursValides.includes(jourActuel);
+          const circuleDemain = joursValides.includes(jourDemain);
+
+          // --- Départs ---
+          if (i < dess.length - 1) {
+            const destination = dess.at(-1).gare;
+            const heureDepart = timeToMinutes(d.heure) + (d.arret || 0);
+            const heureFormatee = minutesToTime(heureDepart);
+
+            if (circuleAujourdhui && heureDepart >= tNow) {
               departs.push({
                 train: train.id,
-                heure: minutesToTime(heureDepart),
+                heure: heureFormatee,
                 vers: destination,
                 tonnage: train.tonnage,
+                demain: false,
+                jours: joursValides
               });
             }
-            // Arrivées
-            if (i > 0) {
-              const origine = dess[0].gare;
+
+            if (circuleDemain) {
+              departs.push({
+                train: train.id,
+                heure: heureFormatee,
+                vers: destination,
+                tonnage: train.tonnage,
+                demain: true,
+                jours: joursValides
+              });
+            }
+          }
+
+          // --- Arrivées ---
+          if (i > 0) {
+            const origine = dess[0].gare;
+            const heureArrivee = timeToMinutes(d.heure);
+            const heureFormatee = minutesToTime(heureArrivee);
+
+            if (circuleAujourdhui && heureArrivee >= tNow) {
               arrivees.push({
                 train: train.id,
-                heure: d.heure,
+                heure: heureFormatee,
                 de: origine,
                 tonnage: train.tonnage,
+                demain: false,
+                jours: joursValides
+              });
+            }
+
+            if (circuleDemain) {
+              arrivees.push({
+                train: train.id,
+                heure: heureFormatee,
+                de: origine,
+                tonnage: train.tonnage,
+                demain: true,
+                jours: joursValides
               });
             }
           }
@@ -1554,11 +1633,16 @@ new p5((p) => {
       });
     });
 
-    // Tri chronologique
-    departs.sort((a, b) => timeToMinutes(a.heure) - timeToMinutes(b.heure));
-    arrivees.sort((a, b) => timeToMinutes(a.heure) - timeToMinutes(b.heure));
+    // --- Tri par jour puis par heure ---
+    const sortByTimeAndDay = (a, b) => {
+      if (a.demain !== b.demain) return a.demain ? 1 : -1;
+      return timeToMinutes(a.heure) - timeToMinutes(b.heure);
+    };
 
-    // Animation de transition
+    departs.sort(sortByTimeAndDay);
+    arrivees.sort(sortByTimeAndDay);
+
+    // --- Transition douce ---
     div.style.transition = "opacity 0.3s ease, transform 0.3s ease";
     div.style.opacity = 0;
     div.style.transform = "translateX(-10px)";
@@ -1573,10 +1657,11 @@ new p5((p) => {
         <ul>
           ${departs.length
           ? departs.map(d => `
-              <li style="color:#f5f5dc;">
+              <li style="color:#f5f5dc;" class="${d.demain ? "lendemain" : ""}">
                 <span class="heure" style="font-weight:bold;color:#fff5ee;">${d.heure}</span>
                 → ${d.vers} <span style="color:#ffe4b5;">(${d.tonnage} t)</span>
                 <span class="train-id" style="color:#fff8dc;">(${d.train})</span>
+                ${d.demain ? '<span class="next-day">Lendemain</span>' : ""}
               </li>`).join("")
           : texteVide}
         </ul>
@@ -1587,37 +1672,36 @@ new p5((p) => {
         <ul>
           ${arrivees.length
           ? arrivees.map(a => `
-              <li style="color:#f5f5dc;">
+              <li style="color:#f5f5dc;" class="${a.demain ? "lendemain" : ""}">
                 <span class="heure" style="font-weight:bold;color:#fff5ee;">${a.heure}</span>
                 ← ${a.de} <span style="color:#ffe4b5;">(${a.tonnage} t)</span>
                 <span class="train-id" style="color:#fff8dc;">(${a.train})</span>
+                ${a.demain ? '<span class="next-day">Lendemain</span>' : ""}
               </li>`).join("")
           : texteVide}
         </ul>
       </div>
 
       ${gareObj?.gareFRET
-          ? "" //  Pas de bouton retour pour les gares exclusivement FRET
-          : `<button class="btn-popup" id="btn-retour-gare" style="background:#4b5563;color:white;">↩ Retour à la fiche gare</button>`
-        }
+          ? ""
+          : `<button class="btn-popup" id="btn-retour-gare" style="background:#4b5563;color:white;">↩ Retour à la fiche gare</button>`}
     `;
 
       div.innerHTML = html;
 
-      // Ajout retour uniquement si gare normale
       if (!gareObj?.gareFRET) {
         document.getElementById("btn-retour-gare").addEventListener("click", () => {
           afficherHorairesGare(nomGare);
         });
       }
 
-      // Animation d’apparition
       setTimeout(() => {
         div.style.opacity = 1;
         div.style.transform = "translateX(0)";
       }, 50);
     }, 300);
   }
+
 
 
 
@@ -1658,9 +1742,11 @@ new p5((p) => {
           <li><span class="coul" style="background:#dc0000"></span> LGV</li>
           <li><span class="coul" style="background:#0064ff"></span> Ligne classique</li>
           <li><span class="coul" style="background:#8B4513"></span> Ligne FRET</li>
-          <li><span class="coul" style="background:#555;border:dashed 1px #999"></span> Tunnel</li>
+          <li><span class="coul" style="border:2px dashed rgb(0, 100, 255);background:#fff"></span> Tunnel classique</li>
+          <li><span class="coul" style="border:2px dashed #dc0000;background:#fff"></span> Tunnel LGV</li>
         </ul>`;
         break;
+
 
       case "vitesse":
         html += `
@@ -1950,5 +2036,4 @@ document.getElementById("heure").addEventListener("change", () => {
   fondDoitEtreRedessine = true; // 🔹 redessine le fond pour maj du mode occupation
   console.log(`[Reinit] Réinitialisation des états à ${nouvelleHeure}`);
 });
-
 

@@ -113,7 +113,7 @@
       "vitesseMax": 160,
       "capacite": { "premiere": 0, "seconde": 0 },
       "pays": "FR",
-      "type": "Poly"
+      "type": "Voyageur"
     },
     {
       "nom": "CC72100 SNCF",
@@ -121,7 +121,7 @@
       "vitesseMax": 160,
       "capacite": { "premiere": 0, "seconde": 0 },
       "pays": "FR",
-      "type": "Voyageur"
+      "type": "Poly"
     },
     {
       "nom": "AGC fluoGrandEst 3C",

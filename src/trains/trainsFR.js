@@ -480,14 +480,14 @@ export const trainsFR = [
       {
         nom: "Basel SBB → Mulhouse",
         dessertes: [
-          { gare: "Basel SBB", heure: "11:47", arret: 4 },
-          { gare: "Bâle Saint-Jean", heure: "11:54", arret: 2 },
-          { gare: "Saint-Louis", heure: "11:58", arret: 3 },
-          { gare: "Aéroport Bâle-Mulhouse Terminal", heure: "12:04", arret: 4 },
-          { gare: "Bartenheim", heure: "12:12", arret: 2 },
-          { gare: "Sierentz", heure: "12:17", arret: 2 },
-          { gare: "Habsheim", heure: "12:25", arret: 2 },
-          { gare: "Mulhouse", heure: "12:35", arret: 4 }
+          { gare: "Basel SBB", heure: "11:52", arret: 4 },
+          { gare: "Bâle Saint-Jean", heure: "11:59", arret: 2 },
+          { gare: "Saint-Louis", heure: "12:03", arret: 3 },
+          { gare: "Aéroport Bâle-Mulhouse Terminal", heure: "12:09", arret: 4 },
+          { gare: "Bartenheim", heure: "12:17", arret: 2 },
+          { gare: "Sierentz", heure: "12:22", arret: 2 },
+          { gare: "Habsheim", heure: "12:30", arret: 2 },
+          { gare: "Mulhouse", heure: "12:40", arret: 4 }
         ]
       },
       {
@@ -593,6 +593,7 @@ export const trainsFR = [
       }
     ]
   },
+
   {
     id: "TER2055",
     nom: "AGC Alsace 3C",

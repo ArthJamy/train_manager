@@ -156,16 +156,20 @@ export const trainsDE = [
         nom: "Freiburg (Breisgau) Hauptbahnhof → Basel Bad Bf",
         dessertes: [
           { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "08:20", arret: 2 },
-          { gare: "Schallstadt", heure: "08:29", arret: 1 },
-          { gare: "Bad Krozingen", heure: "08:34", arret: 1 },
-          { gare: "Heitersheim", heure: "08:39", arret: 1 },
-          { gare: "Buggingen", heure: "08:42", arret: 1 },
-          { gare: "Muellheim", heure: "08:47", arret: 2 },
-          { gare: "Schliengen", heure: "08:53", arret: 1 },
-          { gare: "Eimeldingen", heure: "09:03", arret: 1 },
-          { gare: "Haltingen", heure: "09:06", arret: 1 },
-          { gare: "Weil am Rhein", heure: "09:09", arret: 1 },
-          { gare: "Basel Bad Bf", heure: "09:13", arret: 2 }
+          { gare: "Freiburg-St Georgen", heure: "08:26", arret: 1 },
+          { gare: "Schallstadt", heure: "08:31", arret: 1 },
+          { gare: "Bad Krozingen", heure: "08:36", arret: 1 },
+          { gare: "Heitersheim", heure: "08:41", arret: 1 },
+          { gare: "Buggingen", heure: "08:44", arret: 1 },
+          { gare: "Muellheim", heure: "08:49", arret: 2 },
+          { gare: "Schliengen", heure: "08:55", arret: 1 },
+          { gare: "Bad Bellingen", heure: "09:00", arret: 1 },
+          { gare: "Rheinweiler", heure: "09:05", arret: 1 },
+          { gare: "Istein", heure: "09:11", arret: 1 },
+          { gare: "Eimeldingen", heure: "09:17", arret: 1 },
+          { gare: "Haltingen", heure: "09:20", arret: 1 },
+          { gare: "Weil am Rhein", heure: "09:23", arret: 1 },
+          { gare: "Basel Bad Bf", heure: "09:27", arret: 2 }
         ]
       },
       {
@@ -175,29 +179,37 @@ export const trainsDE = [
           { gare: "Weil am Rhein", heure: "11:48", arret: 1 },
           { gare: "Haltingen", heure: "11:51", arret: 1 },
           { gare: "Eimeldingen", heure: "11:54", arret: 1 },
-          { gare: "Schliengen", heure: "12:04", arret: 1 },
-          { gare: "Muellheim", heure: "12:09", arret: 2 },
-          { gare: "Buggingen", heure: "12:15", arret: 1 },
-          { gare: "Heitersheim", heure: "12:18", arret: 1 },
-          { gare: "Bad Krozingen", heure: "12:23", arret: 1 },
-          { gare: "Schallstadt", heure: "12:28", arret: 1 },
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "12:36", arret: 2 }
+          { gare: "Istein", heure: "12:00", arret: 1 },
+          { gare: "Rheinweiler", heure: "12:06", arret: 1 },
+          { gare: "Bad Bellingen", heure: "12:11", arret: 1 },
+          { gare: "Schliengen", heure: "12:16", arret: 1 },
+          { gare: "Muellheim", heure: "12:21", arret: 2 },
+          { gare: "Buggingen", heure: "12:27", arret: 1 },
+          { gare: "Heitersheim", heure: "12:30", arret: 1 },
+          { gare: "Bad Krozingen", heure: "12:35", arret: 1 },
+          { gare: "Schallstadt", heure: "12:40", arret: 1 },
+          { gare: "Freiburg-St Georgen", heure: "12:45", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "12:50", arret: 2 }
         ]
       },
       {
         nom: "Freiburg (Breisgau) Hauptbahnhof → Basel Bad Bf",
         dessertes: [
           { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "15:06", arret: 2 },
-          { gare: "Schallstadt", heure: "15:15", arret: 1 },
-          { gare: "Bad Krozingen", heure: "15:20", arret: 1 },
-          { gare: "Heitersheim", heure: "15:25", arret: 1 },
-          { gare: "Buggingen", heure: "15:28", arret: 1 },
-          { gare: "Muellheim", heure: "15:33", arret: 2 },
-          { gare: "Schliengen", heure: "15:39", arret: 1 },
-          { gare: "Eimeldingen", heure: "15:49", arret: 1 },
-          { gare: "Haltingen", heure: "15:52", arret: 1 },
-          { gare: "Weil am Rhein", heure: "15:55", arret: 1 },
-          { gare: "Basel Bad Bf", heure: "15:59", arret: 2 }
+          { gare: "Freiburg-St Georgen", heure: "15:12", arret: 1 },
+          { gare: "Schallstadt", heure: "15:17", arret: 1 },
+          { gare: "Bad Krozingen", heure: "15:22", arret: 1 },
+          { gare: "Heitersheim", heure: "15:27", arret: 1 },
+          { gare: "Buggingen", heure: "15:30", arret: 1 },
+          { gare: "Muellheim", heure: "15:35", arret: 2 },
+          { gare: "Schliengen", heure: "15:41", arret: 1 },
+          { gare: "Bad Bellingen", heure: "15:46", arret: 1 },
+          { gare: "Rheinweiler", heure: "15:51", arret: 1 },
+          { gare: "Istein", heure: "15:57", arret: 1 },
+          { gare: "Eimeldingen", heure: "16:03", arret: 1 },
+          { gare: "Haltingen", heure: "16:06", arret: 1 },
+          { gare: "Weil am Rhein", heure: "16:09", arret: 1 },
+          { gare: "Basel Bad Bf", heure: "16:13", arret: 2 }
         ]
       },
       {
@@ -207,13 +219,17 @@ export const trainsDE = [
           { gare: "Weil am Rhein", heure: "17:04", arret: 1 },
           { gare: "Haltingen", heure: "17:07", arret: 1 },
           { gare: "Eimeldingen", heure: "17:10", arret: 1 },
-          { gare: "Schliengen", heure: "17:20", arret: 1 },
-          { gare: "Muellheim", heure: "17:25", arret: 2 },
-          { gare: "Buggingen", heure: "17:31", arret: 1 },
-          { gare: "Heitersheim", heure: "17:34", arret: 1 },
-          { gare: "Bad Krozingen", heure: "17:39", arret: 1 },
-          { gare: "Schallstadt", heure: "17:44", arret: 1 },
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "17:52", arret: 2 }
+          { gare: "Istein", heure: "17:16", arret: 1 },
+          { gare: "Rheinweiler", heure: "17:22", arret: 1 },
+          { gare: "Bad Bellingen", heure: "17:27", arret: 1 },
+          { gare: "Schliengen", heure: "17:32", arret: 1 },
+          { gare: "Muellheim", heure: "17:37", arret: 2 },
+          { gare: "Buggingen", heure: "17:43", arret: 1 },
+          { gare: "Heitersheim", heure: "17:46", arret: 1 },
+          { gare: "Bad Krozingen", heure: "17:51", arret: 1 },
+          { gare: "Schallstadt", heure: "17:56", arret: 1 },
+          { gare: "Freiburg-St Georgen", heure: "18:01", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "18:06", arret: 2 }
         ]
       }
     ]

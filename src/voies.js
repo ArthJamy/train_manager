@@ -135,11 +135,14 @@ export const lignes = [
   { gareA: "Heitersheim", gareB: "Buggingen", longueur: 3.4, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Buggingen", gareB: "Muellheim", longueur: 5.9, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Muellheim", gareB: "Schliengen", longueur: 6.4, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
+  { gareA: "Muellheim", gareB: "_SchliengenLGV", longueur: 6.4, type: "LGV", vitesse_max: 260, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Offenburg", gareB: "Friesenheim (Baden)", longueur: 14, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Basel Bad Bf", gareB: "_BaselCentre", longueur: 2.5, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "ETCS" },
   { gareA: "_BaselCentre", gareB: "Basel SBB", longueur: 2.6, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "ETCS" },
-  { gareA: "Eimeldingen", gareB: "Schliengen", longueur: 16.1, type: "tunnel", vitesse_max: 260, electrification: "15kV CA", signalisation: "LZB" },
+  { gareA: "Eimeldingen", gareB: "_SchliengenLGV", longueur: 16.1, type: "tunnel", vitesse_max: 260, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Bantzenheim", gareB: "BT Energie France S.A.S", longueur: 3.3, type: "FRET", vitesse_max: 60, electrification: "25kV CA", signalisation: "KVB" },
   { gareA: "STELLANTIS MULHOUSE", gareB: "Mulhouse", longueur: 9.8, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" },
-  { gareA: "STELLANTIS MULHOUSE", gareB: "Bantzenheim", longueur: 9.6, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" }
+  { gareA: "STELLANTIS MULHOUSE", gareB: "Bantzenheim", longueur: 9.6, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" },
+  { gareA: "Triage Mulhouse-Nord", gareB: "Lutterbach", longueur: 4.2, type: "FRET", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" },
+  { gareA: "Triage Mulhouse-Nord", gareB: "_CourbeMulhouseNord", longueur: 8.6, type: "FRET", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" }
 ];

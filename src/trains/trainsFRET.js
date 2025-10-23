@@ -4,21 +4,21 @@ export const trainsFRET = [
     nom: "BB27000 SNCF",
     moteurs: ["25kV CA", "1.5kV CC"],
     vitesseMax: 100,
-    tonnage: 280,
-    composition: ["ANF60", "ANF60", "ANF60", "ANF60", "ANF60"],
+    tonnage: 560,
+    composition: ["ANF60", "ANF60", "ANF60", "ANF60", "ANF60", "ANF60", "ANF60", "ANF60", "ANF60", "ANF60"],
     trajets: [
       {
-        nom: "FRET Mulhouse → Strasbourg",
+        nom: "BT Energie France S.A.S → Strasbourg",
         dessertes: [
-          { gare: "BT Energie France S.A.S", heure: "04:00", arret: 30 },
-          { gare: "Strasbourg", heure: "05:50", arret: 45 }
+          { gare: "BT Energie France S.A.S", heure: "04:00", arret: 30, jours: ["MA", "VE", "SA"] },
+          { gare: "Strasbourg", heure: "06:08", arret: 45, jours: ["MA", "VE", "SA"] }
         ]
       },
       {
-        nom: "FRET Strasbourg → Mulhouse",
+        nom: "Strasbourg → BT Energie France S.A.S",
         dessertes: [
-          { gare: "Strasbourg", heure: "22:00", arret: 5 },
-          { gare: "BT Energie France S.A.S", heure: "23:50", arret: 2 }
+          { gare: "Strasbourg", heure: "22:00", arret: 5, jours: ["MA", "VE", "SA"] },
+          { gare: "BT Energie France S.A.S", heure: "23:43", arret: 2, jours: ["MA", "VE", "SA"] }
         ]
       }
     ]
