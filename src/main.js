@@ -985,7 +985,7 @@ new p5((p) => {
         // === FRET ===
         if (statut.startsWith("entre")) p.fill("#8B4513");          // brun standard
         else if (statut.startsWith("en gare")) p.fill("#CD853F");   // brun clair (sable)
-        else if (statut.startsWith("en attente")) p.fill("#A0522D");
+        else if (statut.startsWith("en attente")) p.fill(113, 114, 122);
         else p.fill(170, 171, 180);
       } else {
         // === Voyageurs ===
@@ -1950,4 +1950,5 @@ document.getElementById("heure").addEventListener("change", () => {
   fondDoitEtreRedessine = true; // 🔹 redessine le fond pour maj du mode occupation
   console.log(`[Reinit] Réinitialisation des états à ${nouvelleHeure}`);
 });
+
 
