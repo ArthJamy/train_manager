@@ -34,7 +34,6 @@ export const lignes = [
   { gareA: "Saint-Amarin", gareB: "Wesserling", longueur: 3.9, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Wesserling", gareB: "Oderen", longueur: 3.5, type: "classique", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
   { gareA: "Oderen", gareB: "Kruth", longueur: 1.6, type: "classique", vitesse_max: 60, electrification: "diesel", signalisation: "KVB" },
-  { gareA: "Mulhouse", gareB: "Bantzenheim", longueur: 19.5, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" },
   { gareA: "Bantzenheim", gareB: "Neuenburg (Baden)", longueur: 6.5, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" },
   { gareA: "Neuenburg (Baden)", gareB: "Muellheim", longueur: 4.4, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "PZB" },
   { gareA: "Colmar", gareB: "_ColSél-Ostheim", longueur: 10.4, type: "classique", vitesse_max: 200, electrification: "25kV CA", signalisation: "ETCS" },
@@ -139,5 +138,8 @@ export const lignes = [
   { gareA: "Offenburg", gareB: "Friesenheim (Baden)", longueur: 14, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Basel Bad Bf", gareB: "_BaselCentre", longueur: 2.5, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "ETCS" },
   { gareA: "_BaselCentre", gareB: "Basel SBB", longueur: 2.6, type: "classique", vitesse_max: 80, electrification: "15kV CA", signalisation: "ETCS" },
-  { gareA: "Eimeldingen", gareB: "Schliengen", longueur: 16.1, type: "tunnel", vitesse_max: 260, electrification: "15kV CA", signalisation: "LZB" }
+  { gareA: "Eimeldingen", gareB: "Schliengen", longueur: 16.1, type: "tunnel", vitesse_max: 260, electrification: "15kV CA", signalisation: "LZB" },
+  { gareA: "Bantzenheim", gareB: "BT Energie France S.A.S", longueur: 3.3, type: "FRET", vitesse_max: 60, electrification: "25kV CA", signalisation: "KVB" },
+  { gareA: "STELLANTIS MULHOUSE", gareB: "Mulhouse", longueur: 9.8, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" },
+  { gareA: "STELLANTIS MULHOUSE", gareB: "Bantzenheim", longueur: 9.6, type: "classique", vitesse_max: 90, electrification: "25kV CA", signalisation: "KVB" }
 ];

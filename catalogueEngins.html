@@ -221,12 +221,33 @@
             cursor: pointer;
         }
 
-        #filter option,
-        #sort option {
+        #sort,
+        #filter {
             background: #003b73;
             color: #fff;
-            font-weight: 500;
         }
+
+        .submenu {
+            background: #003b73;
+            /* fond clair */
+            color: #fffefe;
+            /* texte sombre */
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            padding: 6px 0;
+        }
+
+        .submenu button {
+            color: #ffffff;
+            /* texte lisible */
+            background: none;
+        }
+
+        .submenu button:hover {
+            background: #257cff;
+        }
+
 
         /* === Champ recherche avec bouton effacer === */
         .search-wrapper {
@@ -242,7 +263,8 @@
 
         /* === Bouton "effacer" dans la barre de recherche === */
         #clear-search {
-            all: unset;   /* ✅ annule tous les styles globaux (box-shadow, padding, etc.) */
+            all: unset;
+            /* ✅ annule tous les styles globaux (box-shadow, padding, etc.) */
             position: absolute;
             right: 8px;
             top: 50%;
@@ -265,6 +287,21 @@
             /* aucun fond */
             box-shadow: none;
             /* supprime toute ombre héritée */
+        }
+
+        .submenu button {
+            display: block;
+            width: 90%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .submenu button:hover {
+            background: #257cff;
         }
     </style>
 </head>
@@ -290,11 +327,25 @@
 
             <select id="sort">
                 <option value="">Trier par...</option>
-                <option value="nom">Nom</option>
                 <option value="pays">Pays</option>
-                <option value="vitesseMax">Vitesse max</option>
+                <option value="typeEngin">Type d’engin</option>
                 <option value="moteurs">Type d’alimentation</option>
+                <option value="vitesseMax">Vitesse max</option>
+                <option value="nom">Nom</option>
             </select>
+            <!-- ✅ Le sous-menu doit être en dehors -->
+            <div id="submenu" class="submenu" style="
+                display:none;
+                position:absolute;
+                top:50px;
+                right:2rem;
+                background:#003b73;
+                border:1px solid #ccc;
+                border-radius:6px;
+                box-shadow:0 2px 6px rgba(0,0,0,0.2);
+                z-index:100;
+                padding:6px 0;">
+            </div>
         </div>
 
     </header>
@@ -308,9 +359,10 @@
             const res = await fetch("./src/engins.json");
             const data = await res.json();
             const engins = [
-                ...data.trains.map(t => ({ ...t, type: "train" })),
-                ...data.wagons.map(w => ({ ...w, type: "wagon" }))
+                ...data.trains.map(t => ({ ...t, classe: "train" })),  // NE TOUCHE PAS t.type
+                ...data.wagons.map(w => ({ ...w, classe: "wagon" }))
             ];
+
 
             const grid = document.getElementById("grid");
             const search = document.getElementById("search");
@@ -322,7 +374,7 @@
             const trainNom = params.get("train");
 
 
-            function afficher(filtre = "", tri = "", typeFiltre = "all") {
+            function afficher(filtre = "", tri = "", typeFiltre = "all", sousFiltre = null) {
                 function getSpeedColor(vitesse) {
                     if (!vitesse) return "white";
                     const min = 60, max = 320; // échelle
@@ -361,7 +413,7 @@
                 );
 
                 if (typeFiltre !== "all") {
-                    resultats = resultats.filter(e => e.type === typeFiltre);
+                    resultats = resultats.filter(e => e.classe === typeFiltre);
                 }
 
                 if (tri) {
@@ -373,6 +425,9 @@
                                 return a.nom.localeCompare(b.nom);
                             case "pays":
                                 return (a.pays || "").localeCompare(b.pays || "");
+                            case "typeEngin":
+                                const ordre = { "Voyageur": 1, "Poly": 2, "Fret": 3 };
+                                return (ordre[a.type] || 99) - (ordre[b.type] || 99);
                             case "moteurs":
                                 return (a.moteurs?.join(",") || "").localeCompare(b.moteurs?.join(",") || "");
                             default:
@@ -380,6 +435,21 @@
                         }
                     });
                 }
+                // --- Sous-filtre contextuel selon le tri courant ---
+                if (sousFiltre) {
+                    if (tri === "pays") {
+                        // FR / DE / CH
+                        resultats = resultats.filter(e => (e.pays || "") === sousFiltre);
+                    } else if (tri === "typeEngin") {
+                        // Voyageur / Fret / Poly
+                        resultats = resultats.filter(e => (e.type || "") === sousFiltre);
+                    } else if (tri === "moteurs") {
+                        // "25kV CA", "15kV CA", "1.5kV CC", "diesel"
+                        const needle = sousFiltre.toLowerCase();
+                        resultats = resultats.filter(e => (e.moteurs || []).some(m => m.toLowerCase().includes(needle)));
+                    }
+                }
+
 
 
                 resultats.forEach(e => {
@@ -395,6 +465,15 @@
                         const colors = { FR: "rgb(210, 230, 255)", DE: "rgb(255, 245, 180)", CH: "rgb(255, 180, 180)" };
                         div.style.background = colors[e.pays] || "#f9fafb";
                     }
+                    // === Couleur de fond selon le type d'engin ===
+                    if (tri === "typeEngin" && e.type) {
+                        const colors = {
+                            "Voyageur": "rgba(173, 216, 230, 0.3)", // bleu clair
+                            "Fret": "rgba(205, 133, 63, 0.3)",      // brun clair
+                            "Poly": "linear-gradient(90deg, rgba(173,216,230,0.3), rgba(205,133,63,0.3))"
+                        };
+                        div.style.background = colors[e.type] || "#f9fafb";
+                    }
 
                     if (tri === "moteurs" && e.moteurs) {
                         div.style.background = getAlimGradient(e.moteurs);
@@ -408,12 +487,17 @@
                     <h3>${e.nom}</h3>
                     ${e.vitesseMax ? `<p><b>${e.vitesseMax} km/h</b></p>` : ""}
                     ${e.moteurs ? `<p>${e.moteurs.join(", ")}</p>` : ""}
-                `;
+                    
+                    ${tri === "typeEngin" && e.type ? `
+                    <p style="color:${e.type === 'Fret' ? '#8B4513' : e.type === 'Poly' ? '#4B0082' : '#1e3a8a'}; font-weight:600;">
+                        ${e.type === 'Fret' ? '📦 FRET' : e.type === 'Poly' ? '🔷 POLY' : e.type === 'Voyageur' ? '🚆 VOYAGEUR' : ''}
+                    </p>` : ""}`;
 
                     const details = document.createElement("div");
                     details.className = "card-details";
                     details.innerHTML = `
-                        ${e.type ? `<p><b>Type :</b> ${e.type === "train" ? "Train" : "Wagon"}</p>` : ""}
+                        ${e.classe ? `<p><b>Catégorie :</b> ${e.classe === "train" ? "Train" : "Wagon"}</p>` : ""}
+                        ${e.type ? `<p><b>Type d’engin :</b> ${e.type}</p>` : ""}
                         ${e.capacite ? (() => {
                             const total = (e.capacite.premiere || 0) + (e.capacite.seconde || 0);
                             const detail = Object.entries(e.capacite)
@@ -421,6 +505,7 @@
                                 .join(", ");
                             return `<p><b>Capacité :</b> ${detail} ▶ (total : <b>${total}</b>)</p>`;
                         })() : ""}
+                        ${e.tonnage ? `<p><b>Tonnage :</b> ${e.tonnage} t</p>` : ""}
                         ${e.pays ? `<p><b>Pays :</b> ${e.pays}</p>` : ""}
                         ${e.dateSortie ? `<p><b>Sortie :</b> ${e.dateSortie}</p>` : ""}
                         ${e.poids ? `<p><b>Poids :</b> ${e.poids} t</p>` : ""}
@@ -467,7 +552,80 @@
                     </div>`;
                 }
             }
-            afficher();
+            // === SOUS-MENU ===
+            const submenu = document.getElementById("submenu");
+            const optionsSubmenu = {
+                "pays": ["FR", "DE", "CH"],
+                "typeEngin": ["Voyageur", "Fret", "Poly"],
+                "moteurs": ["25kV CA", "15kV CA", "1.5kV CC", "diesel"]
+            };
+
+            let currentSubmenuFilter = null;
+
+            let lastTri = ""; // ✅ Variable pour mémoriser le dernier tri
+
+            // ✅ Utiliser "click" sur le select pour détecter les reclics
+            sort.addEventListener("click", e => {
+                const tri = sort.value;
+
+                // Si on clique sur le select ET qu'il a déjà un sous-menu disponible
+                if (tri === lastTri && optionsSubmenu[tri] && submenu.style.display === "none") {
+                    submenu.style.display = "block";
+                    const rect = sort.getBoundingClientRect();
+                    submenu.style.left = rect.left + "px";
+                    submenu.style.top = rect.bottom + 6 + "px";
+                    submenu.style.width = rect.width + "px";
+                }
+            });
+
+            sort.addEventListener("change", e => {
+                const tri = e.target.value;
+
+                // Si tri par alimentation → on force "trains"
+                if (tri === "moteurs") {
+                    filter.value = "train";
+                }
+
+                // On réinitialise le sous-filtre
+                currentSubmenuFilter = null;
+
+                // Afficher le sous-menu SI il existe pour ce tri
+                if (optionsSubmenu[tri]) {
+                    submenu.innerHTML = optionsSubmenu[tri]
+                        .map(opt => `<button data-value="${opt}">${opt}</button>`)
+                        .join("");
+                    const rect = e.target.getBoundingClientRect();
+                    submenu.style.left = rect.left + "px";
+                    submenu.style.top = rect.bottom + 6 + "px";
+                    submenu.style.width = rect.width + "px";
+                    submenu.style.display = "block";
+                } else {
+                    submenu.style.display = "none";
+                }
+
+                lastTri = tri; // ✅ Mémoriser le tri actuel
+
+                // Afficher les résultats même sans sous-menu
+                afficher(search.value, tri, filter.value, currentSubmenuFilter);
+            });
+
+
+            submenu.addEventListener("click", e => {
+                const tri = sort.value;
+                const val = e.target.getAttribute("data-value");
+                if (!val) return;
+                currentSubmenuFilter = val;
+                submenu.style.display = "none";
+                afficher(search.value, tri, filter.value, val);
+            });
+
+            document.addEventListener("click", e => {
+                if (!submenu.contains(e.target) && e.target.id !== "sort") {
+                    submenu.style.display = "none";
+                }
+            });
+
+            afficher("", sort.value, filter.value, currentSubmenuFilter);
 
             // Si un paramètre ?train= est présent → préremplir et afficher
             if (trainNom) {
@@ -475,7 +633,7 @@
 
                 // attendre que le DOM des cartes soit rendu
                 setTimeout(() => {
-                    afficher(trainNom);
+                    afficher(trainNom, sort.value, filter.value, currentSubmenuFilter);
 
                     // Cherche la carte exacte
                     const match = Array.from(document.querySelectorAll(".card")).find(c =>
@@ -493,26 +651,19 @@
             }
 
 
-            search.addEventListener("input", () => afficher(search.value, sort.value, filter.value));
-            sort.addEventListener("change", () => {
-                const tri = sort.value;
+            search.addEventListener("input", () => afficher(search.value, sort.value, filter.value, currentSubmenuFilter));
 
-                // Si tri par alimentation → filtrer sur les trains
-                if (tri === "moteurs") {
-                    filter.value = "train";
-                }
 
-                afficher(search.value, tri, filter.value);
-            });
-
-            filter.addEventListener("change", () => afficher(search.value, sort.value, filter.value));
+            filter.addEventListener("change", () => afficher(search.value, sort.value, filter.value, currentSubmenuFilter));
 
             // === Bouton effacer la recherche ===
             const clearBtn = document.getElementById("clear-search");
             if (clearBtn) {
                 clearBtn.addEventListener("click", () => {
                     document.getElementById("search").value = "";
-                    afficher("", sort.value, filter.value);
+                    currentSubmenuFilter = null;
+                    afficher("", sort.value, filter.value, currentSubmenuFilter);
+
                 });
             }
         }

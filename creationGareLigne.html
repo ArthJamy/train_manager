@@ -77,6 +77,7 @@
       <div id="garesContainer"></div>
       <div style="display:flex; gap:8px; justify-content:center; margin-bottom:6px;">
         <button onclick="ajouterCarteGare()">➕ Ajouter une gare</button>
+        <button onclick="ajouterCarteFRET()">🏭 Ajouter une gare FRET</button>
         <button onclick="ajouterCarteFantome()">👻 Ajouter une gare fantôme</button>
       </div>
       <div class="list" id="listeGares"></div>
@@ -313,6 +314,80 @@
       card.remove();
     }
 
+    function ajouterCarteFRET() {
+      const container = document.getElementById("garesContainer");
+      const div = document.createElement("div");
+      div.className = "card";
+
+      div.innerHTML = `
+    <label>Lien Google Maps</label>
+    <input type="text" placeholder="Coller ici (place, search, ?q=..., etc.)" onblur="extraireDepuisLien(this)">
+
+    <div class="row">
+      <div>
+        <label>Nom de la gare FRET</label>
+        <input type="text" class="nom" placeholder="ex : Terminal Cargo Mulhouse">
+      </div>
+      <div>
+        <label>Taille (indicative)</label>
+        <select class="type">
+          <option value="petite" selected>petite</option>
+          <option value="moyenne">moyenne</option>
+          <option value="grande">grande</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Latitude</label>
+        <input type="number" class="lat" step="0.000001" placeholder="ex : 47.6270725">
+      </div>
+      <div>
+        <label>Longitude</label>
+        <input type="number" class="lon" step="0.000001" placeholder="ex : 7.2390608">
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-end;gap:8px;">
+      <button onclick="calculerXYApercu(this)">📐 Aperçu (x,y)</button>
+      <button onclick="validerGareFRET(this)">✅ Ajouter</button>
+    </div>
+  `;
+
+      container.appendChild(div);
+    }
+
+    function validerGareFRET(btn) {
+      const card = btn.closest(".card");
+      const nom = card.querySelector(".nom").value.trim();
+      const lat = parseFloat(card.querySelector(".lat").value);
+      const lon = parseFloat(card.querySelector(".lon").value);
+      const type = card.querySelector(".type").value;
+
+      if (!nom || isNaN(lat) || isNaN(lon)) {
+        alert("⚠️ Remplis au moins le nom, la latitude et la longitude.");
+        return;
+      }
+
+      const { x, y } = latLonToXY(lat, lon);
+
+      const gare = {
+        nom,
+        x,
+        y,
+        type,
+        gareFRET: true
+      };
+
+      nouvellesGares.push(gare);
+      indexProchainSegment = nouvellesGares.length - 1;
+      majListeGares();
+      majListesAutocomplete();
+      card.remove();
+    }
+
+
     function majFluxPourCarte(sel) {
       const card = sel.closest(".card");
       const taille = sel.value;
@@ -409,12 +484,15 @@
       const toutes = [...garesExistantes, ...nouvellesGares];
 
       const out = toutes.map(g => {
-        // 💡 Si c’est une gare fantôme → affichage simplifié
         if (g.fantome) {
           return `${g.nom} → x:${g.x.toFixed(1)}, y:${g.y.toFixed(1)}, fantome: true`;
         }
+        if (g.gareFRET) {
+          return `${g.nom} → x:${g.x.toFixed(1)}, y:${g.y.toFixed(1)}, ${g.type}, gareFRET: true`;
+        }
         // 🚉 Sinon gare normale
         return `${g.nom} → x:${g.x.toFixed(1)}, y:${g.y.toFixed(1)}, ${g.type}, flux:${g.fluxPassager}`;
+
       }).join("\n");
 
       document.getElementById("listeGares").innerHTML =
@@ -424,7 +502,7 @@
     function majListesAutocomplete() {
       const listA = document.getElementById("listeGaresA");
       const listB = document.getElementById("listeGaresB");
-      if (!listA || !listB) return; 
+      if (!listA || !listB) return;
 
       const noms = [...garesExistantes, ...nouvellesGares]
         .filter(g => !g.fantome)
@@ -475,6 +553,7 @@
     <label>Type</label>
     <select class="type">
       <option value="classique" selected>classique</option>
+      <option value="FRET">FRET</option>
       <option value="LGV">LGV</option>
       <option value="tunnel">tunnel</option>
     </select>
@@ -603,6 +682,8 @@
       const lignes = toutes.map(g => {
         if (g.fantome) {
           return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, fantome: true }`;
+        } else if (g.gareFRET) {
+          return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", gareFRET: true }`;
         } else {
           return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", fluxPassager: ${g.fluxPassager} }`;
         }
@@ -637,6 +718,8 @@ ${toutes.map(l => `  { gareA: "${l.gareA}", gareB: "${l.gareB}", longueur: ${l.l
       const lignes = toutes.map(g => {
         if (g.fantome) {
           return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, fantome: true }`;
+        } else if (g.gareFRET) {
+          return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", gareFRET: true }`;
         } else {
           return `  { nom: "${g.nom}", x: ${g.x.toFixed(1)}, y: ${g.y.toFixed(1)}, type: "${g.type}", fluxPassager: ${g.fluxPassager} }`;
         }

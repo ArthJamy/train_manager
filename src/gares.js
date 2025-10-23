@@ -135,5 +135,7 @@ export const villes = [
   { nom: "Haltingen", x: 271.0, y: 131.7, type: "petite", fluxPassager: 1769 },
   { nom: "Weil am Rhein", x: 265.3, y: 148.7, type: "moyenne", fluxPassager: 11163 },
   { nom: "Basel Bad Bf", x: 265.5, y: 174.6, type: "moyenne", fluxPassager: 13603 },
-  { nom: "_BaselCentre", x: 270.0, y: 196.5, fantome: true }
+  { nom: "_BaselCentre", x: 270.0, y: 196.5, fantome: true },
+  { nom: "BT Energie France S.A.S", x: 190.5, y: -65.5, type: "petite", gareFRET: true},
+  { nom: "STELLANTIS MULHOUSE", x: 82.6, y: -32.3, type: "petite", gareFRET: true }
 ];

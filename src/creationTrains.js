@@ -4,6 +4,7 @@ import { lignes } from './voies.js';
 import { trainsFR as baseFR } from './trains/trainsFR.js';
 import { trainsDE as baseDE } from './trains/trainsDE.js';
 import { trainsCH as baseCH } from './trains/trainsCH.js';
+import { trainsFRET as baseFRET } from './trains/trainsFRET.js';
 
 
 /* ============================================================
@@ -14,6 +15,7 @@ const state = {
   trainsFR: structuredClone(baseFR),
   trainsDE: structuredClone(baseDE),
   trainsCH: structuredClone(baseCH),
+  trainsFRET: structuredClone(baseFRET),
   current: {
     pays: 'FR',
     id: '',
@@ -292,27 +294,29 @@ async function loadEngins() {
 function updatePaysColor() {
   const sel = $('#paysSel');
   if (!sel) return;
-  sel.classList.remove('FR', 'DE', 'CH');
+
+  // Réinitialise les classes
+  sel.classList.remove('FR', 'DE', 'CH', 'FRET');
   sel.classList.add(sel.value);
 }
-
 
 function bindTrainForm() {
   // Pays
   $('#paysSel').addEventListener('change', e => {
     state.current.pays = e.target.value;
+    updatePaysColor();
   });
 
   // ID
   $('#trainId').addEventListener('input', e => {
     state.current.id = e.target.value.trim();
+    updatePaysColor();
   });
 
   $('#paysSel').addEventListener('change', e => {
     const sel = e.target;
     state.current.pays = sel.value;
-    sel.classList.remove('FR', 'DE', 'CH');
-    sel.classList.add(sel.value);
+    updatePaysColor();
   });
   updatePaysColor();
 }
@@ -1295,7 +1299,7 @@ function performExport() {
   if (err) { toast(err, 'err', 3500); return; }
 
   const trainObj = toTrainObjectForSave();
-  const target = state.current.pays === 'DE' ? 'DE' : state.current.pays === 'CH' ? 'CH' : 'FR';
+  const target = state.current.pays === 'DE' ? 'DE' : state.current.pays === 'CH' ? 'CH' : state.current.pays === 'FRET' ? 'FRET' : 'FR';
 
   // 🧹 Supprime TOUTES les anciennes occurrences
   removeTrainEverywhere(trainObj.id);
@@ -1304,7 +1308,9 @@ function performExport() {
   const arrTarget =
     target === 'FR' ? state.trainsFR :
       target === 'DE' ? state.trainsDE :
-        state.trainsCH;
+        target === 'CH' ? state.trainsCH :
+          state.trainsFRET;
+
 
   const idx = arrTarget.findIndex(t => t.id === trainObj.id);
   if (idx >= 0) arrTarget[idx] = trainObj;
@@ -1314,14 +1320,17 @@ function performExport() {
   const frText = prettyJSExport('trainsFR', state.trainsFR);
   const deText = prettyJSExport('trainsDE', state.trainsDE);
   const chText = prettyJSExport('trainsCH', state.trainsCH);
+  const fretText = prettyJSExport('trainsFRET', state.trainsFRET);
 
-  // 💾 Téléchargement simultané des trois fichiers
+  // Téléchargement simultané
   download('trainsFR.js', frText);
   download('trainsDE.js', deText);
   download('trainsCH.js', chText);
+  download('trainsFRET.js', fretText);
+
 
   renderAllTrajets();
-  toast('Export téléchargé (FR, DE & CH).', 'ok');
+  toast('Export téléchargé (FR, DE, CH & FRET).', 'ok');
   state.editingExistingId = null;
 }
 
@@ -1345,7 +1354,8 @@ function openPopupTrains() {
   const trains = [
     ...(state.trainsFR || []).map(t => ({ ...t, pays: "FR" })),
     ...(state.trainsDE || []).map(t => ({ ...t, pays: "DE" })),
-    ...(state.trainsCH || []).map(t => ({ ...t, pays: "CH" }))
+    ...(state.trainsCH || []).map(t => ({ ...t, pays: "CH" })),
+    ...(state.trainsFRET || []).map(t => ({ ...t, pays: "FRET" }))
   ];
 
   if (!trains.length) {
@@ -1381,7 +1391,8 @@ function openPopupTrains() {
       div.style.background =
         p === 'FR' ? '#e6f0ff' :
           p === 'DE' ? '#fff7cc' :
-            p === 'CH' ? '#ffe6e6' : '#f9f9f9';
+            p === 'CH' ? '#ffe6e6' :
+              p === 'FRET' ? '#fcdfcaff' : '#f9f9f9';
 
 
       // 🔹 tentative de trouver l'image correspondante (si dispo)
@@ -1447,11 +1458,8 @@ function loadTrainData(train) {
   // 🟦 synchronise le sélecteur de pays (visuel et logique)
   const paysSel = $('#paysSel');
   paysSel.value = train.pays || 'FR';
-  paysSel.classList.remove('FR', 'DE', 'CH');
-  paysSel.classList.add(paysSel.value);
   state.current.pays = paysSel.value;
-
-
+  updatePaysColor();
   toast(`✅ Train "${train.nom}" chargé avec succès.`, 'ok');
 }
 
@@ -1850,7 +1858,12 @@ function bindActions() {
     }
     // Ajoute le train actuel dans la mémoire locale (sans export)
     const trainObj = toTrainObjectForSave();
-    const target = state.current.pays === "DE" ? state.trainsDE : state.current.pays === "CH" ? state.trainsCH : state.trainsFR;
+    const target =
+      state.current.pays === "DE" ? state.trainsDE :
+        state.current.pays === "CH" ? state.trainsCH :
+          state.current.pays === "FRET" ? state.trainsFRET :
+            state.trainsFR;
+
 
     // Supprime ancienne version si même ID
     const idx = target.findIndex(t => t.id === trainObj.id);

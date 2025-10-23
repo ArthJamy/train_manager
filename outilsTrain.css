@@ -317,22 +317,6 @@ select {
     margin-top: 10px;
 }
 
-/* === Couleur du sélecteur pays === */
-#paysSel.FR {
-    background: #b9d5ff;
-    border-color: #006eff;
-}
-
-#paysSel.DE {
-    background: #fdf2b5;
-    border-color: #ffcc00;
-}
-
-#paysSel.CH {
-  background: #ffc4c4;   /* rouge clair */
-  border-color: #b62626;
-}
-
 .trajet-card.active {
     border: 2px solid #6478ff;
     box-shadow: 0 0 0 3px rgba(100, 120, 255, .12);
@@ -481,4 +465,29 @@ select {
     transform: scale(1.03);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     filter: brightness(1.08);
+}
+
+/* ==== Sélecteur de pays : couleurs ==== */
+select#paysSel.FR {
+  background: #e6f0ff !important;
+  color: #111 !important;
+  border-color: #b3c9ff;
+}
+
+select#paysSel.DE {
+  background: #fff7cc !important;
+  color: #111 !important;
+  border-color: #e6d45a;
+}
+
+select#paysSel.CH {
+  background: #ffe6e6 !important;
+  color: #111 !important;
+  border-color: #e57b7b;
+}
+
+select#paysSel.FRET {
+  background: #8b4513 !important; /* brun foncé */
+  color: #fff !important;
+  border-color: #a46028;
 }

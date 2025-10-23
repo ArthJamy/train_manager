@@ -3,7 +3,9 @@ import { lignes } from './voies.js';
 import { trainsFR } from './trains/trainsFR.js';
 import { trainsDE } from './trains/trainsDE.js';
 import { trainsCH } from './trains/trainsCH.js';
-export const trains = [...trainsFR, ...trainsDE, ...trainsCH];
+import { trainsFRET } from './trains/trainsFRET.js';
+export const trains = [...trainsFR, ...trainsDE, ...trainsCH, ...trainsFRET];
+
 import { accouplements } from "./um.js";
 
 import { afficherTrajetsTrain, afficherFicheHoraire, afficherCarteFlotte } from "./popup.js";
@@ -112,6 +114,10 @@ function timeToMinutes(h) {
   return hr * 60 + mn + sc / 60; // ← inclut les secondes !
 }
 
+function isFRET(train) {
+  return ('tonnage' in train) && !('capacite' in train);
+}
+
 
 // ===== EXPOSITION DU SNAPSHOT FLOTTE POUR popup.js =====
 window.__trainRuntime = {
@@ -196,6 +202,7 @@ function trouverCheminEntreGares(gareA, gareB) {
   return [gareA, gareB];
 }
 
+let fondDoitEtreRedessine = true;
 
 new p5((p) => {
   let offsetX = 0;
@@ -212,7 +219,6 @@ new p5((p) => {
   let lastOffsetX = null;
   let lastOffsetY = null;
   let lastZoom = null;
-  let fondDoitEtreRedessine = true;
   let cachedTrainStates = [];
 
   let affichageLignes = "electrification";
@@ -749,8 +755,10 @@ new p5((p) => {
         case "type":
           if (l.type === "LGV") fondBuffer.stroke(220, 0, 0);
           else if (l.type === "tunnel") fondBuffer.stroke(60);
+          else if (l.type === "FRET") fondBuffer.stroke("#8B4513"); // brun
           else fondBuffer.stroke(0, 100, 255);
           break;
+
 
         case "vitesse":
           const v = l.vitesse_max || 100;
@@ -849,9 +857,13 @@ new p5((p) => {
     fondBuffer.drawingContext.setLineDash([]);
 
     if (trajetSelectionne) {
-      fondBuffer.stroke(135, 206, 255); // bleu clair
-      fondBuffer.strokeWeight(8 / zoom); // plus large
+      // couleur selon le train sélectionné
+      const estFRET = elementSelectionne?.type === "train" && isFRET(elementSelectionne.data);
+      const couleur = estFRET ? "#DEB887" : "rgba(143, 207, 253, 1)"; // beige clair pour FRET, bleu clair sinon
+      fondBuffer.stroke(couleur);
+      fondBuffer.strokeWeight(8 / zoom);
       fondBuffer.noFill();
+
 
       const dess = trajetSelectionne.dessertes;
       for (let i = 0; i < dess.length - 1; i++) {
@@ -885,8 +897,13 @@ new p5((p) => {
       textSize *= scaleFactor;
 
       fondBuffer.noStroke();
-      fondBuffer.fill(0);
+      if (v.gareFRET) {
+        fondBuffer.fill("#583c21ff"); // brun très foncé, proche du noir
+      } else {
+        fondBuffer.fill(0);
+      }
       fondBuffer.circle(v.x, v.y, size);
+
 
       fondBuffer.textAlign(fondBuffer.RIGHT, fondBuffer.CENTER);
       fondBuffer.textSize(textSize);
@@ -963,10 +980,21 @@ new p5((p) => {
       const size = 9 * scaleFactor;
       const textSize = 12 * scaleFactor;
 
-      if (statut.startsWith("entre")) p.fill("blue");
-      else if (statut.startsWith("en gare")) p.fill(0, 179, 255);
-      else if (statut.startsWith("en attente")) p.fill(113, 114, 122);
-      else p.fill(170, 171, 180);
+      // --- Couleur selon type de train et statut ---
+      if (isFRET(train)) {
+        // === FRET ===
+        if (statut.startsWith("entre")) p.fill("#8B4513");          // brun standard
+        else if (statut.startsWith("en gare")) p.fill("#CD853F");   // brun clair (sable)
+        else if (statut.startsWith("en attente")) p.fill("#A0522D");
+        else p.fill(170, 171, 180);
+      } else {
+        // === Voyageurs ===
+        if (statut.startsWith("entre")) p.fill("blue");
+        else if (statut.startsWith("en gare")) p.fill(0, 179, 255);
+        else if (statut.startsWith("en attente")) p.fill(113, 114, 122);
+        else p.fill(170, 171, 180);
+      }
+
 
       p.noStroke();
       p.circle(position.x, position.y, size);
@@ -979,7 +1007,8 @@ new p5((p) => {
         ) {
           p.textSize(textSize);
           p.textAlign(p.CENTER, p.CENTER);
-          p.fill(25, 46, 232);
+          if (isFRET(train)) p.fill("#8B4513");
+          else p.fill(25, 46, 232);
 
           const heureCourante = document.getElementById("heure")?.value || "08:00";
           const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
@@ -988,7 +1017,6 @@ new p5((p) => {
 
           const label = umCount > 1 ? `${train.id} (UM${umCount})` : train.id;
           p.text(label, position.x, position.y - textSize);
-          //p.text(train.id, position.x, position.y - textSize);
         }
       }
 
@@ -1049,6 +1077,8 @@ new p5((p) => {
     const statut = etat?.statut || "indisponible";
     const vitesseActuelle = etat?.vitesseActuelle || "—";
     const trajet = etat?.trajet;
+    const estFRET = isFRET(train);
+
 
     const rame = [train.nom, ...(train.composition || [])];
     const imagesHTML = rame.map(nom => {
@@ -1128,10 +1158,11 @@ new p5((p) => {
 
     setTimeout(() => {
       div.innerHTML = `
-    <h3 class="train-nom"
-    style="cursor:pointer; color:#1e3a8a"
-    onclick="ouvrirCatalogue('${train.nom}')">
-    ${train.nom}
+      <h3 class="train-nom"
+      style="cursor:pointer; color:${estFRET ? '#8B4513' : '#1e3a8a'}"
+      onclick="ouvrirCatalogue('${train.nom}')">
+      ${estFRET ? '📦 ' : ''}${train.nom}
+
     ${(() => {
           const heureCourante = document.getElementById("heure")?.value || "08:00";
           const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
@@ -1149,11 +1180,13 @@ new p5((p) => {
     </div>
     <p><b>ID :</b> ${train.id}</p>
     <p><b>Statut :</b> ${statut}</p>
+    ${estFRET ? `<p><b>Charge :</b> ${train.tonnage} tonnes</p>` : ""}
+
     
     <p><b>Destination :</b> ${trajet ? trajet.dessertes.at(-1).gare : "—"}</p>
     <p><b>Vitesse actuelle :</b> ${vitesseActuelle} km/h</p>
 
-    ${etatDynamique && (
+    ${!estFRET && etatDynamique && (
           statut.startsWith("en gare") || statut.startsWith("entre")
         ) ? (() => {
           const taux = etatDynamique.tauxRemplissage * 100;
@@ -1242,6 +1275,7 @@ new p5((p) => {
 
 
     trains.forEach(train => {
+      if (isFRET(train)) return; // ⛔ Ne pas afficher les trains FRET dans les horaires voyageurs
       train.trajets.forEach(trajet => {
         const dess = trajet.dessertes;
 
@@ -1426,9 +1460,45 @@ new p5((p) => {
       `;
 
       div.innerHTML = html;
+
+      // 🟤 Si gare FRET, afficher directement son trafic fret
+      const gareObj = villes.find(v => v.nom === nomGare);
+      if (gareObj?.gareFRET) {
+        afficherHorairesFRET(nomGare);
+        return;
+      }
+
+      // Sinon, affichage standard + ajout bouton FRET
+      div.innerHTML = html;
       document.getElementById("btn-fiche-gare").addEventListener("click", () => {
         afficherFicheHoraire(nomGare);
       });
+
+      // === 📦 Comptage automatique du trafic FRET à cette gare ===
+      let countFret = 0;
+      trainsFRET.forEach(train => {
+        train.trajets.forEach(trajet => {
+          if (trajet.dessertes.some(d => d.gare === nomGare)) countFret++;
+        });
+      });
+
+      // --- Si au moins 1 train FRET passe par cette gare ---
+      if (countFret > 0) {
+        const pFret = document.createElement("p");
+        pFret.innerHTML = `<b style="color:#8B4513;">📦 Activité FRET :</b> ${countFret} train${countFret > 1 ? "s" : ""} prévu${countFret > 1 ? "s" : ""} aujourd’hui`;
+        pFret.style.margin = "10px";
+        pFret.style.color = "#5C4033";
+        div.appendChild(pFret);
+
+        // === Bouton pour ouvrir la vue FRET complète ===
+        const btnFret = document.createElement("button");
+        btnFret.textContent = "📦 Voir le trafic FRET";
+        btnFret.className = "btn-popup";
+        btnFret.style.background = "#8B4513";
+        btnFret.style.color = "white";
+        btnFret.onclick = () => afficherHorairesFRET(nomGare);
+        div.appendChild(btnFret);
+      }
 
       setTimeout(() => {
         div.style.opacity = 1;
@@ -1436,6 +1506,120 @@ new p5((p) => {
       }, 50);
     }, 300);
   }
+
+
+  function afficherHorairesFRET(nomGare) {
+    const div = document.getElementById("info-content");
+    if (!div) return;
+
+    const departs = [];
+    const arrivees = [];
+
+    const tNow = timeToMinutes(document.getElementById("heure").value || "00:00");
+    const joursSemaine = ["DI", "LU", "MA", "ME", "JE", "VE", "SA"];
+    const now = new Date();
+    const todayIndex = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Paris" })).getDay();
+    const jourActuel = joursSemaine[todayIndex];
+    const gareObj = villes.find(v => v.nom === nomGare);
+
+    // --- Récupération des trajets FRET ---
+    trainsFRET.forEach(train => {
+      train.trajets.forEach(trajet => {
+        const dess = trajet.dessertes;
+        dess.forEach((d, i) => {
+          if (d.gare === nomGare) {
+            // Départs
+            if (i < dess.length - 1) {
+              const destination = dess.at(-1).gare;
+              const heureDepart = timeToMinutes(d.heure) + (d.arret || 0);
+              departs.push({
+                train: train.id,
+                heure: minutesToTime(heureDepart),
+                vers: destination,
+                tonnage: train.tonnage,
+              });
+            }
+            // Arrivées
+            if (i > 0) {
+              const origine = dess[0].gare;
+              arrivees.push({
+                train: train.id,
+                heure: d.heure,
+                de: origine,
+                tonnage: train.tonnage,
+              });
+            }
+          }
+        });
+      });
+    });
+
+    // Tri chronologique
+    departs.sort((a, b) => timeToMinutes(a.heure) - timeToMinutes(b.heure));
+    arrivees.sort((a, b) => timeToMinutes(a.heure) - timeToMinutes(b.heure));
+
+    // Animation de transition
+    div.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+    div.style.opacity = 0;
+    div.style.transform = "translateX(-10px)";
+
+    setTimeout(() => {
+      const texteVide = "<li style='color:#f1e1d0;'>Aucun train FRET prévu</li>";
+
+      const html = `
+      <h3 style="color:#DEB887;">📦 Activité FRET – ${nomGare}</h3>
+      <div class="horaire-section depart">
+        <h4 style="color:#f5deb3;">🚛 Départs FRET</h4>
+        <ul>
+          ${departs.length
+          ? departs.map(d => `
+              <li style="color:#f5f5dc;">
+                <span class="heure" style="font-weight:bold;color:#fff5ee;">${d.heure}</span>
+                → ${d.vers} <span style="color:#ffe4b5;">(${d.tonnage} t)</span>
+                <span class="train-id" style="color:#fff8dc;">(${d.train})</span>
+              </li>`).join("")
+          : texteVide}
+        </ul>
+      </div>
+
+      <div class="horaire-section arrivee">
+        <h4 style="color:#f5deb3;">🏭 Arrivées FRET</h4>
+        <ul>
+          ${arrivees.length
+          ? arrivees.map(a => `
+              <li style="color:#f5f5dc;">
+                <span class="heure" style="font-weight:bold;color:#fff5ee;">${a.heure}</span>
+                ← ${a.de} <span style="color:#ffe4b5;">(${a.tonnage} t)</span>
+                <span class="train-id" style="color:#fff8dc;">(${a.train})</span>
+              </li>`).join("")
+          : texteVide}
+        </ul>
+      </div>
+
+      ${gareObj?.gareFRET
+          ? "" //  Pas de bouton retour pour les gares exclusivement FRET
+          : `<button class="btn-popup" id="btn-retour-gare" style="background:#4b5563;color:white;">↩ Retour à la fiche gare</button>`
+        }
+    `;
+
+      div.innerHTML = html;
+
+      // Ajout retour uniquement si gare normale
+      if (!gareObj?.gareFRET) {
+        document.getElementById("btn-retour-gare").addEventListener("click", () => {
+          afficherHorairesGare(nomGare);
+        });
+      }
+
+      // Animation d’apparition
+      setTimeout(() => {
+        div.style.opacity = 1;
+        div.style.transform = "translateX(0)";
+      }, 50);
+    }, 300);
+  }
+
+
 
   // Affichage ligne + légende 
   const selectAffichage = document.getElementById("select-affichage");
@@ -1473,6 +1657,7 @@ new p5((p) => {
         <ul class="legende">
           <li><span class="coul" style="background:#dc0000"></span> LGV</li>
           <li><span class="coul" style="background:#0064ff"></span> Ligne classique</li>
+          <li><span class="coul" style="background:#8B4513"></span> Ligne FRET</li>
           <li><span class="coul" style="background:#555;border:dashed 1px #999"></span> Tunnel</li>
         </ul>`;
         break;
@@ -1716,20 +1901,38 @@ new p5((p) => {
     nearbyTrains.forEach(train => {
       const btn = document.createElement("button");
       btn.classList.add("train-option");
-      let color = "gray";
-      if (train._statut?.startsWith("entre")) color = "blue";
-      else if (train._statut?.startsWith("en gare")) color = "rgb(0, 179, 255)";
+
+      const fret = isFRET(train);
+      let color, textColor, icon;
+
+      if (fret) {
+        if (train._statut?.startsWith("entre")) color = "#8B4513";       // brun foncé
+        else if (train._statut?.startsWith("en gare")) color = "#CD853F"; // brun clair
+        else color = "gray";                                           // très foncé
+        textColor = "#8B4513";
+        icon = "📦";
+      } else {
+        if (train._statut?.startsWith("entre")) color = "blue";
+        else if (train._statut?.startsWith("en gare")) color = "rgb(0,179,255)";
+        else color = "gray";
+        textColor = "#1e3a8a";
+        icon = "🚆";
+      }
+
       btn.innerHTML = `
-      <span class="train-dot" style="background:${color};"></span>
-      🚆 <b>${train.id}</b> (${train.nom})
-    `;
+    <span class="train-dot" style="background:${color};"></span>
+    <span style="color:${textColor};">${icon} <b>${train.id}</b> (${train.nom})</span>
+  `;
+
       btn.onclick = () => {
         elementSelectionne = { type: "train", data: train };
         afficherInfosTrain(train);
         cacherMenu();
       };
+
       menu.appendChild(btn);
     });
+
     const screenX = canvasRect.left + p.mouseX;
     const screenY = canvasRect.top + p.mouseY;
     menu.style.left = `${screenX + 8}px`;

@@ -5,21 +5,24 @@
       "moteurs": ["25kV CA", "1.5kV CC", "15kV CA"],
       "vitesseMax": 320,
       "capacite": { "premiere": 158, "seconde": 398 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "TGVEuroDuplex InOui 8C",
       "moteurs": ["25kV CA", "1.5kV CC", "15kV CA"],
       "vitesseMax": 320,
       "capacite": { "premiere": 158, "seconde": 398 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "BR406 (ICE 3M)",
       "moteurs": ["25kV CA", "1.5kV CC","3kV CC", "15kV CA"],
       "vitesseMax": 320,
       "capacite": { "premiere": 91, "seconde": 334 },
-      "pays": "DE"
+      "pays": "DE",
+      "type": "Voyageur"
     },
     {
       "nom": "Regiolis fluoGrandEst 4C",
@@ -28,6 +31,7 @@
       "capacite": { "premiere": 24, "seconde": 210 },
       "longueur": 72,
       "pays": "FR",
+      "type": "Voyageur",
       "dateSortie": "2014",
       "remarque": "Regiolis du Grand Est"
     },
@@ -37,7 +41,8 @@
       "vitesseMax": 160,
       "capacite": { "premiere": 24, "seconde": 210 },
       "longueur": 72,
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "Regiolis fluoGrandEst 6C",
@@ -46,6 +51,7 @@
       "capacite": { "premiere": 24, "seconde": 304 },
       "longueur": 110,
       "pays": "FR",
+      "type": "Voyageur",
       "dateSortie": "2014",
       "remarque": "Regiolis du Grand Est"
     },
@@ -56,6 +62,7 @@
       "capacite": { "premiere": 90, "seconde": 270 },
       "longueur": 110,
       "pays": "FR",
+      "type": "Voyageur",
       "remarque": "Intercité du Grand Est"
     },
     {
@@ -65,6 +72,7 @@
       "capacite": { "premiere": 90, "seconde": 270 },
       "longueur": 110,
       "pays": "FR",
+      "type": "Voyageur",
       "remarque": "Intercité"
     },
     {
@@ -72,140 +80,168 @@
       "moteurs": ["15kV CA"],
       "vitesseMax": 160,
       "capacite": { "premiere": 16, "seconde": 394 },
-      "pays": "DE"
+      "pays": "DE",
+      "type": "Voyageur"
     },
     {
       "nom": "BR1440.1 bwegt",
       "moteurs": ["15kV CA"],
       "vitesseMax": 160,
       "capacite": { "premiere": 16, "seconde": 174 },
-      "pays": "DE"
+      "pays": "DE",
+      "type": "Voyageur"
     },
     {
       "nom": "BR442.2 Baden-Württemberg",
       "moteurs": ["15kV CA"],
       "vitesseMax": 160,
       "capacite": { "premiere": 8, "seconde": 242 },
-      "pays": "DE"
+      "pays": "DE",
+      "type": "Voyageur"
     },
     {
       "nom": "BB26000 GrandEst",
       "moteurs": ["25kV CA", "1.5kV CC"],
       "vitesseMax": 200,
       "capacite": { "premiere": 0, "seconde": 0 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "BB22200 RC Fluo",
       "moteurs": ["25kV CA", "1.5kV CC"],
       "vitesseMax": 160,
       "capacite": { "premiere": 0, "seconde": 0 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Poly"
     },
     {
       "nom": "CC72100 SNCF",
       "moteurs": ["diesel"],
       "vitesseMax": 160,
       "capacite": { "premiere": 0, "seconde": 0 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "AGC fluoGrandEst 3C",
       "moteurs": ["diesel"],
       "vitesseMax": 160,
       "capacite": { "premiere": 24, "seconde": 134 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "AGC fluoGrandEst 4C",
       "moteurs": ["diesel"],
       "vitesseMax": 160,
       "capacite": { "premiere": 24, "seconde": 183 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "AGC Alsace 3C",
       "moteurs": ["diesel"],
       "vitesseMax": 160,
       "capacite": { "premiere": 24, "seconde": 134 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "AGC blueMetrolorLorraine 3C",
       "moteurs": ["diesel"],
       "vitesseMax": 160,
       "capacite": { "premiere": 24, "seconde": 134 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "AGC greenMobigo 3C",
       "moteurs": ["diesel"],
       "vitesseMax": 160,
       "capacite": { "premiere": 24, "seconde": 134 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "AGC blueAlsace 4C",
       "moteurs": ["25kV CA", "1.5kV CC"],
       "vitesseMax": 160,
       "capacite": { "premiere": 24, "seconde": 183 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "X73900 Grand Est",
       "moteurs": ["diesel"],
       "vitesseMax": 140,
       "capacite": { "premiere": 0, "seconde": 61 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "X73900 TER Alsace",
       "moteurs": ["diesel"],
       "vitesseMax": 140,
       "capacite": { "premiere": 0, "seconde": 61 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "RABe522 Leman Express",
       "moteurs": ["15kV CA", "25kV CA"],
       "vitesseMax": 160,
       "capacite": { "premiere": 59, "seconde": 211 },
-      "pays": "CH"
+      "pays": "CH",
+      "type": "Voyageur"
     },
     {
       "nom": "RABe522 CFF",
       "moteurs": ["15kV CA", "25kV CA"],
       "vitesseMax": 160,
       "capacite": { "premiere": 59, "seconde": 211 },
-      "pays": "CH"
+      "pays": "CH",
+      "type": "Voyageur"
     },
     {
       "nom": "Re450 DPZ CFF",
       "moteurs": ["15kV CA"],
       "vitesseMax": 130,
       "capacite": { "premiere": 88, "seconde": 400 },
-      "pays": "CH"
+      "pays": "CH",
+      "type": "Voyageur"
     },
     {
       "nom": "AGC Champagne-Ardenne",
       "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
       "vitesseMax": 160,
       "capacite": { "premiere": 24, "seconde": 183 },
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "RS1 bwegt",
       "moteurs": ["diesel"],
       "vitesseMax": 120,
       "capacite": { "premiere": 0, "seconde": 101 },
-      "pays": "DE"
+      "pays": "DE",
+      "type": "Voyageur"
     },
     {
       "nom": "BR146.0 DB",
       "moteurs": ["15kV CA"],
       "vitesseMax": 160,
       "capacite": { "premiere": 0, "seconde": 0 },
-      "pays": "DE"
+      "pays": "DE",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "BB27000 SNCF",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR",
+      "type": "Fret"
     }
   ],
   "wagons": [
@@ -215,7 +251,8 @@
       "capacite": { "premiere": 0, "seconde": 88 },
       "poids": 40,
       "longueur": 26,
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "VTU A Fluo",
@@ -223,42 +260,52 @@
       "capacite": { "premiere": 60, "seconde": 0 },
       "poids": 40,
       "longueur": 26,
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "VTU B5uxh FluoGdEst",
       "vitesseMax": 200,
       "capacite": { "premiere": 0, "seconde": 40 },
       "longueur": 26,
-      "pays": "FR"
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "RRR Régionales FLUO",
       "vitesseMax": 140,
       "capacite": { "premiere": 20, "seconde": 216 },
       "longueur": 26,
-      "pays": "FR"
-    }
-    ,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
     {
       "nom": "DBpza 784 DB",
       "vitesseMax": 160,
       "capacite": { "premiere": 0, "seconde": 120 },
-      "pays": "DE"
-    }
-    ,
+      "pays": "DE",
+      "type": "Voyageur"
+    },
     {
       "nom": "DBpza 789 DB",
       "vitesseMax": 160,
       "capacite": { "premiere": 40, "seconde": 80 },
-      "pays": "DE"
-    }
-    ,
+      "pays": "DE",
+      "type": "Voyageur"
+    },
     {
       "nom": "DBpbzfa 765 DB",
       "vitesseMax": 160,
       "capacite": { "premiere": 0, "seconde": 168 },
-      "pays": "DE"
+      "pays": "DE",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "ANF60",
+      "vitesseMax": 100,
+      "tonnage": 56,
+      "pays": "FR",
+      "type": "Fret"
     }
   ]
 }

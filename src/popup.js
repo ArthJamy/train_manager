@@ -1,7 +1,8 @@
 import { trainsFR } from './trains/trainsFR.js';
 import { trainsDE } from './trains/trainsDE.js';
 import { trainsCH } from './trains/trainsCH.js';
-export const trains = [...trainsFR, ...trainsDE, ...trainsCH];
+import { trainsFRET } from './trains/trainsFRET.js';
+export const trains = [...trainsFR, ...trainsDE, ...trainsCH, ...trainsFRET];
 
 /** Crée et affiche une fenêtre popup principale */
 function ouvrirPopup(titre, contenuHTML) {
@@ -33,6 +34,11 @@ function addMinutesToTime(timeStr, minutes) {
   return d.toTimeString().slice(0, 5);
 }
 
+// is fret 
+function isFRET(train) {
+  const ref = trains.find(t => t.id === train.id);
+  return ref && ('tonnage' in ref) && !('capacite' in ref);
+}
 
 /** Mini-popup détaillant un trajet (côté gauche si 'arrivee') */
 function showMiniPopup(e, trajet, type, gareFocus) {
@@ -87,10 +93,13 @@ export function afficherTrajetsTrain(trainId) {
   const train = trains.find(t => t.id === trainId);
   if (!train) return;
 
+  // Détection FRET
+  const estFRET = ('tonnage' in train) && !('capacite' in train);
+
   const html = `
-    <div class="trajets-container">
+    <div class="trajets-container" style="color:${estFRET ? '#8B4513' : 'inherit'};">
       ${train.trajets.map(trajet => {
-    // 🔹 Extraire tous les jours valides présents dans le trajet
+    // 🔹 Extraire les jours valides (ou "Tous")
     const joursSets = new Set();
     trajet.dessertes.forEach(d => {
       const joursValides = d.jours || ["Tous"];
@@ -98,16 +107,25 @@ export function afficherTrajetsTrain(trainId) {
     });
     const joursTexte = Array.from(joursSets).join(", ");
 
+    // 🔹 Bloc de trajet
     return `
-          <div class="trajet-bloc">
-            <h3>${trajet.nom}</h3>
+          <div class="trajet-bloc" style="border-left:4px solid ${estFRET ? '#8B4513' : '#1e3a8a'}; padding-left:6px;">
+            <h3 style="color:${estFRET ? '#8B4513' : '#1e3a8a'};">
+              ${estFRET ? '📦 ' : '🚅 '}${trajet.nom}
+            </h3>
             <p class="jours-valables">Jour(s) valable(s) : ${joursTexte}</p>
             <ul>
               ${trajet.dessertes.map((d, i) => {
       const heure = (i < trajet.dessertes.length - 1)
         ? addMinutesToTime(d.heure, d.arret || 0)
         : d.heure;
-      return `<li><span class="heure">${heure}</span> . > <span class="gare">${d.gare}</span></li>`;
+      return `
+                  <li>
+                    <span class="heure" style="color:${estFRET ? '#A0522D' : '#1e3a8a'}">${heure}</span> 
+                    . > 
+                    <span class="gare">${d.gare}</span>
+                    ${estFRET ? `<span style="color:#CD853F;">&nbsp (${d.arret || 0} min d'arrêt)</span>` : ""}
+                  </li>`;
     }).join("")}
             </ul>
           </div>
@@ -116,8 +134,14 @@ export function afficherTrajetsTrain(trainId) {
     </div>
   `;
 
-  ouvrirPopup(`🚅 Trajets prévus — ${train.id}`, html);
+  // 🟤 Popup titre différent pour FRET
+  const titre = estFRET
+    ? `📦 Itinéraires FRET — ${train.id} (${train.tonnage} t)`
+    : `🚅 Trajets prévus — ${train.id}`;
+
+  ouvrirPopup(titre, html);
 }
+
 
 
 
@@ -233,24 +257,28 @@ export function afficherFicheHoraire(gareNom) {
 // ===================== Flotte : popup carte + liste triable par état ===================
 export function afficherCarteFlotte() {
   const contenu = `
-    <div class="flotte-toolbar" style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
-      <div style="display:flex; align-items:center; gap:0.5rem;">
-        <label for="tri-flotte">Trier par :</label>
-        <select id="tri-flotte">
-          <option value="etat">État du train</option>
-          <option value="id">ID</option>
-          <option value="nom">Nom</option>
-          <option value="pays">Pays</option>
-          <option value="vitesse">Vitesse</option>
-        </select>
-      </div>
-
-      <input type="text" id="recherche-flotte" placeholder="Rechercher un train..." 
-            style="padding:4px 8px; font-size:0.9em; border-radius:4px; border:1px solid #aaa; width:160px;">
+  <div class="flotte-toolbar" style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+    <div style="display:flex; align-items:center; gap:0.5rem;">
+      <label for="tri-flotte">Trier par :</label>
+      <select id="tri-flotte">
+        <option value="etat">État du train</option>
+        <option value="pays">Pays</option>
+        <option value="type">Type (Voyageur / FRET)</option>
+        <option value="id">ID</option>
+        <option value="nom">Nom</option>
+        <option value="vitesse">Vitesse</option>
+      </select>
+      <!-- sous-filtre dynamique -->
+      <select id="filtre-secondaire" style="display:none; padding:4px; border-radius:4px;">
+        <option value="all" selected>Tout</option>
+      </select>
     </div>
+    <input type="text" id="recherche-flotte" placeholder="Rechercher un train..." 
+          style="padding:4px 8px; font-size:0.9em; border-radius:4px; border:1px solid #aaa; width:160px;">
+  </div>
+  <div id="flotte-grid" class="flotte-grid"></div>
+`;
 
-    <div id="flotte-grid" class="flotte-grid"></div>
-  `;
 
 
   ouvrirPopup("🚆 Flotte complète", contenu);
@@ -258,27 +286,110 @@ export function afficherCarteFlotte() {
   // Récupère l'instantané runtime depuis main.js
   let data = getSnapshotFlotte();
   const grid = document.getElementById("flotte-grid");
+
+  // === Compteur global de flotte ===
+  const compteurDiv = document.createElement("div");
+  compteurDiv.id = "compteur-flotte";
+  compteurDiv.style.cssText = `
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:1rem;
+  margin:8px 0 10px 0;
+  font-weight:600;
+  font-size:0.95em;
+`;
+  grid.parentNode.insertBefore(compteurDiv, grid);
+  // fonction maj compteur
+  function majCompteur(data) {
+    const total = data.length;
+    let nbFret = 0;
+    let nbVoy = 0;
+
+    data.forEach(t => {
+      if (isFRET(t)) nbFret++;
+      else nbVoy++;
+    });
+
+    compteurDiv.innerHTML = `
+    <span style="color:#1e3a8a;">🚆 Voyageurs : ${nbVoy}</span>
+    <span style="color:#8B4513;">📦 FRET : ${nbFret}</span>
+    <span style="color:#555;">Total : ${total}</span>
+  `;
+  }
+
   const selTri = document.getElementById("tri-flotte");
+
+  const selFiltre = document.getElementById("filtre-secondaire");
+  // 🔹 Quand on change le tri principal
+  selTri.addEventListener("change", async () => {
+    // Montrer / cacher le sous-filtre selon le mode
+    if (selTri.value === "pays") {
+      selFiltre.style.display = "inline-block";
+      selFiltre.innerHTML = `
+      <option value="all">Tous</option>
+      <option value="FR">France</option>
+      <option value="DE">Allemagne</option>
+      <option value="CH">Suisse</option>
+    `;
+    } else if (selTri.value === "type") {
+      selFiltre.style.display = "inline-block";
+      selFiltre.innerHTML = `
+      <option value="all">Tous</option>
+      <option value="voyageur">Voyageurs</option>
+      <option value="fret">FRET</option>
+    `;
+    } else {
+      selFiltre.style.display = "none";
+    }
+
+    const sorted = await sortFlotte(data, selTri.value);
+    const filtered = filtrerSecondaire(sorted, selTri.value, selFiltre.value);
+    renderGrid(filtered, grid);
+    majCompteur(filtered); // ou sorted selon le contexte
+
+  });
+
+  // 🔹 Quand on change le sous-filtre
+  selFiltre.addEventListener("change", async () => {
+    const sorted = await sortFlotte(data, selTri.value);
+    const filtered = filtrerSecondaire(sorted, selTri.value, selFiltre.value);
+    renderGrid(filtered, grid);
+    majCompteur(filtered); // ou sorted selon le contexte
+
+  });
+
 
   // Tri par défaut : état
   sortFlotte(data, "etat").then(sorted => {
     renderGrid(sorted, grid);
+    majCompteur(sorted); // ou sorted selon le contexte
+
   });
 
   selTri.addEventListener("change", async () => {
     const sorted = await sortFlotte(data, selTri.value);
     renderGrid(sorted, grid);
+    majCompteur(sorted); // ou sorted selon le contexte
+
   });
 
-  
+
   // Gérer la  barre de recherche
   const inputSearch = document.getElementById("recherche-flotte");
   // Tri par défaut
-  sortFlotte(data, "etat").then(sorted => renderGrid(sorted, grid));
+  sortFlotte(data, "etat").then(sorted => {
+  renderGrid(sorted, grid);
+  majCompteur(sorted);
+});
+
+
   // Quand on change le tri
   selTri.addEventListener("change", async () => {
     const sorted = await sortFlotte(data, selTri.value);
     renderGrid(sorted, grid);
+    majCompteur(sorted); // ou sorted selon le contexte
+
   });
   // Quand on tape dans la barre de recherche
   inputSearch.addEventListener("input", async () => {
@@ -289,6 +400,8 @@ export function afficherCarteFlotte() {
       (t.nom || "").toLowerCase().includes(term)
     );
     renderGrid(filtered, grid);
+    majCompteur(filtered); // ou sorted selon le contexte
+
   });
 
 }
@@ -379,10 +492,51 @@ async function sortFlotte(arr, mode) {
       return (x.nom || "").localeCompare(y.nom || "");
     });
   }
+  // 🟫 Tri par type (Voyageur / FRET)
+  else if (mode === "type") {
+    a.sort((x, y) => {
+      const xfret = isFRET(x) ? 1 : 0;
+      const yfret = isFRET(y) ? 1 : 0;
+
+      // 🔹 Met d’abord les voyageurs (0), puis les FRET (1)
+      if (xfret !== yfret) return xfret - yfret;
+
+      // 🔹 Second critère : état (pour regrouper les actifs)
+      const orderEtat = { en_route: 0, en_gare: 1, en_attente: 2, termine: 3, pas_service: 4, inconnu: 5 };
+      const ox = orderEtat[x.etat] ?? orderEtat.inconnu;
+      const oy = orderEtat[y.etat] ?? orderEtat.inconnu;
+      if (ox !== oy) return ox - oy;
+
+      // 🔹 Dernier critère : nom
+      return (x.nom || "").localeCompare(y.nom || "");
+    });
+  }
+
   return a;
 }
 
 
+function filtrerSecondaire(data, mode, valeur) {
+  if (valeur === "all") return data;
+
+  // 🔹 Filtre par pays
+  if (mode === "pays") {
+    if (!window.__enginsData?.trains) return data;
+    const map = {};
+    window.__enginsData.trains.forEach(t => map[t.nom] = t.pays);
+    return data.filter(t => map[t.nom] === valeur);
+  }
+
+  // 🔹 Filtre par type (FRET / Voyageur)
+  if (mode === "type") {
+    return data.filter(t => {
+      const fret = isFRET(t);
+      return (valeur === "fret" && fret) || (valeur === "voyageur" && !fret);
+    });
+  }
+
+  return data;
+}
 
 
 function etatClass(e) {
@@ -430,17 +584,30 @@ function renderGrid(data, container) {
     let infoBadge = "";
     if (currentSort === "pays") {
       infoBadge = `<span class="info-badge" style="margin-left:6px; color:#777; font-size:0.65em;">(${pays})</span>`;
-    } else if (currentSort === "vitesse") {
+    }
+    else if (currentSort === "type") {
+      const fret = isFRET(t);
+      infoBadge = `<span class="info-badge"
+            style="margin-left:6px; font-size:0.75em; font-weight:600;
+                  color:${fret ? '#8B4513' : '#1e3a8a'};">
+        ${fret ? '📦 FRET' : '🚆 Voyageur'}</span>`;
+    }
+
+    else if (currentSort === "vitesse") {
       const vactu = t.vitesseActuelle || 0;
       infoBadge = `<span class="info-badge" style="margin-left:6px; color:#777; font-size:0.75em;"><br>(${vactu} km/h)</span>`;
     }
 
 
+    const fret = isFRET(t);
+    const styleBorder = `border-bottom: 4px solid ${fret ? '#8B4513' : '#1e3a8a'};`;
 
     return `
-      <div class="flotte-card ${etatClass(t.etat)}" 
-           data-train-id="${t.id}" 
-           data-x="${t.x}" data-y="${t.y}">
+      <div class="flotte-card ${etatClass(t.etat)}"
+     style="${styleBorder}"
+     data-train-id="${t.id}" 
+     data-x="${t.x}" data-y="${t.y}">
+
         <div class="card-header">
           <span class="card-id">${t.id}${infoBadge}</span>
           <span class="etat-badge ${etatClass(t.etat)}">${labelEtat(t.etat)}</span>
