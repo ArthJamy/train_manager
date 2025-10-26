@@ -33,7 +33,7 @@ export const villes = [
   { nom: "Bitschwiller-lès-Thann", x: -264.4, y: -85.1, type: "petite", fluxPassager: 100 },
   { nom: "Willer-sur-Thur", x: -273.5, y: -100.1, type: "petite", fluxPassager: 230 },
   { nom: "Saint-Amarin", x: -314.0, y: -130.5, type: "petite", fluxPassager: 320 },
-  { nom: "Wesserling", x: -345.2, y: -147.4, type: "moyenne", fluxPassager: 800 },
+  { nom: "Wesserling", x: -345.2, y: -147.4, type: "petite", fluxPassager: 800 },
   { nom: "Oderen", x: -369.2, y: -168.1, type: "petite", fluxPassager: 120 },
   { nom: "Kruth", x: -374.2, y: -181.2, type: "petite", fluxPassager: 400 },
   { nom: "Bantzenheim", x: 161.1, y: -68.7, type: "petite", fluxPassager: 600 },

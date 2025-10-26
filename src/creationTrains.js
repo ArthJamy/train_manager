@@ -77,7 +77,8 @@ function getAlimGradient(moteurs = []) {
   const colors = {
     "25kV": "rgba(255, 120, 120, 0.5)",   // rouge clair
     "15kV": "rgba(130, 220, 130, 0.5)",   // vert
-    "1.5kV": "rgba(120, 170, 255, 0.5)",  // bleu
+    "1.5kV": "rgba(0, 152, 203, 0.5)",  // bleu
+    "3kV": "rgba(0, 0, 255, 0.5)",  // bleu
     "diesel": "rgba(210, 210, 210, 0.5)"  // gris
   };
 
@@ -850,7 +851,8 @@ function determinerTractionEntre(ga, gb) {
     diesel: base.moteurs?.some(m => m.toLowerCase().includes("diesel")) || false,
     "25kv": base.moteurs?.some(m => m.toLowerCase().includes("25kv")) || false,
     "15kv": base.moteurs?.some(m => m.toLowerCase().includes("15kv")) || false,
-    "1.5kv": base.moteurs?.some(m => m.toLowerCase().includes("1.5kv")) || false
+    "1.5kv": base.moteurs?.some(m => m.toLowerCase().includes("1.5kv")) || false,
+    "3kv": base.moteurs?.some(m => m.toLowerCase().includes("3kv")) || false
   };
 
   // 🛤️ Récupération des types d'électrification sur le chemin
@@ -889,10 +891,11 @@ function determinerTractionEntre(ga, gb) {
       }
     }
     // Cas 2️⃣ : Voie électrifiée
-    else if (typeVoie.includes("25kv") || typeVoie.includes("15kv") || typeVoie.includes("1.5kv")) {
+    else if (typeVoie.includes("25kv") || typeVoie.includes("15kv") || typeVoie.includes("3kv") || typeVoie.includes("1.5kv")) {
       const typeExact = typeVoie.includes("25kv") ? "25kv"
         : typeVoie.includes("15kv") ? "15kv"
-          : "1.5kv";
+          : typeVoie.includes("3kv") ? "3kv"
+            : "1.5kv";
 
       if (capacites[typeExact]) {
         // ✅ Compatible en électrique
@@ -1829,7 +1832,7 @@ function bindActions() {
         if (isLoco) {
           // 🚂 Locomotive : propose uniquement les wagons
           items = [...state.enginsWagons];
-          
+
           // ✅ Inclut la motrice actuelle (pour double ou triple traction)
           items.unshift(base);
           const isFRET = state.current.pays === "FRET";

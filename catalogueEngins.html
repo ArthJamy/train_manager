@@ -388,7 +388,8 @@
                     const colors = {
                         "25kV": "rgb(255, 120, 120, 0.5)",
                         "15kV": "rgb(130, 220, 130, 0.5)",
-                        "1.5kV": "rgb(120, 170, 255, 0.5)",
+                        "1.5kV": "rgb(0, 152, 203, 0.5)",
+                        "3kV": "rgb(0, 0, 255, 0.5)",
                         "diesel": "rgb(210, 210, 210, 0.5)"
                     };
 
@@ -444,7 +445,7 @@
                         // Voyageur / Fret / Poly
                         resultats = resultats.filter(e => (e.type || "") === sousFiltre);
                     } else if (tri === "moteurs") {
-                        // "25kV CA", "15kV CA", "1.5kV CC", "diesel"
+                        // "25kV CA","3kV CC", "15kV CA", "1.5kV CC", "diesel"
                         const needle = sousFiltre.toLowerCase();
                         resultats = resultats.filter(e => (e.moteurs || []).some(m => m.toLowerCase().includes(needle)));
                     }
@@ -557,7 +558,7 @@
             const optionsSubmenu = {
                 "pays": ["FR", "DE", "CH"],
                 "typeEngin": ["Voyageur", "Fret", "Poly"],
-                "moteurs": ["25kV CA", "15kV CA", "1.5kV CC", "diesel"]
+                "moteurs": ["25kV CA", "15kV CA", "1.5kV CC","3kV CC", "diesel"]
             };
 
             let currentSubmenuFilter = null;

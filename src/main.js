@@ -750,7 +750,9 @@ new p5((p) => {
           } else if (l.electrification === "15kV CA") {
             fondBuffer.stroke(87, 186, 52); // vert (Allemagne)
           } else if (l.electrification === "1.5kV CC") {
-            fondBuffer.stroke(33, 95, 164); // bleu pour courant continu
+            fondBuffer.stroke(0, 152, 203); // bleu pour courant continu
+          } else if (l.electrification === "3kV CC") {
+            fondBuffer.stroke(0, 0, 255); // bleu foncé
           } else if (l.electrification === "diesel") {
             fondBuffer.stroke(100); // gris
           } else {
@@ -1735,7 +1737,8 @@ new p5((p) => {
         <ul class="legende">
           <li><span class="coul" style="background:#fe3434"></span> 25 kV CA</li>
           <li><span class="coul" style="background:#57ba34"></span> 15 kV CA</li>
-          <li><span class="coul" style="background:rgb(33, 95, 164)"></span> 1,5 kV CC</li>
+          <li><span class="coul" style="background:rgb(0, 152, 203)"></span> 1,5 kV CC</li>
+          <li><span class="coul" style="background:rgb(0, 0, 255)"></span> 3 kV CC</li>
           <li><span class="coul" style="background:#666"></span> Diesel / non électrifiée</li>
         </ul>`;
         break;
