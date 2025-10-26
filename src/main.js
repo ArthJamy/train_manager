@@ -3,8 +3,10 @@ import { lignes } from './voies.js';
 import { trainsFR } from './trains/trainsFR.js';
 import { trainsDE } from './trains/trainsDE.js';
 import { trainsCH } from './trains/trainsCH.js';
+import { trainsBNL } from './trains/trainsBNL.js';
+import { trainsIT } from './trains/trainsIT.js';
 import { trainsFRET } from './trains/trainsFRET.js';
-export const trains = [...trainsFR, ...trainsDE, ...trainsCH, ...trainsFRET];
+export const trains = [...trainsFR, ...trainsDE, ...trainsCH, ...trainsBNL, ...trainsIT, ...trainsFRET];
 
 import { accouplements } from "./um.js";
 

@@ -242,6 +242,38 @@
       "capacite": { "premiere": 0, "seconde": 0 },
       "pays": "FR",
       "type": "Fret"
+    },
+    {
+      "nom": "2300 CFL",
+      "moteurs": ["25kV CA", "15kV CA"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 38, "seconde": 254 },
+      "pays": "LU",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "ICNG-V",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 200,
+      "capacite": { "premiere": 54, "seconde": 204},
+      "pays": "NL",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "AM08500 SNCB",
+      "moteurs": ["25kV CA", "3kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 32, "seconde": 232 },
+      "pays": "BE",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "ETR425 Trenord",
+      "moteurs": ["1.5kV CC", "3kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 290 },
+      "pays": "IT",
+      "type": "Voyageur"
     }
   ],
   "wagons": [

@@ -4,6 +4,8 @@ import { lignes } from './voies.js';
 import { trainsFR as baseFR } from './trains/trainsFR.js';
 import { trainsDE as baseDE } from './trains/trainsDE.js';
 import { trainsCH as baseCH } from './trains/trainsCH.js';
+import { trainsBNL as baseBNL } from './trains/trainsBNL.js';
+import { trainsIT as baseIT } from './trains/trainsIT.js';
 import { trainsFRET as baseFRET } from './trains/trainsFRET.js';
 
 
@@ -15,6 +17,8 @@ const state = {
   trainsFR: structuredClone(baseFR),
   trainsDE: structuredClone(baseDE),
   trainsCH: structuredClone(baseCH),
+  trainsBNL: structuredClone(baseBNL),
+  trainsIT: structuredClone(baseIT),
   trainsFRET: structuredClone(baseFRET),
   current: {
     pays: 'FR',
@@ -308,7 +312,7 @@ function updatePaysColor() {
   if (!sel) return;
 
   // Réinitialise les classes
-  sel.classList.remove('FR', 'DE', 'CH', 'FRET');
+  sel.classList.remove('FR', 'DE', 'CH', 'IT', 'BNL', 'FRET');
   sel.classList.add(sel.value);
 }
 
@@ -1092,7 +1096,15 @@ function genererRetourInverse() {
 function detectConflitTroncons(ignoreConflits = false) {
   if (ignoreConflits) return []; // ✅ Support UM
 
-  const allTrains = [...state.trainsFR, ...state.trainsDE, ...state.trainsCH, ...state.trainsFRET];
+  const allTrains = [
+    ...state.trainsFR,
+    ...state.trainsDE,
+    ...state.trainsCH,
+    ...state.trainsBNL,
+    ...state.trainsIT,
+    ...state.trainsFRET
+  ];
+
   const conflits = [];
 
   // ✅ Helper jours
@@ -1249,7 +1261,15 @@ function validateTrainBeforeSave() {
   if (!c.trajets || c.trajets.length === 0) return "Ajoute au moins un trajet avant d'exporter.";
 
   // Conflit d'ID si création (sauf si on édite celui-là)
-  const all = [...state.trainsFR, ...state.trainsDE, ...state.trainsCH];
+  const all = [
+    ...state.trainsFR,
+    ...state.trainsDE,
+    ...state.trainsCH,
+    ...state.trainsBNL,
+    ...state.trainsIT,
+    ...state.trainsFRET
+  ];
+
   const exists = all.some(t => t.id === c.id);
   // ✅ on autorise le remplacement si on édite le même train
   if (exists && (!state.editingExistingId || state.editingExistingId !== c.id)) {
@@ -1386,6 +1406,9 @@ function removeTrainEverywhere(id) {
   rm(state.trainsFR, "trainsFR");
   rm(state.trainsDE, "trainsDE");
   rm(state.trainsCH, "trainsCH");
+  rm(state.trainsBNL, "trainsBNL");
+  rm(state.trainsIT, "trainsIT");
+  rm(state.trainsFRET, "trainsFRET");
 }
 
 function performExport() {
@@ -1393,18 +1416,23 @@ function performExport() {
   if (err) { toast(err, 'err', 3500); return; }
 
   const trainObj = toTrainObjectForSave();
-  const target = state.current.pays === 'DE' ? 'DE' : state.current.pays === 'CH' ? 'CH' : state.current.pays === 'FRET' ? 'FRET' : 'FR';
+
+  const validPays = ['FR', 'DE', 'CH', 'BNL', 'IT', 'FRET'];
+  const target = validPays.includes(state.current.pays) ? state.current.pays : 'FR';
 
   // 🧹 Supprime TOUTES les anciennes occurrences
   removeTrainEverywhere(trainObj.id);
 
   // 🟢 Ajoute ou remplace dans le fichier cible
-  const arrTarget =
-    target === 'FR' ? state.trainsFR :
-      target === 'DE' ? state.trainsDE :
-        target === 'CH' ? state.trainsCH :
-          state.trainsFRET;
-
+  const arrMap = {
+    FR: state.trainsFR,
+    DE: state.trainsDE,
+    CH: state.trainsCH,
+    BNL: state.trainsBNL,
+    IT: state.trainsIT,
+    FRET: state.trainsFRET
+  };
+  const arrTarget = arrMap[target] || state.trainsFR;
 
   const idx = arrTarget.findIndex(t => t.id === trainObj.id);
   if (idx >= 0) arrTarget[idx] = trainObj;
@@ -1414,20 +1442,24 @@ function performExport() {
   const frText = prettyJSExport('trainsFR', state.trainsFR);
   const deText = prettyJSExport('trainsDE', state.trainsDE);
   const chText = prettyJSExport('trainsCH', state.trainsCH);
+  const bnlText = prettyJSExport('trainsBNL', state.trainsBNL);
+  const itText = prettyJSExport('trainsIT', state.trainsIT);
   const fretText = prettyJSExport('trainsFRET', state.trainsFRET);
 
-  // Téléchargement simultané
+  // 💾 Téléchargement simultané
   download('trainsFR.js', frText);
   download('trainsDE.js', deText);
   download('trainsCH.js', chText);
+  download('trainsBNL.js', bnlText);
+  download('trainsIT.js', itText);
   download('trainsFRET.js', fretText);
 
 
+
   renderAllTrajets();
-  toast('Export téléchargé (FR, DE, CH & FRET).', 'ok');
+  toast('Export téléchargé (FR, DE, CH, IT, BNL & FRET).', 'ok');
   state.editingExistingId = null;
 }
-
 
 
 
@@ -1449,7 +1481,9 @@ function openPopupTrains() {
     ...(state.trainsFR || []).map(t => ({ ...t, pays: "FR" })),
     ...(state.trainsDE || []).map(t => ({ ...t, pays: "DE" })),
     ...(state.trainsCH || []).map(t => ({ ...t, pays: "CH" })),
-    ...(state.trainsFRET || []).map(t => ({ ...t, pays: "FRET" }))
+    ...(state.trainsBNL || []).map(t => ({ ...t, pays: "BNL" })),
+    ...(state.trainsIT || []).map(t => ({ ...t, pays: "IT" })),
+    ...(state.trainsFRET || []).map(t => ({ ...t, pays: "FRET" })),
   ];
 
   if (!trains.length) {
@@ -1486,7 +1520,9 @@ function openPopupTrains() {
         p === 'FR' ? '#e6f0ff' :
           p === 'DE' ? '#fff7cc' :
             p === 'CH' ? '#ffe6e6' :
-              p === 'FRET' ? '#fcdfcaff' : '#f9f9f9';
+              p === 'IT' ? '#97e197' :
+                p === 'BNL' ? '#f8abff' :
+                  p === 'FRET' ? '#fcdfcaff' : '#f9f9f9';
 
 
       // 🔹 tentative de trouver l'image correspondante (si dispo)
@@ -1758,6 +1794,11 @@ function bindActions() {
           if ((e.pays || "").toUpperCase() === "FR") bg = "#e6f0ff";
           else if ((e.pays || "").toUpperCase() === "DE") bg = "#fff7cc";
           else if ((e.pays || "").toUpperCase() === "CH") bg = "#ffe6e6";
+          else if ((e.pays || "").toUpperCase() === "IT") bg = "#7cc47c";
+          else if ((e.pays || "").toUpperCase() === "BE") bg = "#f0c828";  // Belgique
+          else if ((e.pays || "").toUpperCase() === "NL") bg = "#fb8c05";  // Pays-Bas
+          else if ((e.pays || "").toUpperCase() === "LU") bg = "#82a0ff";  // Luxembourg
+
           else bg = "#f9f9f9";
         }
         else if (sortBy === "vitesse") {
@@ -1894,7 +1935,17 @@ function bindActions() {
         let bg = '#f8f8f8';
         if (sortBy === 'pays') {
           const p = (e.pays || '').toUpperCase();
-          bg = p === 'FR' ? '#e6f0ff' : p === 'DE' ? '#fff7cc' : p === 'CH' ? '#ffe6e6' : '#f9f9f9';
+          bg =
+            p === 'FR' ? '#e6f0ff' :       // bleu clair
+              p === 'DE' ? '#fff7cc' :       // jaune pâle
+                p === 'CH' ? '#ffe6e6' :       // rouge clair
+                  p === 'IT' ? '#d9f5d9' :       // vert clair
+                    p === 'BE' ? '#f0c828' :
+                      p === 'NL' ? '#fb8c05' :
+                        p === 'LU' ? '#82a0ff' :
+                          // bleu-violet clair
+                          '#f9f9f9';                     // par défaut
+
         } else if (sortBy === 'vitesse') {
           bg = getSpeedColor(e.vitesseMax);
         } // (pas de mode "moteur" ici pour compo)
@@ -1988,11 +2039,16 @@ function bindActions() {
     }
     // Ajoute le train actuel dans la mémoire locale (sans export)
     const trainObj = toTrainObjectForSave();
-    const target =
-      state.current.pays === "DE" ? state.trainsDE :
-        state.current.pays === "CH" ? state.trainsCH :
-          state.current.pays === "FRET" ? state.trainsFRET :
-            state.trainsFR;
+    const mapTrains = {
+      FR: state.trainsFR,
+      DE: state.trainsDE,
+      CH: state.trainsCH,
+      BNL: state.trainsBNL,
+      IT: state.trainsIT,
+      FRET: state.trainsFRET
+    };
+    const target = mapTrains[state.current.pays] || state.trainsFR;
+
 
 
     // Supprime ancienne version si même ID
@@ -2020,7 +2076,7 @@ function bindActions() {
     // 🟦 Pays visuel et logique
     const paysSel = $('#paysSel');
     paysSel.value = "FR";
-    paysSel.classList.remove('FR', 'DE', 'CH');
+    paysSel.classList.remove('FR', 'DE', 'CH', 'IT', 'BNL', 'FRET');
     paysSel.classList.add('FR');
     state.current.pays = "FR";
     // 🔁 Très important : recréer un trajet vide et le sélectionner

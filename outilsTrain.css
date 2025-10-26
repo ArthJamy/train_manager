@@ -486,6 +486,18 @@ select#paysSel.CH {
   border-color: #e57b7b;
 }
 
+select#paysSel.IT {
+  background: #d9f5d9 !important; /* vert clair */
+  color: #111 !important;
+  border-color: #7cc47c; /* vert plus soutenu */
+}
+
+select#paysSel.BNL {
+  background: #f8d6ff !important; /* bleu-violet clair */
+  color: #111 !important;
+  border-color: #f47aff; /* violet plus soutenu */
+}
+
 select#paysSel.FRET {
   background: #8b4513 !important; /* brun foncé */
   color: #fff !important;

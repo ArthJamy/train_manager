@@ -1,12 +1,15 @@
 import { trainsFR } from './trains/trainsFR.js';
 import { trainsDE } from './trains/trainsDE.js';
 import { trainsCH } from './trains/trainsCH.js';
+import { trainsBNL } from './trains/trainsBNL.js';
+import { trainsIT } from './trains/trainsIT.js';
 import { trainsFRET } from './trains/trainsFRET.js';
+
 import { etatTrains } from './etatTrains.js';
 import { lignes } from './voies.js';
 import { villes } from './gares.js';
 
-export const trains = [...trainsFR, ...trainsDE, ...trainsCH, ...trainsFRET];
+export const trains = [...trainsFR, ...trainsDE, ...trainsCH, ...trainsBNL, ...trainsIT, ...trainsFRET];
 
 function timeToMinutes(horaire) {
   if (!horaire) return 0;
@@ -100,6 +103,8 @@ export function afficherStatsReseau() {
     France: trainsFR.length,
     Allemagne: trainsDE.length,
     Suisse: trainsCH.length,
+    BeNeLux: trainsBNL.length,
+    Italie: trainsIT.length,
     FRET: trainsFRET.length
   };
 

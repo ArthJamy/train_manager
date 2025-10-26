@@ -1,8 +1,10 @@
 import { trainsFR } from './trains/trainsFR.js';
 import { trainsDE } from './trains/trainsDE.js';
 import { trainsCH } from './trains/trainsCH.js';
+import { trainsBNL } from './trains/trainsBNL.js';
+import { trainsIT } from './trains/trainsIT.js';
 import { trainsFRET } from './trains/trainsFRET.js';
-export const trains = [...trainsFR, ...trainsDE, ...trainsCH, ...trainsFRET];
+export const trains = [...trainsFR, ...trainsDE, ...trainsCH, ...trainsBNL, ...trainsIT, ...trainsFRET];
 
 /** Crée et affiche une fenêtre popup principale */
 function ouvrirPopup(titre, contenuHTML) {
@@ -331,6 +333,10 @@ export function afficherCarteFlotte() {
       <option value="FR">France</option>
       <option value="DE">Allemagne</option>
       <option value="CH">Suisse</option>
+      <option value="IT">Italie</option>
+      <option value="BE">Belgique</option>
+      <option value="NL">Pays-Bas</option>
+      <option value="LU">Luxembourg</option>
     `;
     } else if (selTri.value === "type") {
       selFiltre.style.display = "inline-block";

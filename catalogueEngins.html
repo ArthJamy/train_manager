@@ -463,7 +463,15 @@
                         div.style.background = getSpeedColor(e.vitesseMax);
                     }
                     if (tri === "pays" && e.pays) {
-                        const colors = { FR: "rgb(210, 230, 255)", DE: "rgb(255, 245, 180)", CH: "rgb(255, 180, 180)" };
+                        const colors = {
+                            FR: "rgb(210, 230, 255)", // bleu clair
+                            DE: "rgb(255, 245, 180)", // jaune pâle
+                            CH: "rgb(255, 180, 180)", // rouge clair
+                            IT: "rgb(100, 200, 100)", // vert moyen
+                            BE: "rgb(240, 200, 40)",  // jaune-orangé chaud
+                            NL: "rgb(251, 140, 5)", // orang
+                            LU: "rgb(130, 160, 255)"  // bleu plus soutenu
+                        };
                         div.style.background = colors[e.pays] || "#f9fafb";
                     }
                     // === Couleur de fond selon le type d'engin ===
@@ -556,9 +564,9 @@
             // === SOUS-MENU ===
             const submenu = document.getElementById("submenu");
             const optionsSubmenu = {
-                "pays": ["FR", "DE", "CH"],
+                "pays": ["FR", "DE", "CH", "IT", "BE", "NL", "LU"],
                 "typeEngin": ["Voyageur", "Fret", "Poly"],
-                "moteurs": ["25kV CA", "15kV CA", "1.5kV CC","3kV CC", "diesel"]
+                "moteurs": ["25kV CA", "15kV CA", "1.5kV CC", "3kV CC", "diesel"]
             };
 
             let currentSubmenuFilter = null;

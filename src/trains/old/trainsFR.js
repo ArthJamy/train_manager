@@ -756,5 +756,29 @@ export const trainsFR = [
         ]
       }
     ]
+  },
+
+  {
+    id: "TGV test",
+    nom: "TGVEuroDuplex InOui 8C",
+    moteurs: ["25kV CA", "1.5kV CC", "15kV CA"],
+    vitesseMax: 320,
+    capacite: { premiere: 158, seconde: 398 },
+    trajets: [
+      {
+        nom: "Mulhouse → Gare de Lyon",
+        dessertes: [
+          { gare: "Mulhouse", heure: "07:30", arret: 6 },
+          { gare: "Gare de Lyon", heure: "11:35", arret: 1 }
+        ]
+      },
+      {
+        nom: "Gare de Lyon → Mulhouse",
+        dessertes: [
+          { gare: "Gare de Lyon", heure: "14:05", arret: 6 },
+          { gare: "Mulhouse", heure: "18:10", arret: 1 }
+        ]
+      }
+    ]
   }
 ];
