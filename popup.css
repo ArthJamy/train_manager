@@ -1,13 +1,16 @@
 /* === Fenêtre popup === */
 .popup-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99999; /* ✅ toujours au-dessus */
+  z-index: 99999;
+  /* ✅ toujours au-dessus */
   backdrop-filter: blur(2px);
 }
 
@@ -19,16 +22,18 @@
   border-radius: 10px;
   padding: 24px 30px;
   position: relative;
-  box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
   animation: fadeIn 0.25s ease;
   font-family: system-ui, sans-serif;
-  z-index: 100000; /* ✅ par sécurité */
+  z-index: 100000;
+  /* ✅ par sécurité */
 }
 
 /* ✅ Restaure style du bouton fermer */
 .popup-close {
   position: absolute;
-  top: 10px; right: 10px;
+  top: 10px;
+  right: 10px;
   border: none;
   background: #e5e7eb;
   border-radius: 50%;
@@ -51,8 +56,15 @@
 
 /* Animation d’apparition */
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* === Boutons popup === */
@@ -67,6 +79,7 @@
   cursor: pointer;
   transition: background 0.2s, transform 0.1s;
 }
+
 .btn-popup:hover {
   background: #6b7280;
   transform: translateY(-1px);
@@ -78,9 +91,10 @@
   border-radius: 8px;
   padding: 10px 15px;
   margin: 10px 0;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   text-align: left;
 }
+
 .trajet-bloc h3 {
   margin-top: 0;
   font-size: 1.1rem;
@@ -96,29 +110,34 @@
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-  align-items: stretch; /* ✅ égalise les hauteurs */
+  align-items: stretch;
+  /* ✅ égalise les hauteurs */
   margin-top: 1rem;
 }
 
 /* Chaque bloc de trajet devient une “card” homogène */
 .trajet-bloc {
-  flex: 1 1 280px;        /* largeur mini : 280px */
-  max-width: 320px;       /* limite max pour garder une grille propre */
+  flex: 1 1 280px;
+  /* largeur mini : 280px */
+  max-width: 320px;
+  /* limite max pour garder une grille propre */
   display: flex;
-  flex-direction: column; /* pour aligner les éléments internes */
+  flex-direction: column;
+  /* pour aligner les éléments internes */
   justify-content: space-between;
   background: linear-gradient(135deg, #e0e7ff, #f3f4f6);
   border-radius: 10px;
   padding: 1rem 1.2rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: left;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-height: 220px;      /* ✅ même taille visuelle */
+  min-height: 220px;
+  /* ✅ même taille visuelle */
 }
 
 .trajet-bloc:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .trajet-bloc h3 {
@@ -167,6 +186,7 @@
   border-radius: 8px;
   padding: 10px 12px;
 }
+
 .horaire-col.arrivee {
   background: linear-gradient(180deg, #065f46, #10b981);
   color: white;
@@ -177,7 +197,7 @@
 .horaire-col h4 {
   margin: 0 0 8px 0;
   font-size: 1.05rem;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   padding-bottom: 4px;
 }
 
@@ -186,6 +206,7 @@
   margin: 0;
   padding: 0;
 }
+
 .horaire-col li {
   display: flex;
   align-items: center;
@@ -195,11 +216,13 @@
   height: 28px;
   overflow: hidden;
 }
+
 .horaire-col .heure {
   font-weight: bold;
   width: 50px;
   text-align: right;
 }
+
 .horaire-col .train-id {
   opacity: 0.9;
   font-size: 0.8rem;
@@ -214,6 +237,7 @@
   border-radius: 8px;
   padding: 10px 12px;
 }
+
 .horaire-col.arrivee {
   background: linear-gradient(180deg, #065f46, #10b981);
   color: white;
@@ -224,7 +248,7 @@
 .horaire-col h4 {
   margin: 0 0 8px 0;
   font-size: 1.05rem;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   padding-bottom: 4px;
 }
 
@@ -238,7 +262,7 @@
   display: flex;
   gap: 4px;
   padding: 6px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   font-family: 'Consolas', monospace;
 }
 
@@ -247,7 +271,11 @@
   justify-content: space-between;
   font-size: 0.9rem;
 }
-.horaire-row-top .heure { font-weight: bold; }
+
+.horaire-row-top .heure {
+  font-weight: bold;
+}
+
 .horaire-row-top .train-id {
   opacity: 0.8;
   font-size: 0.8rem;
@@ -259,13 +287,20 @@
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
+
 .horaire-col {
   border-radius: 8px;
   padding: 10px 14px;
   color: white;
 }
-.horaire-col.depart { background: linear-gradient(180deg,#1e3a8a,#3b82f6); }
-.horaire-col.arrivee { background: linear-gradient(180deg,#065f46,#10b981); }
+
+.horaire-col.depart {
+  background: linear-gradient(180deg, #1e3a8a, #3b82f6);
+}
+
+.horaire-col.arrivee {
+  background: linear-gradient(180deg, #065f46, #10b981);
+}
 
 .horaire-col ul {
   list-style: none;
@@ -280,18 +315,21 @@
   gap: 6px;
   padding: 8px 4px;
   min-height: 40px;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
   font-family: 'Consolas', monospace;
 }
+
 .train-line:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
+
 .train-line .heure {
   font-weight: bold;
   width: 55px;
   flex-shrink: 0;
 }
+
 .train-line .destination {
   flex: 1;
   text-align: left;
@@ -299,6 +337,7 @@
   text-overflow: ellipsis;
   line-height: 1.3;
 }
+
 .train-line .train-id {
   opacity: 0.8;
   width: 70px;
@@ -313,23 +352,26 @@
   color: #111;
   font-size: 0.85rem;
   border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   padding: 6px 10px;
   z-index: 100000;
   animation: fadeIn 0.15s ease;
   min-width: 160px;
 }
+
 .mini-popup h5 {
   margin: 0 0 4px;
   font-size: 0.9rem;
   color: #1e3a8a;
   font-weight: 600;
 }
+
 .mini-popup ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .mini-popup li {
   padding: 2px 0;
   white-space: nowrap;
@@ -353,7 +395,8 @@
 /* Carte mini */
 #flotte-carte {
   width: 100%;
-  height: 420px;           /* rendu CSS ; dimension canvas fixée en JS */
+  height: 420px;
+  /* rendu CSS ; dimension canvas fixée en JS */
   background: #f5f7fb;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
@@ -370,6 +413,7 @@
   border-radius: 8px;
   background: #fff;
 }
+
 .flotte-item {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -378,10 +422,18 @@
   border-bottom: 1px solid #eef2f7;
   cursor: default;
 }
-.flotte-item:hover { background: #f1f5ff; }
 
-.flotte-item .fi-id { font-weight: 700; }
-.flotte-item .fi-state { justify-self: end; }
+.flotte-item:hover {
+  background: #f1f5ff;
+}
+
+.flotte-item .fi-id {
+  font-weight: 700;
+}
+
+.flotte-item .fi-state {
+  justify-self: end;
+}
 
 .etat-chip {
   padding: 2px 8px;
@@ -390,21 +442,62 @@
   font-weight: 700;
   color: #fff;
 }
-.etat-en_route  { background: #2563eb; }
-.etat-en_gare   { background: #059669; }
-.etat-en_attente { background: #48D068; }
-.etat-termine   { background: #6b7280; }
-.etat-pas-service   { background: #9ca3af; }
-.etat-inconnu   { background: #000000; }
+
+.etat-en_route {
+  background: #2563eb;
+}
+
+.etat-en_gare {
+  background: #059669;
+}
+
+.etat-en_attente {
+  background: #48D068;
+}
+
+.etat-termine {
+  background: #6b7280;
+}
+
+.etat-pas-service {
+  background: #9ca3af;
+}
+
+.etat-inconnu {
+  background: #000000;
+}
 
 /* Légende sous la carte (facultatif) */
 .flotte-legend {
-  display: flex; gap: 12px; margin-top: 6px; font-size: 0.85rem;
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+  font-size: 0.85rem;
 }
-.flotte-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: -1px; }
-.dot-route  { background:#2563eb; border:1px solid #1e40af; }
-.dot-gare   { background:#059669; border:1px solid #065f46; }
-.dot-end    { background:#6b7280; border:1px solid #374151; }
+
+.flotte-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+.dot-route {
+  background: #2563eb;
+  border: 1px solid #1e40af;
+}
+
+.dot-gare {
+  background: #059669;
+  border: 1px solid #065f46;
+}
+
+.dot-end {
+  background: #6b7280;
+  border: 1px solid #374151;
+}
 
 /* === Grille de flotte === */
 .flotte-toolbar {
@@ -445,12 +538,12 @@
   border-radius: 10px;
   overflow: hidden;
   transition: all 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .flotte-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .flotte-card.etat-en_route {
@@ -485,7 +578,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem;
-  background: rgba(0,0,0,0.03);
+  background: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid #e5e7eb;
 }
 
@@ -564,4 +657,58 @@
   outline: none;
   border-color: #1e3a8a;
   box-shadow: 0 0 3px rgba(30, 58, 138, 0.4);
+}
+
+
+.train-card:hover {
+  background: #eef5ff;
+  cursor: pointer;
+}
+
+
+/* 🔹 Style du bandeau de rame dans "trains au hasard" */
+.train-rame-view {
+  display: flex;
+  align-items: flex-end;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.train-rame-view::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* ✅ Images dans les popups : taille d'origine EXACTE */
+.train-rame-view .train-segment,
+.train-card .train-segment {
+  max-height: none !important;
+  max-width: none !important;
+  height: auto !important;
+  width: auto !important;
+  object-fit: none !important;
+  flex-shrink: 0;
+}
+
+
+/* 🔹 Boutons de popup (lien <a>) sans soulignement */
+.btn-popup {
+  text-decoration: none !important;
+  border: none;
+  border-radius: 6px;
+  background: #1e3a8a;
+  color: white;
+  padding: 6px 12px;
+  display: inline-block;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-popup:hover {
+  background: #2b50d3;
 }

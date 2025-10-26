@@ -8,7 +8,7 @@ export const trains = [...trainsFR, ...trainsDE, ...trainsCH, ...trainsFRET];
 
 import { accouplements } from "./um.js";
 
-import { afficherTrajetsTrain, afficherFicheHoraire, afficherCarteFlotte } from "./popup.js";
+import { afficherTrajetsTrain, afficherFicheHoraire, afficherCarteFlotte, afficherTrainsAleatoires } from "./popup.js";
 
 // Flux passagers
 import { etatTrains, initTrainsState, majOccupants } from "./etatTrains.js";
@@ -67,6 +67,10 @@ function getUMCount(trainId, heure, jourCible) {
 // bouton en header
 document.getElementById("btn-flotte").addEventListener("click", () => {
   afficherCarteFlotte();
+});
+
+document.getElementById("btn-random-trains").addEventListener("click", () => {
+  afficherTrainsAleatoires();
 });
 
 // === Barre de recherche de gares ===
@@ -746,7 +750,7 @@ new p5((p) => {
           } else if (l.electrification === "15kV CA") {
             fondBuffer.stroke(87, 186, 52); // vert (Allemagne)
           } else if (l.electrification === "1.5kV CC") {
-            fondBuffer.stroke(135, 206, 250); // bleu clair pour courant continu
+            fondBuffer.stroke(33, 95, 164); // bleu pour courant continu
           } else if (l.electrification === "diesel") {
             fondBuffer.stroke(100); // gris
           } else {
@@ -1151,15 +1155,16 @@ new p5((p) => {
         </div>
       `;
         } else {
+          // Dernière gare : seulement l’heure d’arrivée
           garesHTML += `
-        <div class="timeline-step ${etat}">
-          <div class="dot"></div>
-          <div class="info">
-            <span class="heure">${heureAffichee} ${joursHTML}</span>
-            <span class="gare">${d.gare}</span>
-          </div>
-        </div>
-      `;
+            <div class="timeline-step ${etat}">
+              <div class="dot"></div>
+              <div class="info">
+                <span class="heure">${d.heure} ${joursHTML}</span>
+                <span class="gare">${d.gare}</span>
+              </div>
+            </div>
+          `;
         }
 
         if (prochain && i < trajet.dessertes.length - 1) {
@@ -1730,7 +1735,7 @@ new p5((p) => {
         <ul class="legende">
           <li><span class="coul" style="background:#fe3434"></span> 25 kV CA</li>
           <li><span class="coul" style="background:#57ba34"></span> 15 kV CA</li>
-          <li><span class="coul" style="background:#87cefa"></span> 1,5 kV CC</li>
+          <li><span class="coul" style="background:rgb(33, 95, 164)"></span> 1,5 kV CC</li>
           <li><span class="coul" style="background:#666"></span> Diesel / non électrifiée</li>
         </ul>`;
         break;

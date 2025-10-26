@@ -403,8 +403,85 @@ export function afficherCarteFlotte() {
     majCompteur(filtered); // ou sorted selon le contexte
 
   });
-
 }
+
+
+
+export function afficherTrainsAleatoires() {
+  const data = window.__trainRuntime?.getSnapshot() || [];
+  const enRoute = data.filter(t => t.etat === "en_route");
+  if (!enRoute.length) {
+    alert("Aucun train actuellement en circulation !");
+    return;
+  }
+
+  // Tirage de 3 trains différents
+  const selection = [];
+  while (selection.length < 3 && enRoute.length > 0) {
+    const index = Math.floor(Math.random() * enRoute.length);
+    selection.push(enRoute.splice(index, 1)[0]);
+  }
+
+  // Fonction pour créer le HTML complet d’un train
+  const renderTrain = (t) => {
+    const ref = trains.find(x => x.id === t.id);
+    if (!ref) return "";
+
+    const rame = [ref.nom, ...(ref.composition || [])];
+    const images = rame.map(nom => {
+      const image = nom.replaceAll(" ", "_") + ".png";
+      return `<img src="./assets/trains/${image}" alt="${nom}" class="train-segment" style="height:38px;">`;
+    }).join("");
+
+    const fret = ('tonnage' in ref);
+    const color = fret ? '#8B4513' : '#1e3a8a';
+    const icon = fret ? '📦' : '🚆';
+
+    return `
+      <div class="train-card" style="border-left:4px solid ${color}; margin:10px 0; padding:8px; background:#f8f8f8; border-radius:6px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <h3 style="margin:0; color:${color};">${icon} ${ref.nom}</h3>
+          <span style="color:#555; font-size:0.85em;">${t.vitesseActuelle} km/h</span>
+        </div>
+        <p style="margin:2px 0 4px 0; color:#444;">${t.statut}</p>
+        <div class="train-rame-view">${images}</div>
+        <a href="#0" class="btn-popup" data-train="${t.id}" style="display:inline-block; margin-top:6px;">🔍 Voir détails</a>
+      </div>
+    `;
+  };
+
+  const contenu = `
+    <div id="random-trains-container">
+      ${selection.map(renderTrain).join("")}
+    </div>
+    <div style="text-align:center; margin-top:10px;">
+      <a href="#0" id="btn-refresh-random" class="btn-popup">↻ Autres trains</a>
+    </div>
+  `;
+
+  ouvrirPopup("🚞 Trains en circulatio", contenu);
+
+  // Recharger les trains
+  document.getElementById("btn-refresh-random").addEventListener("click", () => {
+    document.querySelector(".popup-overlay")?.remove();
+    afficherTrainsAleatoires();
+  });
+
+  // Cliquer sur "Voir détails" ou sur une rame recentre sur le train
+  document.querySelectorAll(".btn-popup[data-train]").forEach(a => {
+    a.addEventListener("click", e => {
+      e.preventDefault();
+      const id = a.dataset.train;
+      const train = selection.find(t => t.id === id);
+      if (train && window.__centrerSurTrain) {
+        window.__centrerSurTrain(train.x, train.y, train.id);
+        document.querySelector(".popup-overlay")?.remove();
+      }
+    });
+  });
+}
+
+
 
 function getSnapshotFlotte() {
   if (window.__trainRuntime?.getSnapshot) return window.__trainRuntime.getSnapshot();

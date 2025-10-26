@@ -178,13 +178,16 @@ input[type="time"] {
   display: none;
 }
 
-/* Images de rames */
-.train-segment {
+
+/* Images de rames dans le panneau d'infos */
+#train-image-view .train-segment {
   max-height: 60px;
   height: auto;       /* ✅ conserve le ratio original */
   object-fit: contain;
   flex-shrink: 0;
-  
+  border-radius: 4px;
+  margin-right: 2px;
+  vertical-align: middle;
 }
 
 /* Flèches */
