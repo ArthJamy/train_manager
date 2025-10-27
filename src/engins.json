@@ -45,6 +45,52 @@
       "type": "Voyageur"
     },
     {
+      "nom": "Regiolis Metrolor 4C",
+      "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 210 },
+      "longueur": 72,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "Regiolis BFC 4C",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 210 },
+      "longueur": 72,
+      "pays": "FR",
+      "type": "Voyageur",
+      "remarque": "regiolis électrique uniquement"
+    },
+    {
+      "nom": "Regiolis Leman Express 4C",
+      "moteurs": ["25kV CA", "1.5kV CC","15kV CA"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 16, "seconde": 204 },
+      "longueur": 72,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "Regiolis AuRA 4C",
+      "moteurs":  ["25kV CA", "1.5kV CC", "diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 210 },
+      "longueur": 72,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "Regiolis AuRA Comp 4C",
+      "moteurs":  ["25kV CA", "1.5kV CC", "diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 210 },
+      "longueur": 72,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
       "nom": "Regiolis fluoGrandEst 6C",
       "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
       "vitesseMax": 160,
@@ -108,6 +154,14 @@
       "type": "Voyageur"
     },
     {
+      "nom": "BB26000 GrandEst N",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
       "nom": "BB22200 RC Fluo",
       "moteurs": ["25kV CA", "1.5kV CC"],
       "vitesseMax": 160,
@@ -122,6 +176,22 @@
       "capacite": { "premiere": 0, "seconde": 0 },
       "pays": "FR",
       "type": "Poly"
+    },
+    {
+      "nom": "BB7200 En Voyage Bourgogne",
+      "moteurs": ["1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "BB7200 Bourgogne",
+      "moteurs": ["1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR",
+      "type": "Voyageur"
     },
     {
       "nom": "AGC fluoGrandEst 3C",
@@ -164,7 +234,31 @@
       "type": "Voyageur"
     },
     {
+      "nom": "AGC Champagne-Ardenne 3C",
+      "moteurs": ["diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 134 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "AGC AuRa 3C",
+      "moteurs": ["diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 134 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
       "nom": "AGC blueAlsace 4C",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 183 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "AGC Metrolor 4C",
       "moteurs": ["25kV CA", "1.5kV CC"],
       "vitesseMax": 160,
       "capacite": { "premiere": 24, "seconde": 183 },
@@ -181,6 +275,22 @@
     },
     {
       "nom": "X73900 TER Alsace",
+      "moteurs": ["diesel"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 0, "seconde": 61 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "X73900 Champ-Ard",
+      "moteurs": ["diesel"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 0, "seconde": 61 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "X73900 AuRa",
       "moteurs": ["diesel"],
       "vitesseMax": 140,
       "capacite": { "premiere": 0, "seconde": 61 },
@@ -212,10 +322,66 @@
       "type": "Voyageur"
     },
     {
-      "nom": "AGC Champagne-Ardenne",
+      "nom": "AGC Champagne-Ardenne 4C",
       "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
       "vitesseMax": 160,
       "capacite": { "premiere": 24, "seconde": 183 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "AGC Bourgogne 4C",
+      "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 183 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "Z24500 Metrolor",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 41, "seconde": 298 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "Z11500 Metrolor",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 5, "seconde": 126 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "Z24500 AuRA",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 41, "seconde": 298 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "Z23500 AuRa",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 19, "seconde": 191 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "Z55500 AuRa",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 42, "seconde": 308 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "U52500 AuRA",
+      "moteurs": ["1.5kV CC"],
+      "vitesseMax": 100,
+      "capacite": { "premiere": 0, "seconde": 220 },
       "pays": "FR",
       "type": "Voyageur"
     },
@@ -298,6 +464,84 @@
     {
       "nom": "VTU B5uxh FluoGdEst",
       "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 40 },
+      "longueur": 26,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "VTU Alsace",
+      "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 88 },
+      "poids": 40,
+      "longueur": 26,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "VTU A Alsace",
+      "vitesseMax": 200,
+      "capacite": { "premiere": 60, "seconde": 0 },
+      "poids": 40,
+      "longueur": 26,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "VTU B5uxh FluoAlsace",
+      "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 40 },
+      "longueur": 26,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "VTU BFC",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 88 },
+      "poids": 40,
+      "longueur": 26,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "VTU A BFC",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 60, "seconde": 0 },
+      "poids": 40,
+      "longueur": 26,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "VTU B5uxh BFC",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 40 },
+      "longueur": 26,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "VTU AuRa",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 88 },
+      "poids": 40,
+      "longueur": 26,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "VTU A AuRa",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 60, "seconde": 0 },
+      "poids": 40,
+      "longueur": 26,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "VTU B5uxh AuRa",
+      "vitesseMax": 160,
       "capacite": { "premiere": 0, "seconde": 40 },
       "longueur": 26,
       "pays": "FR",

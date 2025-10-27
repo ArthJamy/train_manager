@@ -75,8 +75,8 @@ export function afficherStatsReseau() {
 
   // === TOP TRAINS ===
   const etatsActifs = etatTrains.filter(e => actifs.some(a => a.id === e.id));
-  const topPleins = [...etatsActifs].sort((a, b) => b.tauxRemplissage - a.tauxRemplissage).slice(0, 3);
-  const topVides = [...etatsActifs].sort((a, b) => a.tauxRemplissage - b.tauxRemplissage).slice(0, 3);
+  const topPleins = [...etatsActifs].sort((a, b) => b.tauxRemplissage - a.tauxRemplissage).slice(0, 5);
+  const topVides = [...etatsActifs].sort((a, b) => a.tauxRemplissage - b.tauxRemplissage).slice(0, 5);
 
   // === RÉPARTITION PAR TYPE (corrigé) ===
   const types = {};
@@ -380,7 +380,7 @@ export function afficherStatsReseau() {
 
       <!-- Section Top Trains -->
       <div class="stats-section highlight-section">
-        <h3>🏆 Top 3 trains pleins</h3>
+        <h3>🏆 Top 5 trains pleins</h3>
         ${topPleins.map((e, i) => `
           <div class="stat-row">
             <span>${i + 1}. ${e.id}</span>
@@ -390,7 +390,7 @@ export function afficherStatsReseau() {
       </div>
 
       <div class="stats-section highlight-section">
-        <h3>🟢 Top 3 trains vides</h3>
+        <h3>🟢 Top 5 trains vides</h3>
         ${topVides.map((e, i) => `
           <div class="stat-row">
             <span>${i + 1}. ${e.id}</span>

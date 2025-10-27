@@ -660,7 +660,9 @@ new p5((p) => {
 
   function zoomOnPoint(mouseX, mouseY, direction) {
     const oldZoom = zoom;
-    const newZoom = p.constrain(zoom + direction * zoomFactor, 0.5, 3);
+    
+    //0.4 min et 5 max
+    const newZoom = p.constrain(zoom + direction * zoomFactor, 0.4, 5);
 
     const worldX = (mouseX - offsetX) / oldZoom;
     const worldY = (mouseY - offsetY) / oldZoom;
