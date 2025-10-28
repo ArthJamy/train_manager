@@ -11,14 +11,14 @@ export const trainsFRET = [
         nom: "BT Energie France S.A.S → Strasbourg",
         dessertes: [
           { gare: "BT Energie France S.A.S", heure: "04:00", arret: 30 },
-          { gare: "Strasbourg", heure: "06:08", arret: 45 }
+          { gare: "Strasbourg", heure: "06:13", arret: 45 }
         ]
       },
       {
         nom: "Strasbourg → BT Energie France S.A.S",
         dessertes: [
           { gare: "Strasbourg", heure: "22:00", arret: 5 },
-          { gare: "BT Energie France S.A.S", heure: "23:43", arret: 2 }
+          { gare: "BT Energie France S.A.S", heure: "23:48", arret: 2 }
         ]
       }
     ]

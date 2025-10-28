@@ -84,6 +84,7 @@
           <div class="actions train-actions">
             <button class="btn btn-primary" id="btn-start-trajet">➕ Ajouter trajet</button>
             <button class="btn btn-ok" id="btn-validate">✅ Valider les modifications</button>
+            <button class="btn btn-danger" id="btn-show-conflits" style="display:none;">⚠️ Conflits détectés (0)</button>
             <p>&nbsp | &nbsp</p>
             <button class="btn btn-ghost" id="btn-suggest">🧠 Suggérer horaires</button>
             <button class="btn btn-ghost" id="btn-return">🔁 Générer retour inversé (+30 min)</button>
@@ -281,6 +282,24 @@
       <div id="gridTrains" class="grid"></div>
     </div>
   </div>
+
+  <!-- === Popup de conflits === -->
+  <div id="popupConflits" class="popup-overlay" style="display:none;">
+    <div class="popup-content" style="
+    background:white; border-radius:12px; padding:16px;
+    width:90%; max-width:800px; margin:auto;
+    box-shadow:0 6px 24px rgba(0,0,0,0.3);
+    overflow-y:auto; max-height:85vh; position:relative;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="margin:0;">Conflits détectés</h3>
+        <button id="closePopupConflits" class="btn btn-mini btn-danger">✕</button>
+      </div>
+
+      <div id="conflitsList" style="margin-top:12px; font-size:14px; line-height:1.5;"></div>
+    </div>
+  </div>
+
 
   <script type="module" src="./src/creationTrains.js"></script>
 </body>

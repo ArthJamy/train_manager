@@ -1219,5 +1219,6 @@ export const lignes = [
   { gareA: "_Friedrichsfeld West", gareB: "Mannheim Rbf", longueur: 5.4, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "PZB" },
   { gareA: "_Friedrichsfeld Sud", gareB: "_Friedrichsfeld West", longueur: 0.8, type: "classique", vitesse_max: 90, electrification: "15kV CA", signalisation: "PZB" },
   { gareA: "_Friedrichsfeld West", gareB: "Mannheim Friedrichsfeld Süd", longueur: 1, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "PZB" },
-  { gareA: "Mannheim Friedrichsfeld Süd", gareB: "_Friedrichsfeld Est", longueur: 1, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "PZB" }
+  { gareA: "Mannheim Friedrichsfeld Süd", gareB: "_Friedrichsfeld Est", longueur: 1, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "PZB" },
+  { gareA: "Niedaltdorf", gareB: "Bouzonville", longueur: 9.3, type: "FRET", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" }
 ];
