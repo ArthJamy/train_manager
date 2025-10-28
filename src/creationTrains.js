@@ -797,12 +797,12 @@ function dureeCheminMinutes(path) {
   if (!base) return 0;
 
   let total = 0;
-  const FACTEUR_VITESSE_POINTE = 0.92;
-  const MARGE_SECURITE = 1.08;
+ // const FACTEUR_VITESSE_POINTE = 0.99;
 
   for (let i = 0; i < path.length - 1; i++) {
     const nomA = path[i];
     const nomB = path[i + 1];
+
 
     // trouve la voie correspondante
     const l = lignes.find(L =>
@@ -816,6 +816,7 @@ function dureeCheminMinutes(path) {
 
     // vitesse effective du train sur ce segment
     const vSeg = Math.min(vmaxSegment, base.vitesseMax || vmaxSegment);
+    let FACTEUR_VITESSE_POINTE = vSeg > 250 ? 0.99 : vSeg > 160 ? 0.92 : 0.88;
     let vEff = vSeg * FACTEUR_VITESSE_POINTE;
 
     // ⚡ récupération du type de traction réel
@@ -823,11 +824,11 @@ function dureeCheminMinutes(path) {
 
     // ⚙️ coefficient de pénalité selon la traction
     const FACTEUR_MODE =
-      mode === "diesel" ? 1.35 :
-        mode === "electrique" ? 1.20 :
-          mode === "incompatible" ? 1.6 :
-            1.5;
+      vSeg > 250 ? (mode === "electrique" ? 1.02 : 1.15) :  // LGV
+        vSeg > 160 ? (mode === "electrique" ? 1.10 : 1.25) :  // Lignes rapides
+          (mode === "diesel" ? 1.35 : mode === "electrique" ? 1.20 : 1.5);  // Classique
 
+    const MARGE_SECURITE = vSeg > 250 ? 1.01 : vSeg > 160 ? 1.05 : 1.08;
     // 🕒 temps du segment en minutes
     let tempsSegment = (km / vEff) * 60;
     tempsSegment *= FACTEUR_MODE * MARGE_SECURITE;

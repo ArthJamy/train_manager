@@ -133,9 +133,10 @@
       "nom": "BR1440.1 bwegt",
       "moteurs": ["15kV CA"],
       "vitesseMax": 160,
-      "capacite": { "premiere": 16, "seconde": 174 },
+      "capacite": { "premiere": 20, "seconde": 200 },
       "pays": "DE",
-      "type": "Voyageur"
+      "type": "Voyageur",
+      "remarque":"DB Regio pour le réseau bwegt en Bade-Wurtemberg"
     },
     {
       "nom": "BR442.2 Baden-Württemberg",
@@ -418,12 +419,68 @@
       "type": "Voyageur"
     },
     {
-      "nom": "ICNG-V",
-      "moteurs": ["25kV CA", "1.5kV CC"],
-      "vitesseMax": 200,
-      "capacite": { "premiere": 54, "seconde": 204},
-      "pays": "NL",
+      "nom": "Z24500 CFL",
+      "moteurs": ["25kV CA", "15kV CA"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 45, "seconde": 282 },
+      "pays": "LU",
       "type": "Voyageur"
+    },
+    {
+      "nom": "Z11500 CFL",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 5, "seconde": 126 },
+      "pays": "LU",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "ME26_CFL",
+      "moteurs": ["diesel"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 0, "seconde": 0},
+      "pays": "LU",
+      "type": "Poly"
+    },
+    {
+      "nom": "1500_CFL",
+      "moteurs": ["diesel"],
+      "vitesseMax": 90,
+      "capacite": { "premiere": 0, "seconde": 0},
+      "pays": "LU",
+      "type": "Fret"
+    },
+    {
+      "nom": "4000 Cargo CFL",
+      "moteurs": ["15kV CA","25kV CA"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 0, "seconde": 0},
+      "pays": "LU",
+      "type": "Fret"
+    },
+    {
+      "nom": "4000 CFL",
+      "moteurs": ["15kV CA","25kV CA"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 0, "seconde": 0},
+      "pays": "LU",
+      "type": "Poly"
+    },
+    {
+      "nom": "3600 CFL rénovée",
+      "moteurs": ["25kV CA"],
+      "vitesseMax": 120,
+      "capacite": { "premiere": 0, "seconde": 0},
+      "pays": "LU",
+      "type": "Poly"
+    },
+    {
+      "nom": "3000_CFL",
+      "moteurs": ["25kV CA","1.5kV CC","3kV CC"],
+      "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 0},
+      "pays": "LU",
+      "type": "Poly"
     },
     {
       "nom": "AM08500 SNCB",
@@ -440,6 +497,24 @@
       "capacite": { "premiere": 0, "seconde": 290 },
       "pays": "IT",
       "type": "Voyageur"
+    },
+    {
+      "nom": "Traverso SOB",
+      "moteurs": ["1.5kV CC", "15kV CA"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 63, "seconde": 296 },
+      "pays": "CH",
+      "type": "Voyageur",
+      "remarque":"lignes Voralpen-Express et Treno Gottardo"
+    },
+    {
+      "nom": "FLIRT3 RABe526 SOB",
+      "moteurs": ["15kV CA"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 40, "seconde": 190 },
+      "pays": "CH",
+      "type": "Voyageur",
+      "remarque":"dessertes régionales et S-Bahn suisses, notamment autour de Saint-Gall et Lucerneg"
     }
   ],
   "wagons": [
@@ -581,6 +656,62 @@
       "vitesseMax": 100,
       "tonnage": 56,
       "pays": "FR",
+      "type": "Fret"
+    },
+    {
+      "nom": "Dosto B CFL",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 133 },
+      "pays": "LU",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "Dosto AB CFL",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 48, "seconde": 68 },
+      "pays": "LU",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "Dosto AB pilote CFL",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 44, "seconde": 36 },
+      "pays": "LU",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "Shimmnss Cargo CFL",
+      "vitesseMax": 120,
+      "tonnage": 56,
+      "pays": "LU",
+      "type": "Fret"
+    },
+    {
+      "nom": "Shimmnss ERR Cargo CFL",
+      "vitesseMax": 120,
+      "tonnage": 56,
+      "pays": "LU",
+      "type": "Fret"
+    },
+    {
+      "nom": "Rilnsss Cargo CFL",
+      "vitesseMax": 100,
+      "tonnage": 72,
+      "pays": "LU",
+      "type": "Fret"
+    },
+    {
+      "nom": "Rnsss Cargo CFL",
+      "vitesseMax": 100,
+      "tonnage": 26,
+      "pays": "LU",
+      "type": "Fret"
+    },
+    {
+      "nom": "Fcs Blanc-Bruns Cargo CFL",
+      "vitesseMax": 100,
+      "tonnage": 27,
+      "pays": "LU",
       "type": "Fret"
     }
   ]

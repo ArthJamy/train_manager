@@ -465,7 +465,7 @@ export function afficherTrainsAleatoires() {
     </div>
   `;
 
-  ouvrirPopup("🚞 Trains en circulatio", contenu);
+  ouvrirPopup("🚞 Trains en circulation", contenu);
 
   // Recharger les trains
   document.getElementById("btn-refresh-random").addEventListener("click", () => {
