@@ -1243,6 +1243,803 @@ export const trainsFR = [
   },
 
   {
+    id: "TER 3060",
+    nom: "BB22200 RC Fluo",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 140,
+    capacite: { premiere: 40, seconde: 432 },
+    composition: ["RRR Régionales FLUO", "RRR Régionales FLUO"],
+    trajets: [
+      {
+        nom: "Sélestat → Mommenheim",
+        dessertes: [
+          { gare: "Sélestat", heure: "08:15", arret: 5 },
+          { gare: "Ebersheim", heure: "08:25", arret: 1 },
+          { gare: "Kogenheim", heure: "08:30", arret: 1 },
+          { gare: "Benfeld", heure: "08:35", arret: 1 },
+          { gare: "Erstein", heure: "08:41", arret: 1 },
+          { gare: "Fegersheim - Lipsheim", heure: "08:47", arret: 1 },
+          { gare: "Graffenstaden", heure: "08:51", arret: 1 },
+          { gare: "Strasbourg", heure: "08:59", arret: 5 },
+          { gare: "Brumath", heure: "09:13", arret: 1 },
+          { gare: "Mommenheim", heure: "09:18", arret: 1 }
+        ]
+      },
+      {
+        nom: "Mommenheim → Sélestat",
+        dessertes: [
+          { gare: "Mommenheim", heure: "09:50", arret: 1 },
+          { gare: "Brumath", heure: "09:55", arret: 1 },
+          { gare: "Strasbourg", heure: "10:05", arret: 5 },
+          { gare: "Graffenstaden", heure: "10:17", arret: 1 },
+          { gare: "Fegersheim - Lipsheim", heure: "10:21", arret: 1 },
+          { gare: "Erstein", heure: "10:27", arret: 1 },
+          { gare: "Benfeld", heure: "10:33", arret: 1 },
+          { gare: "Kogenheim", heure: "10:38", arret: 1 },
+          { gare: "Ebersheim", heure: "10:43", arret: 1 },
+          { gare: "Sélestat", heure: "10:49", arret: 5 }
+        ]
+      },
+      {
+        nom: "Sélestat → Mommenheim",
+        dessertes: [
+          { gare: "Sélestat", heure: "11:15", arret: 5 },
+          { gare: "Ebersheim", heure: "11:25", arret: 1 },
+          { gare: "Kogenheim", heure: "11:30", arret: 1 },
+          { gare: "Benfeld", heure: "11:35", arret: 1 },
+          { gare: "Erstein", heure: "11:41", arret: 1 },
+          { gare: "Fegersheim - Lipsheim", heure: "11:47", arret: 1 },
+          { gare: "Graffenstaden", heure: "11:51", arret: 1 },
+          { gare: "Strasbourg", heure: "11:59", arret: 5 },
+          { gare: "Brumath", heure: "12:13", arret: 1 },
+          { gare: "Mommenheim", heure: "12:18", arret: 1 }
+        ]
+      },
+      {
+        nom: "Mommenheim → Sélestat",
+        dessertes: [
+          { gare: "Mommenheim", heure: "12:50", arret: 1 },
+          { gare: "Brumath", heure: "12:55", arret: 1 },
+          { gare: "Strasbourg", heure: "13:05", arret: 5 },
+          { gare: "Graffenstaden", heure: "13:17", arret: 1 },
+          { gare: "Fegersheim - Lipsheim", heure: "13:21", arret: 1 },
+          { gare: "Erstein", heure: "13:27", arret: 1 },
+          { gare: "Benfeld", heure: "13:33", arret: 1 },
+          { gare: "Kogenheim", heure: "13:38", arret: 1 },
+          { gare: "Ebersheim", heure: "13:43", arret: 1 },
+          { gare: "Sélestat", heure: "13:49", arret: 5 }
+        ]
+      },
+      {
+        nom: "Sélestat → Mommenheim",
+        dessertes: [
+          { gare: "Sélestat", heure: "14:15", arret: 5 },
+          { gare: "Ebersheim", heure: "14:25", arret: 1 },
+          { gare: "Kogenheim", heure: "14:30", arret: 1 },
+          { gare: "Benfeld", heure: "14:35", arret: 1 },
+          { gare: "Erstein", heure: "14:41", arret: 1 },
+          { gare: "Fegersheim - Lipsheim", heure: "14:47", arret: 1 },
+          { gare: "Graffenstaden", heure: "14:51", arret: 1 },
+          { gare: "Strasbourg", heure: "14:59", arret: 5 },
+          { gare: "Brumath", heure: "15:13", arret: 1 },
+          { gare: "Mommenheim", heure: "15:18", arret: 1 }
+        ]
+      },
+      {
+        nom: "Mommenheim → Sélestat",
+        dessertes: [
+          { gare: "Mommenheim", heure: "15:50", arret: 1 },
+          { gare: "Brumath", heure: "15:55", arret: 1 },
+          { gare: "Strasbourg", heure: "16:05", arret: 5 },
+          { gare: "Graffenstaden", heure: "16:17", arret: 1 },
+          { gare: "Fegersheim - Lipsheim", heure: "16:21", arret: 1 },
+          { gare: "Erstein", heure: "16:27", arret: 1 },
+          { gare: "Benfeld", heure: "16:33", arret: 1 },
+          { gare: "Kogenheim", heure: "16:38", arret: 1 },
+          { gare: "Ebersheim", heure: "16:43", arret: 1 },
+          { gare: "Sélestat", heure: "16:49", arret: 5 }
+        ]
+      },
+      {
+        nom: "Sélestat → Mommenheim",
+        dessertes: [
+          { gare: "Sélestat", heure: "17:15", arret: 5 },
+          { gare: "Ebersheim", heure: "17:25", arret: 1 },
+          { gare: "Kogenheim", heure: "17:30", arret: 1 },
+          { gare: "Benfeld", heure: "17:35", arret: 1 },
+          { gare: "Erstein", heure: "17:41", arret: 1 },
+          { gare: "Fegersheim - Lipsheim", heure: "17:47", arret: 1 },
+          { gare: "Graffenstaden", heure: "17:51", arret: 1 },
+          { gare: "Strasbourg", heure: "17:59", arret: 5 },
+          { gare: "Brumath", heure: "18:13", arret: 1 },
+          { gare: "Mommenheim", heure: "18:18", arret: 1 }
+        ]
+      },
+      {
+        nom: "Mommenheim → Sélestat",
+        dessertes: [
+          { gare: "Mommenheim", heure: "18:50", arret: 1 },
+          { gare: "Brumath", heure: "18:55", arret: 1 },
+          { gare: "Strasbourg", heure: "19:05", arret: 5 },
+          { gare: "Graffenstaden", heure: "19:17", arret: 1 },
+          { gare: "Fegersheim - Lipsheim", heure: "19:21", arret: 1 },
+          { gare: "Erstein", heure: "19:27", arret: 1 },
+          { gare: "Benfeld", heure: "19:33", arret: 1 },
+          { gare: "Kogenheim", heure: "19:38", arret: 1 },
+          { gare: "Ebersheim", heure: "19:43", arret: 1 },
+          { gare: "Sélestat", heure: "19:49", arret: 5 }
+        ]
+      },
+      {
+        nom: "Sélestat → Mommenheim",
+        dessertes: [
+          { gare: "Sélestat", heure: "20:15", arret: 5 },
+          { gare: "Ebersheim", heure: "20:25", arret: 1 },
+          { gare: "Kogenheim", heure: "20:30", arret: 1 },
+          { gare: "Benfeld", heure: "20:35", arret: 1 },
+          { gare: "Erstein", heure: "20:41", arret: 1 },
+          { gare: "Fegersheim - Lipsheim", heure: "20:47", arret: 1 },
+          { gare: "Graffenstaden", heure: "20:51", arret: 1 },
+          { gare: "Strasbourg", heure: "20:59", arret: 5 },
+          { gare: "Brumath", heure: "21:13", arret: 1 },
+          { gare: "Mommenheim", heure: "21:18", arret: 1 }
+        ]
+      },
+      {
+        nom: "Mommenheim → Sélestat",
+        dessertes: [
+          { gare: "Mommenheim", heure: "21:50", arret: 1 },
+          { gare: "Brumath", heure: "21:55", arret: 1 },
+          { gare: "Strasbourg", heure: "22:05", arret: 5 },
+          { gare: "Graffenstaden", heure: "22:17", arret: 1 },
+          { gare: "Fegersheim - Lipsheim", heure: "22:21", arret: 1 },
+          { gare: "Erstein", heure: "22:27", arret: 1 },
+          { gare: "Benfeld", heure: "22:33", arret: 1 },
+          { gare: "Kogenheim", heure: "22:38", arret: 1 },
+          { gare: "Ebersheim", heure: "22:43", arret: 1 },
+          { gare: "Sélestat", heure: "22:49", arret: 5 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3065",
+    nom: "Regiolis fluoGrandEst 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 304 },
+    trajets: [
+      {
+        nom: "Strasbourg → Saverne",
+        dessertes: [
+          { gare: "Strasbourg", heure: "08:30", arret: 4 },
+          { gare: "Mundolsheim", heure: "08:39", arret: 1 },
+          { gare: "Vendenheim", heure: "08:42", arret: 1 },
+          { gare: "Brumath", heure: "08:48", arret: 1 },
+          { gare: "Mommenheim", heure: "08:53", arret: 2 },
+          { gare: "Wilwisheim", heure: "09:04", arret: 1 },
+          { gare: "Steinbourg", heure: "09:11", arret: 1 },
+          { gare: "Saverne", heure: "09:16", arret: 4 }
+        ]
+      },
+      {
+        nom: "Saverne → Strasbourg",
+        dessertes: [
+          { gare: "Saverne", heure: "10:00", arret: 4 },
+          { gare: "Steinbourg", heure: "10:08", arret: 1 },
+          { gare: "Wilwisheim", heure: "10:15", arret: 1 },
+          { gare: "Mommenheim", heure: "10:25", arret: 2 },
+          { gare: "Brumath", heure: "10:31", arret: 1 },
+          { gare: "Vendenheim", heure: "10:37", arret: 1 },
+          { gare: "Mundolsheim", heure: "10:40", arret: 1 },
+          { gare: "Strasbourg", heure: "10:46", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Saverne",
+        dessertes: [
+          { gare: "Strasbourg", heure: "11:30", arret: 4 },
+          { gare: "Mundolsheim", heure: "11:39", arret: 1 },
+          { gare: "Vendenheim", heure: "11:42", arret: 1 },
+          { gare: "Brumath", heure: "11:48", arret: 1 },
+          { gare: "Mommenheim", heure: "11:53", arret: 2 },
+          { gare: "Wilwisheim", heure: "12:04", arret: 1 },
+          { gare: "Steinbourg", heure: "12:11", arret: 1 },
+          { gare: "Saverne", heure: "12:16", arret: 4 }
+        ]
+      },
+      {
+        nom: "Saverne → Strasbourg",
+        dessertes: [
+          { gare: "Saverne", heure: "13:00", arret: 4 },
+          { gare: "Steinbourg", heure: "13:08", arret: 1 },
+          { gare: "Wilwisheim", heure: "13:15", arret: 1 },
+          { gare: "Mommenheim", heure: "13:25", arret: 2 },
+          { gare: "Brumath", heure: "13:31", arret: 1 },
+          { gare: "Vendenheim", heure: "13:37", arret: 1 },
+          { gare: "Mundolsheim", heure: "13:40", arret: 1 },
+          { gare: "Strasbourg", heure: "13:46", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Saverne",
+        dessertes: [
+          { gare: "Strasbourg", heure: "14:30", arret: 4 },
+          { gare: "Mundolsheim", heure: "14:39", arret: 1 },
+          { gare: "Vendenheim", heure: "14:42", arret: 1 },
+          { gare: "Brumath", heure: "14:48", arret: 1 },
+          { gare: "Mommenheim", heure: "14:53", arret: 2 },
+          { gare: "Wilwisheim", heure: "15:04", arret: 1 },
+          { gare: "Steinbourg", heure: "15:11", arret: 1 },
+          { gare: "Saverne", heure: "15:16", arret: 4 }
+        ]
+      },
+      {
+        nom: "Saverne → Strasbourg",
+        dessertes: [
+          { gare: "Saverne", heure: "16:00", arret: 4 },
+          { gare: "Steinbourg", heure: "16:08", arret: 1 },
+          { gare: "Wilwisheim", heure: "16:15", arret: 1 },
+          { gare: "Mommenheim", heure: "16:25", arret: 2 },
+          { gare: "Brumath", heure: "16:31", arret: 1 },
+          { gare: "Vendenheim", heure: "16:37", arret: 1 },
+          { gare: "Mundolsheim", heure: "16:40", arret: 1 },
+          { gare: "Strasbourg", heure: "16:46", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Saverne",
+        dessertes: [
+          { gare: "Strasbourg", heure: "17:30", arret: 4 },
+          { gare: "Mundolsheim", heure: "17:39", arret: 1 },
+          { gare: "Vendenheim", heure: "17:42", arret: 1 },
+          { gare: "Brumath", heure: "17:48", arret: 1 },
+          { gare: "Mommenheim", heure: "17:53", arret: 2 },
+          { gare: "Wilwisheim", heure: "18:04", arret: 1 },
+          { gare: "Steinbourg", heure: "18:11", arret: 1 },
+          { gare: "Saverne", heure: "18:16", arret: 4 }
+        ]
+      },
+      {
+        nom: "Saverne → Strasbourg",
+        dessertes: [
+          { gare: "Saverne", heure: "19:00", arret: 4 },
+          { gare: "Steinbourg", heure: "19:08", arret: 1 },
+          { gare: "Wilwisheim", heure: "19:15", arret: 1 },
+          { gare: "Mommenheim", heure: "19:25", arret: 2 },
+          { gare: "Brumath", heure: "19:31", arret: 1 },
+          { gare: "Vendenheim", heure: "19:37", arret: 1 },
+          { gare: "Mundolsheim", heure: "19:40", arret: 1 },
+          { gare: "Strasbourg", heure: "19:46", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Saverne",
+        dessertes: [
+          { gare: "Strasbourg", heure: "20:30", arret: 4 },
+          { gare: "Mundolsheim", heure: "20:39", arret: 1 },
+          { gare: "Vendenheim", heure: "20:42", arret: 1 },
+          { gare: "Brumath", heure: "20:48", arret: 1 },
+          { gare: "Mommenheim", heure: "20:53", arret: 2 },
+          { gare: "Wilwisheim", heure: "21:04", arret: 1 },
+          { gare: "Steinbourg", heure: "21:11", arret: 1 },
+          { gare: "Saverne", heure: "21:16", arret: 4 }
+        ]
+      },
+      {
+        nom: "Saverne → Strasbourg",
+        dessertes: [
+          { gare: "Saverne", heure: "22:00", arret: 4 },
+          { gare: "Steinbourg", heure: "22:08", arret: 1 },
+          { gare: "Wilwisheim", heure: "22:15", arret: 1 },
+          { gare: "Mommenheim", heure: "22:25", arret: 2 },
+          { gare: "Brumath", heure: "22:31", arret: 1 },
+          { gare: "Vendenheim", heure: "22:37", arret: 1 },
+          { gare: "Mundolsheim", heure: "22:40", arret: 1 },
+          { gare: "Strasbourg", heure: "22:46", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3080",
+    nom: "AGC blueAlsace 4C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Haguenau → Strasbourg",
+        dessertes: [
+          { gare: "Haguenau", heure: "06:10", arret: 5 },
+          { gare: "Marienthal", heure: "06:19", arret: 1 },
+          { gare: "Bischwiller", heure: "06:23", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "06:28", arret: 1 },
+          { gare: "Weyersheim", heure: "06:32", arret: 1 },
+          { gare: "Hoerdt", heure: "06:35", arret: 1 },
+          { gare: "Vendenheim", heure: "06:42", arret: 1 },
+          { gare: "Mundolsheim", heure: "06:45", arret: 1 },
+          { gare: "Strasbourg", heure: "06:51", arret: 1 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Haguenau",
+        dessertes: [
+          { gare: "Strasbourg", heure: "07:30", arret: 5 },
+          { gare: "Mundolsheim", heure: "07:40", arret: 1 },
+          { gare: "Vendenheim", heure: "07:43", arret: 1 },
+          { gare: "Hoerdt", heure: "07:50", arret: 1 },
+          { gare: "Weyersheim", heure: "07:53", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "07:57", arret: 1 },
+          { gare: "Bischwiller", heure: "08:02", arret: 1 },
+          { gare: "Marienthal", heure: "08:06", arret: 1 },
+          { gare: "Haguenau", heure: "08:11", arret: 5 }
+        ]
+      },
+      {
+        nom: "Haguenau → Strasbourg",
+        dessertes: [
+          { gare: "Haguenau", heure: "09:10", arret: 5 },
+          { gare: "Marienthal", heure: "09:19", arret: 1 },
+          { gare: "Bischwiller", heure: "09:23", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "09:28", arret: 1 },
+          { gare: "Weyersheim", heure: "09:32", arret: 1 },
+          { gare: "Hoerdt", heure: "09:35", arret: 1 },
+          { gare: "Vendenheim", heure: "09:42", arret: 1 },
+          { gare: "Mundolsheim", heure: "09:45", arret: 1 },
+          { gare: "Strasbourg", heure: "09:51", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Haguenau",
+        dessertes: [
+          { gare: "Strasbourg", heure: "10:30", arret: 5 },
+          { gare: "Mundolsheim", heure: "10:40", arret: 1 },
+          { gare: "Vendenheim", heure: "10:43", arret: 1 },
+          { gare: "Hoerdt", heure: "10:50", arret: 1 },
+          { gare: "Weyersheim", heure: "10:53", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "10:57", arret: 1 },
+          { gare: "Bischwiller", heure: "11:02", arret: 1 },
+          { gare: "Marienthal", heure: "11:06", arret: 1 },
+          { gare: "Haguenau", heure: "11:11", arret: 5 }
+        ]
+      },
+      {
+        nom: "Haguenau → Strasbourg",
+        dessertes: [
+          { gare: "Haguenau", heure: "12:10", arret: 5 },
+          { gare: "Marienthal", heure: "12:19", arret: 1 },
+          { gare: "Bischwiller", heure: "12:23", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "12:28", arret: 1 },
+          { gare: "Weyersheim", heure: "12:32", arret: 1 },
+          { gare: "Hoerdt", heure: "12:35", arret: 1 },
+          { gare: "Vendenheim", heure: "12:42", arret: 1 },
+          { gare: "Mundolsheim", heure: "12:45", arret: 1 },
+          { gare: "Strasbourg", heure: "12:51", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Haguenau",
+        dessertes: [
+          { gare: "Strasbourg", heure: "13:30", arret: 5 },
+          { gare: "Mundolsheim", heure: "13:40", arret: 1 },
+          { gare: "Vendenheim", heure: "13:43", arret: 1 },
+          { gare: "Hoerdt", heure: "13:50", arret: 1 },
+          { gare: "Weyersheim", heure: "13:53", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "13:57", arret: 1 },
+          { gare: "Bischwiller", heure: "14:02", arret: 1 },
+          { gare: "Marienthal", heure: "14:06", arret: 1 },
+          { gare: "Haguenau", heure: "14:11", arret: 5 }
+        ]
+      },
+      {
+        nom: "Haguenau → Strasbourg",
+        dessertes: [
+          { gare: "Haguenau", heure: "15:10", arret: 5 },
+          { gare: "Marienthal", heure: "15:19", arret: 1 },
+          { gare: "Bischwiller", heure: "15:23", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "15:28", arret: 1 },
+          { gare: "Weyersheim", heure: "15:32", arret: 1 },
+          { gare: "Hoerdt", heure: "15:35", arret: 1 },
+          { gare: "Vendenheim", heure: "15:42", arret: 1 },
+          { gare: "Mundolsheim", heure: "15:45", arret: 1 },
+          { gare: "Strasbourg", heure: "15:51", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Haguenau",
+        dessertes: [
+          { gare: "Strasbourg", heure: "16:30", arret: 5 },
+          { gare: "Mundolsheim", heure: "16:40", arret: 1 },
+          { gare: "Vendenheim", heure: "16:43", arret: 1 },
+          { gare: "Hoerdt", heure: "16:50", arret: 1 },
+          { gare: "Weyersheim", heure: "16:53", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "16:57", arret: 1 },
+          { gare: "Bischwiller", heure: "17:02", arret: 1 },
+          { gare: "Marienthal", heure: "17:06", arret: 1 },
+          { gare: "Haguenau", heure: "17:11", arret: 5 }
+        ]
+      },
+      {
+        nom: "Haguenau → Strasbourg",
+        dessertes: [
+          { gare: "Haguenau", heure: "18:10", arret: 5 },
+          { gare: "Marienthal", heure: "18:19", arret: 1 },
+          { gare: "Bischwiller", heure: "18:23", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "18:28", arret: 1 },
+          { gare: "Weyersheim", heure: "18:32", arret: 1 },
+          { gare: "Hoerdt", heure: "18:35", arret: 1 },
+          { gare: "Vendenheim", heure: "18:42", arret: 1 },
+          { gare: "Mundolsheim", heure: "18:45", arret: 1 },
+          { gare: "Strasbourg", heure: "18:51", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Haguenau",
+        dessertes: [
+          { gare: "Strasbourg", heure: "19:30", arret: 5 },
+          { gare: "Mundolsheim", heure: "19:40", arret: 1 },
+          { gare: "Vendenheim", heure: "19:43", arret: 1 },
+          { gare: "Hoerdt", heure: "19:50", arret: 1 },
+          { gare: "Weyersheim", heure: "19:53", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "19:57", arret: 1 },
+          { gare: "Bischwiller", heure: "20:02", arret: 1 },
+          { gare: "Marienthal", heure: "20:06", arret: 1 },
+          { gare: "Haguenau", heure: "20:11", arret: 5 }
+        ]
+      },
+      {
+        nom: "Haguenau → Strasbourg",
+        dessertes: [
+          { gare: "Haguenau", heure: "21:10", arret: 5 },
+          { gare: "Marienthal", heure: "21:19", arret: 1 },
+          { gare: "Bischwiller", heure: "21:23", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "21:28", arret: 1 },
+          { gare: "Weyersheim", heure: "21:32", arret: 1 },
+          { gare: "Hoerdt", heure: "21:35", arret: 1 },
+          { gare: "Vendenheim", heure: "21:42", arret: 1 },
+          { gare: "Mundolsheim", heure: "21:45", arret: 1 },
+          { gare: "Strasbourg", heure: "21:51", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Haguenau",
+        dessertes: [
+          { gare: "Strasbourg", heure: "22:30", arret: 5 },
+          { gare: "Mundolsheim", heure: "22:40", arret: 1 },
+          { gare: "Vendenheim", heure: "22:43", arret: 1 },
+          { gare: "Hoerdt", heure: "22:50", arret: 1 },
+          { gare: "Weyersheim", heure: "22:53", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "22:57", arret: 1 },
+          { gare: "Bischwiller", heure: "23:02", arret: 1 },
+          { gare: "Marienthal", heure: "23:06", arret: 1 },
+          { gare: "Haguenau", heure: "23:11", arret: 5 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3084",
+    nom: "Regiolis fluoGrandEst 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 210 },
+    trajets: [
+      {
+        nom: "Niederbronn-les-Bains → Strasbourg",
+        dessertes: [
+          { gare: "Niederbronn-les-Bains", heure: "07:30", arret: 2 },
+          { gare: "Reichshoffen", heure: "07:36", arret: 1 },
+          { gare: "Gundershoffen", heure: "07:41", arret: 1 },
+          { gare: "Mertzwiller", heure: "07:48", arret: 1 },
+          { gare: "Schweighouse-Sur-Moder", heure: "07:59", arret: 1 },
+          { gare: "Haguenau", heure: "08:06", arret: 2 },
+          { gare: "Marienthal", heure: "08:12", arret: 1 },
+          { gare: "Bischwiller", heure: "08:16", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "08:21", arret: 1 },
+          { gare: "Weyersheim", heure: "08:25", arret: 1 },
+          { gare: "Hoerdt", heure: "08:28", arret: 1 },
+          { gare: "Vendenheim", heure: "08:35", arret: 1 },
+          { gare: "Mundolsheim", heure: "08:38", arret: 1 },
+          { gare: "Strasbourg", heure: "08:44", arret: 2 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Niederbronn-les-Bains",
+        dessertes: [
+          { gare: "Strasbourg", heure: "09:30", arret: 2 },
+          { gare: "Mundolsheim", heure: "09:37", arret: 1 },
+          { gare: "Vendenheim", heure: "09:40", arret: 1 },
+          { gare: "Hoerdt", heure: "09:47", arret: 1 },
+          { gare: "Weyersheim", heure: "09:50", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "09:54", arret: 1 },
+          { gare: "Bischwiller", heure: "09:59", arret: 1 },
+          { gare: "Marienthal", heure: "10:03", arret: 1 },
+          { gare: "Haguenau", heure: "10:08", arret: 2 },
+          { gare: "Schweighouse-Sur-Moder", heure: "10:16", arret: 1 },
+          { gare: "Mertzwiller", heure: "10:27", arret: 1 },
+          { gare: "Gundershoffen", heure: "10:34", arret: 1 },
+          { gare: "Reichshoffen", heure: "10:39", arret: 1 },
+          { gare: "Niederbronn-les-Bains", heure: "10:44", arret: 2 }
+        ]
+      },
+      {
+        nom: "Niederbronn-les-Bains → Strasbourg",
+        dessertes: [
+          { gare: "Niederbronn-les-Bains", heure: "11:30", arret: 2 },
+          { gare: "Reichshoffen", heure: "11:36", arret: 1 },
+          { gare: "Gundershoffen", heure: "11:41", arret: 1 },
+          { gare: "Mertzwiller", heure: "11:48", arret: 1 },
+          { gare: "Schweighouse-Sur-Moder", heure: "11:59", arret: 1 },
+          { gare: "Haguenau", heure: "12:06", arret: 2 },
+          { gare: "Vendenheim", heure: "12:27", arret: 1 },
+          { gare: "Strasbourg", heure: "12:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Niederbronn-les-Bains",
+        dessertes: [
+          { gare: "Strasbourg", heure: "13:30", arret: 2 },
+          { gare: "Mundolsheim", heure: "13:37", arret: 1 },
+          { gare: "Vendenheim", heure: "13:40", arret: 1 },
+          { gare: "Hoerdt", heure: "13:47", arret: 1 },
+          { gare: "Weyersheim", heure: "13:50", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "13:54", arret: 1 },
+          { gare: "Bischwiller", heure: "13:59", arret: 1 },
+          { gare: "Marienthal", heure: "14:03", arret: 1 },
+          { gare: "Haguenau", heure: "14:08", arret: 2 },
+          { gare: "Schweighouse-Sur-Moder", heure: "14:16", arret: 1 },
+          { gare: "Mertzwiller", heure: "14:27", arret: 1 },
+          { gare: "Gundershoffen", heure: "14:34", arret: 1 },
+          { gare: "Reichshoffen", heure: "14:39", arret: 1 },
+          { gare: "Niederbronn-les-Bains", heure: "14:44", arret: 2 }
+        ]
+      },
+      {
+        nom: "Niederbronn-les-Bains → Strasbourg",
+        dessertes: [
+          { gare: "Niederbronn-les-Bains", heure: "15:30", arret: 2 },
+          { gare: "Reichshoffen", heure: "15:36", arret: 1 },
+          { gare: "Gundershoffen", heure: "15:41", arret: 1 },
+          { gare: "Mertzwiller", heure: "15:48", arret: 1 },
+          { gare: "Schweighouse-Sur-Moder", heure: "15:59", arret: 1 },
+          { gare: "Haguenau", heure: "16:06", arret: 2 },
+          { gare: "Marienthal", heure: "16:12", arret: 1 },
+          { gare: "Bischwiller", heure: "16:16", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "16:21", arret: 1 },
+          { gare: "Weyersheim", heure: "16:25", arret: 1 },
+          { gare: "Hoerdt", heure: "16:28", arret: 1 },
+          { gare: "Vendenheim", heure: "16:35", arret: 1 },
+          { gare: "Mundolsheim", heure: "16:38", arret: 1 },
+          { gare: "Strasbourg", heure: "16:44", arret: 2 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Niederbronn-les-Bains",
+        dessertes: [
+          { gare: "Strasbourg", heure: "17:30", arret: 2 },
+          { gare: "Mundolsheim", heure: "17:37", arret: 1 },
+          { gare: "Vendenheim", heure: "17:40", arret: 1 },
+          { gare: "Hoerdt", heure: "17:47", arret: 1 },
+          { gare: "Weyersheim", heure: "17:50", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "17:54", arret: 1 },
+          { gare: "Bischwiller", heure: "17:59", arret: 1 },
+          { gare: "Marienthal", heure: "18:03", arret: 1 },
+          { gare: "Haguenau", heure: "18:08", arret: 2 },
+          { gare: "Schweighouse-Sur-Moder", heure: "18:16", arret: 1 },
+          { gare: "Mertzwiller", heure: "18:27", arret: 1 },
+          { gare: "Gundershoffen", heure: "18:34", arret: 1 },
+          { gare: "Reichshoffen", heure: "18:39", arret: 1 },
+          { gare: "Niederbronn-les-Bains", heure: "18:44", arret: 2 }
+        ]
+      },
+      {
+        nom: "Niederbronn-les-Bains → Strasbourg",
+        dessertes: [
+          { gare: "Niederbronn-les-Bains", heure: "19:30", arret: 2 },
+          { gare: "Reichshoffen", heure: "19:36", arret: 1 },
+          { gare: "Gundershoffen", heure: "19:41", arret: 1 },
+          { gare: "Mertzwiller", heure: "19:48", arret: 1 },
+          { gare: "Schweighouse-Sur-Moder", heure: "19:59", arret: 1 },
+          { gare: "Haguenau", heure: "20:06", arret: 2 },
+          { gare: "Marienthal", heure: "20:12", arret: 1 },
+          { gare: "Bischwiller", heure: "20:16", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "20:21", arret: 1 },
+          { gare: "Weyersheim", heure: "20:25", arret: 1 },
+          { gare: "Hoerdt", heure: "20:28", arret: 1 },
+          { gare: "Vendenheim", heure: "20:35", arret: 1 },
+          { gare: "Mundolsheim", heure: "20:38", arret: 1 },
+          { gare: "Strasbourg", heure: "20:44", arret: 2 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Niederbronn-les-Bains",
+        dessertes: [
+          { gare: "Strasbourg", heure: "21:30", arret: 2 },
+          { gare: "Mundolsheim", heure: "21:37", arret: 1 },
+          { gare: "Vendenheim", heure: "21:40", arret: 1 },
+          { gare: "Hoerdt", heure: "21:47", arret: 1 },
+          { gare: "Weyersheim", heure: "21:50", arret: 1 },
+          { gare: "Kurtzenhouse", heure: "21:54", arret: 1 },
+          { gare: "Bischwiller", heure: "21:59", arret: 1 },
+          { gare: "Marienthal", heure: "22:03", arret: 1 },
+          { gare: "Haguenau", heure: "22:08", arret: 2 },
+          { gare: "Schweighouse-Sur-Moder", heure: "22:16", arret: 1 },
+          { gare: "Mertzwiller", heure: "22:27", arret: 1 },
+          { gare: "Gundershoffen", heure: "22:34", arret: 1 },
+          { gare: "Reichshoffen", heure: "22:39", arret: 1 },
+          { gare: "Niederbronn-les-Bains", heure: "22:44", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3088",
+    nom: "Regiolis blueFluoEurope 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 210 },
+    trajets: [
+      {
+        nom: "Strasbourg → Woerth (Rhein)",
+        dessertes: [
+          { gare: "Strasbourg", heure: "05:00", arret: 4 },
+          { gare: "Bischheim", heure: "05:08", arret: 1 },
+          { gare: "Hoenheim Tram", heure: "05:12", arret: 1 },
+          { gare: "La Wantzenau", heure: "05:23", arret: 1 },
+          { gare: "Gambsheim", heure: "05:32", arret: 1 },
+          { gare: "Herrlisheim(Bas-Rhin)", heure: "05:39", arret: 1 },
+          { gare: "Drusenheim", heure: "05:47", arret: 2 },
+          { gare: "Sessenheim", heure: "05:56", arret: 1 },
+          { gare: "Roeschwoog", heure: "06:04", arret: 1 },
+          { gare: "Seltz", heure: "06:17", arret: 1 },
+          { gare: "Mothern", heure: "06:28", arret: 1 },
+          { gare: "Lauterbourg", heure: "06:34", arret: 1 },
+          { gare: "Berg (Pfalz)", heure: "06:40", arret: 1 },
+          { gare: "Neuburg", heure: "06:46", arret: 1 },
+          { gare: "Hagenbach", heure: "06:52", arret: 1 },
+          { gare: "Woerth (Rhein)", heure: "06:59", arret: 4 }
+        ]
+      },
+      {
+        nom: "Woerth (Rhein) → Strasbourg",
+        dessertes: [
+          { gare: "Woerth (Rhein)", heure: "07:30", arret: 4 },
+          { gare: "Hagenbach", heure: "07:40", arret: 1 },
+          { gare: "Neuburg", heure: "07:46", arret: 1 },
+          { gare: "Berg (Pfalz)", heure: "07:52", arret: 1 },
+          { gare: "Lauterbourg", heure: "07:58", arret: 1 },
+          { gare: "Mothern", heure: "08:04", arret: 1 },
+          { gare: "Seltz", heure: "08:15", arret: 1 },
+          { gare: "Roeschwoog", heure: "08:28", arret: 1 },
+          { gare: "Sessenheim", heure: "08:36", arret: 1 },
+          { gare: "Drusenheim", heure: "08:44", arret: 2 },
+          { gare: "Herrlisheim(Bas-Rhin)", heure: "08:53", arret: 1 },
+          { gare: "Gambsheim", heure: "09:00", arret: 1 },
+          { gare: "La Wantzenau", heure: "09:09", arret: 1 },
+          { gare: "Hoenheim Tram", heure: "09:20", arret: 1 },
+          { gare: "Bischheim", heure: "09:24", arret: 1 },
+          { gare: "Strasbourg", heure: "09:29", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Woerth (Rhein)",
+        dessertes: [
+          { gare: "Strasbourg", heure: "10:00", arret: 4 },
+          { gare: "Bischheim", heure: "10:08", arret: 1 },
+          { gare: "Hoenheim Tram", heure: "10:12", arret: 1 },
+          { gare: "La Wantzenau", heure: "10:23", arret: 1 },
+          { gare: "Gambsheim", heure: "10:32", arret: 1 },
+          { gare: "Herrlisheim(Bas-Rhin)", heure: "10:39", arret: 1 },
+          { gare: "Drusenheim", heure: "10:47", arret: 2 },
+          { gare: "Sessenheim", heure: "10:56", arret: 1 },
+          { gare: "Roeschwoog", heure: "11:04", arret: 1 },
+          { gare: "Seltz", heure: "11:17", arret: 1 },
+          { gare: "Mothern", heure: "11:28", arret: 1 },
+          { gare: "Lauterbourg", heure: "11:34", arret: 1 },
+          { gare: "Berg (Pfalz)", heure: "11:40", arret: 1 },
+          { gare: "Neuburg", heure: "11:46", arret: 1 },
+          { gare: "Hagenbach", heure: "11:52", arret: 1 },
+          { gare: "Woerth (Rhein)", heure: "11:59", arret: 4 }
+        ]
+      },
+      {
+        nom: "Woerth (Rhein) → Strasbourg",
+        dessertes: [
+          { gare: "Woerth (Rhein)", heure: "12:30", arret: 4 },
+          { gare: "Hagenbach", heure: "12:40", arret: 1 },
+          { gare: "Neuburg", heure: "12:46", arret: 1 },
+          { gare: "Berg (Pfalz)", heure: "12:52", arret: 1 },
+          { gare: "Lauterbourg", heure: "12:58", arret: 1 },
+          { gare: "Mothern", heure: "13:04", arret: 1 },
+          { gare: "Seltz", heure: "13:15", arret: 1 },
+          { gare: "Roeschwoog", heure: "13:28", arret: 1 },
+          { gare: "Sessenheim", heure: "13:36", arret: 1 },
+          { gare: "Drusenheim", heure: "13:44", arret: 2 },
+          { gare: "Herrlisheim(Bas-Rhin)", heure: "13:53", arret: 1 },
+          { gare: "Gambsheim", heure: "14:00", arret: 1 },
+          { gare: "La Wantzenau", heure: "14:09", arret: 1 },
+          { gare: "Hoenheim Tram", heure: "14:20", arret: 1 },
+          { gare: "Bischheim", heure: "14:24", arret: 1 },
+          { gare: "Strasbourg", heure: "14:29", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Woerth (Rhein)",
+        dessertes: [
+          { gare: "Strasbourg", heure: "15:00", arret: 4 },
+          { gare: "Bischheim", heure: "15:08", arret: 1 },
+          { gare: "Hoenheim Tram", heure: "15:12", arret: 1 },
+          { gare: "La Wantzenau", heure: "15:23", arret: 1 },
+          { gare: "Gambsheim", heure: "15:32", arret: 1 },
+          { gare: "Herrlisheim(Bas-Rhin)", heure: "15:39", arret: 1 },
+          { gare: "Drusenheim", heure: "15:47", arret: 2 },
+          { gare: "Sessenheim", heure: "15:56", arret: 1 },
+          { gare: "Roeschwoog", heure: "16:04", arret: 1 },
+          { gare: "Seltz", heure: "16:17", arret: 1 },
+          { gare: "Mothern", heure: "16:28", arret: 1 },
+          { gare: "Lauterbourg", heure: "16:34", arret: 1 },
+          { gare: "Berg (Pfalz)", heure: "16:40", arret: 1 },
+          { gare: "Neuburg", heure: "16:46", arret: 1 },
+          { gare: "Hagenbach", heure: "16:52", arret: 1 },
+          { gare: "Woerth (Rhein)", heure: "16:59", arret: 4 }
+        ]
+      },
+      {
+        nom: "Woerth (Rhein) → Strasbourg",
+        dessertes: [
+          { gare: "Woerth (Rhein)", heure: "17:30", arret: 4 },
+          { gare: "Hagenbach", heure: "17:40", arret: 1 },
+          { gare: "Neuburg", heure: "17:46", arret: 1 },
+          { gare: "Berg (Pfalz)", heure: "17:52", arret: 1 },
+          { gare: "Lauterbourg", heure: "17:58", arret: 1 },
+          { gare: "Mothern", heure: "18:04", arret: 1 },
+          { gare: "Seltz", heure: "18:15", arret: 1 },
+          { gare: "Roeschwoog", heure: "18:28", arret: 1 },
+          { gare: "Sessenheim", heure: "18:36", arret: 1 },
+          { gare: "Drusenheim", heure: "18:44", arret: 2 },
+          { gare: "Herrlisheim(Bas-Rhin)", heure: "18:53", arret: 1 },
+          { gare: "Gambsheim", heure: "19:00", arret: 1 },
+          { gare: "La Wantzenau", heure: "19:09", arret: 1 },
+          { gare: "Hoenheim Tram", heure: "19:20", arret: 1 },
+          { gare: "Bischheim", heure: "19:24", arret: 1 },
+          { gare: "Strasbourg", heure: "19:29", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Woerth (Rhein)",
+        dessertes: [
+          { gare: "Strasbourg", heure: "20:00", arret: 4 },
+          { gare: "Bischheim", heure: "20:08", arret: 1 },
+          { gare: "Hoenheim Tram", heure: "20:12", arret: 1 },
+          { gare: "La Wantzenau", heure: "20:23", arret: 1 },
+          { gare: "Gambsheim", heure: "20:32", arret: 1 },
+          { gare: "Drusenheim", heure: "20:46", arret: 2 },
+          { gare: "Seltz", heure: "21:13", arret: 1 },
+          { gare: "Lauterbourg", heure: "21:28", arret: 1 }
+        ]
+      },
+      {
+        nom: "Lauterbourg → Strasbourg",
+        dessertes: [
+          { gare: "Lauterbourg", heure: "22:00", arret: 1 },
+          { gare: "Seltz", heure: "22:15", arret: 1 },
+          { gare: "Drusenheim", heure: "22:41", arret: 2 },
+          { gare: "Gambsheim", heure: "22:56", arret: 1 },
+          { gare: "La Wantzenau", heure: "23:05", arret: 1 },
+          { gare: "Hoenheim Tram", heure: "23:16", arret: 1 },
+          { gare: "Bischheim", heure: "23:20", arret: 1 },
+          { gare: "Strasbourg", heure: "23:25", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "TER 3110",
     nom: "AGC fluoGrandEst 4C",
     moteurs: ["diesel"],
