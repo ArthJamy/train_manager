@@ -102,6 +102,15 @@
       "remarque": "Regiolis du Grand Est"
     },
     {
+      "nom": "Regiolis BFC 6C",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 304 },
+      "longueur": 110,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
       "nom": "CoradiaLiner fluoGrandEst 6C",
       "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
       "vitesseMax": 160,
@@ -203,6 +212,14 @@
       "type": "Voyageur"
     },
     {
+      "nom": "AGC BFC 3C",
+      "moteurs": ["diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 134 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
       "nom": "AGC fluoGrandEst 4C",
       "moteurs": ["diesel"],
       "vitesseMax": 160,
@@ -284,6 +301,22 @@
     },
     {
       "nom": "X73900 Champ-Ard",
+      "moteurs": ["diesel"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 0, "seconde": 61 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "X73900 BFC",
+      "moteurs": ["diesel"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 0, "seconde": 61 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "X73900 FrCo",
       "moteurs": ["diesel"],
       "vitesseMax": 140,
       "capacite": { "premiere": 0, "seconde": 61 },

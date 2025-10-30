@@ -1091,7 +1091,6 @@ function genererRetourInverse() {
   toast(`Trajet retour généré : ${t2.nom}`, 'ok');
 }
 
-
 /* ============================================================
  * CACHE GLOBAL POUR LES CHEMINS
  * ============================================================ */
@@ -1100,20 +1099,27 @@ const cheminCache = new Map();
 function trouverCheminEntreGaresCached(gareA, gareB, vitesse) {
   const key = `${gareA}__${gareB}__${Math.floor(vitesse)}`;
   if (cheminCache.has(key)) return cheminCache.get(key);
-  
+
   const chemin = trouverCheminEntreGares(gareA, gareB, vitesse);
   cheminCache.set(key, chemin);
   return chemin;
 }
 
 /* ============================================================
- * DÉTECTION CONFLIT OPTIMISÉE
+ * INDEX GLOBAL D'OCCUPATION DES TRONÇONS
  * ============================================================ */
-/* ============================================================
- * DÉTECTION CONFLIT OPTIMISÉE
- * ============================================================ */
-function detectConflitTroncons(ignoreConflits = false) {
-  if (ignoreConflits) return [];
+const occupationIndex = {
+  data: new Map(), // clé: "gareA__gareB", valeur: array d'occupations
+  ready: false
+};
+
+/**
+ * Construit l'index global d'occupation au chargement
+ * À appeler une seule fois après loadEngins()
+ */
+function buildOccupationIndex() {
+  console.time('⏱️ Construction index occupation');
+  occupationIndex.data.clear();
 
   const allTrains = [
     ...state.trainsFR,
@@ -1124,212 +1130,192 @@ function detectConflitTroncons(ignoreConflits = false) {
     ...state.trainsFRET
   ];
 
-  const conflits = [];
-  const conflitsSet = new Set(); // ✅ Pour éviter les doublons
+  for (const train of allTrains) {
+    for (const trajet of train.trajets || []) {
+      if (!trajet.dessertes || trajet.dessertes.length < 2) continue;
 
-  // ✅ Helper jours (inchangé)
+      indexerTrajet(train.id, trajet, train.vitesseMax);
+    }
+  }
+
+  occupationIndex.ready = true;
+  console.timeEnd('⏱️ Construction index occupation');
+  console.log(`📊 ${occupationIndex.data.size} tronçons indexés`);
+}
+
+/**
+ * Indexe un trajet dans l'index global
+ */
+function indexerTrajet(trainId, trajet, vitesseMax) {
+  const jours = trajet.dessertes[0]?.jours || null;
+
+  for (let i = 0; i < trajet.dessertes.length - 1; i++) {
+    const curr = trajet.dessertes[i];
+    const next = trajet.dessertes[i + 1];
+
+    if (!curr.heure || !next.heure) continue;
+
+    const path = trouverCheminEntreGaresCached(curr.gare, next.gare, vitesseMax || 9999);
+    if (!path || path.length <= 1) continue;
+
+    const tDepart = timeToMinutes(curr.heure) + (curr.arret ?? state.defaultArretMin);
+    const tArrivee = timeToMinutes(next.heure);
+
+    // Pour chaque segment du chemin (incluant gares fantômes)
+    for (let j = 0; j < path.length - 1; j++) {
+      const gareA = path[j];
+      const gareB = path[j + 1];
+
+      // ⚠️ Clé AVEC sens (A→B ≠ B→A) car voies doubles
+      const key = `${gareA}__${gareB}`;
+
+      // Interpolation linéaire du temps de passage
+      const ratio = j / (path.length - 1);
+      const tDebut = tDepart + (tArrivee - tDepart) * ratio;
+      const tFin = tDepart + (tArrivee - tDepart) * ((j + 1) / (path.length - 1));
+
+      // Récupère la ligne pour la signalisation
+      const ligne = lignes.find(L =>
+        (L.gareA === gareA && L.gareB === gareB) ||
+        (L.gareA === gareB && L.gareB === gareA)
+      );
+
+      const occupation = {
+        trainId,
+        trajetNom: trajet.nom || 'sans nom',
+        debut: Math.round(tDebut),
+        fin: Math.round(tFin),
+        jours,
+        signalisation: ligne?.signalisation || 'inconnue'
+      };
+
+      if (!occupationIndex.data.has(key)) {
+        occupationIndex.data.set(key, []);
+      }
+      occupationIndex.data.get(key).push(occupation);
+    }
+  }
+}
+
+/**
+ * Retire toutes les entrées d'un train de l'index
+ */
+function supprimerTrainDeIndex(trainId) {
+  if (!trainId) return;
+
+  for (const [key, occupations] of occupationIndex.data) {
+    const filtered = occupations.filter(occ => occ.trainId !== trainId);
+    if (filtered.length === 0) {
+      occupationIndex.data.delete(key);
+    } else {
+      occupationIndex.data.set(key, filtered);
+    }
+  }
+}
+
+/**
+ * NOUVELLE DÉTECTION DE CONFLITS - Optimisée
+ */
+function detectConflitTroncons(ignoreConflits = false) {
+  if (ignoreConflits) return [];
+  if (!occupationIndex.ready) {
+    console.warn('⚠️ Index d\'occupation non prêt');
+    return [];
+  }
+
+  const conflits = [];
+  const conflitsSet = new Set();
+
+  // Helper jours
   function joursChevauchent(j1, j2) {
     if (!j1 || !j1.length || !j2 || !j2.length) return true;
     const s2 = new Set(j2);
     return j1.some(j => s2.has(j));
   }
 
-  // ✅ Cache local pour calculerPassages
-  const passagesCache = new Map();
+  // Tolérance selon signalisation
+  const tolerances = {
+    "ETCS": 3,
+    "LZB": 4,
+    "PZB": 5,
+    "KVB": 6,
+    "inconnue": 10
+  };
 
-  function calculerPassages(dessertes, trajetId) {
-    if (passagesCache.has(trajetId)) {
-      return passagesCache.get(trajetId);
-    }
+  // 🔍 Parcourt TOUS les trajets du nouveau train
+  for (const nouveauTrajet of state.current.trajets || []) {
+    if (!nouveauTrajet.dessertes || nouveauTrajet.dessertes.length < 2) continue;
 
-    const passages = new Map();
+    const joursNew = nouveauTrajet.dessertes[0]?.jours || null;
 
-    for (let i = 0; i < dessertes.length - 1; i++) {
-      const curr = dessertes[i];
-      const next = dessertes[i + 1];
+    for (let i = 0; i < nouveauTrajet.dessertes.length - 1; i++) {
+      const curr = nouveauTrajet.dessertes[i];
+      const next = nouveauTrajet.dessertes[i + 1];
 
       if (!curr.heure || !next.heure) continue;
 
-      const path = trouverCheminEntreGaresCached(curr.gare, next.gare, state.current.vmax || 9999);
+      const path = trouverCheminEntreGaresCached(
+        curr.gare,
+        next.gare,
+        state.current.vmax || 9999
+      );
       if (!path || path.length <= 1) continue;
 
       const tDepart = timeToMinutes(curr.heure) + (curr.arret ?? state.defaultArretMin);
       const tArrivee = timeToMinutes(next.heure);
 
-      for (let j = 0; j < path.length; j++) {
-        const gare = path[j];
+      // Pour chaque segment du chemin
+      for (let j = 0; j < path.length - 1; j++) {
+        const gareA = path[j];
+        const gareB = path[j + 1];
+        const key = `${gareA}__${gareB}`;
 
-        if (j === 0) {
-          passages.set(gare, tDepart);
-        } else if (j === path.length - 1) {
-          passages.set(gare, tArrivee);
-        } else {
-          const ratio = j / (path.length - 1);
-          const tPassage = tDepart + (tArrivee - tDepart) * ratio;
-          passages.set(gare, tPassage);
-        }
-      }
-    }
+        // 🎯 Lookup direct dans l'index
+        const occupations = occupationIndex.data.get(key);
+        if (!occupations || occupations.length === 0) continue;
 
-    passagesCache.set(trajetId, passages);
-    return passages;
-  }
+        // Interpolation temps du nouveau train
+        const ratio = j / (path.length - 1);
+        const tNewDebut = Math.round(tDepart + (tArrivee - tDepart) * ratio);
+        const tNewFin = Math.round(tDepart + (tArrivee - tDepart) * ((j + 1) / (path.length - 1)));
 
-  // 🔄 Parcourt TOUS les trajets du train en cours
-  for (const nouveauTrajet of state.current.trajets || []) {
-    if (!nouveauTrajet.dessertes || nouveauTrajet.dessertes.length < 2) continue;
-
-    const trajetNewId = `new_${state.current.id}_${nouveauTrajet.nom}`;
-    const passagesNew = calculerPassages(nouveauTrajet.dessertes, trajetNewId);
-
-    // 🎯 Pré-calcul de TOUS les segments du nouveau trajet (incluant gares fantômes)
-    const segmentsNewMap = new Map();
-    const tousSegmentsNew = new Set();
-    
-    for (let j = 0; j < nouveauTrajet.dessertes.length - 1; j++) {
-      const nA = nouveauTrajet.dessertes[j].gare;
-      const nB = nouveauTrajet.dessertes[j + 1].gare;
-      const pathNew = trouverCheminEntreGaresCached(nA, nB, state.current.vmax || 9999);
-      
-      if (pathNew.length <= 1) continue;
-      
-      const segments = pathNew.slice(0, -1).map((gare, idx) => {
-        const segA = gare;
-        const segB = pathNew[idx + 1];
-        const key = `${segA}__${segB}`;
-        tousSegmentsNew.add(key);
-        return { segA, segB, key };
-      });
-      
-      segmentsNewMap.set(j, {
-        gareA: nA,
-        gareB: nB,
-        path: pathNew,
-        segments
-      });
-    }
-
-    for (const train of allTrains) {
-      if (state.editingExistingId && train.id === state.editingExistingId) continue;
-
-      for (const trajet of train.trajets || []) {
-        if (!trajet.dessertes || trajet.dessertes.length < 2) continue;
-
-        // ✅ Filtre jours
-        const jNew = nouveauTrajet.dessertes[0]?.jours || null;
-        const jOther = trajet.dessertes[0]?.jours || null;
-        if (!joursChevauchent(jNew, jOther)) continue;
-
-        const trajetOtherId = `${train.id}_${trajet.nom}`;
-        const passagesAutre = calculerPassages(trajet.dessertes, trajetOtherId);
-
-        // 🎯 Early exit amélioré : vérifier si AU MOINS UN segment en commun
-        let hasCommonSegment = false;
-        for (let i = 0; i < trajet.dessertes.length - 1; i++) {
-          const gA = trajet.dessertes[i].gare;
-          const gB = trajet.dessertes[i + 1].gare;
-          const pathAutre = trouverCheminEntreGaresCached(gA, gB, train.vitesseMax || 9999);
-
-          if (pathAutre.length <= 1) continue;
-
-          // Vérifie si un segment de pathAutre existe dans tousSegmentsNew
-          for (let k = 0; k < pathAutre.length - 1; k++) {
-            const key = `${pathAutre[k]}__${pathAutre[k + 1]}`;
-            if (tousSegmentsNew.has(key)) {
-              hasCommonSegment = true;
-              break;
-            }
+        // Compare avec toutes les occupations existantes sur ce tronçon
+        for (const occ of occupations) {
+          // Skip si même train en édition
+          if (state.editingExistingId && occ.trainId === state.editingExistingId) {
+            continue;
           }
-          if (hasCommonSegment) break;
-        }
 
-        // ✅ Si aucun segment en commun, skip ce trajet
-        if (!hasCommonSegment) continue;
+          // Filtre jours
+          if (!joursChevauchent(joursNew, occ.jours)) continue;
 
-        // ✅ Set pour dédupliquer les segments déjà traités dans ce couple de trajets
-        const segmentsTraites = new Set();
+          // ✅ Chevauchement temporel
+          const chevauchement = (tNewFin > occ.debut && tNewDebut < occ.fin);
+          if (!chevauchement) continue;
 
-        // Maintenant on fait la vraie comparaison
-        for (let i = 0; i < trajet.dessertes.length - 1; i++) {
-          const gA = trajet.dessertes[i].gare;
-          const gB = trajet.dessertes[i + 1].gare;
-          const pathAutre = trouverCheminEntreGaresCached(gA, gB, train.vitesseMax || 9999);
+          // ⏱️ Calcul écart et tolérance
+          const ecart = Math.abs(tNewDebut - occ.debut);
+          const tol = tolerances[occ.signalisation] || 6;
 
-          if (pathAutre.length <= 1) continue;
+          if (ecart < tol) {
+            const globalKey = `${nouveauTrajet.nom}__${occ.trainId}__${key}__${tNewDebut}`;
 
-          const segmentsAutreSet = new Set(
-            pathAutre.slice(0, -1).map((gare, idx) => `${gare}__${pathAutre[idx + 1]}`)
-          );
+            if (!conflitsSet.has(globalKey)) {
+              conflitsSet.add(globalKey);
 
-          // Comparaison avec tous les segments du nouveau trajet
-          for (const [j, segmentData] of segmentsNewMap) {
-            const segmentsCommuns = segmentData.segments.filter(s => segmentsAutreSet.has(s.key));
-
-            if (segmentsCommuns.length === 0) continue;
-
-            for (const seg of segmentsCommuns) {
-              // ✅ Clé unique pour ce segment entre ces deux trains
-              const conflitKey = `${nouveauTrajet.nom}__${train.id}__${seg.key}`;
-              
-              // ✅ Si déjà traité, skip
-              if (segmentsTraites.has(conflitKey)) continue;
-              segmentsTraites.add(conflitKey);
-
-              const tNewA = passagesNew.get(seg.segA);
-              const tNewB = passagesNew.get(seg.segB);
-              const tOtherA = passagesAutre.get(seg.segA);
-              const tOtherB = passagesAutre.get(seg.segB);
-
-              if (tNewA == null || tNewB == null || tOtherA == null || tOtherB == null) continue;
-
-              // ✅ Vérifie le chevauchement dans les DEUX sens
-              const nouveauChevaucheAutre = tNewB > tOtherA && tNewA < tOtherB;
-              const autreChevaucheNouveau = tOtherB > tNewA && tOtherA < tNewB;
-
-              const chevauchement = nouveauChevaucheAutre || autreChevaucheNouveau;
-
-              if (!chevauchement) continue;
-
-              const ligne = lignes.find(L =>
-                (L.gareA === seg.segA && L.gareB === seg.segB) ||
-                (L.gareA === seg.segB && L.gareB === seg.segA)
-              );
-
-              const typeSig = ligne?.signalisation || "inconnue";
-
-              const tolerances = {
-                "ETCS": 3,
-                "LZB": 4,
-                "PZB": 5,
-                "KVB": 6,
-                "inconnue": 10
-              };
-
-              const tol = tolerances[typeSig] || 6;
-              const ecart = Math.abs(tNewA - tOtherA);
-
-              if (ecart < tol) {
-                // ✅ Clé unique globale pour éviter les doublons absolus
-                const globalKey = `${nouveauTrajet.nom}__${train.id}__${trajet.nom}__${seg.segA}__${seg.segB}__${Math.round(tNewA)}`;
-                
-                if (!conflitsSet.has(globalKey)) {
-                  conflitsSet.add(globalKey);
-                  
-                  conflits.push({
-                    trajetNom: nouveauTrajet.nom || 'sans nom',
-                    segment: `${seg.segA}→${seg.segB}`,
-                    heureDebut: minutesToTime(Math.round(tNewA)),
-                    heureFin: minutesToTime(Math.round(tNewB)),
-                    trainConflictuel: train.id,
-                    heureDebutAutre: minutesToTime(Math.round(tOtherA)),
-                    heureFinAutre: minutesToTime(Math.round(tOtherB)),
-                    signalisation: typeSig,
-                    tolerance: tol,
-                    ecart: Math.round(ecart),
-                    sens: tNewA < tOtherA ? 'rattrapepar' : tNewA > tOtherA ? 'rattrape' : 'simultanee'
-                  });
-                }
-              }
+              conflits.push({
+                trajetNom: nouveauTrajet.nom || 'sans nom',
+                segment: `${gareA}→${gareB}`,
+                heureDebut: minutesToTime(tNewDebut),
+                heureFin: minutesToTime(tNewFin),
+                trainConflictuel: occ.trainId,
+                heureDebutAutre: minutesToTime(occ.debut),
+                heureFinAutre: minutesToTime(occ.fin),
+                signalisation: occ.signalisation,
+                tolerance: tol,
+                ecart: Math.round(ecart),
+                sens: tNewDebut < occ.debut ? 'rattrape' : tNewDebut > occ.debut ? 'rattrapepar' : 'simultanee'
+              });
             }
           }
         }
@@ -1339,6 +1325,8 @@ function detectConflitTroncons(ignoreConflits = false) {
 
   return conflits;
 }
+
+
 
 /* ============================================================
  * POPUP CONFLITS
@@ -1613,14 +1601,14 @@ function performExport() {
   if (err) { toast(err, 'err', 3500); return; }
 
   const trainObj = toTrainObjectForSave();
-
   const validPays = ['FR', 'DE', 'CH', 'BNL', 'IT', 'FRET'];
   const target = validPays.includes(state.current.pays) ? state.current.pays : 'FR';
 
-  // 🧹 Supprime TOUTES les anciennes occurrences
+  // 🧹 Supprime de l'index ET des listes
+  supprimerTrainDeIndex(trainObj.id);
   removeTrainEverywhere(trainObj.id);
 
-  // 🟢 Ajoute ou remplace dans le fichier cible
+  // 🟢 Ajoute dans le fichier cible
   const arrMap = {
     FR: state.trainsFR,
     DE: state.trainsDE,
@@ -1630,12 +1618,14 @@ function performExport() {
     FRET: state.trainsFRET
   };
   const arrTarget = arrMap[target] || state.trainsFR;
+  arrTarget.push(trainObj);
 
-  const idx = arrTarget.findIndex(t => t.id === trainObj.id);
-  if (idx >= 0) arrTarget[idx] = trainObj;
-  else arrTarget.push(trainObj);
+  // 🔄 Ré-indexe le train modifié
+  for (const trajet of trainObj.trajets || []) {
+    indexerTrajet(trainObj.id, trajet, trainObj.vitesseMax);
+  }
 
-  // 📦 Génère le texte exportable
+  // 📦 Génère exports...
   const frText = prettyJSExport('trainsFR', state.trainsFR);
   const deText = prettyJSExport('trainsDE', state.trainsDE);
   const chText = prettyJSExport('trainsCH', state.trainsCH);
@@ -1643,15 +1633,12 @@ function performExport() {
   const itText = prettyJSExport('trainsIT', state.trainsIT);
   const fretText = prettyJSExport('trainsFRET', state.trainsFRET);
 
-  // 💾 Téléchargement simultané
   download('trainsFR.js', frText);
   download('trainsDE.js', deText);
   download('trainsCH.js', chText);
   download('trainsBNL.js', bnlText);
   download('trainsIT.js', itText);
   download('trainsFRET.js', fretText);
-
-
 
   renderAllTrajets();
   toast('Export téléchargé (FR, DE, CH, IT, BNL & FRET).', 'ok');
@@ -1798,6 +1785,15 @@ function loadTrainData(train) {
 
   //  recalcul des capacités globales (1ʳᵉ / 2ᵉ classe)
   recalcCapaciteGlobale();
+
+  // 🔄 Réinitialise l'affichage des dessertes (vide l'ancien trajet)
+  const tbody = document.querySelector('#dessertesTbl tbody');
+  if (tbody) tbody.innerHTML = '';
+
+  $('#distTot').textContent = '— km';
+  $('#timeTot').textContent = '— min';
+
+
   // Trajets
   renderAllTrajets();
   // 🔧 Enregistre l'ID du train chargé (pour autoriser son remplacement à l'export)
@@ -2253,6 +2249,14 @@ function bindActions() {
     else target.push(trainObj);
 
     toast(`Train "${trainObj.id}" ajouté en mémoire. Tu peux en créer un nouveau.`, "ok");
+
+
+    // 🔄 Met à jour uniquement le train qu’on vient de créer ou modifier
+    supprimerTrainDeIndex(trainObj.id);
+    for (const trajet of trainObj.trajets || [])
+      indexerTrajet(trainObj.id, trajet, trainObj.vitesseMax);
+
+
     // 🧹 Réinitialise l’éditeur pour un nouveau train
     state.current = {
       id: "",
@@ -2450,6 +2454,11 @@ function renderAllTrajets() {
       state.current.trajetIndex = index;
       renderDessertes();
       renderAllTrajets();
+      const t = state.current.trajets[index];
+      $('#trajetNom').value = t.nom || '';
+      $('#heureDepart').value = t.dessertes?.[0]?.heure || '08:00';
+      renderDessertes();
+      toast(`Trajet #${index + 1} chargé pour édition.`, "ok");
     });
   });
 }
@@ -2498,6 +2507,9 @@ async function init() {
   bindTrainForm();
   bindActions();
   await loadEngins();
+
+  // ✅ Construction de l'index après chargement des données
+  buildOccupationIndex();
 
   // ► Sélection initiale
   if (!state.current.trajets) state.current.trajets = [];
