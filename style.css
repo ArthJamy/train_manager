@@ -186,7 +186,6 @@ input[type="time"] {
   object-fit: contain;
   flex-shrink: 0;
   border-radius: 4px;
-  margin-right: 2px;
   vertical-align: middle;
 }
 
