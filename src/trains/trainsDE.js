@@ -393,6 +393,52 @@ export const trainsDE = [
   },
 
   {
+    id: "ICE 520",
+    nom: "BR406 (ICE 3M)",
+    moteurs: ["25kV CA", "1.5kV CC", "3kV CC", "15kV CA"],
+    vitesseMax: 320,
+    capacite: { premiere: 91, seconde: 334 },
+    trajets: [
+      {
+        nom: "Stuttgart Hdf → Gare de l'Est",
+        dessertes: [
+          { gare: "Stuttgart Hdf", heure: "07:40", arret: 5 },
+          { gare: "Karlsruhe Hbf", heure: "08:20", arret: 5 },
+          { gare: "Strasbourg", heure: "09:20", arret: 5 },
+          { gare: "Gare de l'Est", heure: "11:47", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Stuttgart Hdf",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "12:32", arret: 4 },
+          { gare: "Strasbourg", heure: "14:58", arret: 4 },
+          { gare: "Karlsruhe Hbf", heure: "15:57", arret: 3 },
+          { gare: "Stuttgart Hdf", heure: "16:35", arret: 4 }
+        ]
+      },
+      {
+        nom: "Stuttgart Hdf → Basel Bad Bf",
+        dessertes: [
+          { gare: "Stuttgart Hdf", heure: "17:20", arret: 4 },
+          { gare: "Karlsruhe Hbf", heure: "17:59", arret: 3 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "19:11", arret: 6 },
+          { gare: "Basel Bad Bf", heure: "19:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Basel Bad Bf → Stuttgart Hdf",
+        dessertes: [
+          { gare: "Basel Bad Bf", heure: "20:18", arret: 4 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "20:53", arret: 6 },
+          { gare: "Karlsruhe Hbf", heure: "22:08", arret: 3 },
+          { gare: "Stuttgart Hdf", heure: "22:46", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "S1 Freibourg",
     nom: "BR1440.1 bwegt",
     moteurs: ["15kV CA"],

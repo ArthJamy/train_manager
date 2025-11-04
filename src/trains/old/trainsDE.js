@@ -15,68 +15,164 @@ export const trainsDE = [
           { gare: "Legelshurst", heure: "07:18", arret: 1 },
           { gare: "Kork", heure: "07:24", arret: 1 },
           { gare: "Kehl", heure: "07:33", arret: 1 },
-          { gare: "Krimmeri-Meinau", heure: "07:42", arret: 1 },
-          { gare: "Strasbourg", heure: "07:47", arret: 2 }
+          { gare: "Krimmeri-Meinau", heure: "07:43", arret: 1 },
+          { gare: "Strasbourg", heure: "07:48", arret: 2 }
         ]
       },
       {
         nom: "Strasbourg → Offenburg",
         dessertes: [
-          { gare: "Strasbourg", heure: "08:17", arret: 2 },
-          { gare: "Krimmeri-Meinau", heure: "08:23", arret: 1 },
-          { gare: "Kehl", heure: "08:32", arret: 1 },
-          { gare: "Kork", heure: "08:41", arret: 1 },
-          { gare: "Legelshurst", heure: "08:47", arret: 1 },
-          { gare: "Appenweier", heure: "08:55", arret: 2 },
-          { gare: "Offenburg", heure: "09:04", arret: 2 }
+          { gare: "Strasbourg", heure: "08:00", arret: 2 },
+          { gare: "Krimmeri-Meinau", heure: "08:06", arret: 1 },
+          { gare: "Kehl", heure: "08:16", arret: 1 },
+          { gare: "Kork", heure: "08:25", arret: 1 },
+          { gare: "Legelshurst", heure: "08:31", arret: 1 },
+          { gare: "Appenweier", heure: "08:39", arret: 2 },
+          { gare: "Offenburg", heure: "08:48", arret: 2 }
         ]
       },
       {
         nom: "Offenburg → Strasbourg",
         dessertes: [
-          { gare: "Offenburg", heure: "11:34", arret: 2 },
-          { gare: "Appenweier", heure: "11:43", arret: 2 },
-          { gare: "Legelshurst", heure: "11:52", arret: 1 },
-          { gare: "Kork", heure: "11:58", arret: 1 },
-          { gare: "Kehl", heure: "12:07", arret: 1 },
-          { gare: "Krimmeri-Meinau", heure: "12:16", arret: 1 },
-          { gare: "Strasbourg", heure: "12:21", arret: 2 }
+          { gare: "Offenburg", heure: "09:00", arret: 2 },
+          { gare: "Appenweier", heure: "09:09", arret: 2 },
+          { gare: "Legelshurst", heure: "09:18", arret: 1 },
+          { gare: "Kork", heure: "09:24", arret: 1 },
+          { gare: "Kehl", heure: "09:33", arret: 1 },
+          { gare: "Krimmeri-Meinau", heure: "09:43", arret: 1 },
+          { gare: "Strasbourg", heure: "09:48", arret: 2 }
         ]
       },
       {
         nom: "Strasbourg → Offenburg",
         dessertes: [
-          { gare: "Strasbourg", heure: "12:51", arret: 2 },
-          { gare: "Krimmeri-Meinau", heure: "12:57", arret: 1 },
-          { gare: "Kehl", heure: "13:06", arret: 1 },
-          { gare: "Kork", heure: "13:15", arret: 1 },
-          { gare: "Legelshurst", heure: "13:21", arret: 1 },
-          { gare: "Appenweier", heure: "13:29", arret: 2 },
-          { gare: "Offenburg", heure: "13:38", arret: 2 }
+          { gare: "Strasbourg", heure: "10:00", arret: 2 },
+          { gare: "Krimmeri-Meinau", heure: "10:06", arret: 1 },
+          { gare: "Kehl", heure: "10:16", arret: 1 },
+          { gare: "Kork", heure: "10:25", arret: 1 },
+          { gare: "Legelshurst", heure: "10:31", arret: 1 },
+          { gare: "Appenweier", heure: "10:39", arret: 2 },
+          { gare: "Offenburg", heure: "10:48", arret: 2 }
         ]
       },
       {
         nom: "Offenburg → Strasbourg",
         dessertes: [
-          { gare: "Offenburg", heure: "15:08", arret: 2 },
-          { gare: "Appenweier", heure: "15:17", arret: 2 },
-          { gare: "Legelshurst", heure: "15:26", arret: 1 },
-          { gare: "Kork", heure: "15:32", arret: 1 },
-          { gare: "Kehl", heure: "15:41", arret: 1 },
-          { gare: "Krimmeri-Meinau", heure: "15:50", arret: 1 },
-          { gare: "Strasbourg", heure: "15:55", arret: 2 }
+          { gare: "Offenburg", heure: "11:00", arret: 2 },
+          { gare: "Appenweier", heure: "11:09", arret: 2 },
+          { gare: "Legelshurst", heure: "11:18", arret: 1 },
+          { gare: "Kork", heure: "11:24", arret: 1 },
+          { gare: "Kehl", heure: "11:33", arret: 1 },
+          { gare: "Krimmeri-Meinau", heure: "11:43", arret: 1 },
+          { gare: "Strasbourg", heure: "11:48", arret: 2 }
         ]
       },
       {
         nom: "Strasbourg → Offenburg",
         dessertes: [
-          { gare: "Strasbourg", heure: "16:25", arret: 2 },
-          { gare: "Krimmeri-Meinau", heure: "16:31", arret: 1 },
-          { gare: "Kehl", heure: "16:40", arret: 1 },
-          { gare: "Kork", heure: "16:49", arret: 1 },
-          { gare: "Legelshurst", heure: "16:55", arret: 1 },
-          { gare: "Appenweier", heure: "17:03", arret: 2 },
-          { gare: "Offenburg", heure: "17:12", arret: 2 }
+          { gare: "Strasbourg", heure: "12:00", arret: 2 },
+          { gare: "Krimmeri-Meinau", heure: "12:06", arret: 1 },
+          { gare: "Kehl", heure: "12:16", arret: 1 },
+          { gare: "Kork", heure: "12:25", arret: 1 },
+          { gare: "Legelshurst", heure: "12:31", arret: 1 },
+          { gare: "Appenweier", heure: "12:39", arret: 2 },
+          { gare: "Offenburg", heure: "12:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Offenburg → Strasbourg",
+        dessertes: [
+          { gare: "Offenburg", heure: "13:00", arret: 2 },
+          { gare: "Appenweier", heure: "13:09", arret: 2 },
+          { gare: "Legelshurst", heure: "13:18", arret: 1 },
+          { gare: "Kork", heure: "13:24", arret: 1 },
+          { gare: "Kehl", heure: "13:33", arret: 1 },
+          { gare: "Krimmeri-Meinau", heure: "13:43", arret: 1 },
+          { gare: "Strasbourg", heure: "13:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Offenburg",
+        dessertes: [
+          { gare: "Strasbourg", heure: "14:00", arret: 2 },
+          { gare: "Krimmeri-Meinau", heure: "14:06", arret: 1 },
+          { gare: "Kehl", heure: "14:16", arret: 1 },
+          { gare: "Kork", heure: "14:25", arret: 1 },
+          { gare: "Legelshurst", heure: "14:31", arret: 1 },
+          { gare: "Appenweier", heure: "14:39", arret: 2 },
+          { gare: "Offenburg", heure: "14:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Offenburg → Strasbourg",
+        dessertes: [
+          { gare: "Offenburg", heure: "15:00", arret: 2 },
+          { gare: "Appenweier", heure: "15:09", arret: 2 },
+          { gare: "Legelshurst", heure: "15:18", arret: 1 },
+          { gare: "Kork", heure: "15:24", arret: 1 },
+          { gare: "Kehl", heure: "15:33", arret: 1 },
+          { gare: "Krimmeri-Meinau", heure: "15:43", arret: 1 },
+          { gare: "Strasbourg", heure: "15:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Offenburg",
+        dessertes: [
+          { gare: "Strasbourg", heure: "16:00", arret: 2 },
+          { gare: "Krimmeri-Meinau", heure: "16:06", arret: 1 },
+          { gare: "Kehl", heure: "16:16", arret: 1 },
+          { gare: "Kork", heure: "16:25", arret: 1 },
+          { gare: "Legelshurst", heure: "16:31", arret: 1 },
+          { gare: "Appenweier", heure: "16:39", arret: 2 },
+          { gare: "Offenburg", heure: "16:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Offenburg → Strasbourg",
+        dessertes: [
+          { gare: "Offenburg", heure: "17:00", arret: 2 },
+          { gare: "Appenweier", heure: "17:09", arret: 2 },
+          { gare: "Legelshurst", heure: "17:18", arret: 1 },
+          { gare: "Kork", heure: "17:24", arret: 1 },
+          { gare: "Kehl", heure: "17:33", arret: 1 },
+          { gare: "Krimmeri-Meinau", heure: "17:43", arret: 1 },
+          { gare: "Strasbourg", heure: "17:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Offenburg",
+        dessertes: [
+          { gare: "Strasbourg", heure: "18:00", arret: 2 },
+          { gare: "Krimmeri-Meinau", heure: "18:06", arret: 1 },
+          { gare: "Kehl", heure: "18:16", arret: 1 },
+          { gare: "Kork", heure: "18:25", arret: 1 },
+          { gare: "Legelshurst", heure: "18:31", arret: 1 },
+          { gare: "Appenweier", heure: "18:39", arret: 2 },
+          { gare: "Offenburg", heure: "18:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Offenburg → Strasbourg",
+        dessertes: [
+          { gare: "Offenburg", heure: "19:00", arret: 2 },
+          { gare: "Appenweier", heure: "19:09", arret: 2 },
+          { gare: "Legelshurst", heure: "19:18", arret: 1 },
+          { gare: "Kork", heure: "19:24", arret: 1 },
+          { gare: "Kehl", heure: "19:33", arret: 1 },
+          { gare: "Krimmeri-Meinau", heure: "19:43", arret: 1 },
+          { gare: "Strasbourg", heure: "19:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Offenburg",
+        dessertes: [
+          { gare: "Strasbourg", heure: "20:00", arret: 2 },
+          { gare: "Krimmeri-Meinau", heure: "20:06", arret: 1 },
+          { gare: "Kehl", heure: "20:16", arret: 1 },
+          { gare: "Kork", heure: "20:25", arret: 1 },
+          { gare: "Legelshurst", heure: "20:31", arret: 1 },
+          { gare: "Appenweier", heure: "20:39", arret: 2 },
+          { gare: "Offenburg", heure: "20:48", arret: 2 }
         ]
       }
     ]
@@ -297,6 +393,52 @@ export const trainsDE = [
   },
 
   {
+    id: "ICE 520",
+    nom: "BR406 (ICE 3M)",
+    moteurs: ["25kV CA", "1.5kV CC", "3kV CC", "15kV CA"],
+    vitesseMax: 320,
+    capacite: { premiere: 91, seconde: 334 },
+    trajets: [
+      {
+        nom: "Stuttgart Hdf → Gare de l'Est",
+        dessertes: [
+          { gare: "Stuttgart Hdf", heure: "07:40", arret: 5 },
+          { gare: "Karlsruhe Hbf", heure: "08:20", arret: 5 },
+          { gare: "Strasbourg", heure: "09:20", arret: 5 },
+          { gare: "Gare de l'Est", heure: "11:47", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Stuttgart Hdf",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "12:32", arret: 4 },
+          { gare: "Strasbourg", heure: "14:58", arret: 4 },
+          { gare: "Karlsruhe Hbf", heure: "15:57", arret: 3 },
+          { gare: "Stuttgart Hdf", heure: "16:35", arret: 4 }
+        ]
+      },
+      {
+        nom: "Stuttgart Hdf → Basel Bad Bf",
+        dessertes: [
+          { gare: "Stuttgart Hdf", heure: "17:20", arret: 4 },
+          { gare: "Karlsruhe Hbf", heure: "17:59", arret: 3 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "19:11", arret: 6 },
+          { gare: "Basel Bad Bf", heure: "19:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Basel Bad Bf → Stuttgart Hdf",
+        dessertes: [
+          { gare: "Basel Bad Bf", heure: "20:18", arret: 4 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "20:53", arret: 6 },
+          { gare: "Karlsruhe Hbf", heure: "22:08", arret: 3 },
+          { gare: "Stuttgart Hdf", heure: "22:46", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "S1 Freibourg",
     nom: "BR1440.1 bwegt",
     moteurs: ["15kV CA"],
@@ -411,6 +553,126 @@ export const trainsDE = [
           { gare: "Hugstetten", heure: "20:53", arret: 1 },
           { gare: "Freiburg Messe/Universität", heure: "21:01", arret: 1 },
           { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "21:05", arret: 5 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "S1 Freibourg 2",
+    nom: "BR1440.1 bwegt",
+    moteurs: ["15kV CA"],
+    vitesseMax: 160,
+    capacite: { premiere: 20, seconde: 200 },
+    trajets: [
+      {
+        nom: "Breisach → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Breisach", heure: "06:55", arret: 5 },
+          { gare: "Wasenweiler", heure: "07:10", arret: 1 },
+          { gare: "Gottenheim", heure: "07:16", arret: 1 },
+          { gare: "Hugstetten", heure: "07:23", arret: 1 },
+          { gare: "Freiburg Messe/Universität", heure: "07:31", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "07:35", arret: 5 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Breisach",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "08:50", arret: 5 },
+          { gare: "Freiburg Messe/Universität", heure: "08:58", arret: 1 },
+          { gare: "Hugstetten", heure: "09:06", arret: 1 },
+          { gare: "Gottenheim", heure: "09:13", arret: 1 },
+          { gare: "Wasenweiler", heure: "09:19", arret: 1 },
+          { gare: "Breisach", heure: "09:30", arret: 5 }
+        ]
+      },
+      {
+        nom: "Breisach → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Breisach", heure: "09:55", arret: 5 },
+          { gare: "Wasenweiler", heure: "10:10", arret: 1 },
+          { gare: "Gottenheim", heure: "10:16", arret: 1 },
+          { gare: "Hugstetten", heure: "10:23", arret: 1 },
+          { gare: "Freiburg Messe/Universität", heure: "10:31", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "10:35", arret: 5 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Breisach",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "11:50", arret: 5 },
+          { gare: "Freiburg Messe/Universität", heure: "11:58", arret: 1 },
+          { gare: "Hugstetten", heure: "12:06", arret: 1 },
+          { gare: "Gottenheim", heure: "12:13", arret: 1 },
+          { gare: "Wasenweiler", heure: "12:19", arret: 1 },
+          { gare: "Breisach", heure: "12:30", arret: 5 }
+        ]
+      },
+      {
+        nom: "Breisach → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Breisach", heure: "12:55", arret: 5 },
+          { gare: "Wasenweiler", heure: "13:10", arret: 1 },
+          { gare: "Gottenheim", heure: "13:16", arret: 1 },
+          { gare: "Hugstetten", heure: "13:23", arret: 1 },
+          { gare: "Freiburg Messe/Universität", heure: "13:31", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "13:35", arret: 5 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Breisach",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "14:50", arret: 5 },
+          { gare: "Freiburg Messe/Universität", heure: "14:58", arret: 1 },
+          { gare: "Hugstetten", heure: "15:06", arret: 1 },
+          { gare: "Gottenheim", heure: "15:13", arret: 1 },
+          { gare: "Wasenweiler", heure: "15:19", arret: 1 },
+          { gare: "Breisach", heure: "15:30", arret: 5 }
+        ]
+      },
+      {
+        nom: "Breisach → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Breisach", heure: "15:55", arret: 5 },
+          { gare: "Wasenweiler", heure: "16:10", arret: 1 },
+          { gare: "Gottenheim", heure: "16:16", arret: 1 },
+          { gare: "Hugstetten", heure: "16:23", arret: 1 },
+          { gare: "Freiburg Messe/Universität", heure: "16:31", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "16:35", arret: 5 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Breisach",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "17:50", arret: 5 },
+          { gare: "Freiburg Messe/Universität", heure: "17:58", arret: 1 },
+          { gare: "Hugstetten", heure: "18:06", arret: 1 },
+          { gare: "Gottenheim", heure: "18:13", arret: 1 },
+          { gare: "Wasenweiler", heure: "18:19", arret: 1 },
+          { gare: "Breisach", heure: "18:30", arret: 5 }
+        ]
+      },
+      {
+        nom: "Breisach → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Breisach", heure: "18:55", arret: 5 },
+          { gare: "Wasenweiler", heure: "19:10", arret: 1 },
+          { gare: "Gottenheim", heure: "19:16", arret: 1 },
+          { gare: "Hugstetten", heure: "19:23", arret: 1 },
+          { gare: "Freiburg Messe/Universität", heure: "19:31", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "19:35", arret: 5 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Breisach",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "20:50", arret: 5 },
+          { gare: "Freiburg Messe/Universität", heure: "20:58", arret: 1 },
+          { gare: "Hugstetten", heure: "21:06", arret: 1 },
+          { gare: "Gottenheim", heure: "21:13", arret: 1 },
+          { gare: "Wasenweiler", heure: "21:19", arret: 1 },
+          { gare: "Breisach", heure: "21:30", arret: 5 }
         ]
       }
     ]
@@ -1063,6 +1325,788 @@ export const trainsDE = [
           { gare: "Littenweiler", heure: "19:37", arret: 1 },
           { gare: "Freiburg-Wiehre", heure: "19:43", arret: 1 },
           { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "19:48", arret: 1 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "S3 Freibourg 1",
+    nom: "BR1462 bwegt",
+    moteurs: ["15kV CA"],
+    vitesseMax: 160,
+    capacite: { premiere: 16, seconde: 394 },
+    trajets: [
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "06:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "06:57", arret: 1 },
+          { gare: "Denzlingen", heure: "07:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "07:05", arret: 1 },
+          { gare: "Emmendingen", heure: "07:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "07:16", arret: 1 },
+          { gare: "Kenzingen", heure: "07:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "07:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "07:26", arret: 1 },
+          { gare: "Orschweier", heure: "07:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "07:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "07:39", arret: 1 },
+          { gare: "Offenburg", heure: "07:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "08:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "08:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "08:16", arret: 1 },
+          { gare: "Orschweier", heure: "08:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "08:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "08:28", arret: 1 },
+          { gare: "Kenzingen", heure: "08:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "08:35", arret: 1 },
+          { gare: "Emmendingen", heure: "08:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "08:46", arret: 1 },
+          { gare: "Denzlingen", heure: "08:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "08:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "08:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "09:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "09:57", arret: 1 },
+          { gare: "Denzlingen", heure: "10:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "10:05", arret: 1 },
+          { gare: "Emmendingen", heure: "10:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "10:16", arret: 1 },
+          { gare: "Kenzingen", heure: "10:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "10:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "10:26", arret: 1 },
+          { gare: "Orschweier", heure: "10:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "10:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "10:39", arret: 1 },
+          { gare: "Offenburg", heure: "10:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "11:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "11:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "11:16", arret: 1 },
+          { gare: "Orschweier", heure: "11:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "11:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "11:28", arret: 1 },
+          { gare: "Kenzingen", heure: "11:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "11:35", arret: 1 },
+          { gare: "Emmendingen", heure: "11:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "11:46", arret: 1 },
+          { gare: "Denzlingen", heure: "11:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "11:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "11:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "12:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "12:57", arret: 1 },
+          { gare: "Denzlingen", heure: "13:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "13:05", arret: 1 },
+          { gare: "Emmendingen", heure: "13:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "13:16", arret: 1 },
+          { gare: "Kenzingen", heure: "13:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "13:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "13:26", arret: 1 },
+          { gare: "Orschweier", heure: "13:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "13:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "13:39", arret: 1 },
+          { gare: "Offenburg", heure: "13:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "14:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "14:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "14:16", arret: 1 },
+          { gare: "Orschweier", heure: "14:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "14:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "14:28", arret: 1 },
+          { gare: "Kenzingen", heure: "14:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "14:35", arret: 1 },
+          { gare: "Emmendingen", heure: "14:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "14:46", arret: 1 },
+          { gare: "Denzlingen", heure: "14:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "14:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "14:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "15:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "15:57", arret: 1 },
+          { gare: "Denzlingen", heure: "16:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "16:05", arret: 1 },
+          { gare: "Emmendingen", heure: "16:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "16:16", arret: 1 },
+          { gare: "Kenzingen", heure: "16:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "16:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "16:26", arret: 1 },
+          { gare: "Orschweier", heure: "16:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "16:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "16:39", arret: 1 },
+          { gare: "Offenburg", heure: "16:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "17:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "17:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "17:16", arret: 1 },
+          { gare: "Orschweier", heure: "17:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "17:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "17:28", arret: 1 },
+          { gare: "Kenzingen", heure: "17:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "17:35", arret: 1 },
+          { gare: "Emmendingen", heure: "17:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "17:46", arret: 1 },
+          { gare: "Denzlingen", heure: "17:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "17:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "17:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "18:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "18:57", arret: 1 },
+          { gare: "Denzlingen", heure: "19:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "19:05", arret: 1 },
+          { gare: "Emmendingen", heure: "19:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "19:16", arret: 1 },
+          { gare: "Kenzingen", heure: "19:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "19:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "19:26", arret: 1 },
+          { gare: "Orschweier", heure: "19:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "19:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "19:39", arret: 1 },
+          { gare: "Offenburg", heure: "19:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "20:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "20:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "20:16", arret: 1 },
+          { gare: "Orschweier", heure: "20:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "20:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "20:28", arret: 1 },
+          { gare: "Kenzingen", heure: "20:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "20:35", arret: 1 },
+          { gare: "Emmendingen", heure: "20:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "20:46", arret: 1 },
+          { gare: "Denzlingen", heure: "20:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "20:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "20:58", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "S3 Freibourg 2",
+    nom: "BR1462 bwegt",
+    moteurs: ["15kV CA"],
+    vitesseMax: 160,
+    capacite: { premiere: 16, seconde: 394 },
+    trajets: [
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "05:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "05:57", arret: 1 },
+          { gare: "Denzlingen", heure: "06:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "06:05", arret: 1 },
+          { gare: "Emmendingen", heure: "06:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "06:16", arret: 1 },
+          { gare: "Kenzingen", heure: "06:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "06:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "06:26", arret: 1 },
+          { gare: "Orschweier", heure: "06:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "06:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "06:39", arret: 1 },
+          { gare: "Offenburg", heure: "06:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "07:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "07:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "07:16", arret: 1 },
+          { gare: "Orschweier", heure: "07:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "07:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "07:28", arret: 1 },
+          { gare: "Kenzingen", heure: "07:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "07:35", arret: 1 },
+          { gare: "Emmendingen", heure: "07:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "07:46", arret: 1 },
+          { gare: "Denzlingen", heure: "07:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "07:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "07:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "08:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "08:57", arret: 1 },
+          { gare: "Denzlingen", heure: "09:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "09:05", arret: 1 },
+          { gare: "Emmendingen", heure: "09:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "09:16", arret: 1 },
+          { gare: "Kenzingen", heure: "09:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "09:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "09:26", arret: 1 },
+          { gare: "Orschweier", heure: "09:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "09:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "09:39", arret: 1 },
+          { gare: "Offenburg", heure: "09:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "10:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "10:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "10:16", arret: 1 },
+          { gare: "Orschweier", heure: "10:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "10:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "10:28", arret: 1 },
+          { gare: "Kenzingen", heure: "10:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "10:35", arret: 1 },
+          { gare: "Emmendingen", heure: "10:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "10:46", arret: 1 },
+          { gare: "Denzlingen", heure: "10:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "10:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "10:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "11:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "11:57", arret: 1 },
+          { gare: "Denzlingen", heure: "12:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "12:05", arret: 1 },
+          { gare: "Emmendingen", heure: "12:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "12:16", arret: 1 },
+          { gare: "Kenzingen", heure: "12:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "12:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "12:26", arret: 1 },
+          { gare: "Orschweier", heure: "12:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "12:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "12:39", arret: 1 },
+          { gare: "Offenburg", heure: "12:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "13:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "13:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "13:16", arret: 1 },
+          { gare: "Orschweier", heure: "13:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "13:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "13:28", arret: 1 },
+          { gare: "Kenzingen", heure: "13:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "13:35", arret: 1 },
+          { gare: "Emmendingen", heure: "13:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "13:46", arret: 1 },
+          { gare: "Denzlingen", heure: "13:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "13:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "13:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "14:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "14:57", arret: 1 },
+          { gare: "Denzlingen", heure: "15:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "15:05", arret: 1 },
+          { gare: "Emmendingen", heure: "15:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "15:16", arret: 1 },
+          { gare: "Kenzingen", heure: "15:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "15:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "15:26", arret: 1 },
+          { gare: "Orschweier", heure: "15:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "15:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "15:39", arret: 1 },
+          { gare: "Offenburg", heure: "15:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "16:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "16:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "16:16", arret: 1 },
+          { gare: "Orschweier", heure: "16:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "16:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "16:28", arret: 1 },
+          { gare: "Kenzingen", heure: "16:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "16:35", arret: 1 },
+          { gare: "Emmendingen", heure: "16:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "16:46", arret: 1 },
+          { gare: "Denzlingen", heure: "16:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "16:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "16:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "17:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "17:57", arret: 1 },
+          { gare: "Denzlingen", heure: "18:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "18:05", arret: 1 },
+          { gare: "Emmendingen", heure: "18:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "18:16", arret: 1 },
+          { gare: "Kenzingen", heure: "18:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "18:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "18:26", arret: 1 },
+          { gare: "Orschweier", heure: "18:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "18:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "18:39", arret: 1 },
+          { gare: "Offenburg", heure: "18:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "19:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "19:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "19:16", arret: 1 },
+          { gare: "Orschweier", heure: "19:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "19:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "19:28", arret: 1 },
+          { gare: "Kenzingen", heure: "19:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "19:35", arret: 1 },
+          { gare: "Emmendingen", heure: "19:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "19:46", arret: 1 },
+          { gare: "Denzlingen", heure: "19:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "19:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "19:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "20:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "20:57", arret: 1 },
+          { gare: "Denzlingen", heure: "21:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "21:05", arret: 1 },
+          { gare: "Emmendingen", heure: "21:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "21:16", arret: 1 },
+          { gare: "Kenzingen", heure: "21:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "21:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "21:26", arret: 1 },
+          { gare: "Orschweier", heure: "21:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "21:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "21:39", arret: 1 },
+          { gare: "Offenburg", heure: "21:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "22:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "22:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "22:16", arret: 1 },
+          { gare: "Orschweier", heure: "22:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "22:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "22:28", arret: 1 },
+          { gare: "Kenzingen", heure: "22:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "22:35", arret: 1 },
+          { gare: "Emmendingen", heure: "22:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "22:46", arret: 1 },
+          { gare: "Denzlingen", heure: "22:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "22:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "22:58", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "S3 Freibourg 3",
+    nom: "BR1462 bwegt",
+    moteurs: ["15kV CA"],
+    vitesseMax: 160,
+    capacite: { premiere: 16, seconde: 394 },
+    trajets: [
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "06:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "06:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "06:16", arret: 1 },
+          { gare: "Orschweier", heure: "06:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "06:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "06:28", arret: 1 },
+          { gare: "Kenzingen", heure: "06:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "06:35", arret: 1 },
+          { gare: "Emmendingen", heure: "06:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "06:46", arret: 1 },
+          { gare: "Denzlingen", heure: "06:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "06:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "06:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "07:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "07:57", arret: 1 },
+          { gare: "Denzlingen", heure: "08:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "08:05", arret: 1 },
+          { gare: "Emmendingen", heure: "08:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "08:16", arret: 1 },
+          { gare: "Kenzingen", heure: "08:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "08:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "08:26", arret: 1 },
+          { gare: "Orschweier", heure: "08:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "08:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "08:39", arret: 1 },
+          { gare: "Offenburg", heure: "08:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "09:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "09:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "09:16", arret: 1 },
+          { gare: "Orschweier", heure: "09:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "09:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "09:28", arret: 1 },
+          { gare: "Kenzingen", heure: "09:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "09:35", arret: 1 },
+          { gare: "Emmendingen", heure: "09:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "09:46", arret: 1 },
+          { gare: "Denzlingen", heure: "09:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "09:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "09:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "10:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "10:57", arret: 1 },
+          { gare: "Denzlingen", heure: "11:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "11:05", arret: 1 },
+          { gare: "Emmendingen", heure: "11:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "11:16", arret: 1 },
+          { gare: "Kenzingen", heure: "11:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "11:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "11:26", arret: 1 },
+          { gare: "Orschweier", heure: "11:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "11:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "11:39", arret: 1 },
+          { gare: "Offenburg", heure: "11:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "12:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "12:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "12:16", arret: 1 },
+          { gare: "Orschweier", heure: "12:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "12:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "12:28", arret: 1 },
+          { gare: "Kenzingen", heure: "12:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "12:35", arret: 1 },
+          { gare: "Emmendingen", heure: "12:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "12:46", arret: 1 },
+          { gare: "Denzlingen", heure: "12:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "12:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "12:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "13:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "13:57", arret: 1 },
+          { gare: "Denzlingen", heure: "14:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "14:05", arret: 1 },
+          { gare: "Emmendingen", heure: "14:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "14:16", arret: 1 },
+          { gare: "Kenzingen", heure: "14:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "14:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "14:26", arret: 1 },
+          { gare: "Orschweier", heure: "14:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "14:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "14:39", arret: 1 },
+          { gare: "Offenburg", heure: "14:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "15:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "15:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "15:16", arret: 1 },
+          { gare: "Orschweier", heure: "15:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "15:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "15:28", arret: 1 },
+          { gare: "Kenzingen", heure: "15:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "15:35", arret: 1 },
+          { gare: "Emmendingen", heure: "15:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "15:46", arret: 1 },
+          { gare: "Denzlingen", heure: "15:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "15:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "15:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "16:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "16:57", arret: 1 },
+          { gare: "Denzlingen", heure: "17:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "17:05", arret: 1 },
+          { gare: "Emmendingen", heure: "17:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "17:16", arret: 1 },
+          { gare: "Kenzingen", heure: "17:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "17:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "17:26", arret: 1 },
+          { gare: "Orschweier", heure: "17:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "17:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "17:39", arret: 1 },
+          { gare: "Offenburg", heure: "17:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "18:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "18:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "18:16", arret: 1 },
+          { gare: "Orschweier", heure: "18:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "18:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "18:28", arret: 1 },
+          { gare: "Kenzingen", heure: "18:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "18:35", arret: 1 },
+          { gare: "Emmendingen", heure: "18:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "18:46", arret: 1 },
+          { gare: "Denzlingen", heure: "18:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "18:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "18:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "19:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "19:57", arret: 1 },
+          { gare: "Denzlingen", heure: "20:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "20:05", arret: 1 },
+          { gare: "Emmendingen", heure: "20:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "20:16", arret: 1 },
+          { gare: "Kenzingen", heure: "20:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "20:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "20:26", arret: 1 },
+          { gare: "Orschweier", heure: "20:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "20:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "20:39", arret: 1 },
+          { gare: "Offenburg", heure: "20:48", arret: 4 }
+        ]
+      },
+      {
+        nom: "Offenburg → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Offenburg", heure: "21:00", arret: 4 },
+          { gare: "Friesenheim (Baden)", heure: "21:12", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "21:16", arret: 1 },
+          { gare: "Orschweier", heure: "21:22", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "21:25", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "21:28", arret: 1 },
+          { gare: "Kenzingen", heure: "21:31", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "21:35", arret: 1 },
+          { gare: "Emmendingen", heure: "21:42", arret: 1 },
+          { gare: "Kollmarsreute", heure: "21:46", arret: 1 },
+          { gare: "Denzlingen", heure: "21:49", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "21:54", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "21:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Offenburg",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "22:50", arret: 4 },
+          { gare: "Freiburg Zähringen", heure: "22:57", arret: 1 },
+          { gare: "Denzlingen", heure: "23:02", arret: 1 },
+          { gare: "Kollmarsreute", heure: "23:05", arret: 1 },
+          { gare: "Emmendingen", heure: "23:09", arret: 1 },
+          { gare: "Riegel-Malterdingen SWEG", heure: "23:16", arret: 1 },
+          { gare: "Kenzingen", heure: "23:20", arret: 1 },
+          { gare: "Herbolzheim(Breisgau)", heure: "23:23", arret: 1 },
+          { gare: "Ringsheim/Europa-Park", heure: "23:26", arret: 1 },
+          { gare: "Orschweier", heure: "23:29", arret: 1 },
+          { gare: "Lahr (Schwarzwald)", heure: "23:35", arret: 1 },
+          { gare: "Friesenheim (Baden)", heure: "23:39", arret: 1 },
+          { gare: "Offenburg", heure: "23:48", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "S31 Freibourg",
+    nom: "BR442.2 Baden-Württemberg",
+    moteurs: ["15kV CA"],
+    vitesseMax: 160,
+    capacite: { premiere: 8, seconde: 242 },
+    trajets: [
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Elzach",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "06:20", arret: 3 },
+          { gare: "Freiburg Zähringen", heure: "06:26", arret: 1 },
+          { gare: "Denzlingen", heure: "06:31", arret: 1 },
+          { gare: "Batzenhäusle", heure: "06:39", arret: 1 },
+          { gare: "Gutach (Breisgau)", heure: "06:48", arret: 1 },
+          { gare: "Bleibach", heure: "06:52", arret: 1 },
+          { gare: "Niederwinden", heure: "06:56", arret: 1 },
+          { gare: "Elzach", heure: "07:05", arret: 2 }
+        ]
+      },
+      {
+        nom: "Elzach → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Elzach", heure: "07:35", arret: 2 },
+          { gare: "Niederwinden", heure: "07:45", arret: 1 },
+          { gare: "Bleibach", heure: "07:49", arret: 1 },
+          { gare: "Gutach (Breisgau)", heure: "07:53", arret: 1 },
+          { gare: "Batzenhäusle", heure: "08:02", arret: 1 },
+          { gare: "Denzlingen", heure: "08:10", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "08:15", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "08:19", arret: 3 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Elzach",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "09:20", arret: 3 },
+          { gare: "Freiburg Zähringen", heure: "09:26", arret: 1 },
+          { gare: "Denzlingen", heure: "09:31", arret: 1 },
+          { gare: "Batzenhäusle", heure: "09:39", arret: 1 },
+          { gare: "Gutach (Breisgau)", heure: "09:48", arret: 1 },
+          { gare: "Bleibach", heure: "09:52", arret: 1 },
+          { gare: "Niederwinden", heure: "09:56", arret: 1 },
+          { gare: "Elzach", heure: "10:05", arret: 2 }
+        ]
+      },
+      {
+        nom: "Elzach → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Elzach", heure: "10:35", arret: 2 },
+          { gare: "Niederwinden", heure: "10:45", arret: 1 },
+          { gare: "Bleibach", heure: "10:49", arret: 1 },
+          { gare: "Gutach (Breisgau)", heure: "10:53", arret: 1 },
+          { gare: "Batzenhäusle", heure: "11:02", arret: 1 },
+          { gare: "Denzlingen", heure: "11:10", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "11:15", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "11:19", arret: 3 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Elzach",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "12:20", arret: 3 },
+          { gare: "Freiburg Zähringen", heure: "12:26", arret: 1 },
+          { gare: "Denzlingen", heure: "12:31", arret: 1 },
+          { gare: "Batzenhäusle", heure: "12:39", arret: 1 },
+          { gare: "Gutach (Breisgau)", heure: "12:48", arret: 1 },
+          { gare: "Bleibach", heure: "12:52", arret: 1 },
+          { gare: "Niederwinden", heure: "12:56", arret: 1 },
+          { gare: "Elzach", heure: "13:05", arret: 2 }
+        ]
+      },
+      {
+        nom: "Elzach → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Elzach", heure: "13:35", arret: 2 },
+          { gare: "Niederwinden", heure: "13:45", arret: 1 },
+          { gare: "Bleibach", heure: "13:49", arret: 1 },
+          { gare: "Gutach (Breisgau)", heure: "13:53", arret: 1 },
+          { gare: "Batzenhäusle", heure: "14:02", arret: 1 },
+          { gare: "Denzlingen", heure: "14:10", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "14:15", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "14:19", arret: 3 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Elzach",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "15:20", arret: 3 },
+          { gare: "Freiburg Zähringen", heure: "15:26", arret: 1 },
+          { gare: "Denzlingen", heure: "15:31", arret: 1 },
+          { gare: "Batzenhäusle", heure: "15:39", arret: 1 },
+          { gare: "Gutach (Breisgau)", heure: "15:48", arret: 1 },
+          { gare: "Bleibach", heure: "15:52", arret: 1 },
+          { gare: "Niederwinden", heure: "15:56", arret: 1 },
+          { gare: "Elzach", heure: "16:05", arret: 2 }
+        ]
+      },
+      {
+        nom: "Elzach → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Elzach", heure: "16:35", arret: 2 },
+          { gare: "Niederwinden", heure: "16:45", arret: 1 },
+          { gare: "Bleibach", heure: "16:49", arret: 1 },
+          { gare: "Gutach (Breisgau)", heure: "16:53", arret: 1 },
+          { gare: "Batzenhäusle", heure: "17:02", arret: 1 },
+          { gare: "Denzlingen", heure: "17:10", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "17:15", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "17:19", arret: 3 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Elzach",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "18:20", arret: 3 },
+          { gare: "Freiburg Zähringen", heure: "18:26", arret: 1 },
+          { gare: "Denzlingen", heure: "18:31", arret: 1 },
+          { gare: "Batzenhäusle", heure: "18:39", arret: 1 },
+          { gare: "Gutach (Breisgau)", heure: "18:48", arret: 1 },
+          { gare: "Bleibach", heure: "18:52", arret: 1 },
+          { gare: "Niederwinden", heure: "18:56", arret: 1 },
+          { gare: "Elzach", heure: "19:05", arret: 2 }
+        ]
+      },
+      {
+        nom: "Elzach → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Elzach", heure: "19:35", arret: 2 },
+          { gare: "Niederwinden", heure: "19:45", arret: 1 },
+          { gare: "Bleibach", heure: "19:49", arret: 1 },
+          { gare: "Gutach (Breisgau)", heure: "19:53", arret: 1 },
+          { gare: "Batzenhäusle", heure: "20:02", arret: 1 },
+          { gare: "Denzlingen", heure: "20:10", arret: 1 },
+          { gare: "Freiburg Zähringen", heure: "20:15", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "20:19", arret: 3 }
         ]
       }
     ]

@@ -862,6 +862,82 @@ export const trainsFR = [
   },
 
   {
+    id: "IC Ncy Djn",
+    nom: "Regiolis Metrolor 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 210 },
+    trajets: [
+      {
+        nom: "Neufchâteau → Nancy",
+        dessertes: [
+          { gare: "Neufchâteau", heure: "06:25", arret: 3 },
+          { gare: "Soulosse", heure: "06:31", arret: 1 },
+          { gare: "Toul", heure: "06:59", arret: 2 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "07:09", arret: 1 },
+          { gare: "Frouard", heure: "07:22", arret: 1 },
+          { gare: "Nancy", heure: "07:29", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Dijon-Ville",
+        dessertes: [
+          { gare: "Nancy", heure: "07:48", arret: 3 },
+          { gare: "Toul", heure: "08:16", arret: 1 },
+          { gare: "Neufchâteau", heure: "08:47", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "09:42", arret: 1 },
+          { gare: "Is-sur-tille", heure: "10:17", arret: 1 },
+          { gare: "Dijon-Ville", heure: "10:40", arret: 3 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Nancy",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "12:21", arret: 3 },
+          { gare: "Is-sur-tille", heure: "12:46", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "13:21", arret: 1 },
+          { gare: "Neufchâteau", heure: "14:16", arret: 1 },
+          { gare: "Toul", heure: "14:47", arret: 1 },
+          { gare: "Nancy", heure: "15:13", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Neufchâteau",
+        dessertes: [
+          { gare: "Nancy", heure: "15:27", arret: 3 },
+          { gare: "Frouard", heure: "15:36", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "15:49", arret: 1 },
+          { gare: "Toul", heure: "15:58", arret: 2 },
+          { gare: "Soulosse", heure: "16:27", arret: 1 },
+          { gare: "Neufchâteau", heure: "16:31", arret: 3 }
+        ]
+      },
+      {
+        nom: "Neufchâteau → Nancy",
+        dessertes: [
+          { gare: "Neufchâteau", heure: "16:50", arret: 3 },
+          { gare: "Soulosse", heure: "16:56", arret: 1 },
+          { gare: "Toul", heure: "17:24", arret: 2 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "17:34", arret: 1 },
+          { gare: "Frouard", heure: "17:47", arret: 1 },
+          { gare: "Nancy", heure: "17:54", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Neufchâteau",
+        dessertes: [
+          { gare: "Nancy", heure: "18:11", arret: 3 },
+          { gare: "Frouard", heure: "18:20", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "18:33", arret: 1 },
+          { gare: "Toul", heure: "18:42", arret: 2 },
+          { gare: "Soulosse", heure: "19:11", arret: 1 },
+          { gare: "Neufchâteau", heure: "19:15", arret: 3 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "Mulhouse - DE",
     nom: "X73900 TER Alsace",
     moteurs: ["diesel"],
@@ -1543,6 +1619,203 @@ export const trainsFR = [
           { gare: "Ancy sur Moselle", heure: "21:48", arret: 1 },
           { gare: "Ars-sur-Moselle", heure: "21:51", arret: 1 },
           { gare: "Metz", heure: "22:02", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2920",
+    nom: "AGC Metrolor 4C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Bar-le-Duc → Nancy",
+        dessertes: [
+          { gare: "Bar-le-Duc", heure: "07:11", arret: 3 },
+          { gare: "Nançois - Tronville", heure: "07:23", arret: 1 },
+          { gare: "Lérouville", heure: "07:40", arret: 1 },
+          { gare: "Commercy", heure: "07:45", arret: 1 },
+          { gare: "Foug", heure: "08:02", arret: 1 },
+          { gare: "Toul", heure: "08:10", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "08:19", arret: 1 },
+          { gare: "Frouard", heure: "08:32", arret: 1 },
+          { gare: "Champigneulles", heure: "08:36", arret: 1 },
+          { gare: "Nancy", heure: "08:41", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Bar-le-Duc",
+        dessertes: [
+          { gare: "Nancy", heure: "09:11", arret: 3 },
+          { gare: "Champigneulles", heure: "09:18", arret: 1 },
+          { gare: "Frouard", heure: "09:22", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "09:35", arret: 1 },
+          { gare: "Toul", heure: "09:44", arret: 1 },
+          { gare: "Foug", heure: "09:52", arret: 1 },
+          { gare: "Commercy", heure: "10:09", arret: 1 },
+          { gare: "Lérouville", heure: "10:14", arret: 1 },
+          { gare: "Nançois - Tronville", heure: "10:31", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "10:41", arret: 3 }
+        ]
+      },
+      {
+        nom: "Bar-le-Duc → Nancy",
+        dessertes: [
+          { gare: "Bar-le-Duc", heure: "11:11", arret: 3 },
+          { gare: "Nançois - Tronville", heure: "11:23", arret: 1 },
+          { gare: "Lérouville", heure: "11:40", arret: 1 },
+          { gare: "Commercy", heure: "11:45", arret: 1 },
+          { gare: "Foug", heure: "12:02", arret: 1 },
+          { gare: "Toul", heure: "12:10", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "12:19", arret: 1 },
+          { gare: "Frouard", heure: "12:32", arret: 1 },
+          { gare: "Champigneulles", heure: "12:36", arret: 1 },
+          { gare: "Nancy", heure: "12:41", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Bar-le-Duc",
+        dessertes: [
+          { gare: "Nancy", heure: "13:11", arret: 3 },
+          { gare: "Champigneulles", heure: "13:18", arret: 1 },
+          { gare: "Frouard", heure: "13:22", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "13:35", arret: 1 },
+          { gare: "Toul", heure: "13:44", arret: 1 },
+          { gare: "Foug", heure: "13:52", arret: 1 },
+          { gare: "Commercy", heure: "14:09", arret: 1 },
+          { gare: "Lérouville", heure: "14:14", arret: 1 },
+          { gare: "Nançois - Tronville", heure: "14:31", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "14:41", arret: 3 }
+        ]
+      },
+      {
+        nom: "Bar-le-Duc → Nancy",
+        dessertes: [
+          { gare: "Bar-le-Duc", heure: "15:11", arret: 3 },
+          { gare: "Nançois - Tronville", heure: "15:23", arret: 1 },
+          { gare: "Lérouville", heure: "15:40", arret: 1 },
+          { gare: "Commercy", heure: "15:45", arret: 1 },
+          { gare: "Foug", heure: "16:02", arret: 1 },
+          { gare: "Toul", heure: "16:10", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "16:19", arret: 1 },
+          { gare: "Frouard", heure: "16:32", arret: 1 },
+          { gare: "Champigneulles", heure: "16:36", arret: 1 },
+          { gare: "Nancy", heure: "16:41", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Bar-le-Duc",
+        dessertes: [
+          { gare: "Nancy", heure: "17:11", arret: 3 },
+          { gare: "Champigneulles", heure: "17:18", arret: 1 },
+          { gare: "Frouard", heure: "17:22", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "17:35", arret: 1 },
+          { gare: "Toul", heure: "17:44", arret: 1 },
+          { gare: "Foug", heure: "17:52", arret: 1 },
+          { gare: "Commercy", heure: "18:09", arret: 1 },
+          { gare: "Lérouville", heure: "18:14", arret: 1 },
+          { gare: "Nançois - Tronville", heure: "18:31", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "18:41", arret: 3 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2926",
+    nom: "Z11500 Metrolor",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 5, seconde: 126 },
+    trajets: [
+      {
+        nom: "Neufchâteau → Nancy",
+        dessertes: [
+          { gare: "Neufchâteau", heure: "07:10", arret: 2 },
+          { gare: "Soulosse", heure: "07:15", arret: 1 },
+          { gare: "Toul", heure: "07:43", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "07:52", arret: 1 },
+          { gare: "Frouard", heure: "08:05", arret: 1 },
+          { gare: "Champigneulles", heure: "08:09", arret: 1 },
+          { gare: "Nancy", heure: "08:14", arret: 4 }
+        ]
+      },
+      {
+        nom: "Nancy → Neufchâteau",
+        dessertes: [
+          { gare: "Nancy", heure: "08:44", arret: 4 },
+          { gare: "Champigneulles", heure: "08:52", arret: 1 },
+          { gare: "Frouard", heure: "08:56", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "09:09", arret: 1 },
+          { gare: "Toul", heure: "09:18", arret: 3 }
+        ]
+      },
+      {
+        nom: "Toul → Nancy",
+        dessertes: [
+          { gare: "Toul", heure: "09:48", arret: 3 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "09:59", arret: 1 },
+          { gare: "Frouard", heure: "10:12", arret: 1 },
+          { gare: "Champigneulles", heure: "10:16", arret: 1 },
+          { gare: "Nancy", heure: "10:21", arret: 4 }
+        ]
+      },
+      {
+        nom: "Nancy → Neufchâteau",
+        dessertes: [
+          { gare: "Nancy", heure: "11:26", arret: 4 },
+          { gare: "Champigneulles", heure: "11:34", arret: 1 },
+          { gare: "Frouard", heure: "11:38", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "11:51", arret: 1 },
+          { gare: "Toul", heure: "12:00", arret: 3 },
+          { gare: "Soulosse", heure: "12:30", arret: 1 },
+          { gare: "Neufchâteau", heure: "12:34", arret: 3 }
+        ]
+      },
+      {
+        nom: "Neufchâteau → Nancy",
+        dessertes: [
+          { gare: "Neufchâteau", heure: "12:50", arret: 3 },
+          { gare: "Soulosse", heure: "12:56", arret: 1 },
+          { gare: "Toul", heure: "13:24", arret: 3 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "13:35", arret: 1 },
+          { gare: "Frouard", heure: "13:48", arret: 1 },
+          { gare: "Champigneulles", heure: "13:52", arret: 1 },
+          { gare: "Nancy", heure: "13:57", arret: 4 }
+        ]
+      },
+      {
+        nom: "Nancy → Commercy",
+        dessertes: [
+          { gare: "Nancy", heure: "14:50", arret: 4 },
+          { gare: "Champigneulles", heure: "14:58", arret: 1 },
+          { gare: "Frouard", heure: "15:02", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "15:15", arret: 1 },
+          { gare: "Toul", heure: "15:24", arret: 3 },
+          { gare: "Commercy", heure: "15:49", arret: 3 }
+        ]
+      },
+      {
+        nom: "Commercy → Nancy",
+        dessertes: [
+          { gare: "Commercy", heure: "16:00", arret: 3 },
+          { gare: "Toul", heure: "16:25", arret: 3 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "16:36", arret: 1 },
+          { gare: "Frouard", heure: "16:49", arret: 1 },
+          { gare: "Champigneulles", heure: "16:53", arret: 1 },
+          { gare: "Nancy", heure: "16:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Nancy → Neufchâteau",
+        dessertes: [
+          { gare: "Nancy", heure: "17:05", arret: 4 },
+          { gare: "Frouard", heure: "17:15", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "17:28", arret: 1 },
+          { gare: "Neufchâteau", heure: "18:06", arret: 3 }
         ]
       }
     ]

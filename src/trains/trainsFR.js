@@ -1,5 +1,155 @@
 export const trainsFR = [
   {
+    id: "2974",
+    nom: "Z24500 Metrolor",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 41, seconde: 298 },
+    trajets: [
+      {
+        nom: "Longuyon → Luxembourg",
+        dessertes: [
+          { gare: "Longuyon", heure: "06:50", arret: 4 },
+          { gare: "Longwy", heure: "07:13", arret: 1 },
+          { gare: "Rodange", heure: "07:21", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "07:28", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "07:32", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "07:36", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "07:42", arret: 1 },
+          { gare: "Hollerich", heure: "07:48", arret: 1 },
+          { gare: "Luxembourg", heure: "07:51", arret: 4 }
+        ]
+      },
+      {
+        nom: "Luxembourg → Longuyon",
+        dessertes: [
+          { gare: "Luxembourg", heure: "08:20", arret: 4 },
+          { gare: "Hollerich", heure: "08:26", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "08:32", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "08:38", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "08:42", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "08:46", arret: 1 },
+          { gare: "Rodange", heure: "08:53", arret: 1 },
+          { gare: "Longwy", heure: "09:01", arret: 1 },
+          { gare: "Longuyon", heure: "09:21", arret: 4 }
+        ]
+      },
+      {
+        nom: "Longuyon → Luxembourg",
+        dessertes: [
+          { gare: "Longuyon", heure: "10:00", arret: 4 },
+          { gare: "Longwy", heure: "10:23", arret: 1 },
+          { gare: "Rodange", heure: "10:31", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "10:38", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "10:42", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "10:46", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "10:52", arret: 1 },
+          { gare: "Hollerich", heure: "10:58", arret: 1 },
+          { gare: "Luxembourg", heure: "11:01", arret: 4 }
+        ]
+      },
+      {
+        nom: "Luxembourg → Longuyon",
+        dessertes: [
+          { gare: "Luxembourg", heure: "11:32", arret: 4 },
+          { gare: "Hollerich", heure: "11:38", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "11:44", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "11:50", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "11:54", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "11:58", arret: 1 },
+          { gare: "Rodange", heure: "12:05", arret: 1 },
+          { gare: "Longwy", heure: "12:13", arret: 1 },
+          { gare: "Longuyon", heure: "12:33", arret: 4 }
+        ]
+      },
+      {
+        nom: "Longuyon → Luxembourg",
+        dessertes: [
+          { gare: "Longuyon", heure: "13:00", arret: 4 },
+          { gare: "Longwy", heure: "13:23", arret: 1 },
+          { gare: "Rodange", heure: "13:31", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "13:38", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "13:42", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "13:46", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "13:52", arret: 1 },
+          { gare: "Hollerich", heure: "13:58", arret: 1 },
+          { gare: "Luxembourg", heure: "14:01", arret: 4 }
+        ]
+      },
+      {
+        nom: "Luxembourg → Longuyon",
+        dessertes: [
+          { gare: "Luxembourg", heure: "14:32", arret: 4 },
+          { gare: "Hollerich", heure: "14:38", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "14:44", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "14:50", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "14:54", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "14:58", arret: 1 },
+          { gare: "Rodange", heure: "15:05", arret: 1 },
+          { gare: "Longwy", heure: "15:13", arret: 1 },
+          { gare: "Longuyon", heure: "15:33", arret: 4 }
+        ]
+      },
+      {
+        nom: "Longuyon → Luxembourg",
+        dessertes: [
+          { gare: "Longuyon", heure: "16:00", arret: 4 },
+          { gare: "Longwy", heure: "16:23", arret: 1 },
+          { gare: "Rodange", heure: "16:31", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "16:38", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "16:42", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "16:46", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "16:52", arret: 1 },
+          { gare: "Hollerich", heure: "16:58", arret: 1 },
+          { gare: "Luxembourg", heure: "17:01", arret: 4 }
+        ]
+      },
+      {
+        nom: "Luxembourg → Longuyon",
+        dessertes: [
+          { gare: "Luxembourg", heure: "17:32", arret: 4 },
+          { gare: "Hollerich", heure: "17:38", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "17:44", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "17:50", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "17:54", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "17:58", arret: 1 },
+          { gare: "Rodange", heure: "18:05", arret: 1 },
+          { gare: "Longwy", heure: "18:13", arret: 1 },
+          { gare: "Longuyon", heure: "18:33", arret: 4 }
+        ]
+      },
+      {
+        nom: "Longuyon → Luxembourg",
+        dessertes: [
+          { gare: "Longuyon", heure: "19:00", arret: 4 },
+          { gare: "Longwy", heure: "19:23", arret: 1 },
+          { gare: "Rodange", heure: "19:31", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "19:38", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "19:42", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "19:46", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "19:52", arret: 1 },
+          { gare: "Hollerich", heure: "19:58", arret: 1 },
+          { gare: "Luxembourg", heure: "20:01", arret: 4 }
+        ]
+      },
+      {
+        nom: "Luxembourg → Longuyon",
+        dessertes: [
+          { gare: "Luxembourg", heure: "20:32", arret: 4 },
+          { gare: "Hollerich", heure: "20:38", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "20:44", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "20:50", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "20:54", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "20:58", arret: 1 },
+          { gare: "Rodange", heure: "21:05", arret: 1 },
+          { gare: "Longwy", heure: "21:13", arret: 1 },
+          { gare: "Longuyon", heure: "21:33", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "FLUO IC Bel-PEst 1",
     nom: "CoradiaLiner 6C",
     moteurs: ["25kV CA", "1.5kV CC", "diesel"],
@@ -862,6 +1012,82 @@ export const trainsFR = [
   },
 
   {
+    id: "IC Ncy Djn",
+    nom: "Regiolis Metrolor 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 210 },
+    trajets: [
+      {
+        nom: "Neufchâteau → Nancy",
+        dessertes: [
+          { gare: "Neufchâteau", heure: "06:25", arret: 3 },
+          { gare: "Soulosse", heure: "06:31", arret: 1 },
+          { gare: "Toul", heure: "06:59", arret: 2 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "07:09", arret: 1 },
+          { gare: "Frouard", heure: "07:22", arret: 1 },
+          { gare: "Nancy", heure: "07:29", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Dijon-Ville",
+        dessertes: [
+          { gare: "Nancy", heure: "07:48", arret: 3 },
+          { gare: "Toul", heure: "08:16", arret: 1 },
+          { gare: "Neufchâteau", heure: "08:47", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "09:42", arret: 1 },
+          { gare: "Is-sur-tille", heure: "10:17", arret: 1 },
+          { gare: "Dijon-Ville", heure: "10:40", arret: 3 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Nancy",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "12:21", arret: 3 },
+          { gare: "Is-sur-tille", heure: "12:46", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "13:21", arret: 1 },
+          { gare: "Neufchâteau", heure: "14:16", arret: 1 },
+          { gare: "Toul", heure: "14:47", arret: 1 },
+          { gare: "Nancy", heure: "15:13", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Neufchâteau",
+        dessertes: [
+          { gare: "Nancy", heure: "15:27", arret: 3 },
+          { gare: "Frouard", heure: "15:36", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "15:49", arret: 1 },
+          { gare: "Toul", heure: "15:58", arret: 2 },
+          { gare: "Soulosse", heure: "16:27", arret: 1 },
+          { gare: "Neufchâteau", heure: "16:31", arret: 3 }
+        ]
+      },
+      {
+        nom: "Neufchâteau → Nancy",
+        dessertes: [
+          { gare: "Neufchâteau", heure: "16:50", arret: 3 },
+          { gare: "Soulosse", heure: "16:56", arret: 1 },
+          { gare: "Toul", heure: "17:24", arret: 2 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "17:34", arret: 1 },
+          { gare: "Frouard", heure: "17:47", arret: 1 },
+          { gare: "Nancy", heure: "17:54", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Neufchâteau",
+        dessertes: [
+          { gare: "Nancy", heure: "18:11", arret: 3 },
+          { gare: "Frouard", heure: "18:20", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "18:33", arret: 1 },
+          { gare: "Toul", heure: "18:42", arret: 2 },
+          { gare: "Soulosse", heure: "19:11", arret: 1 },
+          { gare: "Neufchâteau", heure: "19:15", arret: 3 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "Mulhouse - DE",
     nom: "X73900 TER Alsace",
     moteurs: ["diesel"],
@@ -1543,6 +1769,921 @@ export const trainsFR = [
           { gare: "Ancy sur Moselle", heure: "21:48", arret: 1 },
           { gare: "Ars-sur-Moselle", heure: "21:51", arret: 1 },
           { gare: "Metz", heure: "22:02", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2920",
+    nom: "AGC Metrolor 4C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Bar-le-Duc → Nancy",
+        dessertes: [
+          { gare: "Bar-le-Duc", heure: "07:11", arret: 3 },
+          { gare: "Nançois - Tronville", heure: "07:23", arret: 1 },
+          { gare: "Lérouville", heure: "07:40", arret: 1 },
+          { gare: "Commercy", heure: "07:45", arret: 1 },
+          { gare: "Foug", heure: "08:02", arret: 1 },
+          { gare: "Toul", heure: "08:10", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "08:19", arret: 1 },
+          { gare: "Frouard", heure: "08:32", arret: 1 },
+          { gare: "Champigneulles", heure: "08:36", arret: 1 },
+          { gare: "Nancy", heure: "08:41", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Bar-le-Duc",
+        dessertes: [
+          { gare: "Nancy", heure: "09:11", arret: 3 },
+          { gare: "Champigneulles", heure: "09:18", arret: 1 },
+          { gare: "Frouard", heure: "09:22", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "09:35", arret: 1 },
+          { gare: "Toul", heure: "09:44", arret: 1 },
+          { gare: "Foug", heure: "09:52", arret: 1 },
+          { gare: "Commercy", heure: "10:09", arret: 1 },
+          { gare: "Lérouville", heure: "10:14", arret: 1 },
+          { gare: "Nançois - Tronville", heure: "10:31", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "10:41", arret: 3 }
+        ]
+      },
+      {
+        nom: "Bar-le-Duc → Nancy",
+        dessertes: [
+          { gare: "Bar-le-Duc", heure: "11:11", arret: 3 },
+          { gare: "Nançois - Tronville", heure: "11:23", arret: 1 },
+          { gare: "Lérouville", heure: "11:40", arret: 1 },
+          { gare: "Commercy", heure: "11:45", arret: 1 },
+          { gare: "Foug", heure: "12:02", arret: 1 },
+          { gare: "Toul", heure: "12:10", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "12:19", arret: 1 },
+          { gare: "Frouard", heure: "12:32", arret: 1 },
+          { gare: "Champigneulles", heure: "12:36", arret: 1 },
+          { gare: "Nancy", heure: "12:41", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Bar-le-Duc",
+        dessertes: [
+          { gare: "Nancy", heure: "13:11", arret: 3 },
+          { gare: "Champigneulles", heure: "13:18", arret: 1 },
+          { gare: "Frouard", heure: "13:22", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "13:35", arret: 1 },
+          { gare: "Toul", heure: "13:44", arret: 1 },
+          { gare: "Foug", heure: "13:52", arret: 1 },
+          { gare: "Commercy", heure: "14:09", arret: 1 },
+          { gare: "Lérouville", heure: "14:14", arret: 1 },
+          { gare: "Nançois - Tronville", heure: "14:31", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "14:41", arret: 3 }
+        ]
+      },
+      {
+        nom: "Bar-le-Duc → Nancy",
+        dessertes: [
+          { gare: "Bar-le-Duc", heure: "15:11", arret: 3 },
+          { gare: "Nançois - Tronville", heure: "15:23", arret: 1 },
+          { gare: "Lérouville", heure: "15:40", arret: 1 },
+          { gare: "Commercy", heure: "15:45", arret: 1 },
+          { gare: "Foug", heure: "16:02", arret: 1 },
+          { gare: "Toul", heure: "16:10", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "16:19", arret: 1 },
+          { gare: "Frouard", heure: "16:32", arret: 1 },
+          { gare: "Champigneulles", heure: "16:36", arret: 1 },
+          { gare: "Nancy", heure: "16:41", arret: 3 }
+        ]
+      },
+      {
+        nom: "Nancy → Bar-le-Duc",
+        dessertes: [
+          { gare: "Nancy", heure: "17:11", arret: 3 },
+          { gare: "Champigneulles", heure: "17:18", arret: 1 },
+          { gare: "Frouard", heure: "17:22", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "17:35", arret: 1 },
+          { gare: "Toul", heure: "17:44", arret: 1 },
+          { gare: "Foug", heure: "17:52", arret: 1 },
+          { gare: "Commercy", heure: "18:09", arret: 1 },
+          { gare: "Lérouville", heure: "18:14", arret: 1 },
+          { gare: "Nançois - Tronville", heure: "18:31", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "18:41", arret: 3 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2921",
+    nom: "AGC blueMetrolorLorraine 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Metz → Verdun",
+        dessertes: [
+          { gare: "Metz", heure: "08:30", arret: 4 },
+          { gare: "Ars-sur-Moselle", heure: "08:45", arret: 1 },
+          { gare: "Onville", heure: "08:58", arret: 1 },
+          { gare: "Conflans - Jarny", heure: "09:21", arret: 2 },
+          { gare: "Étain", heure: "09:52", arret: 1 },
+          { gare: "Verdun", heure: "10:26", arret: 2 }
+        ]
+      },
+      {
+        nom: "Verdun → Metz",
+        dessertes: [
+          { gare: "Verdun", heure: "11:26", arret: 2 },
+          { gare: "Étain", heure: "12:01", arret: 1 },
+          { gare: "Conflans - Jarny", heure: "12:31", arret: 2 },
+          { gare: "Onville", heure: "12:55", arret: 1 },
+          { gare: "Ars-sur-Moselle", heure: "13:08", arret: 1 },
+          { gare: "Metz", heure: "13:20", arret: 4 }
+        ]
+      },
+      {
+        nom: "Metz → Verdun",
+        dessertes: [
+          { gare: "Metz", heure: "13:40", arret: 4 },
+          { gare: "Ars-sur-Moselle", heure: "13:55", arret: 1 },
+          { gare: "Onville", heure: "14:08", arret: 1 },
+          { gare: "Conflans - Jarny", heure: "14:31", arret: 2 },
+          { gare: "Étain", heure: "15:02", arret: 1 },
+          { gare: "Verdun", heure: "15:36", arret: 2 }
+        ]
+      },
+      {
+        nom: "Verdun → Metz",
+        dessertes: [
+          { gare: "Verdun", heure: "17:30", arret: 2 },
+          { gare: "Étain", heure: "18:05", arret: 1 },
+          { gare: "Conflans - Jarny", heure: "18:35", arret: 2 },
+          { gare: "Onville", heure: "18:59", arret: 1 },
+          { gare: "Ars-sur-Moselle", heure: "19:12", arret: 1 },
+          { gare: "Metz", heure: "19:24", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2923",
+    nom: "AGC Metrolor 4C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Nancy → Bar-le-Duc",
+        dessertes: [
+          { gare: "Nancy", heure: "08:04", arret: 4 },
+          { gare: "Champigneulles", heure: "08:12", arret: 1 },
+          { gare: "Frouard", heure: "08:16", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "08:29", arret: 1 },
+          { gare: "Toul", heure: "08:38", arret: 1 },
+          { gare: "Foug", heure: "08:46", arret: 1 },
+          { gare: "Commercy", heure: "09:03", arret: 1 },
+          { gare: "Lérouville", heure: "09:08", arret: 1 },
+          { gare: "Nançois - Tronville", heure: "09:25", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "09:35", arret: 4 }
+        ]
+      },
+      {
+        nom: "Bar-le-Duc → Nancy",
+        dessertes: [
+          { gare: "Bar-le-Duc", heure: "10:05", arret: 4 },
+          { gare: "Nançois - Tronville", heure: "10:18", arret: 1 },
+          { gare: "Lérouville", heure: "10:35", arret: 1 },
+          { gare: "Commercy", heure: "10:40", arret: 1 },
+          { gare: "Foug", heure: "10:57", arret: 1 },
+          { gare: "Toul", heure: "11:05", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "11:14", arret: 1 },
+          { gare: "Frouard", heure: "11:27", arret: 1 },
+          { gare: "Champigneulles", heure: "11:31", arret: 1 },
+          { gare: "Nancy", heure: "11:36", arret: 4 }
+        ]
+      },
+      {
+        nom: "Nancy → Bar-le-Duc",
+        dessertes: [
+          { gare: "Nancy", heure: "12:06", arret: 4 },
+          { gare: "Champigneulles", heure: "12:14", arret: 1 },
+          { gare: "Frouard", heure: "12:18", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "12:31", arret: 1 },
+          { gare: "Toul", heure: "12:40", arret: 1 },
+          { gare: "Foug", heure: "12:48", arret: 1 },
+          { gare: "Commercy", heure: "13:05", arret: 1 },
+          { gare: "Lérouville", heure: "13:10", arret: 1 },
+          { gare: "Nançois - Tronville", heure: "13:27", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "13:37", arret: 4 }
+        ]
+      },
+      {
+        nom: "Bar-le-Duc → Nancy",
+        dessertes: [
+          { gare: "Bar-le-Duc", heure: "16:15", arret: 4 },
+          { gare: "Nançois - Tronville", heure: "16:28", arret: 1 },
+          { gare: "Lérouville", heure: "16:45", arret: 1 },
+          { gare: "Commercy", heure: "16:50", arret: 1 },
+          { gare: "Foug", heure: "17:07", arret: 1 },
+          { gare: "Toul", heure: "17:15", arret: 2 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "17:25", arret: 1 },
+          { gare: "Frouard", heure: "17:38", arret: 1 },
+          { gare: "Nancy", heure: "17:45", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2926",
+    nom: "Z11500 Metrolor",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 5, seconde: 126 },
+    trajets: [
+      {
+        nom: "Neufchâteau → Nancy",
+        dessertes: [
+          { gare: "Neufchâteau", heure: "07:10", arret: 2 },
+          { gare: "Soulosse", heure: "07:15", arret: 1 },
+          { gare: "Toul", heure: "07:43", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "07:52", arret: 1 },
+          { gare: "Frouard", heure: "08:05", arret: 1 },
+          { gare: "Champigneulles", heure: "08:09", arret: 1 },
+          { gare: "Nancy", heure: "08:14", arret: 4 }
+        ]
+      },
+      {
+        nom: "Nancy → Neufchâteau",
+        dessertes: [
+          { gare: "Nancy", heure: "08:44", arret: 4 },
+          { gare: "Champigneulles", heure: "08:52", arret: 1 },
+          { gare: "Frouard", heure: "08:56", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "09:09", arret: 1 },
+          { gare: "Toul", heure: "09:18", arret: 3 }
+        ]
+      },
+      {
+        nom: "Toul → Nancy",
+        dessertes: [
+          { gare: "Toul", heure: "09:48", arret: 3 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "09:59", arret: 1 },
+          { gare: "Frouard", heure: "10:12", arret: 1 },
+          { gare: "Champigneulles", heure: "10:16", arret: 1 },
+          { gare: "Nancy", heure: "10:21", arret: 4 }
+        ]
+      },
+      {
+        nom: "Nancy → Neufchâteau",
+        dessertes: [
+          { gare: "Nancy", heure: "11:26", arret: 4 },
+          { gare: "Champigneulles", heure: "11:34", arret: 1 },
+          { gare: "Frouard", heure: "11:38", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "11:51", arret: 1 },
+          { gare: "Toul", heure: "12:00", arret: 3 },
+          { gare: "Soulosse", heure: "12:30", arret: 1 },
+          { gare: "Neufchâteau", heure: "12:34", arret: 3 }
+        ]
+      },
+      {
+        nom: "Neufchâteau → Nancy",
+        dessertes: [
+          { gare: "Neufchâteau", heure: "12:50", arret: 3 },
+          { gare: "Soulosse", heure: "12:56", arret: 1 },
+          { gare: "Toul", heure: "13:24", arret: 3 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "13:35", arret: 1 },
+          { gare: "Frouard", heure: "13:48", arret: 1 },
+          { gare: "Champigneulles", heure: "13:52", arret: 1 },
+          { gare: "Nancy", heure: "13:57", arret: 4 }
+        ]
+      },
+      {
+        nom: "Nancy → Commercy",
+        dessertes: [
+          { gare: "Nancy", heure: "14:50", arret: 4 },
+          { gare: "Champigneulles", heure: "14:58", arret: 1 },
+          { gare: "Frouard", heure: "15:02", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "15:15", arret: 1 },
+          { gare: "Toul", heure: "15:24", arret: 3 },
+          { gare: "Commercy", heure: "15:49", arret: 3 }
+        ]
+      },
+      {
+        nom: "Commercy → Nancy",
+        dessertes: [
+          { gare: "Commercy", heure: "16:00", arret: 3 },
+          { gare: "Toul", heure: "16:25", arret: 3 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "16:36", arret: 1 },
+          { gare: "Frouard", heure: "16:49", arret: 1 },
+          { gare: "Champigneulles", heure: "16:53", arret: 1 },
+          { gare: "Nancy", heure: "16:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Nancy → Neufchâteau",
+        dessertes: [
+          { gare: "Nancy", heure: "17:05", arret: 4 },
+          { gare: "Frouard", heure: "17:15", arret: 1 },
+          { gare: "Fontenoy-Sur-Moselle", heure: "17:28", arret: 1 },
+          { gare: "Neufchâteau", heure: "18:06", arret: 3 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2927",
+    nom: "AGC Champagne-Ardenne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Nancy → Vittel",
+        dessertes: [
+          { gare: "Nancy", heure: "17:30", arret: 3, jours: ["VE"] },
+          { gare: "Fontenoy-Sur-Moselle", heure: "17:51", arret: 1, jours: ["VE"] },
+          { gare: "Toul", heure: "18:00", arret: 1, jours: ["VE"] },
+          { gare: "Soulosse", heure: "18:28", arret: 1, jours: ["VE"] },
+          { gare: "Neufchâteau", heure: "18:32", arret: 1, jours: ["VE"] },
+          { gare: "Contrexéville", heure: "19:56", arret: 1, jours: ["VE"] },
+          { gare: "Vittel", heure: "20:04", arret: 3, jours: ["VE"] }
+        ]
+      },
+      {
+        nom: "Vittel → Nancy",
+        dessertes: [
+          { gare: "Vittel", heure: "17:50", arret: 3, jours: ["DI"] },
+          { gare: "Contrexéville", heure: "18:00", arret: 1, jours: ["DI"] },
+          { gare: "Neufchâteau", heure: "19:24", arret: 1, jours: ["DI"] },
+          { gare: "Soulosse", heure: "19:28", arret: 1, jours: ["DI"] },
+          { gare: "Toul", heure: "19:56", arret: 1, jours: ["DI"] },
+          { gare: "Fontenoy-Sur-Moselle", heure: "20:05", arret: 1, jours: ["DI"] },
+          { gare: "Nancy", heure: "20:24", arret: 3, jours: ["DI"] }
+        ]
+      },
+      {
+        nom: "Nancy → Lunéville",
+        dessertes: [
+          { gare: "Nancy", heure: "07:45", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laneuveville-devant-Nancy", heure: "07:52", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Rosieres-Aux-Salines", heure: "08:02", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Blainville - Damelevières", heure: "08:07", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Lunéville", heure: "08:15", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Lunéville → Nancy",
+        dessertes: [
+          { gare: "Lunéville", heure: "08:30", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Blainville - Damelevières", heure: "08:39", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Rosieres-Aux-Salines", heure: "08:44", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laneuveville-devant-Nancy", heure: "08:54", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Nancy", heure: "09:00", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Nancy → Lunéville",
+        dessertes: [
+          { gare: "Nancy", heure: "09:30", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laneuveville-devant-Nancy", heure: "09:37", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Rosieres-Aux-Salines", heure: "09:47", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Blainville - Damelevières", heure: "09:52", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Lunéville", heure: "10:00", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Lunéville → Nancy",
+        dessertes: [
+          { gare: "Lunéville", heure: "12:50", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Blainville - Damelevières", heure: "12:59", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Rosieres-Aux-Salines", heure: "13:04", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laneuveville-devant-Nancy", heure: "13:14", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Nancy", heure: "13:20", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Nancy → Lunéville",
+        dessertes: [
+          { gare: "Nancy", heure: "14:30", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laneuveville-devant-Nancy", heure: "14:37", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Rosieres-Aux-Salines", heure: "14:47", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Blainville - Damelevières", heure: "14:52", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Lunéville", heure: "15:00", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Lunéville → Nancy",
+        dessertes: [
+          { gare: "Lunéville", heure: "16:45", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Blainville - Damelevières", heure: "16:54", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Rosieres-Aux-Salines", heure: "16:59", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laneuveville-devant-Nancy", heure: "17:09", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Nancy", heure: "17:15", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2938",
+    nom: "AGC Metrolor 4C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Thionville → Perl",
+        dessertes: [
+          { gare: "Thionville", heure: "06:50", arret: 2 },
+          { gare: "Koenigsmacker", heure: "07:05", arret: 1 },
+          { gare: "Malling", heure: "07:11", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "07:18", arret: 1 },
+          { gare: "Apach", heure: "07:22", arret: 1 },
+          { gare: "Perl", heure: "07:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Perl → Thionville",
+        dessertes: [
+          { gare: "Perl", heure: "07:55", arret: 2 },
+          { gare: "Apach", heure: "07:59", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "08:03", arret: 1 },
+          { gare: "Malling", heure: "08:10", arret: 1 },
+          { gare: "Koenigsmacker", heure: "08:16", arret: 1 },
+          { gare: "Thionville", heure: "08:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Thionville → Perl",
+        dessertes: [
+          { gare: "Thionville", heure: "08:50", arret: 2 },
+          { gare: "Koenigsmacker", heure: "09:05", arret: 1 },
+          { gare: "Malling", heure: "09:11", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "09:18", arret: 1 },
+          { gare: "Apach", heure: "09:22", arret: 1 },
+          { gare: "Perl", heure: "09:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Perl → Thionville",
+        dessertes: [
+          { gare: "Perl", heure: "09:55", arret: 2 },
+          { gare: "Apach", heure: "09:59", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "10:03", arret: 1 },
+          { gare: "Malling", heure: "10:10", arret: 1 },
+          { gare: "Koenigsmacker", heure: "10:16", arret: 1 },
+          { gare: "Thionville", heure: "10:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Thionville → Perl",
+        dessertes: [
+          { gare: "Thionville", heure: "10:50", arret: 2 },
+          { gare: "Koenigsmacker", heure: "11:05", arret: 1 },
+          { gare: "Malling", heure: "11:11", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "11:18", arret: 1 },
+          { gare: "Apach", heure: "11:22", arret: 1 },
+          { gare: "Perl", heure: "11:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Perl → Thionville",
+        dessertes: [
+          { gare: "Perl", heure: "11:55", arret: 2 },
+          { gare: "Apach", heure: "11:59", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "12:03", arret: 1 },
+          { gare: "Malling", heure: "12:10", arret: 1 },
+          { gare: "Koenigsmacker", heure: "12:16", arret: 1 },
+          { gare: "Thionville", heure: "12:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Thionville → Perl",
+        dessertes: [
+          { gare: "Thionville", heure: "12:50", arret: 2 },
+          { gare: "Koenigsmacker", heure: "13:05", arret: 1 },
+          { gare: "Malling", heure: "13:11", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "13:18", arret: 1 },
+          { gare: "Apach", heure: "13:22", arret: 1 },
+          { gare: "Perl", heure: "13:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Perl → Thionville",
+        dessertes: [
+          { gare: "Perl", heure: "13:55", arret: 2 },
+          { gare: "Apach", heure: "13:59", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "14:03", arret: 1 },
+          { gare: "Malling", heure: "14:10", arret: 1 },
+          { gare: "Koenigsmacker", heure: "14:16", arret: 1 },
+          { gare: "Thionville", heure: "14:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Thionville → Perl",
+        dessertes: [
+          { gare: "Thionville", heure: "14:50", arret: 2 },
+          { gare: "Koenigsmacker", heure: "15:05", arret: 1 },
+          { gare: "Malling", heure: "15:11", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "15:18", arret: 1 },
+          { gare: "Apach", heure: "15:22", arret: 1 },
+          { gare: "Perl", heure: "15:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Perl → Thionville",
+        dessertes: [
+          { gare: "Perl", heure: "15:55", arret: 2 },
+          { gare: "Apach", heure: "15:59", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "16:03", arret: 1 },
+          { gare: "Malling", heure: "16:10", arret: 1 },
+          { gare: "Koenigsmacker", heure: "16:16", arret: 1 },
+          { gare: "Thionville", heure: "16:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Thionville → Perl",
+        dessertes: [
+          { gare: "Thionville", heure: "16:50", arret: 2 },
+          { gare: "Koenigsmacker", heure: "17:05", arret: 1 },
+          { gare: "Malling", heure: "17:11", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "17:18", arret: 1 },
+          { gare: "Apach", heure: "17:22", arret: 1 },
+          { gare: "Perl", heure: "17:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Perl → Thionville",
+        dessertes: [
+          { gare: "Perl", heure: "17:55", arret: 2 },
+          { gare: "Apach", heure: "17:59", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "18:03", arret: 1 },
+          { gare: "Malling", heure: "18:10", arret: 1 },
+          { gare: "Koenigsmacker", heure: "18:16", arret: 1 },
+          { gare: "Thionville", heure: "18:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Thionville → Perl",
+        dessertes: [
+          { gare: "Thionville", heure: "18:50", arret: 2 },
+          { gare: "Koenigsmacker", heure: "19:05", arret: 1 },
+          { gare: "Malling", heure: "19:11", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "19:18", arret: 1 },
+          { gare: "Apach", heure: "19:22", arret: 1 },
+          { gare: "Perl", heure: "19:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Perl → Thionville",
+        dessertes: [
+          { gare: "Perl", heure: "19:55", arret: 2 },
+          { gare: "Apach", heure: "19:59", arret: 1 },
+          { gare: "Sierck-les-Bains", heure: "20:03", arret: 1 },
+          { gare: "Malling", heure: "20:10", arret: 1 },
+          { gare: "Koenigsmacker", heure: "20:16", arret: 1 },
+          { gare: "Thionville", heure: "20:30", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2940",
+    nom: "Regiolis Metrolor 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 210 },
+    trajets: [
+      {
+        nom: "Saarbrücken Hauptbahnhof → Metz",
+        dessertes: [
+          { gare: "Saarbrücken Hauptbahnhof", heure: "06:32", arret: 3 },
+          { gare: "Forbach", heure: "06:47", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "06:56", arret: 1 },
+          { gare: "Hombourg-Haut", heure: "07:02", arret: 1 },
+          { gare: "Saint-Avold", heure: "07:09", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "07:15", arret: 1 },
+          { gare: "Faulquemont", heure: "07:21", arret: 1 },
+          { gare: "Herny", heure: "07:31", arret: 1 },
+          { gare: "Remilly", heure: "07:39", arret: 2 },
+          { gare: "Courcelles-sur-Nied", heure: "07:48", arret: 1 },
+          { gare: "Peltre", heure: "07:55", arret: 1 },
+          { gare: "Metz", heure: "08:03", arret: 3 }
+        ]
+      },
+      {
+        nom: "Metz → Saarbrücken Hauptbahnhof",
+        dessertes: [
+          { gare: "Metz", heure: "08:35", arret: 3 },
+          { gare: "Peltre", heure: "08:45", arret: 1 },
+          { gare: "Courcelles-sur-Nied", heure: "08:52", arret: 1 },
+          { gare: "Remilly", heure: "09:00", arret: 2 },
+          { gare: "Herny", heure: "09:09", arret: 1 },
+          { gare: "Faulquemont", heure: "09:19", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "09:25", arret: 1 },
+          { gare: "Saint-Avold", heure: "09:31", arret: 1 },
+          { gare: "Hombourg-Haut", heure: "09:38", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "09:44", arret: 1 },
+          { gare: "Forbach", heure: "09:53", arret: 1 },
+          { gare: "Saarbrücken Hauptbahnhof", heure: "10:06", arret: 3 }
+        ]
+      },
+      {
+        nom: "Saarbrücken Hauptbahnhof → Metz",
+        dessertes: [
+          { gare: "Saarbrücken Hauptbahnhof", heure: "11:30", arret: 3 },
+          { gare: "Forbach", heure: "11:45", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "11:54", arret: 1 },
+          { gare: "Hombourg-Haut", heure: "12:00", arret: 1 },
+          { gare: "Saint-Avold", heure: "12:07", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "12:13", arret: 1 },
+          { gare: "Faulquemont", heure: "12:19", arret: 1 },
+          { gare: "Herny", heure: "12:29", arret: 1 },
+          { gare: "Remilly", heure: "12:37", arret: 2 },
+          { gare: "Courcelles-sur-Nied", heure: "12:46", arret: 1 },
+          { gare: "Peltre", heure: "12:53", arret: 1 },
+          { gare: "Metz", heure: "13:01", arret: 3 }
+        ]
+      },
+      {
+        nom: "Metz → Saarbrücken Hauptbahnhof",
+        dessertes: [
+          { gare: "Metz", heure: "13:30", arret: 3 },
+          { gare: "Peltre", heure: "13:40", arret: 1 },
+          { gare: "Courcelles-sur-Nied", heure: "13:47", arret: 1 },
+          { gare: "Remilly", heure: "13:55", arret: 2 },
+          { gare: "Herny", heure: "14:04", arret: 1 },
+          { gare: "Faulquemont", heure: "14:14", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "14:20", arret: 1 },
+          { gare: "Saint-Avold", heure: "14:26", arret: 1 },
+          { gare: "Hombourg-Haut", heure: "14:33", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "14:39", arret: 1 },
+          { gare: "Forbach", heure: "14:48", arret: 1 },
+          { gare: "Saarbrücken Hauptbahnhof", heure: "15:01", arret: 3 }
+        ]
+      },
+      {
+        nom: "Saarbrücken Hauptbahnhof → Metz",
+        dessertes: [
+          { gare: "Saarbrücken Hauptbahnhof", heure: "15:30", arret: 3 },
+          { gare: "Forbach", heure: "15:45", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "15:54", arret: 1 },
+          { gare: "Hombourg-Haut", heure: "16:00", arret: 1 },
+          { gare: "Saint-Avold", heure: "16:07", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "16:13", arret: 1 },
+          { gare: "Faulquemont", heure: "16:19", arret: 1 },
+          { gare: "Herny", heure: "16:29", arret: 1 },
+          { gare: "Remilly", heure: "16:37", arret: 2 },
+          { gare: "Courcelles-sur-Nied", heure: "16:46", arret: 1 },
+          { gare: "Peltre", heure: "16:53", arret: 1 },
+          { gare: "Metz", heure: "17:01", arret: 3 }
+        ]
+      },
+      {
+        nom: "Metz → Saarbrücken Hauptbahnhof",
+        dessertes: [
+          { gare: "Metz", heure: "17:30", arret: 3 },
+          { gare: "Peltre", heure: "17:40", arret: 1 },
+          { gare: "Courcelles-sur-Nied", heure: "17:47", arret: 1 },
+          { gare: "Remilly", heure: "17:55", arret: 2 },
+          { gare: "Herny", heure: "18:04", arret: 1 },
+          { gare: "Faulquemont", heure: "18:14", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "18:20", arret: 1 },
+          { gare: "Saint-Avold", heure: "18:26", arret: 1 },
+          { gare: "Hombourg-Haut", heure: "18:33", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "18:39", arret: 1 },
+          { gare: "Forbach", heure: "18:48", arret: 1 },
+          { gare: "Saarbrücken Hauptbahnhof", heure: "19:01", arret: 3 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2941",
+    nom: "X73900 Grand Est",
+    moteurs: ["diesel"],
+    vitesseMax: 140,
+    capacite: { premiere: 0, seconde: 183 },
+    composition: ["X73900 Grand Est", "X73900 Grand Est"],
+    trajets: [
+      {
+        nom: "Sarreguemines → Metz",
+        dessertes: [
+          { gare: "Sarreguemines", heure: "07:20", arret: 2 },
+          { gare: "Hundling", heure: "07:32", arret: 1 },
+          { gare: "Farschviller", heure: "07:42", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "07:54", arret: 2 },
+          { gare: "Hombourg-Haut", heure: "08:01", arret: 1 },
+          { gare: "Saint-Avold", heure: "08:08", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "08:15", arret: 1 },
+          { gare: "Faulquemont", heure: "08:22", arret: 1 },
+          { gare: "Herny", heure: "08:34", arret: 1 },
+          { gare: "Remilly", heure: "08:43", arret: 1 },
+          { gare: "Courcelles-sur-Nied", heure: "08:52", arret: 1 },
+          { gare: "Peltre", heure: "09:01", arret: 1 },
+          { gare: "Metz", heure: "09:10", arret: 2 }
+        ]
+      },
+      {
+        nom: "Metz → Sarreguemines",
+        dessertes: [
+          { gare: "Metz", heure: "09:40", arret: 2 },
+          { gare: "Peltre", heure: "09:50", arret: 1 },
+          { gare: "Courcelles-sur-Nied", heure: "09:59", arret: 1 },
+          { gare: "Remilly", heure: "10:08", arret: 1 },
+          { gare: "Herny", heure: "10:17", arret: 1 },
+          { gare: "Faulquemont", heure: "10:29", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "10:36", arret: 1 },
+          { gare: "Saint-Avold", heure: "10:43", arret: 1 },
+          { gare: "Hombourg-Haut", heure: "10:50", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "10:56", arret: 2 },
+          { gare: "Farschviller", heure: "11:09", arret: 1 },
+          { gare: "Hundling", heure: "11:19", arret: 1 },
+          { gare: "Sarreguemines", heure: "11:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sarreguemines → Metz",
+        dessertes: [
+          { gare: "Sarreguemines", heure: "12:20", arret: 2 },
+          { gare: "Hundling", heure: "12:32", arret: 1 },
+          { gare: "Farschviller", heure: "12:42", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "12:54", arret: 2 },
+          { gare: "Hombourg-Haut", heure: "13:01", arret: 1 },
+          { gare: "Saint-Avold", heure: "13:08", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "13:15", arret: 1 },
+          { gare: "Faulquemont", heure: "13:22", arret: 1 },
+          { gare: "Herny", heure: "13:34", arret: 1 },
+          { gare: "Remilly", heure: "13:43", arret: 1 },
+          { gare: "Courcelles-sur-Nied", heure: "13:52", arret: 1 },
+          { gare: "Peltre", heure: "14:01", arret: 1 },
+          { gare: "Metz", heure: "14:10", arret: 2 }
+        ]
+      },
+      {
+        nom: "Metz → Sarreguemines",
+        dessertes: [
+          { gare: "Metz", heure: "14:40", arret: 2 },
+          { gare: "Peltre", heure: "14:50", arret: 1 },
+          { gare: "Courcelles-sur-Nied", heure: "14:59", arret: 1 },
+          { gare: "Remilly", heure: "15:08", arret: 1 },
+          { gare: "Herny", heure: "15:17", arret: 1 },
+          { gare: "Faulquemont", heure: "15:29", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "15:36", arret: 1 },
+          { gare: "Saint-Avold", heure: "15:43", arret: 1 },
+          { gare: "Hombourg-Haut", heure: "15:50", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "15:56", arret: 2 },
+          { gare: "Farschviller", heure: "16:09", arret: 1 },
+          { gare: "Hundling", heure: "16:19", arret: 1 },
+          { gare: "Sarreguemines", heure: "16:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sarreguemines → Metz",
+        dessertes: [
+          { gare: "Sarreguemines", heure: "17:20", arret: 2 },
+          { gare: "Hundling", heure: "17:32", arret: 1 },
+          { gare: "Farschviller", heure: "17:42", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "17:54", arret: 2 },
+          { gare: "Hombourg-Haut", heure: "18:01", arret: 1 },
+          { gare: "Saint-Avold", heure: "18:08", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "18:15", arret: 1 },
+          { gare: "Faulquemont", heure: "18:22", arret: 1 },
+          { gare: "Herny", heure: "18:34", arret: 1 },
+          { gare: "Remilly", heure: "18:43", arret: 1 },
+          { gare: "Courcelles-sur-Nied", heure: "18:52", arret: 1 },
+          { gare: "Peltre", heure: "19:01", arret: 1 },
+          { gare: "Metz", heure: "19:10", arret: 2 }
+        ]
+      },
+      {
+        nom: "Metz → Sarreguemines",
+        dessertes: [
+          { gare: "Metz", heure: "19:40", arret: 2 },
+          { gare: "Peltre", heure: "19:50", arret: 1 },
+          { gare: "Courcelles-sur-Nied", heure: "19:59", arret: 1 },
+          { gare: "Remilly", heure: "20:08", arret: 1 },
+          { gare: "Herny", heure: "20:17", arret: 1 },
+          { gare: "Faulquemont", heure: "20:29", arret: 1 },
+          { gare: "Teting-sur-Nied", heure: "20:36", arret: 1 },
+          { gare: "Saint-Avold", heure: "20:43", arret: 1 },
+          { gare: "Hombourg-Haut", heure: "20:50", arret: 1 },
+          { gare: "Béning-lès-Saint-Avold", heure: "20:56", arret: 2 },
+          { gare: "Farschviller", heure: "21:09", arret: 1 },
+          { gare: "Hundling", heure: "21:19", arret: 1 },
+          { gare: "Sarreguemines", heure: "21:30", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2968",
+    nom: "AGC Metrolor 4C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Longuyon → Metz",
+        dessertes: [
+          { gare: "Longuyon", heure: "07:30", arret: 2 },
+          { gare: "Baroncourt", heure: "07:49", arret: 1 },
+          { gare: "Conflans - Jarny", heure: "08:06", arret: 1 },
+          { gare: "Hatrize", heure: "08:13", arret: 1 },
+          { gare: "Auboué", heure: "08:22", arret: 1 },
+          { gare: "Moyeuvre-Grande", heure: "08:32", arret: 1 },
+          { gare: "Rombas-Clouange", heure: "08:40", arret: 1 },
+          { gare: "Gandrange - Amnéville", heure: "08:46", arret: 1 },
+          { gare: "Hagondange", heure: "08:51", arret: 1 },
+          { gare: "Walygator parc", heure: "08:54", arret: 1 },
+          { gare: "Metz", heure: "09:06", arret: 2 }
+        ]
+      },
+      {
+        nom: "Metz → Longuyon",
+        dessertes: [
+          { gare: "Metz", heure: "09:20", arret: 2 },
+          { gare: "Walygator parc", heure: "09:33", arret: 1 },
+          { gare: "Hagondange", heure: "09:36", arret: 1 },
+          { gare: "Gandrange - Amnéville", heure: "09:41", arret: 1 },
+          { gare: "Rombas-Clouange", heure: "09:47", arret: 1 },
+          { gare: "Moyeuvre-Grande", heure: "09:55", arret: 1 },
+          { gare: "Auboué", heure: "10:05", arret: 1 },
+          { gare: "Hatrize", heure: "10:14", arret: 1 },
+          { gare: "Conflans - Jarny", heure: "10:21", arret: 1 },
+          { gare: "Baroncourt", heure: "10:38", arret: 1 },
+          { gare: "Longuyon", heure: "10:56", arret: 2 }
+        ]
+      },
+      {
+        nom: "Longuyon → Metz",
+        dessertes: [
+          { gare: "Longuyon", heure: "12:05", arret: 2 },
+          { gare: "Baroncourt", heure: "12:24", arret: 1 },
+          { gare: "Conflans - Jarny", heure: "12:41", arret: 1 },
+          { gare: "Hatrize", heure: "12:48", arret: 1 },
+          { gare: "Auboué", heure: "12:57", arret: 1 },
+          { gare: "Moyeuvre-Grande", heure: "13:07", arret: 1 },
+          { gare: "Rombas-Clouange", heure: "13:15", arret: 1 },
+          { gare: "Gandrange - Amnéville", heure: "13:21", arret: 1 },
+          { gare: "Hagondange", heure: "13:26", arret: 1 },
+          { gare: "Walygator parc", heure: "13:29", arret: 1 },
+          { gare: "Metz", heure: "13:41", arret: 2 }
+        ]
+      },
+      {
+        nom: "Metz → Longuyon",
+        dessertes: [
+          { gare: "Metz", heure: "13:55", arret: 2 },
+          { gare: "Walygator parc", heure: "14:08", arret: 1 },
+          { gare: "Hagondange", heure: "14:11", arret: 1 },
+          { gare: "Gandrange - Amnéville", heure: "14:16", arret: 1 },
+          { gare: "Rombas-Clouange", heure: "14:22", arret: 1 },
+          { gare: "Moyeuvre-Grande", heure: "14:30", arret: 1 },
+          { gare: "Auboué", heure: "14:40", arret: 1 },
+          { gare: "Hatrize", heure: "14:49", arret: 1 },
+          { gare: "Conflans - Jarny", heure: "14:56", arret: 1 },
+          { gare: "Baroncourt", heure: "15:13", arret: 1 },
+          { gare: "Longuyon", heure: "15:31", arret: 2 }
+        ]
+      },
+      {
+        nom: "Longuyon → Metz",
+        dessertes: [
+          { gare: "Longuyon", heure: "16:30", arret: 2 },
+          { gare: "Baroncourt", heure: "16:49", arret: 1 },
+          { gare: "Conflans - Jarny", heure: "17:06", arret: 1 },
+          { gare: "Hatrize", heure: "17:13", arret: 1 },
+          { gare: "Auboué", heure: "17:22", arret: 1 },
+          { gare: "Moyeuvre-Grande", heure: "17:32", arret: 1 },
+          { gare: "Rombas-Clouange", heure: "17:40", arret: 1 },
+          { gare: "Gandrange - Amnéville", heure: "17:46", arret: 1 },
+          { gare: "Hagondange", heure: "17:51", arret: 1 },
+          { gare: "Walygator parc", heure: "17:54", arret: 1 },
+          { gare: "Metz", heure: "18:06", arret: 2 }
+        ]
+      },
+      {
+        nom: "Metz → Longuyon",
+        dessertes: [
+          { gare: "Metz", heure: "18:30", arret: 2 },
+          { gare: "Walygator parc", heure: "18:43", arret: 1 },
+          { gare: "Hagondange", heure: "18:46", arret: 1 },
+          { gare: "Gandrange - Amnéville", heure: "18:51", arret: 1 },
+          { gare: "Rombas-Clouange", heure: "18:57", arret: 1 },
+          { gare: "Moyeuvre-Grande", heure: "19:05", arret: 1 },
+          { gare: "Auboué", heure: "19:15", arret: 1 },
+          { gare: "Hatrize", heure: "19:24", arret: 1 },
+          { gare: "Conflans - Jarny", heure: "19:31", arret: 1 },
+          { gare: "Baroncourt", heure: "19:48", arret: 1 },
+          { gare: "Longuyon", heure: "20:06", arret: 2 }
         ]
       }
     ]
