@@ -446,7 +446,7 @@ export function afficherTrainsAleatoires() {
     return `
       <div class="train-card" style="border-left:4px solid ${color}; margin:10px 0; padding:8px; background:#f8f8f8; border-radius:6px;">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <h3 style="margin:0; color:${color};">${icon} ${ref.nom}</h3>
+          <h3 style="margin:0; color:${color};">${icon} ${ref.id}</h3>
           <span style="color:#555; font-size:0.85em;">${t.vitesseActuelle} km/h</span>
         </div>
         <p style="margin:2px 0 4px 0; color:#444;">${t.statut}</p>
