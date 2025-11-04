@@ -1041,7 +1041,7 @@ export const lignes = [
   { gareA: "Bühl", gareB: "Achern", longueur: 10.1, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Achern", gareB: "Renchen", longueur: 7.8, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Renchen", gareB: "Appenweier", longueur: 7.7, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "LZB" },
-  { gareA: "Offenburg", gareB: "Durmersheim", longueur: 66.2, type: "LGV", vitesse_max: 250, electrification: "15kV CA", signalisation: "LZB" },
+  { gareA: "_Appenweier LGV", gareB: "Durmersheim", longueur: 58.2, type: "LGV", vitesse_max: 250, electrification: "15kV CA", signalisation: "LZB" },
   { gareA: "Mercedes-Benz Rastatt", gareB: "Rastatt", longueur: 4.1, type: "FRET", vitesse_max: 60, electrification: "diesel", signalisation: "PZB" },
   { gareA: "Schafbrücke", gareB: "St Ingbert", longueur: 8.6, type: "classique", vitesse_max: 120, electrification: "15kV CA", signalisation: "PZB" },
   { gareA: "St Ingbert", gareB: "Kirkel", longueur: 12.9, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "PZB" },
@@ -1221,5 +1221,7 @@ export const lignes = [
   { gareA: "_Friedrichsfeld Sud", gareB: "_Friedrichsfeld West", longueur: 0.8, type: "classique", vitesse_max: 90, electrification: "15kV CA", signalisation: "PZB" },
   { gareA: "_Friedrichsfeld West", gareB: "Mannheim Friedrichsfeld Süd", longueur: 1, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "PZB" },
   { gareA: "Mannheim Friedrichsfeld Süd", gareB: "_Friedrichsfeld Est", longueur: 1, type: "classique", vitesse_max: 160, electrification: "15kV CA", signalisation: "PZB" },
-  { gareA: "Niedaltdorf", gareB: "Bouzonville", longueur: 9.3, type: "FRET", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" }
+  { gareA: "Niedaltdorf", gareB: "Bouzonville", longueur: 9.3, type: "FRET", vitesse_max: 80, electrification: "diesel", signalisation: "KVB" },
+  { gareA: "_Appenweier LGV", gareB: "Appenweier", longueur: 2, type: "LGV", vitesse_max: 210, electrification: "15kV CA", signalisation: "LZB" },
+  { gareA: "_Appenweier LGV", gareB: "Offenburg", longueur: 9.5, type: "LGV", vitesse_max: 250, electrification: "15kV CA", signalisation: "LZB" }
 ];

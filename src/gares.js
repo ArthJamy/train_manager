@@ -1123,5 +1123,6 @@ export const villes = [
   { nom: "_Friedrichsfeld Sud", x: 1227.0, y: -1695.3, fantome: true },
   { nom: "Neu-Edingen/Friedrichsfeld", x: 1237.3, y: -1706.2, type: "petite", fluxPassager: 2369 },
   { nom: "_Friedrichsfeld West", x: 1220.6, y: -1698.6, fantome: true },
-  { nom: "_Friedrichsfeld Est", x: 1237.5, y: -1693.0, fantome: true }
+  { nom: "_Friedrichsfeld Est", x: 1237.5, y: -1693.0, fantome: true },
+  { nom: "_Appenweier LGV", x: 646.1, y: -808.7, fantome: true }
 ];
