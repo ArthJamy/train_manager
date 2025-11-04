@@ -111,6 +111,15 @@
       "type": "Voyageur"
     },
     {
+      "nom": "Regiolis HdF 6C",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 24, "seconde": 304 },
+      "longueur": 110,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
       "nom": "CoradiaLiner fluoGrandEst 6C",
       "moteurs": ["25kV CA", "1.5kV CC", "diesel"],
       "vitesseMax": 160,
