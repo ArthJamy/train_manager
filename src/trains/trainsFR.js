@@ -82,6 +82,294 @@ export const trainsFR = [
   },
 
   {
+    id: "FLUO IC Chm PEst 1",
+    nom: "CoradiaLiner 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 90, seconde: 270 },
+    trajets: [
+      {
+        nom: "Chaumont → Gare de l'Est",
+        dessertes: [
+          { gare: "Chaumont", heure: "07:00", arret: 4 },
+          { gare: "Bar-Sur-Aube", heure: "07:37", arret: 1 },
+          { gare: "Vendeuvre (Aube)", heure: "07:55", arret: 1 },
+          { gare: "Troyes", heure: "08:25", arret: 3 },
+          { gare: "Romilly-sur-Seine", heure: "08:53", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "09:09", arret: 1 },
+          { gare: "Gare de l'Est", heure: "10:34", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Chaumont",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "11:00", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "12:29", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "12:45", arret: 1 },
+          { gare: "Troyes", heure: "13:11", arret: 3 },
+          { gare: "Vendeuvre (Aube)", heure: "13:43", arret: 1 },
+          { gare: "Bar-Sur-Aube", heure: "14:01", arret: 1 },
+          { gare: "Chaumont", heure: "14:35", arret: 4 }
+        ]
+      },
+      {
+        nom: "Chaumont → Gare de l'Est",
+        dessertes: [
+          { gare: "Chaumont", heure: "15:00", arret: 4 },
+          { gare: "Bar-Sur-Aube", heure: "15:37", arret: 1 },
+          { gare: "Vendeuvre (Aube)", heure: "15:55", arret: 1 },
+          { gare: "Troyes", heure: "16:25", arret: 3 },
+          { gare: "Romilly-sur-Seine", heure: "16:53", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "17:09", arret: 1 },
+          { gare: "Gare de l'Est", heure: "18:34", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Chaumont",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "19:00", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "20:29", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "20:45", arret: 1 },
+          { gare: "Troyes", heure: "21:11", arret: 3 },
+          { gare: "Vendeuvre (Aube)", heure: "21:43", arret: 1 },
+          { gare: "Bar-Sur-Aube", heure: "22:01", arret: 1 },
+          { gare: "Chaumont", heure: "22:35", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "FLUO IC Chm PEst 2",
+    nom: "CoradiaLiner fluoGrandEst 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 90, seconde: 270 },
+    trajets: [
+      {
+        nom: "Chaumont → Gare de l'Est",
+        dessertes: [
+          { gare: "Chaumont", heure: "08:00", arret: 3 },
+          { gare: "Bar-Sur-Aube", heure: "08:36", arret: 1 },
+          { gare: "Vendeuvre (Aube)", heure: "08:54", arret: 1 },
+          { gare: "Troyes", heure: "09:24", arret: 2 },
+          { gare: "Romilly-sur-Seine", heure: "09:51", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "10:07", arret: 1 },
+          { gare: "Gare de l'Est", heure: "11:32", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Chaumont",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "12:00", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "13:29", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "13:45", arret: 1 },
+          { gare: "Troyes", heure: "14:11", arret: 2 },
+          { gare: "Vendeuvre (Aube)", heure: "14:42", arret: 1 },
+          { gare: "Bar-Sur-Aube", heure: "15:00", arret: 1 },
+          { gare: "Chaumont", heure: "15:34", arret: 3 }
+        ]
+      },
+      {
+        nom: "Chaumont → Gare de l'Est",
+        dessertes: [
+          { gare: "Chaumont", heure: "16:00", arret: 3 },
+          { gare: "Bar-Sur-Aube", heure: "16:36", arret: 1 },
+          { gare: "Vendeuvre (Aube)", heure: "16:54", arret: 1 },
+          { gare: "Troyes", heure: "17:24", arret: 2 },
+          { gare: "Romilly-sur-Seine", heure: "17:51", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "18:07", arret: 1 },
+          { gare: "Gare de l'Est", heure: "19:32", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Chaumont",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "20:00", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "21:29", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "21:45", arret: 1 },
+          { gare: "Troyes", heure: "22:11", arret: 2 },
+          { gare: "Vendeuvre (Aube)", heure: "22:42", arret: 1 },
+          { gare: "Bar-Sur-Aube", heure: "23:00", arret: 1 },
+          { gare: "Chaumont", heure: "23:34", arret: 3 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "FLUO IC Chm PEst 3",
+    nom: "CoradiaLiner fluoGrandEst 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 90, seconde: 270 },
+    trajets: [
+      {
+        nom: "Gare de l'Est → Chaumont",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "06:30", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "07:59", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "08:15", arret: 1 },
+          { gare: "Troyes", heure: "08:41", arret: 2 },
+          { gare: "Vendeuvre (Aube)", heure: "09:12", arret: 1 },
+          { gare: "Bar-Sur-Aube", heure: "09:30", arret: 1 },
+          { gare: "Chaumont", heure: "10:04", arret: 3 }
+        ]
+      },
+      {
+        nom: "Chaumont → Gare de l'Est",
+        dessertes: [
+          { gare: "Chaumont", heure: "11:30", arret: 3 },
+          { gare: "Bar-Sur-Aube", heure: "12:06", arret: 1 },
+          { gare: "Vendeuvre (Aube)", heure: "12:24", arret: 1 },
+          { gare: "Troyes", heure: "12:54", arret: 2 },
+          { gare: "Romilly-sur-Seine", heure: "13:21", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "13:37", arret: 1 },
+          { gare: "Gare de l'Est", heure: "15:02", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Chaumont",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "15:32", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "17:01", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "17:17", arret: 1 },
+          { gare: "Troyes", heure: "17:43", arret: 2 },
+          { gare: "Vendeuvre (Aube)", heure: "18:14", arret: 1 },
+          { gare: "Bar-Sur-Aube", heure: "18:32", arret: 1 },
+          { gare: "Chaumont", heure: "19:06", arret: 3 }
+        ]
+      },
+      {
+        nom: "Chaumont → Gare de l'Est",
+        dessertes: [
+          { gare: "Chaumont", heure: "19:20", arret: 3 },
+          { gare: "Bar-Sur-Aube", heure: "19:56", arret: 1 },
+          { gare: "Vendeuvre (Aube)", heure: "20:14", arret: 1 },
+          { gare: "Troyes", heure: "20:44", arret: 2 },
+          { gare: "Romilly-sur-Seine", heure: "21:11", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "21:27", arret: 1 },
+          { gare: "Gare de l'Est", heure: "22:52", arret: 5 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "FLUO IC Chm PEst 4",
+    nom: "CoradiaLiner 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 90, seconde: 270 },
+    trajets: [
+      {
+        nom: "Gare de l'Est → Chaumont",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "08:30", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "09:59", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "10:15", arret: 1 },
+          { gare: "Troyes", heure: "10:41", arret: 2 },
+          { gare: "Vendeuvre (Aube)", heure: "11:12", arret: 1 },
+          { gare: "Bar-Sur-Aube", heure: "11:30", arret: 1 },
+          { gare: "Chaumont", heure: "12:04", arret: 3 }
+        ]
+      },
+      {
+        nom: "Chaumont → Gare de l'Est",
+        dessertes: [
+          { gare: "Chaumont", heure: "13:30", arret: 3 },
+          { gare: "Bar-Sur-Aube", heure: "14:06", arret: 1 },
+          { gare: "Vendeuvre (Aube)", heure: "14:24", arret: 1 },
+          { gare: "Troyes", heure: "14:54", arret: 2 },
+          { gare: "Romilly-sur-Seine", heure: "15:21", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "15:37", arret: 1 },
+          { gare: "Gare de l'Est", heure: "17:02", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Troyes",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "17:30", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "18:59", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "19:15", arret: 1 },
+          { gare: "Troyes", heure: "19:41", arret: 4 }
+        ]
+      },
+      {
+        nom: "Troyes → Gare de l'Est",
+        dessertes: [
+          { gare: "Troyes", heure: "19:50", arret: 4 },
+          { gare: "Romilly-sur-Seine", heure: "20:19", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "20:35", arret: 1 },
+          { gare: "Gare de l'Est", heure: "22:00", arret: 5 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "FLUO IC Djn PEst",
+    nom: "CoradiaLiner 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 90, seconde: 270 },
+    trajets: [
+      {
+        nom: "Dijon-Ville → Gare de l'Est",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "07:00", arret: 2 },
+          { gare: "Dijon Porte Neuve", heure: "07:07", arret: 1 },
+          { gare: "Is-sur-tille", heure: "07:25", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "08:00", arret: 1 },
+          { gare: "Langres", heure: "08:10", arret: 1 },
+          { gare: "Chaumont", heure: "08:34", arret: 2 },
+          { gare: "Bar-Sur-Aube", heure: "09:09", arret: 1 },
+          { gare: "Vendeuvre (Aube)", heure: "09:27", arret: 1 },
+          { gare: "Troyes", heure: "09:57", arret: 4 },
+          { gare: "Romilly-sur-Seine", heure: "10:26", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "10:42", arret: 1 },
+          { gare: "Gare de l'Est", heure: "12:07", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Dijon-Ville",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "12:25", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "13:54", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "14:10", arret: 1 },
+          { gare: "Troyes", heure: "14:36", arret: 2 }
+        ]
+      },
+      {
+        nom: "Troyes → Gare de l'Est",
+        dessertes: [
+          { gare: "Troyes", heure: "15:40", arret: 2 },
+          { gare: "Romilly-sur-Seine", heure: "16:07", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "16:23", arret: 1 },
+          { gare: "Gare de l'Est", heure: "17:48", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Dijon-Ville",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "18:18", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "19:47", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "20:03", arret: 1 },
+          { gare: "Troyes", heure: "20:29", arret: 2 },
+          { gare: "Vendeuvre (Aube)", heure: "21:00", arret: 1 },
+          { gare: "Bar-Sur-Aube", heure: "21:18", arret: 1 },
+          { gare: "Chaumont", heure: "21:52", arret: 1 },
+          { gare: "Langres", heure: "22:16", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "22:26", arret: 1 },
+          { gare: "Is-sur-tille", heure: "23:01", arret: 1 },
+          { gare: "Dijon Porte Neuve", heure: "23:19", arret: 1 },
+          { gare: "Dijon-Ville", heure: "23:25", arret: 1 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "FLUO IC Epi Str",
     nom: "AGC fluoGrandEst 3C",
     moteurs: ["diesel"],
@@ -176,16 +464,16 @@ export const trainsFR = [
       {
         nom: "Epernay → Metz",
         dessertes: [
-          { gare: "Epernay", heure: "16:12", arret: 2 },
-          { gare: "Châlons-En-Champagne", heure: "16:39", arret: 1 },
-          { gare: "Vitry-le-François", heure: "17:01", arret: 1 },
-          { gare: "Revigny", heure: "17:28", arret: 1 },
-          { gare: "Bar-le-Duc", heure: "17:41", arret: 2 },
-          { gare: "Nançois - Tronville", heure: "17:52", arret: 1 },
-          { gare: "Lérouville", heure: "18:09", arret: 1 },
-          { gare: "Onville", heure: "18:46", arret: 1 },
-          { gare: "Ars-sur-Moselle", heure: "18:57", arret: 1 },
-          { gare: "Metz", heure: "19:08", arret: 2 }
+          { gare: "Epernay", heure: "18:12", arret: 2 },
+          { gare: "Châlons-En-Champagne", heure: "18:39", arret: 1 },
+          { gare: "Vitry-le-François", heure: "19:01", arret: 1 },
+          { gare: "Revigny", heure: "19:28", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "19:41", arret: 2 },
+          { gare: "Nançois - Tronville", heure: "19:52", arret: 1 },
+          { gare: "Lérouville", heure: "20:09", arret: 1 },
+          { gare: "Onville", heure: "20:46", arret: 1 },
+          { gare: "Ars-sur-Moselle", heure: "20:57", arret: 1 },
+          { gare: "Metz", heure: "21:08", arret: 2 }
         ]
       }
     ]
@@ -278,6 +566,117 @@ export const trainsFR = [
           { gare: "Romilly-sur-Seine", heure: "19:40", arret: 1 },
           { gare: "Nogent-sur-Seine", heure: "19:56", arret: 1 },
           { gare: "Gare de l'Est", heure: "21:21", arret: 5 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "FLUO IC PEst UM",
+    nom: "CoradiaLiner 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 90, seconde: 270 },
+    trajets: [
+      {
+        nom: "Gare de l'Est → Troyes",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "05:30", arret: 5, jours: ["LU", "ME", "JE", "VE", "DI"] },
+          { gare: "Nogent-sur-Seine", heure: "06:59", arret: 1, jours: ["LU", "ME", "JE", "VE", "DI"] },
+          { gare: "Romilly-sur-Seine", heure: "07:15", arret: 1, jours: ["LU", "ME", "JE", "VE", "DI"] },
+          { gare: "Troyes", heure: "07:41", arret: 2, jours: ["LU", "ME", "JE", "VE", "DI"] }
+        ]
+      },
+      {
+        nom: "Vittel → Gare de l'Est",
+        dessertes: [
+          { gare: "Vittel", heure: "07:05", arret: 2, jours: ["MA", "SA"] },
+          { gare: "Contrexéville", heure: "07:14", arret: 1, jours: ["MA", "SA"] },
+          { gare: "Culmont-Chalindrey", heure: "08:35", arret: 1, jours: ["MA", "SA"] },
+          { gare: "Langres", heure: "08:45", arret: 1, jours: ["MA", "SA"] },
+          { gare: "Chaumont", heure: "09:09", arret: 2, jours: ["MA", "SA"] },
+          { gare: "Bar-Sur-Aube", heure: "09:44", arret: 1, jours: ["MA", "SA"] },
+          { gare: "Vendeuvre (Aube)", heure: "10:02", arret: 1, jours: ["MA", "SA"] },
+          { gare: "Troyes", heure: "10:32", arret: 2, jours: ["MA", "SA"] },
+          { gare: "Romilly-sur-Seine", heure: "10:59", arret: 1, jours: ["LU", "VE"] },
+          { gare: "Nogent-sur-Seine", heure: "11:15", arret: 1, jours: ["LU", "VE"] },
+          { gare: "Gare de l'Est", heure: "12:40", arret: 5, jours: ["LU", "VE"] }
+        ]
+      },
+      {
+        nom: "Troyes → Gare de l'Est",
+        dessertes: [
+          { gare: "Troyes", heure: "08:25", arret: 3, jours: ["LU", "ME", "JE", "VE", "DI"] },
+          { gare: "Romilly-sur-Seine", heure: "08:53", arret: 1, jours: ["LU", "ME", "JE", "VE", "DI"] },
+          { gare: "Nogent-sur-Seine", heure: "09:09", arret: 1, jours: ["LU", "ME", "JE", "VE", "DI"] },
+          { gare: "Gare de l'Est", heure: "10:34", arret: 5, jours: ["LU", "ME", "JE", "VE", "DI"] }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Vittel",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "11:25", arret: 5, jours: ["ME", "DI"] },
+          { gare: "Longueville", heure: "12:39", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Nogent-sur-Seine", heure: "12:55", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Romilly-sur-Seine", heure: "13:11", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Troyes", heure: "13:37", arret: 2, jours: ["ME", "DI"] },
+          { gare: "Vendeuvre (Aube)", heure: "14:08", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Bar-Sur-Aube", heure: "14:26", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Chaumont", heure: "15:00", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Langres", heure: "15:24", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Culmont-Chalindrey", heure: "15:34", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Contrexéville", heure: "16:55", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Vittel", heure: "17:03", arret: 2, jours: ["ME", "DI"] }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Troyes",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "13:25", arret: 5, jours: ["LU", "MA", "JE", "VE", "SA"] },
+          { gare: "Nogent-sur-Seine", heure: "14:54", arret: 1, jours: ["LU", "MA", "JE", "VE", "SA"] },
+          { gare: "Romilly-sur-Seine", heure: "15:10", arret: 1, jours: ["LU", "MA", "JE", "VE", "SA"] },
+          { gare: "Troyes", heure: "15:36", arret: 2, jours: ["LU", "MA", "JE", "VE", "SA"] }
+        ]
+      },
+      {
+        nom: "Troyes → Gare de l'Est",
+        dessertes: [
+          { gare: "Troyes", heure: "15:40", arret: 2, jours: ["LU", "MA", "JE", "VE", "SA"] },
+          { gare: "Romilly-sur-Seine", heure: "16:07", arret: 1, jours: ["LU", "MA", "JE", "VE", "SA"] },
+          { gare: "Nogent-sur-Seine", heure: "16:23", arret: 1, jours: ["LU", "MA", "JE", "VE", "SA"] },
+          { gare: "Gare de l'Est", heure: "17:48", arret: 5, jours: ["LU", "MA", "JE", "VE", "SA"] }
+        ]
+      },
+      {
+        nom: "Vittel → Gare de l'Est",
+        dessertes: [
+          { gare: "Vittel", heure: "17:16", arret: 3, jours: ["ME", "DI"] },
+          { gare: "Contrexéville", heure: "17:26", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Culmont-Chalindrey", heure: "18:47", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Langres", heure: "18:57", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Chaumont", heure: "19:21", arret: 2, jours: ["ME", "DI"] },
+          { gare: "Bar-Sur-Aube", heure: "19:56", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Vendeuvre (Aube)", heure: "20:14", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Troyes", heure: "20:44", arret: 2, jours: ["ME", "DI"] },
+          { gare: "Romilly-sur-Seine", heure: "21:11", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Nogent-sur-Seine", heure: "21:27", arret: 1, jours: ["ME", "DI"] },
+          { gare: "Gare de l'Est", heure: "22:52", arret: 5, jours: ["ME", "DI"] }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Vittel",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "18:00", arret: 5, jours: ["LU", "VE"] },
+          { gare: "Nogent-sur-Seine", heure: "19:29", arret: 1, jours: ["LU", "VE"] },
+          { gare: "Romilly-sur-Seine", heure: "19:45", arret: 1, jours: ["LU", "VE"] },
+          { gare: "Troyes", heure: "20:11", arret: 1, jours: ["LU", "VE"] },
+          { gare: "Vendeuvre (Aube)", heure: "20:41", arret: 1, jours: ["LU", "VE"] },
+          { gare: "Bar-Sur-Aube", heure: "20:59", arret: 1, jours: ["LU", "VE"] },
+          { gare: "Chaumont", heure: "21:33", arret: 1, jours: ["LU", "VE"] },
+          { gare: "Langres", heure: "21:57", arret: 1, jours: ["LU", "VE"] },
+          { gare: "Culmont-Chalindrey", heure: "22:07", arret: 1, jours: ["LU", "VE"] },
+          { gare: "Contrexéville", heure: "23:28", arret: 1, jours: ["LU", "VE"] },
+          { gare: "Vittel", heure: "23:36", arret: 1, jours: ["LU", "VE"] }
         ]
       }
     ]
@@ -1079,6 +1478,120 @@ export const trainsFR = [
           { gare: "Epernay", heure: "17:18", arret: 1 },
           { gare: "Château-Thierry", heure: "17:54", arret: 1 },
           { gare: "Gare de l'Est", heure: "19:26", arret: 5 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "FLUO IC Try PEst",
+    nom: "CoradiaLiner fluoGrandEst 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 90, seconde: 270 },
+    trajets: [
+      {
+        nom: "Troyes → Gare de l'Est",
+        dessertes: [
+          { gare: "Troyes", heure: "06:30", arret: 4 },
+          { gare: "Romilly-sur-Seine", heure: "06:59", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "07:15", arret: 1 },
+          { gare: "Gare de l'Est", heure: "08:40", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Troyes",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "10:20", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "11:49", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "12:05", arret: 1 },
+          { gare: "Troyes", heure: "12:31", arret: 4 }
+        ]
+      },
+      {
+        nom: "Troyes → Gare de l'Est",
+        dessertes: [
+          { gare: "Troyes", heure: "12:54", arret: 2 },
+          { gare: "Romilly-sur-Seine", heure: "13:21", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "13:37", arret: 1 },
+          { gare: "Gare de l'Est", heure: "15:02", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Troyes",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "16:01", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "17:30", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "17:46", arret: 1 },
+          { gare: "Troyes", heure: "18:12", arret: 4 }
+        ]
+      },
+      {
+        nom: "Troyes → Gare de l'Est",
+        dessertes: [
+          { gare: "Troyes", heure: "18:30", arret: 4 },
+          { gare: "Romilly-sur-Seine", heure: "18:59", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "19:15", arret: 1 },
+          { gare: "Gare de l'Est", heure: "20:40", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Troyes",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "21:00", arret: 5 },
+          { gare: "Nogent-sur-Seine", heure: "22:29", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "22:45", arret: 1 },
+          { gare: "Troyes", heure: "23:11", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "FLUO IC Try PEst 2",
+    nom: "CoradiaLiner 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 90, seconde: 270 },
+    trajets: [
+      {
+        nom: "Troyes → Gare de l'Est",
+        dessertes: [
+          { gare: "Troyes", heure: "07:26", arret: 2 },
+          { gare: "Romilly-sur-Seine", heure: "07:53", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "08:09", arret: 1 },
+          { gare: "Longueville", heure: "08:25", arret: 1 },
+          { gare: "Gare de l'Est", heure: "09:35", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Troyes",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "11:25", arret: 5 },
+          { gare: "Longueville", heure: "12:39", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "12:55", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "13:11", arret: 1 },
+          { gare: "Troyes", heure: "13:37", arret: 2 }
+        ]
+      },
+      {
+        nom: "Troyes → Gare de l'Est",
+        dessertes: [
+          { gare: "Troyes", heure: "16:50", arret: 2 },
+          { gare: "Romilly-sur-Seine", heure: "17:17", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "17:33", arret: 1 },
+          { gare: "Longueville", heure: "17:49", arret: 1 },
+          { gare: "Gare de l'Est", heure: "18:59", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Troyes",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "21:45", arret: 5 },
+          { gare: "Longueville", heure: "22:59", arret: 1 },
+          { gare: "Nogent-sur-Seine", heure: "23:15", arret: 1 },
+          { gare: "Romilly-sur-Seine", heure: "23:31", arret: 1 },
+          { gare: "Troyes", heure: "23:57", arret: 2 }
         ]
       }
     ]
@@ -2268,6 +2781,62 @@ export const trainsFR = [
           { gare: "Reims", heure: "19:46", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
           { gare: "Mourmelon-le-Petit", heure: "20:18", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
           { gare: "Châlons-En-Champagne", heure: "20:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → XCR Airport",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "08:00", arret: 2, jours: ["SA", "DI"] },
+          { gare: "XCR Airport", heure: "08:32", arret: 2, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "XCR Airport → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "XCR Airport", heure: "10:00", arret: 2, jours: ["SA", "DI"] },
+          { gare: "Châlons-En-Champagne", heure: "10:32", arret: 2, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → XCR Airport",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "11:00", arret: 2, jours: ["SA", "DI"] },
+          { gare: "XCR Airport", heure: "11:32", arret: 2, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "XCR Airport → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "XCR Airport", heure: "12:00", arret: 2, jours: ["SA", "DI"] },
+          { gare: "Châlons-En-Champagne", heure: "12:32", arret: 2, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → XCR Airport",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "14:00", arret: 2, jours: ["SA", "DI"] },
+          { gare: "XCR Airport", heure: "14:32", arret: 2, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "XCR Airport → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "XCR Airport", heure: "15:00", arret: 2, jours: ["SA", "DI"] },
+          { gare: "Châlons-En-Champagne", heure: "15:32", arret: 2, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → XCR Airport",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "16:00", arret: 2, jours: ["SA", "DI"] },
+          { gare: "XCR Airport", heure: "16:32", arret: 2, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "XCR Airport → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "XCR Airport", heure: "18:00", arret: 2, jours: ["SA", "DI"] },
+          { gare: "Châlons-En-Champagne", heure: "18:32", arret: 2, jours: ["SA", "DI"] }
         ]
       }
     ]
