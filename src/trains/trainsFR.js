@@ -1,155 +1,5 @@
 export const trainsFR = [
   {
-    id: "2974",
-    nom: "Z24500 Metrolor",
-    moteurs: ["25kV CA", "1.5kV CC"],
-    vitesseMax: 160,
-    capacite: { premiere: 41, seconde: 298 },
-    trajets: [
-      {
-        nom: "Longuyon → Luxembourg",
-        dessertes: [
-          { gare: "Longuyon", heure: "06:50", arret: 4 },
-          { gare: "Longwy", heure: "07:13", arret: 1 },
-          { gare: "Rodange", heure: "07:21", arret: 1 },
-          { gare: "Bascharage-Sanem (LU)", heure: "07:28", arret: 1 },
-          { gare: "Schouweiler (LU)", heure: "07:32", arret: 1 },
-          { gare: "Dippach-Reckange (LU)", heure: "07:36", arret: 1 },
-          { gare: "Leudelange (LU)", heure: "07:42", arret: 1 },
-          { gare: "Hollerich", heure: "07:48", arret: 1 },
-          { gare: "Luxembourg", heure: "07:51", arret: 4 }
-        ]
-      },
-      {
-        nom: "Luxembourg → Longuyon",
-        dessertes: [
-          { gare: "Luxembourg", heure: "08:20", arret: 4 },
-          { gare: "Hollerich", heure: "08:26", arret: 1 },
-          { gare: "Leudelange (LU)", heure: "08:32", arret: 1 },
-          { gare: "Dippach-Reckange (LU)", heure: "08:38", arret: 1 },
-          { gare: "Schouweiler (LU)", heure: "08:42", arret: 1 },
-          { gare: "Bascharage-Sanem (LU)", heure: "08:46", arret: 1 },
-          { gare: "Rodange", heure: "08:53", arret: 1 },
-          { gare: "Longwy", heure: "09:01", arret: 1 },
-          { gare: "Longuyon", heure: "09:21", arret: 4 }
-        ]
-      },
-      {
-        nom: "Longuyon → Luxembourg",
-        dessertes: [
-          { gare: "Longuyon", heure: "10:00", arret: 4 },
-          { gare: "Longwy", heure: "10:23", arret: 1 },
-          { gare: "Rodange", heure: "10:31", arret: 1 },
-          { gare: "Bascharage-Sanem (LU)", heure: "10:38", arret: 1 },
-          { gare: "Schouweiler (LU)", heure: "10:42", arret: 1 },
-          { gare: "Dippach-Reckange (LU)", heure: "10:46", arret: 1 },
-          { gare: "Leudelange (LU)", heure: "10:52", arret: 1 },
-          { gare: "Hollerich", heure: "10:58", arret: 1 },
-          { gare: "Luxembourg", heure: "11:01", arret: 4 }
-        ]
-      },
-      {
-        nom: "Luxembourg → Longuyon",
-        dessertes: [
-          { gare: "Luxembourg", heure: "11:32", arret: 4 },
-          { gare: "Hollerich", heure: "11:38", arret: 1 },
-          { gare: "Leudelange (LU)", heure: "11:44", arret: 1 },
-          { gare: "Dippach-Reckange (LU)", heure: "11:50", arret: 1 },
-          { gare: "Schouweiler (LU)", heure: "11:54", arret: 1 },
-          { gare: "Bascharage-Sanem (LU)", heure: "11:58", arret: 1 },
-          { gare: "Rodange", heure: "12:05", arret: 1 },
-          { gare: "Longwy", heure: "12:13", arret: 1 },
-          { gare: "Longuyon", heure: "12:33", arret: 4 }
-        ]
-      },
-      {
-        nom: "Longuyon → Luxembourg",
-        dessertes: [
-          { gare: "Longuyon", heure: "13:00", arret: 4 },
-          { gare: "Longwy", heure: "13:23", arret: 1 },
-          { gare: "Rodange", heure: "13:31", arret: 1 },
-          { gare: "Bascharage-Sanem (LU)", heure: "13:38", arret: 1 },
-          { gare: "Schouweiler (LU)", heure: "13:42", arret: 1 },
-          { gare: "Dippach-Reckange (LU)", heure: "13:46", arret: 1 },
-          { gare: "Leudelange (LU)", heure: "13:52", arret: 1 },
-          { gare: "Hollerich", heure: "13:58", arret: 1 },
-          { gare: "Luxembourg", heure: "14:01", arret: 4 }
-        ]
-      },
-      {
-        nom: "Luxembourg → Longuyon",
-        dessertes: [
-          { gare: "Luxembourg", heure: "14:32", arret: 4 },
-          { gare: "Hollerich", heure: "14:38", arret: 1 },
-          { gare: "Leudelange (LU)", heure: "14:44", arret: 1 },
-          { gare: "Dippach-Reckange (LU)", heure: "14:50", arret: 1 },
-          { gare: "Schouweiler (LU)", heure: "14:54", arret: 1 },
-          { gare: "Bascharage-Sanem (LU)", heure: "14:58", arret: 1 },
-          { gare: "Rodange", heure: "15:05", arret: 1 },
-          { gare: "Longwy", heure: "15:13", arret: 1 },
-          { gare: "Longuyon", heure: "15:33", arret: 4 }
-        ]
-      },
-      {
-        nom: "Longuyon → Luxembourg",
-        dessertes: [
-          { gare: "Longuyon", heure: "16:00", arret: 4 },
-          { gare: "Longwy", heure: "16:23", arret: 1 },
-          { gare: "Rodange", heure: "16:31", arret: 1 },
-          { gare: "Bascharage-Sanem (LU)", heure: "16:38", arret: 1 },
-          { gare: "Schouweiler (LU)", heure: "16:42", arret: 1 },
-          { gare: "Dippach-Reckange (LU)", heure: "16:46", arret: 1 },
-          { gare: "Leudelange (LU)", heure: "16:52", arret: 1 },
-          { gare: "Hollerich", heure: "16:58", arret: 1 },
-          { gare: "Luxembourg", heure: "17:01", arret: 4 }
-        ]
-      },
-      {
-        nom: "Luxembourg → Longuyon",
-        dessertes: [
-          { gare: "Luxembourg", heure: "17:32", arret: 4 },
-          { gare: "Hollerich", heure: "17:38", arret: 1 },
-          { gare: "Leudelange (LU)", heure: "17:44", arret: 1 },
-          { gare: "Dippach-Reckange (LU)", heure: "17:50", arret: 1 },
-          { gare: "Schouweiler (LU)", heure: "17:54", arret: 1 },
-          { gare: "Bascharage-Sanem (LU)", heure: "17:58", arret: 1 },
-          { gare: "Rodange", heure: "18:05", arret: 1 },
-          { gare: "Longwy", heure: "18:13", arret: 1 },
-          { gare: "Longuyon", heure: "18:33", arret: 4 }
-        ]
-      },
-      {
-        nom: "Longuyon → Luxembourg",
-        dessertes: [
-          { gare: "Longuyon", heure: "19:00", arret: 4 },
-          { gare: "Longwy", heure: "19:23", arret: 1 },
-          { gare: "Rodange", heure: "19:31", arret: 1 },
-          { gare: "Bascharage-Sanem (LU)", heure: "19:38", arret: 1 },
-          { gare: "Schouweiler (LU)", heure: "19:42", arret: 1 },
-          { gare: "Dippach-Reckange (LU)", heure: "19:46", arret: 1 },
-          { gare: "Leudelange (LU)", heure: "19:52", arret: 1 },
-          { gare: "Hollerich", heure: "19:58", arret: 1 },
-          { gare: "Luxembourg", heure: "20:01", arret: 4 }
-        ]
-      },
-      {
-        nom: "Luxembourg → Longuyon",
-        dessertes: [
-          { gare: "Luxembourg", heure: "20:32", arret: 4 },
-          { gare: "Hollerich", heure: "20:38", arret: 1 },
-          { gare: "Leudelange (LU)", heure: "20:44", arret: 1 },
-          { gare: "Dippach-Reckange (LU)", heure: "20:50", arret: 1 },
-          { gare: "Schouweiler (LU)", heure: "20:54", arret: 1 },
-          { gare: "Bascharage-Sanem (LU)", heure: "20:58", arret: 1 },
-          { gare: "Rodange", heure: "21:05", arret: 1 },
-          { gare: "Longwy", heure: "21:13", arret: 1 },
-          { gare: "Longuyon", heure: "21:33", arret: 4 }
-        ]
-      }
-    ]
-  },
-
-  {
     id: "FLUO IC Bel-PEst 1",
     nom: "CoradiaLiner 6C",
     moteurs: ["25kV CA", "1.5kV CC", "diesel"],
@@ -301,6 +151,47 @@ export const trainsFR = [
   },
 
   {
+    id: "FLUO IC Mtz Epy",
+    nom: "BB22200 RC Fluo",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 120, seconde: 352 },
+    composition: ["VTU A Fluo", "VTU A Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo"],
+    trajets: [
+      {
+        nom: "Metz → Epernay",
+        dessertes: [
+          { gare: "Metz", heure: "09:45", arret: 2 },
+          { gare: "Ars-sur-Moselle", heure: "09:57", arret: 1 },
+          { gare: "Onville", heure: "10:08", arret: 1 },
+          { gare: "Lérouville", heure: "10:45", arret: 1 },
+          { gare: "Nançois - Tronville", heure: "11:02", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "11:12", arret: 2 },
+          { gare: "Revigny", heure: "11:26", arret: 1 },
+          { gare: "Vitry-le-François", heure: "11:53", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "12:15", arret: 1 },
+          { gare: "Epernay", heure: "12:41", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Metz",
+        dessertes: [
+          { gare: "Epernay", heure: "16:12", arret: 2 },
+          { gare: "Châlons-En-Champagne", heure: "16:39", arret: 1 },
+          { gare: "Vitry-le-François", heure: "17:01", arret: 1 },
+          { gare: "Revigny", heure: "17:28", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "17:41", arret: 2 },
+          { gare: "Nançois - Tronville", heure: "17:52", arret: 1 },
+          { gare: "Lérouville", heure: "18:09", arret: 1 },
+          { gare: "Onville", heure: "18:46", arret: 1 },
+          { gare: "Ars-sur-Moselle", heure: "18:57", arret: 1 },
+          { gare: "Metz", heure: "19:08", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "FLUO IC Mulh-PEst 1",
     nom: "CoradiaLiner fluoGrandEst 6C",
     moteurs: ["25kV CA", "1.5kV CC", "diesel"],
@@ -393,6 +284,188 @@ export const trainsFR = [
   },
 
   {
+    id: "FLUO IC Rms Mtz",
+    nom: "CoradiaLiner fluoGrandEst 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 90, seconde: 270 },
+    trajets: [
+      {
+        nom: "Reims → Metz",
+        dessertes: [
+          { gare: "Reims", heure: "08:00", arret: 4 },
+          { gare: "Châlons-En-Champagne", heure: "08:46", arret: 1 },
+          { gare: "Vitry-le-François", heure: "09:08", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "09:47", arret: 2 },
+          { gare: "Lérouville", heure: "10:14", arret: 1 },
+          { gare: "Onville", heure: "10:51", arret: 1 },
+          { gare: "Metz", heure: "11:12", arret: 4 }
+        ]
+      },
+      {
+        nom: "Metz → Reims",
+        dessertes: [
+          { gare: "Metz", heure: "11:42", arret: 4 },
+          { gare: "Onville", heure: "12:06", arret: 1 },
+          { gare: "Lérouville", heure: "12:43", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "13:09", arret: 2 },
+          { gare: "Vitry-le-François", heure: "13:49", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "14:11", arret: 1 },
+          { gare: "Reims", heure: "14:54", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Metz",
+        dessertes: [
+          { gare: "Reims", heure: "15:05", arret: 4 },
+          { gare: "Châlons-En-Champagne", heure: "15:51", arret: 1 },
+          { gare: "Vitry-le-François", heure: "16:13", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "16:52", arret: 2 },
+          { gare: "Lérouville", heure: "17:19", arret: 1 },
+          { gare: "Onville", heure: "17:56", arret: 1 },
+          { gare: "Metz", heure: "18:17", arret: 4 }
+        ]
+      },
+      {
+        nom: "Metz → Reims",
+        dessertes: [
+          { gare: "Metz", heure: "18:42", arret: 4 },
+          { gare: "Onville", heure: "19:06", arret: 1 },
+          { gare: "Lérouville", heure: "19:43", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "20:09", arret: 2 },
+          { gare: "Vitry-le-François", heure: "20:49", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "21:11", arret: 1 },
+          { gare: "Reims", heure: "21:54", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "FLUO IC StDi PEst 1",
+    nom: "CoradiaLiner 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 90, seconde: 270 },
+    trajets: [
+      {
+        nom: "Saint-Dizier → Gare de l'Est",
+        dessertes: [
+          { gare: "Saint-Dizier", heure: "07:00", arret: 2 },
+          { gare: "Vitry-le-François", heure: "07:27", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "07:49", arret: 1 },
+          { gare: "Epernay", heure: "08:15", arret: 1 },
+          { gare: "Dormans", heure: "08:36", arret: 1 },
+          { gare: "Château-Thierry", heure: "08:52", arret: 1 },
+          { gare: "Meaux", heure: "09:43", arret: 1 },
+          { gare: "Gare de l'Est", heure: "10:25", arret: 4 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Saint-Dizier",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "10:55", arret: 4 },
+          { gare: "Meaux", heure: "11:40", arret: 1 },
+          { gare: "Château-Thierry", heure: "12:31", arret: 1 },
+          { gare: "Dormans", heure: "12:47", arret: 1 },
+          { gare: "Epernay", heure: "13:08", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "13:34", arret: 1 },
+          { gare: "Vitry-le-François", heure: "13:56", arret: 1 },
+          { gare: "Saint-Dizier", heure: "14:22", arret: 2 }
+        ]
+      },
+      {
+        nom: "Saint-Dizier → Gare de l'Est",
+        dessertes: [
+          { gare: "Saint-Dizier", heure: "15:00", arret: 2 },
+          { gare: "Vitry-le-François", heure: "15:27", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "15:49", arret: 1 },
+          { gare: "Epernay", heure: "16:15", arret: 1 },
+          { gare: "Dormans", heure: "16:36", arret: 1 },
+          { gare: "Château-Thierry", heure: "16:52", arret: 1 },
+          { gare: "Meaux", heure: "17:43", arret: 1 },
+          { gare: "Gare de l'Est", heure: "18:25", arret: 4 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Saint-Dizier",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "18:55", arret: 4 },
+          { gare: "Meaux", heure: "19:40", arret: 1 },
+          { gare: "Château-Thierry", heure: "20:31", arret: 1 },
+          { gare: "Dormans", heure: "20:47", arret: 1 },
+          { gare: "Epernay", heure: "21:08", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "21:34", arret: 1 },
+          { gare: "Vitry-le-François", heure: "21:56", arret: 1 },
+          { gare: "Saint-Dizier", heure: "22:22", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "FLUO IC StDi PEst 2",
+    nom: "CoradiaLiner 6C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 90, seconde: 270 },
+    trajets: [
+      {
+        nom: "Saint-Dizier → Gare de l'Est",
+        dessertes: [
+          { gare: "Saint-Dizier", heure: "08:00", arret: 2 },
+          { gare: "Vitry-le-François", heure: "08:27", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "08:49", arret: 1 },
+          { gare: "Epernay", heure: "09:15", arret: 1 },
+          { gare: "Dormans", heure: "09:36", arret: 1 },
+          { gare: "Château-Thierry", heure: "09:52", arret: 1 },
+          { gare: "Meaux", heure: "10:43", arret: 1 },
+          { gare: "Gare de l'Est", heure: "11:25", arret: 4 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Saint-Dizier",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "11:55", arret: 4 },
+          { gare: "Meaux", heure: "12:40", arret: 1 },
+          { gare: "Château-Thierry", heure: "13:31", arret: 1 },
+          { gare: "Dormans", heure: "13:47", arret: 1 },
+          { gare: "Epernay", heure: "14:08", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "14:34", arret: 1 },
+          { gare: "Vitry-le-François", heure: "14:56", arret: 1 },
+          { gare: "Saint-Dizier", heure: "15:22", arret: 2 }
+        ]
+      },
+      {
+        nom: "Saint-Dizier → Gare de l'Est",
+        dessertes: [
+          { gare: "Saint-Dizier", heure: "17:00", arret: 2 },
+          { gare: "Vitry-le-François", heure: "17:27", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "17:49", arret: 1 },
+          { gare: "Epernay", heure: "18:15", arret: 1 },
+          { gare: "Dormans", heure: "18:36", arret: 1 },
+          { gare: "Château-Thierry", heure: "18:52", arret: 1 },
+          { gare: "Meaux", heure: "19:43", arret: 1 },
+          { gare: "Gare de l'Est", heure: "20:25", arret: 4 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Saint-Dizier",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "20:30", arret: 4 },
+          { gare: "Meaux", heure: "21:15", arret: 1 },
+          { gare: "Château-Thierry", heure: "22:06", arret: 1 },
+          { gare: "Dormans", heure: "22:22", arret: 1 },
+          { gare: "Epernay", heure: "22:43", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "23:09", arret: 1 },
+          { gare: "Vitry-le-François", heure: "23:31", arret: 1 },
+          { gare: "Saint-Dizier", heure: "23:57", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "FLUO IC Str Epi",
     nom: "CC72100 SNCF",
     moteurs: ["diesel"],
@@ -470,88 +543,6 @@ export const trainsFR = [
           { gare: "Molsheim", heure: "21:58", arret: 1 },
           { gare: "Entzheim-Aéroport", heure: "22:14", arret: 1 },
           { gare: "Strasbourg", heure: "22:28", arret: 4 }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: "FLUO IC Str GdE 1",
-    nom: "BB26000 GrandEst",
-    moteurs: ["25kV CA", "1.5kV CC"],
-    vitesseMax: 200,
-    capacite: { premiere: 120, seconde: 0 },
-    composition: ["VTU A Fluo", "VTU A Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo"],
-    trajets: [
-      {
-        nom: "Strasbourg → Gare de l'Est",
-        dessertes: [
-          { gare: "Strasbourg", heure: "05:10", arret: 4 },
-          { gare: "Saverne", heure: "05:45", arret: 1 },
-          { gare: "Lunéville", heure: "06:46", arret: 1 },
-          { gare: "Nancy", heure: "07:10", arret: 2 },
-          { gare: "Bar-le-Duc", heure: "08:27", arret: 1 },
-          { gare: "Vitry-le-François", heure: "09:06", arret: 1 },
-          { gare: "Châlons-En-Champagne", heure: "09:28", arret: 1 },
-          { gare: "Epernay", heure: "09:54", arret: 1 },
-          { gare: "Château-Thierry", heure: "10:30", arret: 1 },
-          { gare: "Gare de l'Est", heure: "12:02", arret: 4 }
-        ]
-      },
-      {
-        nom: "Gare de l'Est → Strasbourg",
-        dessertes: [
-          { gare: "Gare de l'Est", heure: "15:55", arret: 4 },
-          { gare: "Château-Thierry", heure: "17:30", arret: 1 },
-          { gare: "Epernay", heure: "18:06", arret: 1 },
-          { gare: "Châlons-En-Champagne", heure: "18:32", arret: 1 },
-          { gare: "Vitry-le-François", heure: "18:54", arret: 1 },
-          { gare: "Bar-le-Duc", heure: "19:33", arret: 1 },
-          { gare: "Nancy", heure: "20:49", arret: 2 },
-          { gare: "Lunéville", heure: "21:14", arret: 1 },
-          { gare: "Saverne", heure: "22:15", arret: 4 },
-          { gare: "Strasbourg", heure: "22:50", arret: 4 }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: "FLUO IC Str GdE 2",
-    nom: "BB26000 GrandEst",
-    moteurs: ["25kV CA", "1.5kV CC"],
-    vitesseMax: 200,
-    capacite: { premiere: 120, seconde: 528 },
-    composition: ["VTU A Fluo", "VTU A Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo"],
-    trajets: [
-      {
-        nom: "Gare de l'Est → Strasbourg",
-        dessertes: [
-          { gare: "Gare de l'Est", heure: "05:00", arret: 5 },
-          { gare: "Château-Thierry", heure: "06:36", arret: 1 },
-          { gare: "Epernay", heure: "07:12", arret: 1 },
-          { gare: "Châlons-En-Champagne", heure: "07:38", arret: 1 },
-          { gare: "Vitry-le-François", heure: "08:00", arret: 1 },
-          { gare: "Bar-le-Duc", heure: "08:39", arret: 1 },
-          { gare: "Nancy", heure: "09:55", arret: 2 },
-          { gare: "Lunéville", heure: "10:20", arret: 1 },
-          { gare: "Réding", heure: "11:00", arret: 5 },
-          { gare: "Strasbourg", heure: "11:58", arret: 5 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Gare de l'Est",
-        dessertes: [
-          { gare: "Strasbourg", heure: "12:28", arret: 5 },
-          { gare: "Réding", heure: "13:26", arret: 5 },
-          { gare: "Lunéville", heure: "14:10", arret: 1 },
-          { gare: "Nancy", heure: "14:34", arret: 2 },
-          { gare: "Bar-le-Duc", heure: "15:51", arret: 1 },
-          { gare: "Vitry-le-François", heure: "16:30", arret: 1 },
-          { gare: "Châlons-En-Champagne", heure: "16:52", arret: 1 },
-          { gare: "Epernay", heure: "17:18", arret: 1 },
-          { gare: "Château-Thierry", heure: "17:54", arret: 1 },
-          { gare: "Gare de l'Est", heure: "19:26", arret: 5 }
         ]
       }
     ]
@@ -1012,6 +1003,88 @@ export const trainsFR = [
   },
 
   {
+    id: "FLUO IC Str PEst 1",
+    nom: "BB26000 GrandEst",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 200,
+    capacite: { premiere: 120, seconde: 0 },
+    composition: ["VTU A Fluo", "VTU A Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo"],
+    trajets: [
+      {
+        nom: "Strasbourg → Gare de l'Est",
+        dessertes: [
+          { gare: "Strasbourg", heure: "05:10", arret: 4 },
+          { gare: "Saverne", heure: "05:45", arret: 1 },
+          { gare: "Lunéville", heure: "06:46", arret: 1 },
+          { gare: "Nancy", heure: "07:10", arret: 2 },
+          { gare: "Bar-le-Duc", heure: "08:27", arret: 1 },
+          { gare: "Vitry-le-François", heure: "09:06", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "09:28", arret: 1 },
+          { gare: "Epernay", heure: "09:54", arret: 1 },
+          { gare: "Château-Thierry", heure: "10:30", arret: 1 },
+          { gare: "Gare de l'Est", heure: "12:02", arret: 4 }
+        ]
+      },
+      {
+        nom: "Gare de l'Est → Strasbourg",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "15:55", arret: 4 },
+          { gare: "Château-Thierry", heure: "17:30", arret: 1 },
+          { gare: "Epernay", heure: "18:06", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "18:32", arret: 1 },
+          { gare: "Vitry-le-François", heure: "18:54", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "19:33", arret: 1 },
+          { gare: "Nancy", heure: "20:49", arret: 2 },
+          { gare: "Lunéville", heure: "21:14", arret: 1 },
+          { gare: "Saverne", heure: "22:15", arret: 4 },
+          { gare: "Strasbourg", heure: "22:50", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "FLUO IC Str PEst 2",
+    nom: "BB26000 GrandEst",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 200,
+    capacite: { premiere: 120, seconde: 528 },
+    composition: ["VTU A Fluo", "VTU A Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo", "VTU Fluo"],
+    trajets: [
+      {
+        nom: "Gare de l'Est → Strasbourg",
+        dessertes: [
+          { gare: "Gare de l'Est", heure: "05:00", arret: 5 },
+          { gare: "Château-Thierry", heure: "06:36", arret: 1 },
+          { gare: "Epernay", heure: "07:12", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "07:38", arret: 1 },
+          { gare: "Vitry-le-François", heure: "08:00", arret: 1 },
+          { gare: "Bar-le-Duc", heure: "08:39", arret: 1 },
+          { gare: "Nancy", heure: "09:55", arret: 2 },
+          { gare: "Lunéville", heure: "10:20", arret: 1 },
+          { gare: "Réding", heure: "11:00", arret: 5 },
+          { gare: "Strasbourg", heure: "11:58", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Gare de l'Est",
+        dessertes: [
+          { gare: "Strasbourg", heure: "12:28", arret: 5 },
+          { gare: "Réding", heure: "13:26", arret: 5 },
+          { gare: "Lunéville", heure: "14:10", arret: 1 },
+          { gare: "Nancy", heure: "14:34", arret: 2 },
+          { gare: "Bar-le-Duc", heure: "15:51", arret: 1 },
+          { gare: "Vitry-le-François", heure: "16:30", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "16:52", arret: 1 },
+          { gare: "Epernay", heure: "17:18", arret: 1 },
+          { gare: "Château-Thierry", heure: "17:54", arret: 1 },
+          { gare: "Gare de l'Est", heure: "19:26", arret: 5 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "IC Ncy Djn",
     nom: "Regiolis Metrolor 4C",
     moteurs: ["25kV CA", "1.5kV CC", "diesel"],
@@ -1207,260 +1280,2123 @@ export const trainsFR = [
   },
 
   {
-    id: "TER 2056",
-    nom: "X73900 TER Alsace",
-    moteurs: ["diesel"],
-    vitesseMax: 140,
-    capacite: { premiere: 0, seconde: 61 },
+    id: "TER 2800",
+    nom: "AGC Champagne-Ardenne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 48, seconde: 366 },
+    composition: ["AGC Champagne-Ardenne 4C"],
     trajets: [
       {
-        nom: "Colmar → Metzeral",
+        nom: "Reims → Sedan",
         dessertes: [
-          { gare: "Colmar", heure: "07:00", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Logelbach", heure: "07:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Turckheim", heure: "07:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "07:25", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Munster", heure: "07:36", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Muhlbach-sur-Munster", heure: "07:45", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Metzeral", heure: "07:49", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+          { gare: "Reims", heure: "06:52", arret: 4 },
+          { gare: "Bazancourt", heure: "07:08", arret: 1 },
+          { gare: "Rethel", heure: "07:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "07:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "07:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "08:02", arret: 2 },
+          { gare: "Mohon", heure: "08:06", arret: 1 },
+          { gare: "Lumes", heure: "08:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "08:21", arret: 1 },
+          { gare: "Donchery", heure: "08:25", arret: 1 },
+          { gare: "Sedan", heure: "08:31", arret: 2 }
         ]
       },
       {
-        nom: "Metzeral → Colmar",
+        nom: "Sedan → Reims",
         dessertes: [
-          { gare: "Metzeral", heure: "08:30", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Muhlbach-sur-Munster", heure: "08:34", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Munster", heure: "08:42", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "08:54", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Turckheim", heure: "09:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Logelbach", heure: "09:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Colmar", heure: "09:18", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+          { gare: "Sedan", heure: "08:50", arret: 2 },
+          { gare: "Donchery", heure: "08:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "09:01", arret: 1 },
+          { gare: "Lumes", heure: "09:10", arret: 1 },
+          { gare: "Mohon", heure: "09:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "09:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "09:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "09:50", arret: 1 },
+          { gare: "Rethel", heure: "09:58", arret: 1 },
+          { gare: "Bazancourt", heure: "10:14", arret: 1 },
+          { gare: "Reims", heure: "10:27", arret: 4 }
         ]
       },
       {
-        nom: "Colmar → Metzeral",
+        nom: "Reims → Sedan",
         dessertes: [
-          { gare: "Colmar", heure: "10:00", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Logelbach", heure: "10:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Turckheim", heure: "10:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "10:25", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Munster", heure: "10:36", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Muhlbach-sur-Munster", heure: "10:45", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Metzeral", heure: "10:49", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] }
+          { gare: "Reims", heure: "10:52", arret: 4 },
+          { gare: "Bazancourt", heure: "11:08", arret: 1 },
+          { gare: "Rethel", heure: "11:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "11:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "11:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "12:02", arret: 2 },
+          { gare: "Mohon", heure: "12:06", arret: 1 },
+          { gare: "Lumes", heure: "12:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "12:21", arret: 1 },
+          { gare: "Donchery", heure: "12:25", arret: 1 },
+          { gare: "Sedan", heure: "12:31", arret: 2 }
         ]
       },
       {
-        nom: "Metzeral → Colmar",
+        nom: "Sedan → Reims",
         dessertes: [
-          { gare: "Metzeral", heure: "11:30", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Muhlbach-sur-Munster", heure: "11:34", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Munster", heure: "11:42", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "11:54", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Turckheim", heure: "12:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Logelbach", heure: "12:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Colmar", heure: "12:18", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+          { gare: "Sedan", heure: "12:50", arret: 2 },
+          { gare: "Donchery", heure: "12:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "13:01", arret: 1 },
+          { gare: "Lumes", heure: "13:10", arret: 1 },
+          { gare: "Mohon", heure: "13:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "13:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "13:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "13:50", arret: 1 },
+          { gare: "Rethel", heure: "13:58", arret: 1 },
+          { gare: "Bazancourt", heure: "14:14", arret: 1 },
+          { gare: "Reims", heure: "14:27", arret: 4 }
         ]
       },
       {
-        nom: "Colmar → Metzeral",
+        nom: "Reims → Sedan",
         dessertes: [
-          { gare: "Colmar", heure: "13:00", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Logelbach", heure: "13:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Turckheim", heure: "13:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "13:25", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Munster", heure: "13:36", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Muhlbach-sur-Munster", heure: "13:45", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Metzeral", heure: "13:49", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] }
+          { gare: "Reims", heure: "14:52", arret: 4 },
+          { gare: "Bazancourt", heure: "15:08", arret: 1 },
+          { gare: "Rethel", heure: "15:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "15:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "15:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "16:02", arret: 2 },
+          { gare: "Mohon", heure: "16:06", arret: 1 },
+          { gare: "Lumes", heure: "16:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "16:21", arret: 1 },
+          { gare: "Donchery", heure: "16:25", arret: 1 },
+          { gare: "Sedan", heure: "16:31", arret: 2 }
         ]
       },
       {
-        nom: "Metzeral → Colmar",
+        nom: "Sedan → Reims",
         dessertes: [
-          { gare: "Metzeral", heure: "14:30", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Muhlbach-sur-Munster", heure: "14:34", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Munster", heure: "14:42", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "14:54", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Turckheim", heure: "15:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Logelbach", heure: "15:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Colmar", heure: "15:18", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+          { gare: "Sedan", heure: "16:50", arret: 2 },
+          { gare: "Donchery", heure: "16:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "17:01", arret: 1 },
+          { gare: "Lumes", heure: "17:10", arret: 1 },
+          { gare: "Mohon", heure: "17:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "17:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "17:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "17:50", arret: 1 },
+          { gare: "Rethel", heure: "17:58", arret: 1 },
+          { gare: "Bazancourt", heure: "18:14", arret: 1 },
+          { gare: "Reims", heure: "18:27", arret: 4 }
         ]
       },
       {
-        nom: "Colmar → Metzeral",
+        nom: "Reims → Sedan",
         dessertes: [
-          { gare: "Colmar", heure: "16:00", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Logelbach", heure: "16:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Turckheim", heure: "16:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "16:25", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Munster", heure: "16:36", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Muhlbach-sur-Munster", heure: "16:45", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Metzeral", heure: "16:49", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] }
+          { gare: "Reims", heure: "18:52", arret: 4 },
+          { gare: "Bazancourt", heure: "19:08", arret: 1 },
+          { gare: "Rethel", heure: "19:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "19:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "19:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "20:02", arret: 2 },
+          { gare: "Mohon", heure: "20:06", arret: 1 },
+          { gare: "Lumes", heure: "20:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "20:21", arret: 1 },
+          { gare: "Donchery", heure: "20:25", arret: 1 },
+          { gare: "Sedan", heure: "20:31", arret: 2 }
         ]
       },
       {
-        nom: "Metzeral → Colmar",
+        nom: "Sedan → Reims",
         dessertes: [
-          { gare: "Metzeral", heure: "17:30", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Muhlbach-sur-Munster", heure: "17:34", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Munster", heure: "17:42", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "17:54", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Turckheim", heure: "18:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Logelbach", heure: "18:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
-          { gare: "Colmar", heure: "18:18", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
-        ]
-      },
-      {
-        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
-        dessertes: [
-          { gare: "Colmar", heure: "08:00", arret: 5, jours: ["SA", "DI"] },
-          { gare: "Sundhoffen", heure: "08:15", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Wolfgantzen", heure: "08:27", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Volgelsheim", heure: "08:34", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Breisach", heure: "08:42", arret: 2, jours: ["SA", "DI"] },
-          { gare: "Gottenheim", heure: "09:00", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "09:18", arret: 5, jours: ["SA", "DI"] }
-        ]
-      },
-      {
-        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
-        dessertes: [
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "10:00", arret: 5, jours: ["SA", "DI"] },
-          { gare: "Gottenheim", heure: "10:22", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Breisach", heure: "10:39", arret: 2, jours: ["SA", "DI"] },
-          { gare: "Volgelsheim", heure: "10:48", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Wolfgantzen", heure: "10:55", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Sundhoffen", heure: "11:07", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Colmar", heure: "11:18", arret: 5, jours: ["SA", "DI"] }
-        ]
-      },
-      {
-        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
-        dessertes: [
-          { gare: "Colmar", heure: "12:00", arret: 5, jours: ["SA", "DI"] },
-          { gare: "Sundhoffen", heure: "12:15", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Wolfgantzen", heure: "12:27", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Volgelsheim", heure: "12:34", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Breisach", heure: "12:42", arret: 2, jours: ["SA", "DI"] },
-          { gare: "Gottenheim", heure: "13:00", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "13:18", arret: 5, jours: ["SA", "DI"] }
-        ]
-      },
-      {
-        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
-        dessertes: [
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "14:00", arret: 5, jours: ["SA", "DI"] },
-          { gare: "Gottenheim", heure: "14:22", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Breisach", heure: "14:39", arret: 2, jours: ["SA", "DI"] },
-          { gare: "Volgelsheim", heure: "14:48", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Wolfgantzen", heure: "14:55", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Sundhoffen", heure: "15:07", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Colmar", heure: "15:18", arret: 5, jours: ["SA", "DI"] }
-        ]
-      },
-      {
-        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
-        dessertes: [
-          { gare: "Colmar", heure: "16:00", arret: 5, jours: ["SA", "DI"] },
-          { gare: "Sundhoffen", heure: "16:15", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Wolfgantzen", heure: "16:27", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Volgelsheim", heure: "16:34", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Breisach", heure: "16:42", arret: 2, jours: ["SA", "DI"] },
-          { gare: "Gottenheim", heure: "17:00", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "17:18", arret: 5, jours: ["SA", "DI"] }
-        ]
-      },
-      {
-        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
-        dessertes: [
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "18:00", arret: 5, jours: ["SA", "DI"] },
-          { gare: "Gottenheim", heure: "18:22", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Breisach", heure: "18:39", arret: 2, jours: ["SA", "DI"] },
-          { gare: "Volgelsheim", heure: "18:48", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Wolfgantzen", heure: "18:55", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Sundhoffen", heure: "19:07", arret: 1, jours: ["SA", "DI"] },
-          { gare: "Colmar", heure: "19:18", arret: 5, jours: ["SA", "DI"] }
+          { gare: "Sedan", heure: "20:50", arret: 2 },
+          { gare: "Donchery", heure: "20:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "21:01", arret: 1 },
+          { gare: "Lumes", heure: "21:10", arret: 1 },
+          { gare: "Mohon", heure: "21:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "21:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "21:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "21:50", arret: 1 },
+          { gare: "Rethel", heure: "21:58", arret: 1 },
+          { gare: "Bazancourt", heure: "22:14", arret: 1 },
+          { gare: "Reims", heure: "22:27", arret: 4 }
         ]
       }
     ]
   },
 
   {
-    id: "TER 2057",
-    nom: "X73900 Grand Est",
+    id: "TER 2801",
+    nom: "AGC Champagne-Ardenne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 48, seconde: 366 },
+    composition: ["AGC Champagne-Ardenne 4C"],
+    trajets: [
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "07:52", arret: 4 },
+          { gare: "Bazancourt", heure: "08:08", arret: 1 },
+          { gare: "Rethel", heure: "08:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "08:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "08:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "09:02", arret: 2 },
+          { gare: "Mohon", heure: "09:06", arret: 1 },
+          { gare: "Lumes", heure: "09:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "09:21", arret: 1 },
+          { gare: "Donchery", heure: "09:25", arret: 1 },
+          { gare: "Sedan", heure: "09:31", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "09:50", arret: 2 },
+          { gare: "Donchery", heure: "09:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "10:01", arret: 1 },
+          { gare: "Lumes", heure: "10:10", arret: 1 },
+          { gare: "Mohon", heure: "10:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "10:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "10:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "10:50", arret: 1 },
+          { gare: "Rethel", heure: "10:58", arret: 1 },
+          { gare: "Bazancourt", heure: "11:14", arret: 1 },
+          { gare: "Reims", heure: "11:27", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "11:52", arret: 4 },
+          { gare: "Bazancourt", heure: "12:08", arret: 1 },
+          { gare: "Rethel", heure: "12:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "12:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "12:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "13:02", arret: 2 },
+          { gare: "Mohon", heure: "13:06", arret: 1 },
+          { gare: "Lumes", heure: "13:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "13:21", arret: 1 },
+          { gare: "Donchery", heure: "13:25", arret: 1 },
+          { gare: "Sedan", heure: "13:31", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "13:50", arret: 2 },
+          { gare: "Donchery", heure: "13:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "14:01", arret: 1 },
+          { gare: "Lumes", heure: "14:10", arret: 1 },
+          { gare: "Mohon", heure: "14:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "14:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "14:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "14:50", arret: 1 },
+          { gare: "Rethel", heure: "14:58", arret: 1 },
+          { gare: "Bazancourt", heure: "15:14", arret: 1 },
+          { gare: "Reims", heure: "15:27", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "15:52", arret: 4 },
+          { gare: "Bazancourt", heure: "16:08", arret: 1 },
+          { gare: "Rethel", heure: "16:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "16:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "16:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "17:02", arret: 2 },
+          { gare: "Mohon", heure: "17:06", arret: 1 },
+          { gare: "Lumes", heure: "17:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "17:21", arret: 1 },
+          { gare: "Donchery", heure: "17:25", arret: 1 },
+          { gare: "Sedan", heure: "17:31", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "17:50", arret: 2 },
+          { gare: "Donchery", heure: "17:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "18:01", arret: 1 },
+          { gare: "Lumes", heure: "18:10", arret: 1 },
+          { gare: "Mohon", heure: "18:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "18:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "18:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "18:50", arret: 1 },
+          { gare: "Rethel", heure: "18:58", arret: 1 },
+          { gare: "Bazancourt", heure: "19:14", arret: 1 },
+          { gare: "Reims", heure: "19:27", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "19:52", arret: 4 },
+          { gare: "Bazancourt", heure: "20:08", arret: 1 },
+          { gare: "Rethel", heure: "20:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "20:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "20:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "21:02", arret: 2 },
+          { gare: "Mohon", heure: "21:06", arret: 1 },
+          { gare: "Lumes", heure: "21:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "21:21", arret: 1 },
+          { gare: "Donchery", heure: "21:25", arret: 1 },
+          { gare: "Sedan", heure: "21:31", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "21:50", arret: 2 },
+          { gare: "Donchery", heure: "21:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "22:01", arret: 1 },
+          { gare: "Lumes", heure: "22:10", arret: 1 },
+          { gare: "Mohon", heure: "22:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "22:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "22:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "22:50", arret: 1 },
+          { gare: "Rethel", heure: "22:58", arret: 1 },
+          { gare: "Bazancourt", heure: "23:14", arret: 1 },
+          { gare: "Reims", heure: "23:27", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2802",
+    nom: "AGC Champagne-Ardenne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 48, seconde: 366 },
+    composition: ["AGC Champagne-Ardenne 4C"],
+    trajets: [
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "06:50", arret: 2 },
+          { gare: "Donchery", heure: "06:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "07:01", arret: 1 },
+          { gare: "Lumes", heure: "07:10", arret: 1 },
+          { gare: "Mohon", heure: "07:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "07:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "07:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "07:50", arret: 1 },
+          { gare: "Rethel", heure: "07:58", arret: 1 },
+          { gare: "Bazancourt", heure: "08:14", arret: 1 },
+          { gare: "Reims", heure: "08:27", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "08:52", arret: 4 },
+          { gare: "Bazancourt", heure: "09:08", arret: 1 },
+          { gare: "Rethel", heure: "09:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "09:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "09:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "10:02", arret: 2 },
+          { gare: "Mohon", heure: "10:06", arret: 1 },
+          { gare: "Lumes", heure: "10:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "10:21", arret: 1 },
+          { gare: "Donchery", heure: "10:25", arret: 1 },
+          { gare: "Sedan", heure: "10:31", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "10:50", arret: 2 },
+          { gare: "Donchery", heure: "10:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "11:01", arret: 1 },
+          { gare: "Lumes", heure: "11:10", arret: 1 },
+          { gare: "Mohon", heure: "11:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "11:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "11:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "11:50", arret: 1 },
+          { gare: "Rethel", heure: "11:58", arret: 1 },
+          { gare: "Bazancourt", heure: "12:14", arret: 1 },
+          { gare: "Reims", heure: "12:27", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "12:52", arret: 4 },
+          { gare: "Bazancourt", heure: "13:08", arret: 1 },
+          { gare: "Rethel", heure: "13:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "13:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "13:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "14:02", arret: 2 },
+          { gare: "Mohon", heure: "14:06", arret: 1 },
+          { gare: "Lumes", heure: "14:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "14:21", arret: 1 },
+          { gare: "Donchery", heure: "14:25", arret: 1 },
+          { gare: "Sedan", heure: "14:31", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "14:50", arret: 2 },
+          { gare: "Donchery", heure: "14:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "15:01", arret: 1 },
+          { gare: "Lumes", heure: "15:10", arret: 1 },
+          { gare: "Mohon", heure: "15:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "15:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "15:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "15:50", arret: 1 },
+          { gare: "Rethel", heure: "15:58", arret: 1 },
+          { gare: "Bazancourt", heure: "16:14", arret: 1 },
+          { gare: "Reims", heure: "16:27", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "16:52", arret: 4 },
+          { gare: "Bazancourt", heure: "17:08", arret: 1 },
+          { gare: "Rethel", heure: "17:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "17:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "17:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "18:02", arret: 2 },
+          { gare: "Mohon", heure: "18:06", arret: 1 },
+          { gare: "Lumes", heure: "18:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "18:21", arret: 1 },
+          { gare: "Donchery", heure: "18:25", arret: 1 },
+          { gare: "Sedan", heure: "18:31", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "18:50", arret: 2 },
+          { gare: "Donchery", heure: "18:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "19:01", arret: 1 },
+          { gare: "Lumes", heure: "19:10", arret: 1 },
+          { gare: "Mohon", heure: "19:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "19:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "19:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "19:50", arret: 1 },
+          { gare: "Rethel", heure: "19:58", arret: 1 },
+          { gare: "Bazancourt", heure: "20:14", arret: 1 },
+          { gare: "Reims", heure: "20:27", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "20:52", arret: 4 },
+          { gare: "Bazancourt", heure: "21:08", arret: 1 },
+          { gare: "Rethel", heure: "21:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "21:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "21:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "22:02", arret: 2 },
+          { gare: "Mohon", heure: "22:06", arret: 1 },
+          { gare: "Lumes", heure: "22:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "22:21", arret: 1 },
+          { gare: "Donchery", heure: "22:25", arret: 1 },
+          { gare: "Sedan", heure: "22:31", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2803",
+    nom: "AGC Champagne-Ardenne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 48, seconde: 366 },
+    composition: ["AGC Champagne-Ardenne 4C"],
+    trajets: [
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "07:50", arret: 2 },
+          { gare: "Donchery", heure: "07:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "08:01", arret: 1 },
+          { gare: "Lumes", heure: "08:10", arret: 1 },
+          { gare: "Mohon", heure: "08:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "08:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "08:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "08:50", arret: 1 },
+          { gare: "Rethel", heure: "08:58", arret: 1 },
+          { gare: "Bazancourt", heure: "09:14", arret: 1 },
+          { gare: "Reims", heure: "09:27", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "09:52", arret: 4 },
+          { gare: "Bazancourt", heure: "10:08", arret: 1 },
+          { gare: "Rethel", heure: "10:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "10:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "10:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "11:02", arret: 2 },
+          { gare: "Mohon", heure: "11:06", arret: 1 },
+          { gare: "Lumes", heure: "11:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "11:21", arret: 1 },
+          { gare: "Donchery", heure: "11:25", arret: 1 },
+          { gare: "Sedan", heure: "11:31", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "11:50", arret: 2 },
+          { gare: "Donchery", heure: "11:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "12:01", arret: 1 },
+          { gare: "Lumes", heure: "12:10", arret: 1 },
+          { gare: "Mohon", heure: "12:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "12:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "12:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "12:50", arret: 1 },
+          { gare: "Rethel", heure: "12:58", arret: 1 },
+          { gare: "Bazancourt", heure: "13:14", arret: 1 },
+          { gare: "Reims", heure: "13:27", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "13:52", arret: 4 },
+          { gare: "Bazancourt", heure: "14:08", arret: 1 },
+          { gare: "Rethel", heure: "14:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "14:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "14:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "15:02", arret: 2 },
+          { gare: "Mohon", heure: "15:06", arret: 1 },
+          { gare: "Lumes", heure: "15:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "15:21", arret: 1 },
+          { gare: "Donchery", heure: "15:25", arret: 1 },
+          { gare: "Sedan", heure: "15:31", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "15:50", arret: 2 },
+          { gare: "Donchery", heure: "15:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "16:01", arret: 1 },
+          { gare: "Lumes", heure: "16:10", arret: 1 },
+          { gare: "Mohon", heure: "16:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "16:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "16:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "16:50", arret: 1 },
+          { gare: "Rethel", heure: "16:58", arret: 1 },
+          { gare: "Bazancourt", heure: "17:14", arret: 1 },
+          { gare: "Reims", heure: "17:27", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "17:52", arret: 4 },
+          { gare: "Bazancourt", heure: "18:08", arret: 1 },
+          { gare: "Rethel", heure: "18:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "18:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "18:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "19:02", arret: 2 },
+          { gare: "Mohon", heure: "19:06", arret: 1 },
+          { gare: "Lumes", heure: "19:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "19:21", arret: 1 },
+          { gare: "Donchery", heure: "19:25", arret: 1 },
+          { gare: "Sedan", heure: "19:31", arret: 2 }
+        ]
+      },
+      {
+        nom: "Sedan → Reims",
+        dessertes: [
+          { gare: "Sedan", heure: "19:50", arret: 2 },
+          { gare: "Donchery", heure: "19:57", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "20:01", arret: 1 },
+          { gare: "Lumes", heure: "20:10", arret: 1 },
+          { gare: "Mohon", heure: "20:16", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "20:19", arret: 2 },
+          { gare: "Poix-Terron", heure: "20:33", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "20:50", arret: 1 },
+          { gare: "Rethel", heure: "20:58", arret: 1 },
+          { gare: "Bazancourt", heure: "21:14", arret: 1 },
+          { gare: "Reims", heure: "21:27", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Sedan",
+        dessertes: [
+          { gare: "Reims", heure: "21:52", arret: 4 },
+          { gare: "Bazancourt", heure: "22:08", arret: 1 },
+          { gare: "Rethel", heure: "22:24", arret: 1 },
+          { gare: "Amagne-Lucquy", heure: "22:32", arret: 1 },
+          { gare: "Poix-Terron", heure: "22:49", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "23:02", arret: 2 },
+          { gare: "Mohon", heure: "23:06", arret: 1 },
+          { gare: "Lumes", heure: "23:12", arret: 1 },
+          { gare: "Vrigne-Meuse", heure: "23:21", arret: 1 },
+          { gare: "Donchery", heure: "23:25", arret: 1 },
+          { gare: "Sedan", heure: "23:31", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2805",
+    nom: "AGC Champagne-Ardenne 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Charleville-Mézières → Givet",
+        dessertes: [
+          { gare: "Charleville-Mézières", heure: "07:23", arret: 2 },
+          { gare: "Nouzonville", heure: "07:31", arret: 1 },
+          { gare: "Joigny-sur-Meuse", heure: "07:36", arret: 1 },
+          { gare: "Bogny sur Meuse", heure: "07:40", arret: 1 },
+          { gare: "Laifour", heure: "07:51", arret: 1 },
+          { gare: "Revin", heure: "07:59", arret: 1 },
+          { gare: "Fumay", heure: "08:13", arret: 1 },
+          { gare: "Fépin", heure: "08:20", arret: 1 },
+          { gare: "Vireux-Molhain", heure: "08:28", arret: 1 },
+          { gare: "Givet", heure: "08:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Givet → Charleville-Mézières",
+        dessertes: [
+          { gare: "Givet", heure: "09:15", arret: 2 },
+          { gare: "Vireux-Molhain", heure: "09:31", arret: 1 },
+          { gare: "Fépin", heure: "09:39", arret: 1 },
+          { gare: "Fumay", heure: "09:46", arret: 1 },
+          { gare: "Revin", heure: "10:00", arret: 1 },
+          { gare: "Laifour", heure: "10:08", arret: 1 },
+          { gare: "Bogny sur Meuse", heure: "10:19", arret: 1 },
+          { gare: "Joigny-sur-Meuse", heure: "10:23", arret: 1 },
+          { gare: "Nouzonville", heure: "10:28", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "10:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Charleville-Mézières → Givet",
+        dessertes: [
+          { gare: "Charleville-Mézières", heure: "11:23", arret: 2 },
+          { gare: "Nouzonville", heure: "11:31", arret: 1 },
+          { gare: "Joigny-sur-Meuse", heure: "11:36", arret: 1 },
+          { gare: "Bogny sur Meuse", heure: "11:40", arret: 1 },
+          { gare: "Laifour", heure: "11:51", arret: 1 },
+          { gare: "Revin", heure: "11:59", arret: 1 },
+          { gare: "Fumay", heure: "12:13", arret: 1 },
+          { gare: "Fépin", heure: "12:20", arret: 1 },
+          { gare: "Vireux-Molhain", heure: "12:28", arret: 1 },
+          { gare: "Givet", heure: "12:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Givet → Charleville-Mézières",
+        dessertes: [
+          { gare: "Givet", heure: "13:15", arret: 2 },
+          { gare: "Vireux-Molhain", heure: "13:31", arret: 1 },
+          { gare: "Fépin", heure: "13:39", arret: 1 },
+          { gare: "Fumay", heure: "13:46", arret: 1 },
+          { gare: "Revin", heure: "14:00", arret: 1 },
+          { gare: "Laifour", heure: "14:08", arret: 1 },
+          { gare: "Bogny sur Meuse", heure: "14:19", arret: 1 },
+          { gare: "Joigny-sur-Meuse", heure: "14:23", arret: 1 },
+          { gare: "Nouzonville", heure: "14:28", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "14:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Charleville-Mézières → Givet",
+        dessertes: [
+          { gare: "Charleville-Mézières", heure: "15:23", arret: 2 },
+          { gare: "Nouzonville", heure: "15:31", arret: 1 },
+          { gare: "Joigny-sur-Meuse", heure: "15:36", arret: 1 },
+          { gare: "Bogny sur Meuse", heure: "15:40", arret: 1 },
+          { gare: "Laifour", heure: "15:51", arret: 1 },
+          { gare: "Revin", heure: "15:59", arret: 1 },
+          { gare: "Fumay", heure: "16:13", arret: 1 },
+          { gare: "Fépin", heure: "16:20", arret: 1 },
+          { gare: "Vireux-Molhain", heure: "16:28", arret: 1 },
+          { gare: "Givet", heure: "16:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Givet → Charleville-Mézières",
+        dessertes: [
+          { gare: "Givet", heure: "17:15", arret: 2 },
+          { gare: "Vireux-Molhain", heure: "17:31", arret: 1 },
+          { gare: "Fépin", heure: "17:39", arret: 1 },
+          { gare: "Fumay", heure: "17:46", arret: 1 },
+          { gare: "Revin", heure: "18:00", arret: 1 },
+          { gare: "Laifour", heure: "18:08", arret: 1 },
+          { gare: "Bogny sur Meuse", heure: "18:19", arret: 1 },
+          { gare: "Joigny-sur-Meuse", heure: "18:23", arret: 1 },
+          { gare: "Nouzonville", heure: "18:28", arret: 1 },
+          { gare: "Charleville-Mézières", heure: "18:35", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2806",
+    nom: "X73900 Champ-Ard",
+    moteurs: ["diesel"],
+    vitesseMax: 140,
+    capacite: { premiere: 0, seconde: 122 },
+    composition: ["X73900 Grand Est"],
+    trajets: [
+      {
+        nom: "Givet → Charleville-Mézières",
+        dessertes: [
+          { gare: "Givet", heure: "07:15", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Vireux-Molhain", heure: "07:31", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fépin", heure: "07:39", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fumay", heure: "07:46", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Revin", heure: "08:00", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laifour", heure: "08:08", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Bogny sur Meuse", heure: "08:19", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Joigny-sur-Meuse", heure: "08:23", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Nouzonville", heure: "08:28", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Charleville-Mézières", heure: "08:35", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Charleville-Mézières → Givet",
+        dessertes: [
+          { gare: "Charleville-Mézières", heure: "09:23", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Nouzonville", heure: "09:31", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Joigny-sur-Meuse", heure: "09:36", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Bogny sur Meuse", heure: "09:40", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laifour", heure: "09:51", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Revin", heure: "09:59", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fumay", heure: "10:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fépin", heure: "10:20", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Vireux-Molhain", heure: "10:28", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Givet", heure: "10:43", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Givet → Charleville-Mézières",
+        dessertes: [
+          { gare: "Givet", heure: "11:15", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Vireux-Molhain", heure: "11:31", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fépin", heure: "11:39", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fumay", heure: "11:46", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Revin", heure: "12:00", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laifour", heure: "12:08", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Bogny sur Meuse", heure: "12:19", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Joigny-sur-Meuse", heure: "12:23", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Nouzonville", heure: "12:28", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Charleville-Mézières", heure: "12:35", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Charleville-Mézières → Givet",
+        dessertes: [
+          { gare: "Charleville-Mézières", heure: "13:23", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Nouzonville", heure: "13:31", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Joigny-sur-Meuse", heure: "13:36", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Bogny sur Meuse", heure: "13:40", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laifour", heure: "13:51", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Revin", heure: "13:59", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fumay", heure: "14:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fépin", heure: "14:20", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Vireux-Molhain", heure: "14:28", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Givet", heure: "14:43", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Givet → Charleville-Mézières",
+        dessertes: [
+          { gare: "Givet", heure: "15:15", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Vireux-Molhain", heure: "15:31", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fépin", heure: "15:39", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fumay", heure: "15:46", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Revin", heure: "16:00", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laifour", heure: "16:08", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Bogny sur Meuse", heure: "16:19", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Joigny-sur-Meuse", heure: "16:23", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Nouzonville", heure: "16:28", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Charleville-Mézières", heure: "16:35", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Charleville-Mézières → Givet",
+        dessertes: [
+          { gare: "Charleville-Mézières", heure: "17:23", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Nouzonville", heure: "17:31", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Joigny-sur-Meuse", heure: "17:36", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Bogny sur Meuse", heure: "17:40", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Laifour", heure: "17:51", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Revin", heure: "17:59", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fumay", heure: "18:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Fépin", heure: "18:20", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Vireux-Molhain", heure: "18:28", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Givet", heure: "18:43", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2809",
+    nom: "X73900 Champ-Ard",
     moteurs: ["diesel"],
     vitesseMax: 140,
     capacite: { premiere: 0, seconde: 61 },
     trajets: [
       {
-        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
+        nom: "Reims → Fismes",
         dessertes: [
-          { gare: "Colmar", heure: "08:00", arret: 5 },
-          { gare: "Sundhoffen", heure: "08:15", arret: 1 },
-          { gare: "Wolfgantzen", heure: "08:27", arret: 1 },
-          { gare: "Volgelsheim", heure: "08:34", arret: 1 },
-          { gare: "Breisach", heure: "08:42", arret: 2 },
-          { gare: "Gottenheim", heure: "09:00", arret: 1 },
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "09:18", arret: 5 }
+          { gare: "Reims", heure: "06:00", arret: 2 },
+          { gare: "Muizon", heure: "06:19", arret: 1 },
+          { gare: "Breuil - Romain", heure: "06:35", arret: 1 },
+          { gare: "Fismes", heure: "06:46", arret: 2 }
         ]
       },
       {
-        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
+        nom: "Fismes → Reims",
         dessertes: [
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "10:00", arret: 5 },
-          { gare: "Gottenheim", heure: "10:22", arret: 1 },
-          { gare: "Breisach", heure: "10:39", arret: 2 },
-          { gare: "Volgelsheim", heure: "10:48", arret: 1 },
-          { gare: "Wolfgantzen", heure: "10:55", arret: 1 },
-          { gare: "Sundhoffen", heure: "11:07", arret: 1 },
-          { gare: "Colmar", heure: "11:18", arret: 5 }
+          { gare: "Fismes", heure: "07:00", arret: 2 },
+          { gare: "Breuil - Romain", heure: "07:12", arret: 1 },
+          { gare: "Muizon", heure: "07:28", arret: 1 },
+          { gare: "Reims", heure: "07:46", arret: 2 }
         ]
       },
       {
-        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
+        nom: "Reims → Fismes",
         dessertes: [
-          { gare: "Colmar", heure: "12:00", arret: 5 },
-          { gare: "Sundhoffen", heure: "12:15", arret: 1 },
-          { gare: "Wolfgantzen", heure: "12:27", arret: 1 },
-          { gare: "Volgelsheim", heure: "12:34", arret: 1 },
-          { gare: "Breisach", heure: "12:42", arret: 2 },
-          { gare: "Gottenheim", heure: "13:00", arret: 1 },
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "13:18", arret: 5 }
+          { gare: "Reims", heure: "08:00", arret: 2 },
+          { gare: "Muizon", heure: "08:19", arret: 1 },
+          { gare: "Breuil - Romain", heure: "08:35", arret: 1 },
+          { gare: "Fismes", heure: "08:46", arret: 2 }
         ]
       },
       {
-        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
+        nom: "Fismes → Reims",
         dessertes: [
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "14:00", arret: 5 },
-          { gare: "Gottenheim", heure: "14:22", arret: 1 },
-          { gare: "Breisach", heure: "14:39", arret: 2 },
-          { gare: "Volgelsheim", heure: "14:48", arret: 1 },
-          { gare: "Wolfgantzen", heure: "14:55", arret: 1 },
-          { gare: "Sundhoffen", heure: "15:07", arret: 1 },
-          { gare: "Colmar", heure: "15:18", arret: 5 }
+          { gare: "Fismes", heure: "09:00", arret: 2 },
+          { gare: "Breuil - Romain", heure: "09:12", arret: 1 },
+          { gare: "Muizon", heure: "09:28", arret: 1 },
+          { gare: "Reims", heure: "09:46", arret: 2 }
         ]
       },
       {
-        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
+        nom: "Reims → Fismes",
         dessertes: [
-          { gare: "Colmar", heure: "16:00", arret: 5 },
-          { gare: "Sundhoffen", heure: "16:15", arret: 1 },
-          { gare: "Wolfgantzen", heure: "16:27", arret: 1 },
-          { gare: "Volgelsheim", heure: "16:34", arret: 1 },
-          { gare: "Breisach", heure: "16:42", arret: 2 },
-          { gare: "Gottenheim", heure: "17:00", arret: 1 },
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "17:18", arret: 5 }
+          { gare: "Reims", heure: "12:00", arret: 2 },
+          { gare: "Muizon", heure: "12:19", arret: 1 },
+          { gare: "Breuil - Romain", heure: "12:35", arret: 1 },
+          { gare: "Fismes", heure: "12:46", arret: 2 }
         ]
       },
       {
-        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
+        nom: "Fismes → Reims",
         dessertes: [
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "18:00", arret: 5 },
-          { gare: "Gottenheim", heure: "18:22", arret: 1 },
-          { gare: "Breisach", heure: "18:39", arret: 2 },
-          { gare: "Volgelsheim", heure: "18:48", arret: 1 },
-          { gare: "Wolfgantzen", heure: "18:55", arret: 1 },
-          { gare: "Sundhoffen", heure: "19:07", arret: 1 },
-          { gare: "Colmar", heure: "19:18", arret: 5 }
+          { gare: "Fismes", heure: "13:00", arret: 2 },
+          { gare: "Breuil - Romain", heure: "13:12", arret: 1 },
+          { gare: "Muizon", heure: "13:28", arret: 1 },
+          { gare: "Reims", heure: "13:46", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Fismes",
+        dessertes: [
+          { gare: "Reims", heure: "16:00", arret: 2 },
+          { gare: "Muizon", heure: "16:19", arret: 1 },
+          { gare: "Breuil - Romain", heure: "16:35", arret: 1 },
+          { gare: "Fismes", heure: "16:46", arret: 2 }
+        ]
+      },
+      {
+        nom: "Fismes → Reims",
+        dessertes: [
+          { gare: "Fismes", heure: "17:00", arret: 2 },
+          { gare: "Breuil - Romain", heure: "17:12", arret: 1 },
+          { gare: "Muizon", heure: "17:28", arret: 1 },
+          { gare: "Reims", heure: "17:46", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Fismes",
+        dessertes: [
+          { gare: "Reims", heure: "18:00", arret: 2 },
+          { gare: "Muizon", heure: "18:19", arret: 1 },
+          { gare: "Breuil - Romain", heure: "18:35", arret: 1 },
+          { gare: "Fismes", heure: "18:46", arret: 2 }
+        ]
+      },
+      {
+        nom: "Fismes → Reims",
+        dessertes: [
+          { gare: "Fismes", heure: "19:00", arret: 2 },
+          { gare: "Breuil - Romain", heure: "19:12", arret: 1 },
+          { gare: "Muizon", heure: "19:28", arret: 1 },
+          { gare: "Reims", heure: "19:46", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2811",
+    nom: "AGC Champagne-Ardenne 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "06:46", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "07:05", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Reims", heure: "07:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "07:46", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "08:18", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Châlons-En-Champagne", heure: "08:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "08:41", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "09:00", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Sept-Saulx", heure: "09:07", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Val-de-Vesle", heure: "09:12", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Prunay", heure: "09:17", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Reims", heure: "09:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "09:46", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "10:18", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Châlons-En-Champagne", heure: "10:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "10:46", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "11:05", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Reims", heure: "11:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "11:41", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Prunay", heure: "12:01", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Val-de-Vesle", heure: "12:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Sept-Saulx", heure: "12:11", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "12:18", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Châlons-En-Champagne", heure: "12:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "12:41", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "13:00", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Sept-Saulx", heure: "13:07", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Val-de-Vesle", heure: "13:12", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Prunay", heure: "13:17", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Reims", heure: "13:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "13:46", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "14:18", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Châlons-En-Champagne", heure: "14:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "14:46", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "15:05", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Reims", heure: "15:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "15:46", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "16:18", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Châlons-En-Champagne", heure: "16:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "16:41", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "17:00", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Sept-Saulx", heure: "17:07", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Val-de-Vesle", heure: "17:12", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Prunay", heure: "17:17", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Reims", heure: "17:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "17:41", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Prunay", heure: "18:01", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Val-de-Vesle", heure: "18:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Sept-Saulx", heure: "18:11", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "18:18", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Châlons-En-Champagne", heure: "18:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "18:46", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "19:05", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Reims", heure: "19:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "19:46", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Mourmelon-le-Petit", heure: "20:18", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Châlons-En-Champagne", heure: "20:34", arret: 4, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2812",
+    nom: "AGC Champagne-Ardenne 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "06:46", arret: 4 },
+          { gare: "Mourmelon-le-Petit", heure: "07:18", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "07:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "07:41", arret: 4 },
+          { gare: "Mourmelon-le-Petit", heure: "08:00", arret: 1 },
+          { gare: "Sept-Saulx", heure: "08:07", arret: 1 },
+          { gare: "Val-de-Vesle", heure: "08:12", arret: 1 },
+          { gare: "Prunay", heure: "08:17", arret: 1 },
+          { gare: "Reims", heure: "08:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "08:41", arret: 4 },
+          { gare: "Prunay", heure: "09:01", arret: 1 },
+          { gare: "Val-de-Vesle", heure: "09:06", arret: 1 },
+          { gare: "Sept-Saulx", heure: "09:11", arret: 1 },
+          { gare: "Mourmelon-le-Petit", heure: "09:18", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "09:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "09:46", arret: 4 },
+          { gare: "Mourmelon-le-Petit", heure: "10:05", arret: 1 },
+          { gare: "Reims", heure: "10:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "10:46", arret: 4 },
+          { gare: "Mourmelon-le-Petit", heure: "11:18", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "11:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "11:41", arret: 4 },
+          { gare: "Mourmelon-le-Petit", heure: "12:00", arret: 1 },
+          { gare: "Sept-Saulx", heure: "12:07", arret: 1 },
+          { gare: "Val-de-Vesle", heure: "12:12", arret: 1 },
+          { gare: "Prunay", heure: "12:17", arret: 1 },
+          { gare: "Reims", heure: "12:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "12:41", arret: 4 },
+          { gare: "Prunay", heure: "13:01", arret: 1 },
+          { gare: "Val-de-Vesle", heure: "13:06", arret: 1 },
+          { gare: "Sept-Saulx", heure: "13:11", arret: 1 },
+          { gare: "Mourmelon-le-Petit", heure: "13:18", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "13:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "13:46", arret: 4 },
+          { gare: "Mourmelon-le-Petit", heure: "14:05", arret: 1 },
+          { gare: "Reims", heure: "14:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "14:46", arret: 4 },
+          { gare: "Mourmelon-le-Petit", heure: "15:18", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "15:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "15:41", arret: 4 },
+          { gare: "Mourmelon-le-Petit", heure: "16:00", arret: 1 },
+          { gare: "Sept-Saulx", heure: "16:07", arret: 1 },
+          { gare: "Val-de-Vesle", heure: "16:12", arret: 1 },
+          { gare: "Prunay", heure: "16:17", arret: 1 },
+          { gare: "Reims", heure: "16:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "16:41", arret: 4 },
+          { gare: "Prunay", heure: "17:01", arret: 1 },
+          { gare: "Val-de-Vesle", heure: "17:06", arret: 1 },
+          { gare: "Sept-Saulx", heure: "17:11", arret: 1 },
+          { gare: "Mourmelon-le-Petit", heure: "17:18", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "17:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "17:41", arret: 4 },
+          { gare: "Mourmelon-le-Petit", heure: "18:00", arret: 1 },
+          { gare: "Sept-Saulx", heure: "18:07", arret: 1 },
+          { gare: "Val-de-Vesle", heure: "18:12", arret: 1 },
+          { gare: "Prunay", heure: "18:17", arret: 1 },
+          { gare: "Reims", heure: "18:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Reims → Châlons-En-Champagne",
+        dessertes: [
+          { gare: "Reims", heure: "18:46", arret: 4 },
+          { gare: "Mourmelon-le-Petit", heure: "19:18", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "19:34", arret: 4 }
+        ]
+      },
+      {
+        nom: "Châlons-En-Champagne → Reims",
+        dessertes: [
+          { gare: "Châlons-En-Champagne", heure: "19:46", arret: 4 },
+          { gare: "Mourmelon-le-Petit", heure: "20:05", arret: 1 },
+          { gare: "Reims", heure: "20:34", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2815",
+    nom: "AGC Champagne-Ardenne 3C E",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 26, seconde: 138 },
+    trajets: [
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "07:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "07:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "07:13", arret: 1 },
+          { gare: "Germaine", heure: "07:18", arret: 1 },
+          { gare: "Avenay", heure: "07:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "07:30", arret: 1 },
+          { gare: "Epernay", heure: "07:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "08:00", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "08:06", arret: 1 },
+          { gare: "Avenay", heure: "08:11", arret: 1 },
+          { gare: "Germaine", heure: "08:18", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "08:23", arret: 1 },
+          { gare: "Maison Blanche", heure: "08:31", arret: 1 },
+          { gare: "Reims", heure: "08:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "09:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "09:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "09:13", arret: 1 },
+          { gare: "Germaine", heure: "09:18", arret: 1 },
+          { gare: "Avenay", heure: "09:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "09:30", arret: 1 },
+          { gare: "Epernay", heure: "09:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "10:00", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "10:06", arret: 1 },
+          { gare: "Avenay", heure: "10:11", arret: 1 },
+          { gare: "Germaine", heure: "10:18", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "10:23", arret: 1 },
+          { gare: "Maison Blanche", heure: "10:31", arret: 1 },
+          { gare: "Reims", heure: "10:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "11:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "11:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "11:13", arret: 1 },
+          { gare: "Germaine", heure: "11:18", arret: 1 },
+          { gare: "Avenay", heure: "11:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "11:30", arret: 1 },
+          { gare: "Epernay", heure: "11:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "12:00", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "12:06", arret: 1 },
+          { gare: "Avenay", heure: "12:11", arret: 1 },
+          { gare: "Germaine", heure: "12:18", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "12:23", arret: 1 },
+          { gare: "Maison Blanche", heure: "12:31", arret: 1 },
+          { gare: "Reims", heure: "12:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "13:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "13:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "13:13", arret: 1 },
+          { gare: "Germaine", heure: "13:18", arret: 1 },
+          { gare: "Avenay", heure: "13:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "13:30", arret: 1 },
+          { gare: "Epernay", heure: "13:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "14:00", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "14:06", arret: 1 },
+          { gare: "Avenay", heure: "14:11", arret: 1 },
+          { gare: "Germaine", heure: "14:18", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "14:23", arret: 1 },
+          { gare: "Maison Blanche", heure: "14:31", arret: 1 },
+          { gare: "Reims", heure: "14:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "15:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "15:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "15:13", arret: 1 },
+          { gare: "Germaine", heure: "15:18", arret: 1 },
+          { gare: "Avenay", heure: "15:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "15:30", arret: 1 },
+          { gare: "Epernay", heure: "15:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "16:00", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "16:06", arret: 1 },
+          { gare: "Avenay", heure: "16:11", arret: 1 },
+          { gare: "Germaine", heure: "16:18", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "16:23", arret: 1 },
+          { gare: "Maison Blanche", heure: "16:31", arret: 1 },
+          { gare: "Reims", heure: "16:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "17:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "17:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "17:13", arret: 1 },
+          { gare: "Germaine", heure: "17:18", arret: 1 },
+          { gare: "Avenay", heure: "17:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "17:30", arret: 1 },
+          { gare: "Epernay", heure: "17:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "18:00", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "18:06", arret: 1 },
+          { gare: "Avenay", heure: "18:11", arret: 1 },
+          { gare: "Germaine", heure: "18:18", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "18:23", arret: 1 },
+          { gare: "Maison Blanche", heure: "18:31", arret: 1 },
+          { gare: "Reims", heure: "18:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "19:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "19:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "19:13", arret: 1 },
+          { gare: "Germaine", heure: "19:18", arret: 1 },
+          { gare: "Avenay", heure: "19:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "19:30", arret: 1 },
+          { gare: "Epernay", heure: "19:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "20:00", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "20:06", arret: 1 },
+          { gare: "Avenay", heure: "20:11", arret: 1 },
+          { gare: "Germaine", heure: "20:18", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "20:23", arret: 1 },
+          { gare: "Maison Blanche", heure: "20:31", arret: 1 },
+          { gare: "Reims", heure: "20:35", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2816",
+    nom: "AGC Champagne-Ardenne 3C E",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 26, seconde: 138 },
+    trajets: [
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "06:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "06:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "06:13", arret: 1 },
+          { gare: "Germaine", heure: "06:18", arret: 1 },
+          { gare: "Avenay", heure: "06:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "06:30", arret: 1 },
+          { gare: "Epernay", heure: "06:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "06:50", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "06:56", arret: 1 },
+          { gare: "Avenay", heure: "07:01", arret: 1 },
+          { gare: "Germaine", heure: "07:08", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "07:13", arret: 1 },
+          { gare: "Maison Blanche", heure: "07:21", arret: 1 },
+          { gare: "Reims", heure: "07:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Champagne-Ardenne TGV",
+        dessertes: [
+          { gare: "Reims", heure: "07:30", arret: 2 },
+          { gare: "Champagne-Ardenne TGV", heure: "07:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Champagne-Ardenne TGV → Reims",
+        dessertes: [
+          { gare: "Champagne-Ardenne TGV", heure: "07:42", arret: 2 },
+          { gare: "Reims", heure: "07:50", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "08:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "08:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "08:13", arret: 1 },
+          { gare: "Germaine", heure: "08:18", arret: 1 },
+          { gare: "Avenay", heure: "08:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "08:30", arret: 1 },
+          { gare: "Epernay", heure: "08:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "08:50", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "08:56", arret: 1 },
+          { gare: "Avenay", heure: "09:01", arret: 1 },
+          { gare: "Germaine", heure: "09:08", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "09:13", arret: 1 },
+          { gare: "Maison Blanche", heure: "09:21", arret: 1 },
+          { gare: "Reims", heure: "09:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Champagne-Ardenne TGV",
+        dessertes: [
+          { gare: "Reims", heure: "09:30", arret: 2 },
+          { gare: "Champagne-Ardenne TGV", heure: "09:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Champagne-Ardenne TGV → Reims",
+        dessertes: [
+          { gare: "Champagne-Ardenne TGV", heure: "09:42", arret: 2 },
+          { gare: "Reims", heure: "09:50", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "10:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "10:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "10:13", arret: 1 },
+          { gare: "Germaine", heure: "10:18", arret: 1 },
+          { gare: "Avenay", heure: "10:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "10:30", arret: 1 },
+          { gare: "Epernay", heure: "10:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "10:50", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "10:56", arret: 1 },
+          { gare: "Avenay", heure: "11:01", arret: 1 },
+          { gare: "Germaine", heure: "11:08", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "11:13", arret: 1 },
+          { gare: "Maison Blanche", heure: "11:21", arret: 1 },
+          { gare: "Reims", heure: "11:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Champagne-Ardenne TGV",
+        dessertes: [
+          { gare: "Reims", heure: "11:30", arret: 2 },
+          { gare: "Champagne-Ardenne TGV", heure: "11:38", arret: 1 }
+        ]
+      },
+      {
+        nom: "Champagne-Ardenne TGV → Reims",
+        dessertes: [
+          { gare: "Champagne-Ardenne TGV", heure: "11:42", arret: 2 },
+          { gare: "Reims", heure: "11:50", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "12:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "12:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "12:13", arret: 1 },
+          { gare: "Germaine", heure: "12:18", arret: 1 },
+          { gare: "Avenay", heure: "12:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "12:30", arret: 1 },
+          { gare: "Epernay", heure: "12:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "12:50", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "12:56", arret: 1 },
+          { gare: "Avenay", heure: "13:01", arret: 1 },
+          { gare: "Germaine", heure: "13:08", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "13:13", arret: 1 },
+          { gare: "Maison Blanche", heure: "13:21", arret: 1 },
+          { gare: "Reims", heure: "13:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Champagne-Ardenne TGV",
+        dessertes: [
+          { gare: "Reims", heure: "13:30", arret: 2 },
+          { gare: "Champagne-Ardenne TGV", heure: "13:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Champagne-Ardenne TGV → Reims",
+        dessertes: [
+          { gare: "Champagne-Ardenne TGV", heure: "13:42", arret: 2 },
+          { gare: "Reims", heure: "13:50", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "14:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "14:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "14:13", arret: 1 },
+          { gare: "Germaine", heure: "14:18", arret: 1 },
+          { gare: "Avenay", heure: "14:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "14:30", arret: 1 },
+          { gare: "Epernay", heure: "14:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "14:50", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "14:56", arret: 1 },
+          { gare: "Avenay", heure: "15:01", arret: 1 },
+          { gare: "Germaine", heure: "15:08", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "15:13", arret: 1 },
+          { gare: "Maison Blanche", heure: "15:21", arret: 1 },
+          { gare: "Reims", heure: "15:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Champagne-Ardenne TGV",
+        dessertes: [
+          { gare: "Reims", heure: "15:30", arret: 2 },
+          { gare: "Champagne-Ardenne TGV", heure: "15:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Champagne-Ardenne TGV → Reims",
+        dessertes: [
+          { gare: "Champagne-Ardenne TGV", heure: "15:42", arret: 2 },
+          { gare: "Reims", heure: "15:50", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "16:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "16:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "16:13", arret: 1 },
+          { gare: "Germaine", heure: "16:18", arret: 1 },
+          { gare: "Avenay", heure: "16:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "16:30", arret: 1 },
+          { gare: "Epernay", heure: "16:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "16:50", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "16:56", arret: 1 },
+          { gare: "Avenay", heure: "17:01", arret: 1 },
+          { gare: "Germaine", heure: "17:08", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "17:13", arret: 1 },
+          { gare: "Maison Blanche", heure: "17:21", arret: 1 },
+          { gare: "Reims", heure: "17:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Champagne-Ardenne TGV",
+        dessertes: [
+          { gare: "Reims", heure: "17:30", arret: 2 },
+          { gare: "Champagne-Ardenne TGV", heure: "17:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Champagne-Ardenne TGV → Reims",
+        dessertes: [
+          { gare: "Champagne-Ardenne TGV", heure: "17:42", arret: 2 },
+          { gare: "Reims", heure: "17:50", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Epernay",
+        dessertes: [
+          { gare: "Reims", heure: "18:00", arret: 2 },
+          { gare: "Maison Blanche", heure: "18:05", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "18:13", arret: 1 },
+          { gare: "Germaine", heure: "18:18", arret: 1 },
+          { gare: "Avenay", heure: "18:25", arret: 1 },
+          { gare: "Aÿ-Champagne", heure: "18:30", arret: 1 },
+          { gare: "Epernay", heure: "18:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Epernay → Reims",
+        dessertes: [
+          { gare: "Epernay", heure: "18:50", arret: 2 },
+          { gare: "Aÿ-Champagne", heure: "18:56", arret: 1 },
+          { gare: "Avenay", heure: "19:01", arret: 1 },
+          { gare: "Germaine", heure: "19:08", arret: 1 },
+          { gare: "Rilly-la-Montagne", heure: "19:13", arret: 1 },
+          { gare: "Maison Blanche", heure: "19:21", arret: 1 },
+          { gare: "Reims", heure: "19:25", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Champagne-Ardenne TGV",
+        dessertes: [
+          { gare: "Reims", heure: "19:30", arret: 2 },
+          { gare: "Champagne-Ardenne TGV", heure: "19:38", arret: 1 }
+        ]
+      },
+      {
+        nom: "Champagne-Ardenne TGV → Reims",
+        dessertes: [
+          { gare: "Champagne-Ardenne TGV", heure: "19:42", arret: 1 },
+          { gare: "Reims", heure: "19:49", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2818",
+    nom: "AGC Champagne-Ardenne 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Reims → Laon",
+        dessertes: [
+          { gare: "Reims", heure: "06:00", arret: 2 },
+          { gare: "Courcy - Brimont", heure: "06:11", arret: 1 },
+          { gare: "Loivre", heure: "06:15", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "06:22", arret: 1 },
+          { gare: "Guignicourt", heure: "06:26", arret: 1 },
+          { gare: "Amifontaine", heure: "06:34", arret: 1 },
+          { gare: "Saint-Erme", heure: "06:41", arret: 1 },
+          { gare: "Coucy-lès-Eppes", heure: "06:50", arret: 1 },
+          { gare: "Laon", heure: "07:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laon → Reims",
+        dessertes: [
+          { gare: "Laon", heure: "07:34", arret: 2 },
+          { gare: "Coucy-lès-Eppes", heure: "07:49", arret: 1 },
+          { gare: "Saint-Erme", heure: "07:58", arret: 1 },
+          { gare: "Amifontaine", heure: "08:05", arret: 1 },
+          { gare: "Guignicourt", heure: "08:13", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "08:17", arret: 1 },
+          { gare: "Loivre", heure: "08:24", arret: 1 },
+          { gare: "Courcy - Brimont", heure: "08:28", arret: 1 },
+          { gare: "Reims", heure: "08:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Laon",
+        dessertes: [
+          { gare: "Reims", heure: "09:00", arret: 2 },
+          { gare: "Courcy - Brimont", heure: "09:11", arret: 1 },
+          { gare: "Loivre", heure: "09:15", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "09:22", arret: 1 },
+          { gare: "Guignicourt", heure: "09:26", arret: 1 },
+          { gare: "Amifontaine", heure: "09:34", arret: 1 },
+          { gare: "Saint-Erme", heure: "09:41", arret: 1 },
+          { gare: "Coucy-lès-Eppes", heure: "09:50", arret: 1 },
+          { gare: "Laon", heure: "10:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laon → Reims",
+        dessertes: [
+          { gare: "Laon", heure: "10:34", arret: 2 },
+          { gare: "Coucy-lès-Eppes", heure: "10:49", arret: 1 },
+          { gare: "Saint-Erme", heure: "10:58", arret: 1 },
+          { gare: "Amifontaine", heure: "11:05", arret: 1 },
+          { gare: "Guignicourt", heure: "11:13", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "11:17", arret: 1 },
+          { gare: "Loivre", heure: "11:24", arret: 1 },
+          { gare: "Courcy - Brimont", heure: "11:28", arret: 1 },
+          { gare: "Reims", heure: "11:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Laon",
+        dessertes: [
+          { gare: "Reims", heure: "12:00", arret: 2 },
+          { gare: "Courcy - Brimont", heure: "12:11", arret: 1 },
+          { gare: "Loivre", heure: "12:15", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "12:22", arret: 1 },
+          { gare: "Guignicourt", heure: "12:26", arret: 1 },
+          { gare: "Amifontaine", heure: "12:34", arret: 1 },
+          { gare: "Saint-Erme", heure: "12:41", arret: 1 },
+          { gare: "Coucy-lès-Eppes", heure: "12:50", arret: 1 },
+          { gare: "Laon", heure: "13:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laon → Reims",
+        dessertes: [
+          { gare: "Laon", heure: "13:34", arret: 2 },
+          { gare: "Coucy-lès-Eppes", heure: "13:49", arret: 1 },
+          { gare: "Saint-Erme", heure: "13:58", arret: 1 },
+          { gare: "Amifontaine", heure: "14:05", arret: 1 },
+          { gare: "Guignicourt", heure: "14:13", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "14:17", arret: 1 },
+          { gare: "Loivre", heure: "14:24", arret: 1 },
+          { gare: "Courcy - Brimont", heure: "14:28", arret: 1 },
+          { gare: "Reims", heure: "14:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Laon",
+        dessertes: [
+          { gare: "Reims", heure: "15:00", arret: 2 },
+          { gare: "Courcy - Brimont", heure: "15:11", arret: 1 },
+          { gare: "Loivre", heure: "15:15", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "15:22", arret: 1 },
+          { gare: "Guignicourt", heure: "15:26", arret: 1 },
+          { gare: "Amifontaine", heure: "15:34", arret: 1 },
+          { gare: "Saint-Erme", heure: "15:41", arret: 1 },
+          { gare: "Coucy-lès-Eppes", heure: "15:50", arret: 1 },
+          { gare: "Laon", heure: "16:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laon → Reims",
+        dessertes: [
+          { gare: "Laon", heure: "16:34", arret: 2 },
+          { gare: "Coucy-lès-Eppes", heure: "16:49", arret: 1 },
+          { gare: "Saint-Erme", heure: "16:58", arret: 1 },
+          { gare: "Amifontaine", heure: "17:05", arret: 1 },
+          { gare: "Guignicourt", heure: "17:13", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "17:17", arret: 1 },
+          { gare: "Loivre", heure: "17:24", arret: 1 },
+          { gare: "Courcy - Brimont", heure: "17:28", arret: 1 },
+          { gare: "Reims", heure: "17:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Laon",
+        dessertes: [
+          { gare: "Reims", heure: "18:00", arret: 2 },
+          { gare: "Courcy - Brimont", heure: "18:11", arret: 1 },
+          { gare: "Loivre", heure: "18:15", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "18:22", arret: 1 },
+          { gare: "Guignicourt", heure: "18:26", arret: 1 },
+          { gare: "Amifontaine", heure: "18:34", arret: 1 },
+          { gare: "Saint-Erme", heure: "18:41", arret: 1 },
+          { gare: "Coucy-lès-Eppes", heure: "18:50", arret: 1 },
+          { gare: "Laon", heure: "19:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laon → Reims",
+        dessertes: [
+          { gare: "Laon", heure: "19:34", arret: 2 },
+          { gare: "Coucy-lès-Eppes", heure: "19:49", arret: 1 },
+          { gare: "Saint-Erme", heure: "19:58", arret: 1 },
+          { gare: "Amifontaine", heure: "20:05", arret: 1 },
+          { gare: "Guignicourt", heure: "20:13", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "20:17", arret: 1 },
+          { gare: "Loivre", heure: "20:24", arret: 1 },
+          { gare: "Courcy - Brimont", heure: "20:28", arret: 1 },
+          { gare: "Reims", heure: "20:38", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2819",
+    nom: "AGC Champagne-Ardenne 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Reims → Laon",
+        dessertes: [
+          { gare: "Reims", heure: "07:34", arret: 2 },
+          { gare: "Courcy - Brimont", heure: "07:45", arret: 1 },
+          { gare: "Loivre", heure: "07:49", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "07:56", arret: 1 },
+          { gare: "Guignicourt", heure: "08:00", arret: 1 },
+          { gare: "Amifontaine", heure: "08:08", arret: 1 },
+          { gare: "Saint-Erme", heure: "08:15", arret: 1 },
+          { gare: "Coucy-lès-Eppes", heure: "08:24", arret: 1 },
+          { gare: "Laon", heure: "08:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laon → Reims",
+        dessertes: [
+          { gare: "Laon", heure: "09:00", arret: 2 },
+          { gare: "Coucy-lès-Eppes", heure: "09:15", arret: 1 },
+          { gare: "Saint-Erme", heure: "09:24", arret: 1 },
+          { gare: "Amifontaine", heure: "09:31", arret: 1 },
+          { gare: "Guignicourt", heure: "09:39", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "09:43", arret: 1 },
+          { gare: "Loivre", heure: "09:50", arret: 1 },
+          { gare: "Courcy - Brimont", heure: "09:54", arret: 1 },
+          { gare: "Reims", heure: "10:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Laon",
+        dessertes: [
+          { gare: "Reims", heure: "10:34", arret: 2 },
+          { gare: "Courcy - Brimont", heure: "10:45", arret: 1 },
+          { gare: "Loivre", heure: "10:49", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "10:56", arret: 1 },
+          { gare: "Guignicourt", heure: "11:00", arret: 1 },
+          { gare: "Amifontaine", heure: "11:08", arret: 1 },
+          { gare: "Saint-Erme", heure: "11:15", arret: 1 },
+          { gare: "Coucy-lès-Eppes", heure: "11:24", arret: 1 },
+          { gare: "Laon", heure: "11:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laon → Reims",
+        dessertes: [
+          { gare: "Laon", heure: "12:00", arret: 2 },
+          { gare: "Coucy-lès-Eppes", heure: "12:15", arret: 1 },
+          { gare: "Saint-Erme", heure: "12:24", arret: 1 },
+          { gare: "Amifontaine", heure: "12:31", arret: 1 },
+          { gare: "Guignicourt", heure: "12:39", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "12:43", arret: 1 },
+          { gare: "Loivre", heure: "12:50", arret: 1 },
+          { gare: "Courcy - Brimont", heure: "12:54", arret: 1 },
+          { gare: "Reims", heure: "13:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Laon",
+        dessertes: [
+          { gare: "Reims", heure: "13:34", arret: 2 },
+          { gare: "Courcy - Brimont", heure: "13:45", arret: 1 },
+          { gare: "Loivre", heure: "13:49", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "13:56", arret: 1 },
+          { gare: "Guignicourt", heure: "14:00", arret: 1 },
+          { gare: "Amifontaine", heure: "14:08", arret: 1 },
+          { gare: "Saint-Erme", heure: "14:15", arret: 1 },
+          { gare: "Coucy-lès-Eppes", heure: "14:24", arret: 1 },
+          { gare: "Laon", heure: "14:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laon → Reims",
+        dessertes: [
+          { gare: "Laon", heure: "15:00", arret: 2 },
+          { gare: "Coucy-lès-Eppes", heure: "15:15", arret: 1 },
+          { gare: "Saint-Erme", heure: "15:24", arret: 1 },
+          { gare: "Amifontaine", heure: "15:31", arret: 1 },
+          { gare: "Guignicourt", heure: "15:39", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "15:43", arret: 1 },
+          { gare: "Loivre", heure: "15:50", arret: 1 },
+          { gare: "Courcy - Brimont", heure: "15:54", arret: 1 },
+          { gare: "Reims", heure: "16:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Laon",
+        dessertes: [
+          { gare: "Reims", heure: "16:34", arret: 2 },
+          { gare: "Courcy - Brimont", heure: "16:45", arret: 1 },
+          { gare: "Loivre", heure: "16:49", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "16:56", arret: 1 },
+          { gare: "Guignicourt", heure: "17:00", arret: 1 },
+          { gare: "Amifontaine", heure: "17:08", arret: 1 },
+          { gare: "Saint-Erme", heure: "17:15", arret: 1 },
+          { gare: "Coucy-lès-Eppes", heure: "17:24", arret: 1 },
+          { gare: "Laon", heure: "17:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laon → Reims",
+        dessertes: [
+          { gare: "Laon", heure: "18:00", arret: 2 },
+          { gare: "Coucy-lès-Eppes", heure: "18:15", arret: 1 },
+          { gare: "Saint-Erme", heure: "18:24", arret: 1 },
+          { gare: "Amifontaine", heure: "18:31", arret: 1 },
+          { gare: "Guignicourt", heure: "18:39", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "18:43", arret: 1 },
+          { gare: "Loivre", heure: "18:50", arret: 1 },
+          { gare: "Courcy - Brimont", heure: "18:54", arret: 1 },
+          { gare: "Reims", heure: "19:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Laon",
+        dessertes: [
+          { gare: "Reims", heure: "19:34", arret: 2 },
+          { gare: "Courcy - Brimont", heure: "19:45", arret: 1 },
+          { gare: "Loivre", heure: "19:49", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "19:56", arret: 1 },
+          { gare: "Guignicourt", heure: "20:00", arret: 1 },
+          { gare: "Amifontaine", heure: "20:08", arret: 1 },
+          { gare: "Saint-Erme", heure: "20:15", arret: 1 },
+          { gare: "Coucy-lès-Eppes", heure: "20:24", arret: 1 },
+          { gare: "Laon", heure: "20:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laon → Reims",
+        dessertes: [
+          { gare: "Laon", heure: "21:00", arret: 2 },
+          { gare: "Coucy-lès-Eppes", heure: "21:15", arret: 1 },
+          { gare: "Saint-Erme", heure: "21:24", arret: 1 },
+          { gare: "Amifontaine", heure: "21:31", arret: 1 },
+          { gare: "Guignicourt", heure: "21:39", arret: 1 },
+          { gare: "Aguilcourt-Variscourt", heure: "21:43", arret: 1 },
+          { gare: "Loivre", heure: "21:50", arret: 1 },
+          { gare: "Courcy - Brimont", heure: "21:54", arret: 1 },
+          { gare: "Reims", heure: "22:04", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2830",
+    nom: "AGC Champagne-Ardenne 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Chaumont → Reims",
+        dessertes: [
+          { gare: "Chaumont", heure: "07:58", arret: 3 },
+          { gare: "Bologne", heure: "08:10", arret: 1 },
+          { gare: "Vraincourt", heure: "08:16", arret: 1 },
+          { gare: "Fronville", heure: "08:32", arret: 1 },
+          { gare: "Joinville", heure: "08:38", arret: 1 },
+          { gare: "Chevillon", heure: "08:47", arret: 1 },
+          { gare: "Saint-Dizier", heure: "09:07", arret: 1 },
+          { gare: "Vitry-le-François", heure: "09:37", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "10:02", arret: 1 },
+          { gare: "Mourmelon-le-Petit", heure: "10:18", arret: 1 },
+          { gare: "Reims", heure: "10:47", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Chaumont",
+        dessertes: [
+          { gare: "Reims", heure: "11:15", arret: 2 },
+          { gare: "Mourmelon-le-Petit", heure: "11:45", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "12:01", arret: 1 },
+          { gare: "Vitry-le-François", heure: "12:26", arret: 1 },
+          { gare: "Saint-Dizier", heure: "12:56", arret: 1 },
+          { gare: "Chevillon", heure: "13:16", arret: 1 },
+          { gare: "Joinville", heure: "13:25", arret: 1 },
+          { gare: "Fronville", heure: "13:31", arret: 1 },
+          { gare: "Vraincourt", heure: "13:47", arret: 1 },
+          { gare: "Bologne", heure: "13:53", arret: 1 },
+          { gare: "Chaumont", heure: "14:03", arret: 3 }
+        ]
+      },
+      {
+        nom: "Chaumont → Reims",
+        dessertes: [
+          { gare: "Chaumont", heure: "14:58", arret: 3 },
+          { gare: "Bologne", heure: "15:10", arret: 1 },
+          { gare: "Vraincourt", heure: "15:16", arret: 1 },
+          { gare: "Fronville", heure: "15:32", arret: 1 },
+          { gare: "Joinville", heure: "15:38", arret: 1 },
+          { gare: "Chevillon", heure: "15:47", arret: 1 },
+          { gare: "Saint-Dizier", heure: "16:07", arret: 1 },
+          { gare: "Vitry-le-François", heure: "16:37", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "17:02", arret: 1 },
+          { gare: "Mourmelon-le-Petit", heure: "17:18", arret: 1 },
+          { gare: "Reims", heure: "17:47", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Chaumont",
+        dessertes: [
+          { gare: "Reims", heure: "18:15", arret: 2 },
+          { gare: "Mourmelon-le-Petit", heure: "18:45", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "19:01", arret: 1 },
+          { gare: "Vitry-le-François", heure: "19:26", arret: 1 },
+          { gare: "Saint-Dizier", heure: "19:56", arret: 1 },
+          { gare: "Chevillon", heure: "20:16", arret: 1 },
+          { gare: "Joinville", heure: "20:25", arret: 1 },
+          { gare: "Fronville", heure: "20:31", arret: 1 },
+          { gare: "Vraincourt", heure: "20:47", arret: 1 },
+          { gare: "Bologne", heure: "20:53", arret: 1 },
+          { gare: "Chaumont", heure: "21:03", arret: 3 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2831",
+    nom: "AGC Champagne-Ardenne 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Chaumont → Reims",
+        dessertes: [
+          { gare: "Chaumont", heure: "08:58", arret: 3 },
+          { gare: "Bologne", heure: "09:10", arret: 1 },
+          { gare: "Vraincourt", heure: "09:16", arret: 1 },
+          { gare: "Fronville", heure: "09:32", arret: 1 },
+          { gare: "Joinville", heure: "09:38", arret: 1 },
+          { gare: "Chevillon", heure: "09:47", arret: 1 },
+          { gare: "Saint-Dizier", heure: "10:07", arret: 1 },
+          { gare: "Vitry-le-François", heure: "10:37", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "11:02", arret: 2 },
+          { gare: "Mourmelon-le-Petit", heure: "11:19", arret: 1 },
+          { gare: "Reims", heure: "11:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Chaumont",
+        dessertes: [
+          { gare: "Reims", heure: "12:15", arret: 2 },
+          { gare: "Mourmelon-le-Petit", heure: "12:45", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "13:01", arret: 2 },
+          { gare: "Vitry-le-François", heure: "13:27", arret: 1 },
+          { gare: "Saint-Dizier", heure: "13:57", arret: 1 },
+          { gare: "Chevillon", heure: "14:17", arret: 1 },
+          { gare: "Joinville", heure: "14:26", arret: 1 },
+          { gare: "Fronville", heure: "14:32", arret: 1 },
+          { gare: "Vraincourt", heure: "14:48", arret: 1 },
+          { gare: "Bologne", heure: "14:54", arret: 1 },
+          { gare: "Chaumont", heure: "15:04", arret: 3 }
+        ]
+      },
+      {
+        nom: "Chaumont → Reims",
+        dessertes: [
+          { gare: "Chaumont", heure: "15:58", arret: 3 },
+          { gare: "Bologne", heure: "16:10", arret: 1 },
+          { gare: "Vraincourt", heure: "16:16", arret: 1 },
+          { gare: "Fronville", heure: "16:32", arret: 1 },
+          { gare: "Joinville", heure: "16:38", arret: 1 },
+          { gare: "Chevillon", heure: "16:47", arret: 1 },
+          { gare: "Saint-Dizier", heure: "17:07", arret: 1 },
+          { gare: "Vitry-le-François", heure: "17:37", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "18:02", arret: 2 },
+          { gare: "Mourmelon-le-Petit", heure: "18:19", arret: 1 },
+          { gare: "Reims", heure: "18:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Chaumont",
+        dessertes: [
+          { gare: "Reims", heure: "19:15", arret: 2 },
+          { gare: "Mourmelon-le-Petit", heure: "19:45", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "20:01", arret: 2 },
+          { gare: "Vitry-le-François", heure: "20:27", arret: 1 },
+          { gare: "Saint-Dizier", heure: "20:57", arret: 1 },
+          { gare: "Chevillon", heure: "21:17", arret: 1 },
+          { gare: "Joinville", heure: "21:26", arret: 1 },
+          { gare: "Fronville", heure: "21:32", arret: 1 },
+          { gare: "Vraincourt", heure: "21:48", arret: 1 },
+          { gare: "Bologne", heure: "21:54", arret: 1 },
+          { gare: "Chaumont", heure: "22:04", arret: 3 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 2834",
+    nom: "AGC Champagne-Ardenne 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Chaumont → Culmont-Chalindrey",
+        dessertes: [
+          { gare: "Chaumont", heure: "09:00", arret: 2 },
+          { gare: "Langres", heure: "09:25", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "09:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Culmont-Chalindrey → Reims",
+        dessertes: [
+          { gare: "Culmont-Chalindrey", heure: "10:25", arret: 1 },
+          { gare: "Langres", heure: "10:35", arret: 1 },
+          { gare: "Chaumont", heure: "10:59", arret: 2 },
+          { gare: "Bologne", heure: "11:10", arret: 1 },
+          { gare: "Vraincourt", heure: "11:16", arret: 1 },
+          { gare: "Fronville", heure: "11:32", arret: 1 },
+          { gare: "Joinville", heure: "11:38", arret: 1 },
+          { gare: "Chevillon", heure: "11:47", arret: 1 },
+          { gare: "Saint-Dizier", heure: "12:07", arret: 2 },
+          { gare: "Vitry-le-François", heure: "12:38", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "13:03", arret: 1 },
+          { gare: "Mourmelon-le-Petit", heure: "13:19", arret: 1 },
+          { gare: "Reims", heure: "13:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Chaumont",
+        dessertes: [
+          { gare: "Reims", heure: "14:20", arret: 2 },
+          { gare: "Mourmelon-le-Petit", heure: "14:50", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "15:06", arret: 1 },
+          { gare: "Vitry-le-François", heure: "15:31", arret: 1 },
+          { gare: "Saint-Dizier", heure: "16:01", arret: 2 },
+          { gare: "Chevillon", heure: "16:22", arret: 1 },
+          { gare: "Joinville", heure: "16:31", arret: 1 },
+          { gare: "Fronville", heure: "16:37", arret: 1 },
+          { gare: "Vraincourt", heure: "16:53", arret: 1 },
+          { gare: "Bologne", heure: "16:59", arret: 1 },
+          { gare: "Chaumont", heure: "17:09", arret: 2 }
+        ]
+      },
+      {
+        nom: "Chaumont → Reims",
+        dessertes: [
+          { gare: "Chaumont", heure: "17:20", arret: 2 },
+          { gare: "Bologne", heure: "17:31", arret: 1 },
+          { gare: "Vraincourt", heure: "17:37", arret: 1 },
+          { gare: "Fronville", heure: "17:53", arret: 1 },
+          { gare: "Joinville", heure: "17:59", arret: 1 },
+          { gare: "Chevillon", heure: "18:08", arret: 1 },
+          { gare: "Saint-Dizier", heure: "18:28", arret: 2 },
+          { gare: "Vitry-le-François", heure: "18:59", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "19:24", arret: 1 },
+          { gare: "Mourmelon-le-Petit", heure: "19:40", arret: 1 },
+          { gare: "Reims", heure: "20:09", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Chaumont",
+        dessertes: [
+          { gare: "Reims", heure: "20:20", arret: 2 },
+          { gare: "Mourmelon-le-Petit", heure: "20:50", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "21:06", arret: 1 },
+          { gare: "Vitry-le-François", heure: "21:31", arret: 1 },
+          { gare: "Saint-Dizier", heure: "22:01", arret: 2 },
+          { gare: "Chevillon", heure: "22:22", arret: 1 },
+          { gare: "Joinville", heure: "22:31", arret: 1 },
+          { gare: "Fronville", heure: "22:37", arret: 1 },
+          { gare: "Vraincourt", heure: "22:53", arret: 1 },
+          { gare: "Bologne", heure: "22:59", arret: 1 },
+          { gare: "Chaumont", heure: "23:09", arret: 2 }
         ]
       }
     ]
@@ -2877,6 +4813,156 @@ export const trainsFR = [
   },
 
   {
+    id: "TER 2974",
+    nom: "Z24500 Metrolor",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 41, seconde: 298 },
+    trajets: [
+      {
+        nom: "Longuyon → Luxembourg",
+        dessertes: [
+          { gare: "Longuyon", heure: "06:50", arret: 4 },
+          { gare: "Longwy", heure: "07:13", arret: 1 },
+          { gare: "Rodange", heure: "07:21", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "07:28", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "07:32", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "07:36", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "07:42", arret: 1 },
+          { gare: "Hollerich", heure: "07:48", arret: 1 },
+          { gare: "Luxembourg", heure: "07:51", arret: 4 }
+        ]
+      },
+      {
+        nom: "Luxembourg → Longuyon",
+        dessertes: [
+          { gare: "Luxembourg", heure: "08:20", arret: 4 },
+          { gare: "Hollerich", heure: "08:26", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "08:32", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "08:38", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "08:42", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "08:46", arret: 1 },
+          { gare: "Rodange", heure: "08:53", arret: 1 },
+          { gare: "Longwy", heure: "09:01", arret: 1 },
+          { gare: "Longuyon", heure: "09:21", arret: 4 }
+        ]
+      },
+      {
+        nom: "Longuyon → Luxembourg",
+        dessertes: [
+          { gare: "Longuyon", heure: "10:00", arret: 4 },
+          { gare: "Longwy", heure: "10:23", arret: 1 },
+          { gare: "Rodange", heure: "10:31", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "10:38", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "10:42", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "10:46", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "10:52", arret: 1 },
+          { gare: "Hollerich", heure: "10:58", arret: 1 },
+          { gare: "Luxembourg", heure: "11:01", arret: 4 }
+        ]
+      },
+      {
+        nom: "Luxembourg → Longuyon",
+        dessertes: [
+          { gare: "Luxembourg", heure: "11:32", arret: 4 },
+          { gare: "Hollerich", heure: "11:38", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "11:44", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "11:50", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "11:54", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "11:58", arret: 1 },
+          { gare: "Rodange", heure: "12:05", arret: 1 },
+          { gare: "Longwy", heure: "12:13", arret: 1 },
+          { gare: "Longuyon", heure: "12:33", arret: 4 }
+        ]
+      },
+      {
+        nom: "Longuyon → Luxembourg",
+        dessertes: [
+          { gare: "Longuyon", heure: "13:00", arret: 4 },
+          { gare: "Longwy", heure: "13:23", arret: 1 },
+          { gare: "Rodange", heure: "13:31", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "13:38", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "13:42", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "13:46", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "13:52", arret: 1 },
+          { gare: "Hollerich", heure: "13:58", arret: 1 },
+          { gare: "Luxembourg", heure: "14:01", arret: 4 }
+        ]
+      },
+      {
+        nom: "Luxembourg → Longuyon",
+        dessertes: [
+          { gare: "Luxembourg", heure: "14:32", arret: 4 },
+          { gare: "Hollerich", heure: "14:38", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "14:44", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "14:50", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "14:54", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "14:58", arret: 1 },
+          { gare: "Rodange", heure: "15:05", arret: 1 },
+          { gare: "Longwy", heure: "15:13", arret: 1 },
+          { gare: "Longuyon", heure: "15:33", arret: 4 }
+        ]
+      },
+      {
+        nom: "Longuyon → Luxembourg",
+        dessertes: [
+          { gare: "Longuyon", heure: "16:00", arret: 4 },
+          { gare: "Longwy", heure: "16:23", arret: 1 },
+          { gare: "Rodange", heure: "16:31", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "16:38", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "16:42", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "16:46", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "16:52", arret: 1 },
+          { gare: "Hollerich", heure: "16:58", arret: 1 },
+          { gare: "Luxembourg", heure: "17:01", arret: 4 }
+        ]
+      },
+      {
+        nom: "Luxembourg → Longuyon",
+        dessertes: [
+          { gare: "Luxembourg", heure: "17:32", arret: 4 },
+          { gare: "Hollerich", heure: "17:38", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "17:44", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "17:50", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "17:54", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "17:58", arret: 1 },
+          { gare: "Rodange", heure: "18:05", arret: 1 },
+          { gare: "Longwy", heure: "18:13", arret: 1 },
+          { gare: "Longuyon", heure: "18:33", arret: 4 }
+        ]
+      },
+      {
+        nom: "Longuyon → Luxembourg",
+        dessertes: [
+          { gare: "Longuyon", heure: "19:00", arret: 4 },
+          { gare: "Longwy", heure: "19:23", arret: 1 },
+          { gare: "Rodange", heure: "19:31", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "19:38", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "19:42", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "19:46", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "19:52", arret: 1 },
+          { gare: "Hollerich", heure: "19:58", arret: 1 },
+          { gare: "Luxembourg", heure: "20:01", arret: 4 }
+        ]
+      },
+      {
+        nom: "Luxembourg → Longuyon",
+        dessertes: [
+          { gare: "Luxembourg", heure: "20:32", arret: 4 },
+          { gare: "Hollerich", heure: "20:38", arret: 1 },
+          { gare: "Leudelange (LU)", heure: "20:44", arret: 1 },
+          { gare: "Dippach-Reckange (LU)", heure: "20:50", arret: 1 },
+          { gare: "Schouweiler (LU)", heure: "20:54", arret: 1 },
+          { gare: "Bascharage-Sanem (LU)", heure: "20:58", arret: 1 },
+          { gare: "Rodange", heure: "21:05", arret: 1 },
+          { gare: "Longwy", heure: "21:13", arret: 1 },
+          { gare: "Longuyon", heure: "21:33", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "TER 2979",
     nom: "X73900 Grand Est",
     moteurs: ["diesel"],
@@ -3954,6 +6040,396 @@ export const trainsFR = [
   },
 
   {
+    id: "TER 3005",
+    nom: "AGC Alsace 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Metzeral → Colmar",
+        dessertes: [
+          { gare: "Metzeral", heure: "07:00", arret: 1 },
+          { gare: "Muhlbach-sur-Munster", heure: "07:04", arret: 1 },
+          { gare: "Munster", heure: "07:12", arret: 2 },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "07:24", arret: 1 },
+          { gare: "Turckheim", heure: "07:36", arret: 1 },
+          { gare: "Logelbach", heure: "07:43", arret: 1 },
+          { gare: "Colmar", heure: "07:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Colmar → Metzeral",
+        dessertes: [
+          { gare: "Colmar", heure: "08:30", arret: 2 },
+          { gare: "Logelbach", heure: "08:36", arret: 1 },
+          { gare: "Turckheim", heure: "08:43", arret: 1 },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "08:55", arret: 1 },
+          { gare: "Munster", heure: "09:06", arret: 2 },
+          { gare: "Muhlbach-sur-Munster", heure: "09:15", arret: 1 },
+          { gare: "Metzeral", heure: "09:19", arret: 1 }
+        ]
+      },
+      {
+        nom: "Metzeral → Colmar",
+        dessertes: [
+          { gare: "Metzeral", heure: "10:00", arret: 1 },
+          { gare: "Muhlbach-sur-Munster", heure: "10:04", arret: 1 },
+          { gare: "Munster", heure: "10:12", arret: 2 },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "10:24", arret: 1 },
+          { gare: "Turckheim", heure: "10:36", arret: 1 },
+          { gare: "Logelbach", heure: "10:43", arret: 1 },
+          { gare: "Colmar", heure: "10:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Colmar → Metzeral",
+        dessertes: [
+          { gare: "Colmar", heure: "11:30", arret: 2 },
+          { gare: "Logelbach", heure: "11:36", arret: 1 },
+          { gare: "Turckheim", heure: "11:43", arret: 1 },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "11:55", arret: 1 },
+          { gare: "Munster", heure: "12:06", arret: 2 },
+          { gare: "Muhlbach-sur-Munster", heure: "12:15", arret: 1 },
+          { gare: "Metzeral", heure: "12:19", arret: 1 }
+        ]
+      },
+      {
+        nom: "Metzeral → Colmar",
+        dessertes: [
+          { gare: "Metzeral", heure: "13:00", arret: 1 },
+          { gare: "Muhlbach-sur-Munster", heure: "13:04", arret: 1 },
+          { gare: "Munster", heure: "13:12", arret: 2 },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "13:24", arret: 1 },
+          { gare: "Turckheim", heure: "13:36", arret: 1 },
+          { gare: "Logelbach", heure: "13:43", arret: 1 },
+          { gare: "Colmar", heure: "13:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Colmar → Metzeral",
+        dessertes: [
+          { gare: "Colmar", heure: "14:30", arret: 2 },
+          { gare: "Logelbach", heure: "14:36", arret: 1 },
+          { gare: "Turckheim", heure: "14:43", arret: 1 },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "14:55", arret: 1 },
+          { gare: "Munster", heure: "15:06", arret: 2 },
+          { gare: "Muhlbach-sur-Munster", heure: "15:15", arret: 1 },
+          { gare: "Metzeral", heure: "15:19", arret: 1 }
+        ]
+      },
+      {
+        nom: "Metzeral → Colmar",
+        dessertes: [
+          { gare: "Metzeral", heure: "16:00", arret: 1 },
+          { gare: "Muhlbach-sur-Munster", heure: "16:04", arret: 1 },
+          { gare: "Munster", heure: "16:12", arret: 2 },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "16:24", arret: 1 },
+          { gare: "Turckheim", heure: "16:36", arret: 1 },
+          { gare: "Logelbach", heure: "16:43", arret: 1 },
+          { gare: "Colmar", heure: "16:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Colmar → Metzeral",
+        dessertes: [
+          { gare: "Colmar", heure: "17:30", arret: 2 },
+          { gare: "Logelbach", heure: "17:36", arret: 1 },
+          { gare: "Turckheim", heure: "17:43", arret: 1 },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "17:55", arret: 1 },
+          { gare: "Munster", heure: "18:06", arret: 2 },
+          { gare: "Muhlbach-sur-Munster", heure: "18:15", arret: 1 },
+          { gare: "Metzeral", heure: "18:19", arret: 1 }
+        ]
+      },
+      {
+        nom: "Metzeral → Colmar",
+        dessertes: [
+          { gare: "Metzeral", heure: "19:00", arret: 1 },
+          { gare: "Muhlbach-sur-Munster", heure: "19:04", arret: 1 },
+          { gare: "Munster", heure: "19:12", arret: 2 },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "19:24", arret: 1 },
+          { gare: "Turckheim", heure: "19:36", arret: 1 },
+          { gare: "Logelbach", heure: "19:43", arret: 1 },
+          { gare: "Colmar", heure: "19:48", arret: 2 }
+        ]
+      },
+      {
+        nom: "Colmar → Metzeral",
+        dessertes: [
+          { gare: "Colmar", heure: "20:30", arret: 2 },
+          { gare: "Logelbach", heure: "20:36", arret: 1 },
+          { gare: "Turckheim", heure: "20:43", arret: 1 },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "20:55", arret: 1 },
+          { gare: "Munster", heure: "21:06", arret: 2 },
+          { gare: "Muhlbach-sur-Munster", heure: "21:15", arret: 1 },
+          { gare: "Metzeral", heure: "21:19", arret: 1 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3006",
+    nom: "X73900 TER Alsace",
+    moteurs: ["diesel"],
+    vitesseMax: 140,
+    capacite: { premiere: 0, seconde: 61 },
+    trajets: [
+      {
+        nom: "Colmar → Metzeral",
+        dessertes: [
+          { gare: "Colmar", heure: "07:00", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Logelbach", heure: "07:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Turckheim", heure: "07:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "07:25", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Munster", heure: "07:36", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Muhlbach-sur-Munster", heure: "07:45", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Metzeral", heure: "07:49", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Metzeral → Colmar",
+        dessertes: [
+          { gare: "Metzeral", heure: "08:30", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Muhlbach-sur-Munster", heure: "08:34", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Munster", heure: "08:42", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "08:54", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Turckheim", heure: "09:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Logelbach", heure: "09:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Colmar", heure: "09:18", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Colmar → Metzeral",
+        dessertes: [
+          { gare: "Colmar", heure: "10:00", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Logelbach", heure: "10:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Turckheim", heure: "10:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "10:25", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Munster", heure: "10:36", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Muhlbach-sur-Munster", heure: "10:45", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Metzeral", heure: "10:49", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Metzeral → Colmar",
+        dessertes: [
+          { gare: "Metzeral", heure: "11:30", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Muhlbach-sur-Munster", heure: "11:34", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Munster", heure: "11:42", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "11:54", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Turckheim", heure: "12:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Logelbach", heure: "12:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Colmar", heure: "12:18", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Colmar → Metzeral",
+        dessertes: [
+          { gare: "Colmar", heure: "13:00", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Logelbach", heure: "13:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Turckheim", heure: "13:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "13:25", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Munster", heure: "13:36", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Muhlbach-sur-Munster", heure: "13:45", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Metzeral", heure: "13:49", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Metzeral → Colmar",
+        dessertes: [
+          { gare: "Metzeral", heure: "14:30", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Muhlbach-sur-Munster", heure: "14:34", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Munster", heure: "14:42", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "14:54", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Turckheim", heure: "15:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Logelbach", heure: "15:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Colmar", heure: "15:18", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Colmar → Metzeral",
+        dessertes: [
+          { gare: "Colmar", heure: "16:00", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Logelbach", heure: "16:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Turckheim", heure: "16:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "16:25", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Munster", heure: "16:36", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Muhlbach-sur-Munster", heure: "16:45", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Metzeral", heure: "16:49", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Metzeral → Colmar",
+        dessertes: [
+          { gare: "Metzeral", heure: "17:30", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Muhlbach-sur-Munster", heure: "17:34", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Munster", heure: "17:42", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Wihr-au-Val - Soultzbach", heure: "17:54", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Turckheim", heure: "18:06", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Logelbach", heure: "18:13", arret: 1, jours: ["LU", "MA", "ME", "JE", "VE"] },
+          { gare: "Colmar", heure: "18:18", arret: 2, jours: ["LU", "MA", "ME", "JE", "VE"] }
+        ]
+      },
+      {
+        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Colmar", heure: "08:00", arret: 5, jours: ["SA", "DI"] },
+          { gare: "Sundhoffen", heure: "08:15", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Wolfgantzen", heure: "08:27", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Volgelsheim", heure: "08:34", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Breisach", heure: "08:42", arret: 2, jours: ["SA", "DI"] },
+          { gare: "Gottenheim", heure: "09:00", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "09:18", arret: 5, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "10:00", arret: 5, jours: ["SA", "DI"] },
+          { gare: "Gottenheim", heure: "10:22", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Breisach", heure: "10:39", arret: 2, jours: ["SA", "DI"] },
+          { gare: "Volgelsheim", heure: "10:48", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Wolfgantzen", heure: "10:55", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Sundhoffen", heure: "11:07", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Colmar", heure: "11:18", arret: 5, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Colmar", heure: "12:00", arret: 5, jours: ["SA", "DI"] },
+          { gare: "Sundhoffen", heure: "12:15", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Wolfgantzen", heure: "12:27", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Volgelsheim", heure: "12:34", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Breisach", heure: "12:42", arret: 2, jours: ["SA", "DI"] },
+          { gare: "Gottenheim", heure: "13:00", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "13:18", arret: 5, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "14:00", arret: 5, jours: ["SA", "DI"] },
+          { gare: "Gottenheim", heure: "14:22", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Breisach", heure: "14:39", arret: 2, jours: ["SA", "DI"] },
+          { gare: "Volgelsheim", heure: "14:48", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Wolfgantzen", heure: "14:55", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Sundhoffen", heure: "15:07", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Colmar", heure: "15:18", arret: 5, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Colmar", heure: "16:00", arret: 5, jours: ["SA", "DI"] },
+          { gare: "Sundhoffen", heure: "16:15", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Wolfgantzen", heure: "16:27", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Volgelsheim", heure: "16:34", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Breisach", heure: "16:42", arret: 2, jours: ["SA", "DI"] },
+          { gare: "Gottenheim", heure: "17:00", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "17:18", arret: 5, jours: ["SA", "DI"] }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "18:00", arret: 5, jours: ["SA", "DI"] },
+          { gare: "Gottenheim", heure: "18:22", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Breisach", heure: "18:39", arret: 2, jours: ["SA", "DI"] },
+          { gare: "Volgelsheim", heure: "18:48", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Wolfgantzen", heure: "18:55", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Sundhoffen", heure: "19:07", arret: 1, jours: ["SA", "DI"] },
+          { gare: "Colmar", heure: "19:18", arret: 5, jours: ["SA", "DI"] }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3007",
+    nom: "X73900 Grand Est",
+    moteurs: ["diesel"],
+    vitesseMax: 140,
+    capacite: { premiere: 0, seconde: 61 },
+    trajets: [
+      {
+        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Colmar", heure: "08:00", arret: 5 },
+          { gare: "Sundhoffen", heure: "08:15", arret: 1 },
+          { gare: "Wolfgantzen", heure: "08:27", arret: 1 },
+          { gare: "Volgelsheim", heure: "08:34", arret: 1 },
+          { gare: "Breisach", heure: "08:42", arret: 2 },
+          { gare: "Gottenheim", heure: "09:00", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "09:18", arret: 5 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "10:00", arret: 5 },
+          { gare: "Gottenheim", heure: "10:22", arret: 1 },
+          { gare: "Breisach", heure: "10:39", arret: 2 },
+          { gare: "Volgelsheim", heure: "10:48", arret: 1 },
+          { gare: "Wolfgantzen", heure: "10:55", arret: 1 },
+          { gare: "Sundhoffen", heure: "11:07", arret: 1 },
+          { gare: "Colmar", heure: "11:18", arret: 5 }
+        ]
+      },
+      {
+        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Colmar", heure: "12:00", arret: 5 },
+          { gare: "Sundhoffen", heure: "12:15", arret: 1 },
+          { gare: "Wolfgantzen", heure: "12:27", arret: 1 },
+          { gare: "Volgelsheim", heure: "12:34", arret: 1 },
+          { gare: "Breisach", heure: "12:42", arret: 2 },
+          { gare: "Gottenheim", heure: "13:00", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "13:18", arret: 5 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "14:00", arret: 5 },
+          { gare: "Gottenheim", heure: "14:22", arret: 1 },
+          { gare: "Breisach", heure: "14:39", arret: 2 },
+          { gare: "Volgelsheim", heure: "14:48", arret: 1 },
+          { gare: "Wolfgantzen", heure: "14:55", arret: 1 },
+          { gare: "Sundhoffen", heure: "15:07", arret: 1 },
+          { gare: "Colmar", heure: "15:18", arret: 5 }
+        ]
+      },
+      {
+        nom: "Colmar → Freiburg (Breisgau) Hauptbahnhof",
+        dessertes: [
+          { gare: "Colmar", heure: "16:00", arret: 5 },
+          { gare: "Sundhoffen", heure: "16:15", arret: 1 },
+          { gare: "Wolfgantzen", heure: "16:27", arret: 1 },
+          { gare: "Volgelsheim", heure: "16:34", arret: 1 },
+          { gare: "Breisach", heure: "16:42", arret: 2 },
+          { gare: "Gottenheim", heure: "17:00", arret: 1 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "17:18", arret: 5 }
+        ]
+      },
+      {
+        nom: "Freiburg (Breisgau) Hauptbahnhof → Colmar",
+        dessertes: [
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "18:00", arret: 5 },
+          { gare: "Gottenheim", heure: "18:22", arret: 1 },
+          { gare: "Breisach", heure: "18:39", arret: 2 },
+          { gare: "Volgelsheim", heure: "18:48", arret: 1 },
+          { gare: "Wolfgantzen", heure: "18:55", arret: 1 },
+          { gare: "Sundhoffen", heure: "19:07", arret: 1 },
+          { gare: "Colmar", heure: "19:18", arret: 5 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "TER 3020",
     nom: "AGC blueAlsace 4C",
     moteurs: ["25kV CA", "1.5kV CC"],
@@ -4552,6 +7028,615 @@ export const trainsFR = [
           { gare: "Dannemarie", heure: "20:56", arret: 1 },
           { gare: "Montreux-Vieux", heure: "21:04", arret: 1 },
           { gare: "Belfort-Ville", heure: "21:18", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3050",
+    nom: "AGC fluoGrandEst 4C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Sélestat → Strasbourg",
+        dessertes: [
+          { gare: "Sélestat", heure: "06:55", arret: 5 },
+          { gare: "Scherwiller", heure: "07:05", arret: 1 },
+          { gare: "Dambach-la-Ville", heure: "07:11", arret: 1 },
+          { gare: "Eichhoffen", heure: "07:21", arret: 1 },
+          { gare: "Gertwiller", heure: "07:27", arret: 1 },
+          { gare: "Obernai", heure: "07:36", arret: 2 },
+          { gare: "Bischoffsheim", heure: "07:42", arret: 1 },
+          { gare: "Rosheim", heure: "07:46", arret: 1 },
+          { gare: "Molsheim", heure: "07:52", arret: 2 },
+          { gare: "Duttlenheim", heure: "08:02", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "08:10", arret: 2 },
+          { gare: "Lingolsheim", heure: "08:18", arret: 1 },
+          { gare: "Strasbourg", heure: "08:27", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Sélestat",
+        dessertes: [
+          { gare: "Strasbourg", heure: "09:00", arret: 5 },
+          { gare: "Lingolsheim", heure: "09:13", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "09:20", arret: 2 },
+          { gare: "Duttlenheim", heure: "09:29", arret: 1 },
+          { gare: "Molsheim", heure: "09:38", arret: 2 },
+          { gare: "Rosheim", heure: "09:45", arret: 1 },
+          { gare: "Bischoffsheim", heure: "09:49", arret: 1 },
+          { gare: "Obernai", heure: "09:54", arret: 2 },
+          { gare: "Gertwiller", heure: "10:04", arret: 1 },
+          { gare: "Eichhoffen", heure: "10:10", arret: 1 },
+          { gare: "Dambach-la-Ville", heure: "10:20", arret: 1 },
+          { gare: "Scherwiller", heure: "10:26", arret: 1 },
+          { gare: "Sélestat", heure: "10:32", arret: 5 }
+        ]
+      },
+      {
+        nom: "Sélestat → Strasbourg",
+        dessertes: [
+          { gare: "Sélestat", heure: "10:55", arret: 5 },
+          { gare: "Scherwiller", heure: "11:05", arret: 1 },
+          { gare: "Dambach-la-Ville", heure: "11:11", arret: 1 },
+          { gare: "Eichhoffen", heure: "11:21", arret: 1 },
+          { gare: "Gertwiller", heure: "11:27", arret: 1 },
+          { gare: "Obernai", heure: "11:36", arret: 2 },
+          { gare: "Bischoffsheim", heure: "11:42", arret: 1 },
+          { gare: "Rosheim", heure: "11:46", arret: 1 },
+          { gare: "Molsheim", heure: "11:52", arret: 2 },
+          { gare: "Duttlenheim", heure: "12:02", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "12:10", arret: 2 },
+          { gare: "Lingolsheim", heure: "12:18", arret: 1 },
+          { gare: "Strasbourg", heure: "12:27", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Sélestat",
+        dessertes: [
+          { gare: "Strasbourg", heure: "13:00", arret: 5 },
+          { gare: "Lingolsheim", heure: "13:13", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "13:20", arret: 2 },
+          { gare: "Duttlenheim", heure: "13:29", arret: 1 },
+          { gare: "Molsheim", heure: "13:38", arret: 2 },
+          { gare: "Rosheim", heure: "13:45", arret: 1 },
+          { gare: "Bischoffsheim", heure: "13:49", arret: 1 },
+          { gare: "Obernai", heure: "13:54", arret: 2 },
+          { gare: "Gertwiller", heure: "14:04", arret: 1 },
+          { gare: "Eichhoffen", heure: "14:10", arret: 1 },
+          { gare: "Dambach-la-Ville", heure: "14:20", arret: 1 },
+          { gare: "Scherwiller", heure: "14:26", arret: 1 },
+          { gare: "Sélestat", heure: "14:32", arret: 5 }
+        ]
+      },
+      {
+        nom: "Sélestat → Strasbourg",
+        dessertes: [
+          { gare: "Sélestat", heure: "14:55", arret: 5 },
+          { gare: "Scherwiller", heure: "15:05", arret: 1 },
+          { gare: "Dambach-la-Ville", heure: "15:11", arret: 1 },
+          { gare: "Eichhoffen", heure: "15:21", arret: 1 },
+          { gare: "Gertwiller", heure: "15:27", arret: 1 },
+          { gare: "Obernai", heure: "15:36", arret: 2 },
+          { gare: "Bischoffsheim", heure: "15:42", arret: 1 },
+          { gare: "Rosheim", heure: "15:46", arret: 1 },
+          { gare: "Molsheim", heure: "15:52", arret: 2 },
+          { gare: "Duttlenheim", heure: "16:02", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "16:10", arret: 3 },
+          { gare: "Lingolsheim", heure: "16:19", arret: 1 },
+          { gare: "Strasbourg", heure: "16:28", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Sélestat",
+        dessertes: [
+          { gare: "Strasbourg", heure: "17:00", arret: 5 },
+          { gare: "Lingolsheim", heure: "17:13", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "17:20", arret: 2 },
+          { gare: "Duttlenheim", heure: "17:29", arret: 1 },
+          { gare: "Molsheim", heure: "17:38", arret: 2 },
+          { gare: "Rosheim", heure: "17:45", arret: 1 },
+          { gare: "Bischoffsheim", heure: "17:49", arret: 1 },
+          { gare: "Obernai", heure: "17:54", arret: 2 },
+          { gare: "Gertwiller", heure: "18:04", arret: 1 },
+          { gare: "Eichhoffen", heure: "18:10", arret: 1 },
+          { gare: "Dambach-la-Ville", heure: "18:20", arret: 1 },
+          { gare: "Scherwiller", heure: "18:26", arret: 1 },
+          { gare: "Sélestat", heure: "18:32", arret: 5 }
+        ]
+      },
+      {
+        nom: "Sélestat → Strasbourg",
+        dessertes: [
+          { gare: "Sélestat", heure: "18:55", arret: 5 },
+          { gare: "Scherwiller", heure: "19:05", arret: 1 },
+          { gare: "Dambach-la-Ville", heure: "19:11", arret: 1 },
+          { gare: "Eichhoffen", heure: "19:21", arret: 1 },
+          { gare: "Gertwiller", heure: "19:27", arret: 1 },
+          { gare: "Obernai", heure: "19:36", arret: 2 },
+          { gare: "Bischoffsheim", heure: "19:42", arret: 1 },
+          { gare: "Rosheim", heure: "19:46", arret: 1 },
+          { gare: "Molsheim", heure: "19:52", arret: 2 },
+          { gare: "Duttlenheim", heure: "20:02", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "20:10", arret: 2 },
+          { gare: "Lingolsheim", heure: "20:18", arret: 1 },
+          { gare: "Strasbourg", heure: "20:27", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Sélestat",
+        dessertes: [
+          { gare: "Strasbourg", heure: "21:00", arret: 5 },
+          { gare: "Lingolsheim", heure: "21:13", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "21:20", arret: 2 },
+          { gare: "Duttlenheim", heure: "21:29", arret: 1 },
+          { gare: "Molsheim", heure: "21:38", arret: 2 },
+          { gare: "Rosheim", heure: "21:45", arret: 1 },
+          { gare: "Bischoffsheim", heure: "21:49", arret: 1 },
+          { gare: "Obernai", heure: "21:54", arret: 2 },
+          { gare: "Gertwiller", heure: "22:04", arret: 1 },
+          { gare: "Eichhoffen", heure: "22:10", arret: 1 },
+          { gare: "Dambach-la-Ville", heure: "22:20", arret: 1 },
+          { gare: "Scherwiller", heure: "22:26", arret: 1 },
+          { gare: "Sélestat", heure: "22:32", arret: 5 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3051",
+    nom: "AGC fluoGrandEst 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Strasbourg → Obernai",
+        dessertes: [
+          { gare: "Strasbourg", heure: "06:00", arret: 5 },
+          { gare: "Lingolsheim", heure: "06:13", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "06:20", arret: 2 },
+          { gare: "Duttlenheim", heure: "06:29", arret: 1 },
+          { gare: "Molsheim", heure: "06:38", arret: 2 },
+          { gare: "Rosheim", heure: "06:45", arret: 1 },
+          { gare: "Bischoffsheim", heure: "06:49", arret: 1 },
+          { gare: "Obernai", heure: "06:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Obernai → Strasbourg",
+        dessertes: [
+          { gare: "Obernai", heure: "08:00", arret: 2 },
+          { gare: "Bischoffsheim", heure: "08:06", arret: 1 },
+          { gare: "Rosheim", heure: "08:10", arret: 1 },
+          { gare: "Molsheim", heure: "08:16", arret: 2 },
+          { gare: "Duttlenheim", heure: "08:26", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "08:34", arret: 2 },
+          { gare: "Lingolsheim", heure: "08:42", arret: 1 },
+          { gare: "Strasbourg", heure: "08:51", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Obernai",
+        dessertes: [
+          { gare: "Strasbourg", heure: "10:00", arret: 5 },
+          { gare: "Lingolsheim", heure: "10:13", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "10:20", arret: 2 },
+          { gare: "Duttlenheim", heure: "10:29", arret: 1 },
+          { gare: "Molsheim", heure: "10:38", arret: 2 },
+          { gare: "Rosheim", heure: "10:45", arret: 1 },
+          { gare: "Bischoffsheim", heure: "10:49", arret: 1 },
+          { gare: "Obernai", heure: "10:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Obernai → Strasbourg",
+        dessertes: [
+          { gare: "Obernai", heure: "12:00", arret: 2 },
+          { gare: "Bischoffsheim", heure: "12:06", arret: 1 },
+          { gare: "Rosheim", heure: "12:10", arret: 1 },
+          { gare: "Molsheim", heure: "12:16", arret: 2 },
+          { gare: "Duttlenheim", heure: "12:26", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "12:34", arret: 2 },
+          { gare: "Lingolsheim", heure: "12:42", arret: 1 },
+          { gare: "Strasbourg", heure: "12:51", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Obernai",
+        dessertes: [
+          { gare: "Strasbourg", heure: "14:00", arret: 5 },
+          { gare: "Lingolsheim", heure: "14:13", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "14:20", arret: 2 },
+          { gare: "Duttlenheim", heure: "14:29", arret: 1 },
+          { gare: "Molsheim", heure: "14:38", arret: 2 },
+          { gare: "Rosheim", heure: "14:45", arret: 1 },
+          { gare: "Bischoffsheim", heure: "14:49", arret: 1 },
+          { gare: "Obernai", heure: "14:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Obernai → Strasbourg",
+        dessertes: [
+          { gare: "Obernai", heure: "16:00", arret: 2 },
+          { gare: "Bischoffsheim", heure: "16:06", arret: 1 },
+          { gare: "Rosheim", heure: "16:10", arret: 1 },
+          { gare: "Molsheim", heure: "16:16", arret: 2 },
+          { gare: "Duttlenheim", heure: "16:26", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "16:34", arret: 2 },
+          { gare: "Lingolsheim", heure: "16:42", arret: 1 },
+          { gare: "Strasbourg", heure: "16:51", arret: 5 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Obernai",
+        dessertes: [
+          { gare: "Strasbourg", heure: "18:00", arret: 5 },
+          { gare: "Lingolsheim", heure: "18:13", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "18:20", arret: 2 },
+          { gare: "Duttlenheim", heure: "18:29", arret: 1 },
+          { gare: "Molsheim", heure: "18:38", arret: 2 },
+          { gare: "Rosheim", heure: "18:45", arret: 1 },
+          { gare: "Bischoffsheim", heure: "18:49", arret: 1 },
+          { gare: "Obernai", heure: "18:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Obernai → Strasbourg",
+        dessertes: [
+          { gare: "Obernai", heure: "20:00", arret: 2 },
+          { gare: "Bischoffsheim", heure: "20:06", arret: 1 },
+          { gare: "Rosheim", heure: "20:10", arret: 1 },
+          { gare: "Molsheim", heure: "20:16", arret: 2 },
+          { gare: "Duttlenheim", heure: "20:26", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "20:34", arret: 2 },
+          { gare: "Lingolsheim", heure: "20:42", arret: 1 },
+          { gare: "Strasbourg", heure: "20:51", arret: 5 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3052",
+    nom: "AGC Alsace 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Obernai → Hoenheim Tram",
+        dessertes: [
+          { gare: "Obernai", heure: "08:30", arret: 4 },
+          { gare: "Bischoffsheim", heure: "08:38", arret: 1 },
+          { gare: "Rosheim", heure: "08:42", arret: 1 },
+          { gare: "Molsheim", heure: "08:48", arret: 2 },
+          { gare: "Duttlenheim", heure: "08:58", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "09:06", arret: 2 },
+          { gare: "Lingolsheim", heure: "09:14", arret: 1 },
+          { gare: "Strasbourg", heure: "09:23", arret: 5 },
+          { gare: "Bischheim", heure: "09:32", arret: 1 },
+          { gare: "Hoenheim Tram", heure: "09:36", arret: 4 }
+        ]
+      },
+      {
+        nom: "Hoenheim Tram → Obernai",
+        dessertes: [
+          { gare: "Hoenheim Tram", heure: "10:30", arret: 4 },
+          { gare: "Bischheim", heure: "10:37", arret: 1 },
+          { gare: "Strasbourg", heure: "10:42", arret: 5 },
+          { gare: "Lingolsheim", heure: "10:55", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "11:02", arret: 2 },
+          { gare: "Duttlenheim", heure: "11:11", arret: 1 },
+          { gare: "Molsheim", heure: "11:20", arret: 2 },
+          { gare: "Rosheim", heure: "11:27", arret: 1 },
+          { gare: "Bischoffsheim", heure: "11:31", arret: 1 },
+          { gare: "Obernai", heure: "11:36", arret: 4 }
+        ]
+      },
+      {
+        nom: "Obernai → Hoenheim Tram",
+        dessertes: [
+          { gare: "Obernai", heure: "13:30", arret: 4 },
+          { gare: "Bischoffsheim", heure: "13:38", arret: 1 },
+          { gare: "Rosheim", heure: "13:42", arret: 1 },
+          { gare: "Molsheim", heure: "13:48", arret: 2 },
+          { gare: "Duttlenheim", heure: "13:58", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "14:06", arret: 2 },
+          { gare: "Lingolsheim", heure: "14:14", arret: 1 },
+          { gare: "Strasbourg", heure: "14:23", arret: 5 },
+          { gare: "Bischheim", heure: "14:32", arret: 1 },
+          { gare: "Hoenheim Tram", heure: "14:36", arret: 4 }
+        ]
+      },
+      {
+        nom: "Hoenheim Tram → Obernai",
+        dessertes: [
+          { gare: "Hoenheim Tram", heure: "15:00", arret: 4 },
+          { gare: "Bischheim", heure: "15:07", arret: 1 },
+          { gare: "Strasbourg", heure: "15:12", arret: 5 },
+          { gare: "Lingolsheim", heure: "15:25", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "15:32", arret: 2 },
+          { gare: "Duttlenheim", heure: "15:41", arret: 1 },
+          { gare: "Molsheim", heure: "15:50", arret: 2 },
+          { gare: "Rosheim", heure: "15:57", arret: 1 },
+          { gare: "Bischoffsheim", heure: "16:01", arret: 1 },
+          { gare: "Obernai", heure: "16:06", arret: 4 }
+        ]
+      },
+      {
+        nom: "Obernai → Hoenheim Tram",
+        dessertes: [
+          { gare: "Obernai", heure: "17:30", arret: 4 },
+          { gare: "Bischoffsheim", heure: "17:38", arret: 1 },
+          { gare: "Rosheim", heure: "17:42", arret: 1 },
+          { gare: "Molsheim", heure: "17:48", arret: 2 },
+          { gare: "Duttlenheim", heure: "17:58", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "18:06", arret: 2 },
+          { gare: "Lingolsheim", heure: "18:14", arret: 1 },
+          { gare: "Strasbourg", heure: "18:23", arret: 5 },
+          { gare: "Bischheim", heure: "18:32", arret: 1 },
+          { gare: "Hoenheim Tram", heure: "18:36", arret: 4 }
+        ]
+      },
+      {
+        nom: "Hoenheim Tram → Obernai",
+        dessertes: [
+          { gare: "Hoenheim Tram", heure: "20:00", arret: 4 },
+          { gare: "Bischheim", heure: "20:07", arret: 1 },
+          { gare: "Strasbourg", heure: "20:12", arret: 5 },
+          { gare: "Lingolsheim", heure: "20:25", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "20:32", arret: 2 },
+          { gare: "Duttlenheim", heure: "20:41", arret: 1 },
+          { gare: "Molsheim", heure: "20:50", arret: 2 },
+          { gare: "Rosheim", heure: "20:57", arret: 1 },
+          { gare: "Bischoffsheim", heure: "21:01", arret: 1 },
+          { gare: "Obernai", heure: "21:06", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3054",
+    nom: "AGC fluoGrandEst 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Schirmeck - La Broque → Strasbourg",
+        dessertes: [
+          { gare: "Schirmeck - La Broque", heure: "06:00", arret: 2 },
+          { gare: "Wisches", heure: "06:10", arret: 1 },
+          { gare: "Urmatt", heure: "06:20", arret: 1 },
+          { gare: "Gresswiller", heure: "06:32", arret: 1 },
+          { gare: "Molsheim", heure: "06:43", arret: 2 },
+          { gare: "Duttlenheim", heure: "06:53", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "07:01", arret: 1 },
+          { gare: "Lingolsheim", heure: "07:08", arret: 1 },
+          { gare: "Strasbourg", heure: "07:17", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Schirmeck - La Broque",
+        dessertes: [
+          { gare: "Strasbourg", heure: "07:47", arret: 4 },
+          { gare: "Lingolsheim", heure: "07:59", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "08:06", arret: 1 },
+          { gare: "Duttlenheim", heure: "08:14", arret: 1 },
+          { gare: "Molsheim", heure: "08:23", arret: 2 },
+          { gare: "Gresswiller", heure: "08:35", arret: 1 },
+          { gare: "Urmatt", heure: "08:47", arret: 1 },
+          { gare: "Wisches", heure: "08:57", arret: 1 },
+          { gare: "Schirmeck - La Broque", heure: "09:06", arret: 2 }
+        ]
+      },
+      {
+        nom: "Schirmeck - La Broque → Strasbourg",
+        dessertes: [
+          { gare: "Schirmeck - La Broque", heure: "10:00", arret: 2 },
+          { gare: "Wisches", heure: "10:10", arret: 1 },
+          { gare: "Urmatt", heure: "10:20", arret: 1 },
+          { gare: "Gresswiller", heure: "10:32", arret: 1 },
+          { gare: "Molsheim", heure: "10:43", arret: 2 },
+          { gare: "Duttlenheim", heure: "10:53", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "11:01", arret: 1 },
+          { gare: "Lingolsheim", heure: "11:08", arret: 1 },
+          { gare: "Strasbourg", heure: "11:17", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Schirmeck - La Broque",
+        dessertes: [
+          { gare: "Strasbourg", heure: "11:47", arret: 4 },
+          { gare: "Lingolsheim", heure: "11:59", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "12:06", arret: 1 },
+          { gare: "Duttlenheim", heure: "12:14", arret: 1 },
+          { gare: "Molsheim", heure: "12:23", arret: 2 },
+          { gare: "Gresswiller", heure: "12:35", arret: 1 },
+          { gare: "Urmatt", heure: "12:47", arret: 1 },
+          { gare: "Wisches", heure: "12:57", arret: 1 },
+          { gare: "Schirmeck - La Broque", heure: "13:06", arret: 2 }
+        ]
+      },
+      {
+        nom: "Schirmeck - La Broque → Strasbourg",
+        dessertes: [
+          { gare: "Schirmeck - La Broque", heure: "14:00", arret: 2 },
+          { gare: "Wisches", heure: "14:10", arret: 1 },
+          { gare: "Urmatt", heure: "14:20", arret: 1 },
+          { gare: "Gresswiller", heure: "14:32", arret: 1 },
+          { gare: "Molsheim", heure: "14:43", arret: 2 },
+          { gare: "Duttlenheim", heure: "14:53", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "15:01", arret: 1 },
+          { gare: "Lingolsheim", heure: "15:08", arret: 1 },
+          { gare: "Strasbourg", heure: "15:17", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Schirmeck - La Broque",
+        dessertes: [
+          { gare: "Strasbourg", heure: "15:47", arret: 4 },
+          { gare: "Lingolsheim", heure: "15:59", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "16:06", arret: 1 },
+          { gare: "Duttlenheim", heure: "16:14", arret: 1 },
+          { gare: "Molsheim", heure: "16:23", arret: 2 },
+          { gare: "Gresswiller", heure: "16:35", arret: 1 },
+          { gare: "Urmatt", heure: "16:47", arret: 1 },
+          { gare: "Wisches", heure: "16:57", arret: 1 },
+          { gare: "Schirmeck - La Broque", heure: "17:06", arret: 2 }
+        ]
+      },
+      {
+        nom: "Schirmeck - La Broque → Strasbourg",
+        dessertes: [
+          { gare: "Schirmeck - La Broque", heure: "18:00", arret: 2 },
+          { gare: "Wisches", heure: "18:10", arret: 1 },
+          { gare: "Urmatt", heure: "18:20", arret: 1 },
+          { gare: "Gresswiller", heure: "18:32", arret: 1 },
+          { gare: "Molsheim", heure: "18:43", arret: 2 },
+          { gare: "Duttlenheim", heure: "18:53", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "19:01", arret: 1 },
+          { gare: "Lingolsheim", heure: "19:08", arret: 1 },
+          { gare: "Strasbourg", heure: "19:17", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Schirmeck - La Broque",
+        dessertes: [
+          { gare: "Strasbourg", heure: "19:47", arret: 4 },
+          { gare: "Lingolsheim", heure: "19:59", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "20:06", arret: 1 },
+          { gare: "Duttlenheim", heure: "20:14", arret: 1 },
+          { gare: "Molsheim", heure: "20:23", arret: 2 },
+          { gare: "Gresswiller", heure: "20:35", arret: 1 },
+          { gare: "Urmatt", heure: "20:47", arret: 1 },
+          { gare: "Wisches", heure: "20:57", arret: 1 },
+          { gare: "Schirmeck - La Broque", heure: "21:06", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3055",
+    nom: "AGC Alsace 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Strasbourg → Schirmeck - La Broque",
+        dessertes: [
+          { gare: "Strasbourg", heure: "05:47", arret: 4 },
+          { gare: "Lingolsheim", heure: "05:59", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "06:06", arret: 1 },
+          { gare: "Duttlenheim", heure: "06:14", arret: 1 },
+          { gare: "Molsheim", heure: "06:23", arret: 2 },
+          { gare: "Gresswiller", heure: "06:35", arret: 1 },
+          { gare: "Urmatt", heure: "06:47", arret: 1 },
+          { gare: "Wisches", heure: "06:57", arret: 1 },
+          { gare: "Schirmeck - La Broque", heure: "07:06", arret: 2 }
+        ]
+      },
+      {
+        nom: "Schirmeck - La Broque → Strasbourg",
+        dessertes: [
+          { gare: "Schirmeck - La Broque", heure: "08:00", arret: 2 },
+          { gare: "Wisches", heure: "08:10", arret: 1 },
+          { gare: "Urmatt", heure: "08:20", arret: 1 },
+          { gare: "Gresswiller", heure: "08:32", arret: 1 },
+          { gare: "Molsheim", heure: "08:43", arret: 1 },
+          { gare: "Strasbourg", heure: "09:12", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Schirmeck - La Broque",
+        dessertes: [
+          { gare: "Strasbourg", heure: "09:42", arret: 4 },
+          { gare: "Lingolsheim", heure: "09:54", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "10:01", arret: 1 },
+          { gare: "Duttlenheim", heure: "10:09", arret: 1 },
+          { gare: "Molsheim", heure: "10:18", arret: 1 },
+          { gare: "Gresswiller", heure: "10:29", arret: 1 },
+          { gare: "Urmatt", heure: "10:41", arret: 1 },
+          { gare: "Wisches", heure: "10:51", arret: 1 },
+          { gare: "Schirmeck - La Broque", heure: "11:00", arret: 2 }
+        ]
+      },
+      {
+        nom: "Schirmeck - La Broque → Strasbourg",
+        dessertes: [
+          { gare: "Schirmeck - La Broque", heure: "12:00", arret: 2 },
+          { gare: "Wisches", heure: "12:10", arret: 1 },
+          { gare: "Urmatt", heure: "12:20", arret: 1 },
+          { gare: "Gresswiller", heure: "12:32", arret: 1 },
+          { gare: "Molsheim", heure: "12:43", arret: 2 },
+          { gare: "Duttlenheim", heure: "12:53", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "13:01", arret: 1 },
+          { gare: "Lingolsheim", heure: "13:08", arret: 1 },
+          { gare: "Strasbourg", heure: "13:17", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Schirmeck - La Broque",
+        dessertes: [
+          { gare: "Strasbourg", heure: "13:47", arret: 4 },
+          { gare: "Lingolsheim", heure: "13:59", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "14:06", arret: 1 },
+          { gare: "Duttlenheim", heure: "14:14", arret: 1 },
+          { gare: "Molsheim", heure: "14:23", arret: 2 },
+          { gare: "Gresswiller", heure: "14:35", arret: 1 },
+          { gare: "Urmatt", heure: "14:47", arret: 1 },
+          { gare: "Wisches", heure: "14:57", arret: 1 },
+          { gare: "Schirmeck - La Broque", heure: "15:06", arret: 2 }
+        ]
+      },
+      {
+        nom: "Schirmeck - La Broque → Strasbourg",
+        dessertes: [
+          { gare: "Schirmeck - La Broque", heure: "16:00", arret: 2 },
+          { gare: "Wisches", heure: "16:10", arret: 1 },
+          { gare: "Urmatt", heure: "16:20", arret: 1 },
+          { gare: "Gresswiller", heure: "16:32", arret: 1 },
+          { gare: "Molsheim", heure: "16:43", arret: 2 },
+          { gare: "Duttlenheim", heure: "16:53", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "17:01", arret: 1 },
+          { gare: "Lingolsheim", heure: "17:08", arret: 1 },
+          { gare: "Strasbourg", heure: "17:17", arret: 4 }
+        ]
+      },
+      {
+        nom: "Strasbourg → Schirmeck - La Broque",
+        dessertes: [
+          { gare: "Strasbourg", heure: "17:47", arret: 4 },
+          { gare: "Lingolsheim", heure: "17:59", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "18:06", arret: 1 },
+          { gare: "Duttlenheim", heure: "18:14", arret: 1 },
+          { gare: "Molsheim", heure: "18:23", arret: 2 },
+          { gare: "Gresswiller", heure: "18:35", arret: 1 },
+          { gare: "Urmatt", heure: "18:47", arret: 1 },
+          { gare: "Wisches", heure: "18:57", arret: 1 },
+          { gare: "Schirmeck - La Broque", heure: "19:06", arret: 2 }
+        ]
+      },
+      {
+        nom: "Schirmeck - La Broque → Strasbourg",
+        dessertes: [
+          { gare: "Schirmeck - La Broque", heure: "20:00", arret: 2 },
+          { gare: "Wisches", heure: "20:10", arret: 1 },
+          { gare: "Urmatt", heure: "20:20", arret: 1 },
+          { gare: "Gresswiller", heure: "20:32", arret: 1 },
+          { gare: "Molsheim", heure: "20:43", arret: 2 },
+          { gare: "Duttlenheim", heure: "20:53", arret: 1 },
+          { gare: "Entzheim-Aéroport", heure: "21:01", arret: 1 },
+          { gare: "Lingolsheim", heure: "21:08", arret: 1 },
+          { gare: "Strasbourg", heure: "21:17", arret: 4 }
         ]
       }
     ]
@@ -6069,615 +9154,6 @@ export const trainsFR = [
           { gare: "Hoenheim Tram", heure: "23:16", arret: 1 },
           { gare: "Bischheim", heure: "23:20", arret: 1 },
           { gare: "Strasbourg", heure: "23:25", arret: 4 }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: "TER 3110",
-    nom: "AGC fluoGrandEst 4C",
-    moteurs: ["diesel"],
-    vitesseMax: 160,
-    capacite: { premiere: 24, seconde: 183 },
-    trajets: [
-      {
-        nom: "Sélestat → Strasbourg",
-        dessertes: [
-          { gare: "Sélestat", heure: "06:55", arret: 5 },
-          { gare: "Scherwiller", heure: "07:05", arret: 1 },
-          { gare: "Dambach-la-Ville", heure: "07:11", arret: 1 },
-          { gare: "Eichhoffen", heure: "07:21", arret: 1 },
-          { gare: "Gertwiller", heure: "07:27", arret: 1 },
-          { gare: "Obernai", heure: "07:36", arret: 2 },
-          { gare: "Bischoffsheim", heure: "07:42", arret: 1 },
-          { gare: "Rosheim", heure: "07:46", arret: 1 },
-          { gare: "Molsheim", heure: "07:52", arret: 2 },
-          { gare: "Duttlenheim", heure: "08:02", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "08:10", arret: 2 },
-          { gare: "Lingolsheim", heure: "08:18", arret: 1 },
-          { gare: "Strasbourg", heure: "08:27", arret: 5 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Sélestat",
-        dessertes: [
-          { gare: "Strasbourg", heure: "09:00", arret: 5 },
-          { gare: "Lingolsheim", heure: "09:13", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "09:20", arret: 2 },
-          { gare: "Duttlenheim", heure: "09:29", arret: 1 },
-          { gare: "Molsheim", heure: "09:38", arret: 2 },
-          { gare: "Rosheim", heure: "09:45", arret: 1 },
-          { gare: "Bischoffsheim", heure: "09:49", arret: 1 },
-          { gare: "Obernai", heure: "09:54", arret: 2 },
-          { gare: "Gertwiller", heure: "10:04", arret: 1 },
-          { gare: "Eichhoffen", heure: "10:10", arret: 1 },
-          { gare: "Dambach-la-Ville", heure: "10:20", arret: 1 },
-          { gare: "Scherwiller", heure: "10:26", arret: 1 },
-          { gare: "Sélestat", heure: "10:32", arret: 5 }
-        ]
-      },
-      {
-        nom: "Sélestat → Strasbourg",
-        dessertes: [
-          { gare: "Sélestat", heure: "10:55", arret: 5 },
-          { gare: "Scherwiller", heure: "11:05", arret: 1 },
-          { gare: "Dambach-la-Ville", heure: "11:11", arret: 1 },
-          { gare: "Eichhoffen", heure: "11:21", arret: 1 },
-          { gare: "Gertwiller", heure: "11:27", arret: 1 },
-          { gare: "Obernai", heure: "11:36", arret: 2 },
-          { gare: "Bischoffsheim", heure: "11:42", arret: 1 },
-          { gare: "Rosheim", heure: "11:46", arret: 1 },
-          { gare: "Molsheim", heure: "11:52", arret: 2 },
-          { gare: "Duttlenheim", heure: "12:02", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "12:10", arret: 2 },
-          { gare: "Lingolsheim", heure: "12:18", arret: 1 },
-          { gare: "Strasbourg", heure: "12:27", arret: 5 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Sélestat",
-        dessertes: [
-          { gare: "Strasbourg", heure: "13:00", arret: 5 },
-          { gare: "Lingolsheim", heure: "13:13", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "13:20", arret: 2 },
-          { gare: "Duttlenheim", heure: "13:29", arret: 1 },
-          { gare: "Molsheim", heure: "13:38", arret: 2 },
-          { gare: "Rosheim", heure: "13:45", arret: 1 },
-          { gare: "Bischoffsheim", heure: "13:49", arret: 1 },
-          { gare: "Obernai", heure: "13:54", arret: 2 },
-          { gare: "Gertwiller", heure: "14:04", arret: 1 },
-          { gare: "Eichhoffen", heure: "14:10", arret: 1 },
-          { gare: "Dambach-la-Ville", heure: "14:20", arret: 1 },
-          { gare: "Scherwiller", heure: "14:26", arret: 1 },
-          { gare: "Sélestat", heure: "14:32", arret: 5 }
-        ]
-      },
-      {
-        nom: "Sélestat → Strasbourg",
-        dessertes: [
-          { gare: "Sélestat", heure: "14:55", arret: 5 },
-          { gare: "Scherwiller", heure: "15:05", arret: 1 },
-          { gare: "Dambach-la-Ville", heure: "15:11", arret: 1 },
-          { gare: "Eichhoffen", heure: "15:21", arret: 1 },
-          { gare: "Gertwiller", heure: "15:27", arret: 1 },
-          { gare: "Obernai", heure: "15:36", arret: 2 },
-          { gare: "Bischoffsheim", heure: "15:42", arret: 1 },
-          { gare: "Rosheim", heure: "15:46", arret: 1 },
-          { gare: "Molsheim", heure: "15:52", arret: 2 },
-          { gare: "Duttlenheim", heure: "16:02", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "16:10", arret: 3 },
-          { gare: "Lingolsheim", heure: "16:19", arret: 1 },
-          { gare: "Strasbourg", heure: "16:28", arret: 5 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Sélestat",
-        dessertes: [
-          { gare: "Strasbourg", heure: "17:00", arret: 5 },
-          { gare: "Lingolsheim", heure: "17:13", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "17:20", arret: 2 },
-          { gare: "Duttlenheim", heure: "17:29", arret: 1 },
-          { gare: "Molsheim", heure: "17:38", arret: 2 },
-          { gare: "Rosheim", heure: "17:45", arret: 1 },
-          { gare: "Bischoffsheim", heure: "17:49", arret: 1 },
-          { gare: "Obernai", heure: "17:54", arret: 2 },
-          { gare: "Gertwiller", heure: "18:04", arret: 1 },
-          { gare: "Eichhoffen", heure: "18:10", arret: 1 },
-          { gare: "Dambach-la-Ville", heure: "18:20", arret: 1 },
-          { gare: "Scherwiller", heure: "18:26", arret: 1 },
-          { gare: "Sélestat", heure: "18:32", arret: 5 }
-        ]
-      },
-      {
-        nom: "Sélestat → Strasbourg",
-        dessertes: [
-          { gare: "Sélestat", heure: "18:55", arret: 5 },
-          { gare: "Scherwiller", heure: "19:05", arret: 1 },
-          { gare: "Dambach-la-Ville", heure: "19:11", arret: 1 },
-          { gare: "Eichhoffen", heure: "19:21", arret: 1 },
-          { gare: "Gertwiller", heure: "19:27", arret: 1 },
-          { gare: "Obernai", heure: "19:36", arret: 2 },
-          { gare: "Bischoffsheim", heure: "19:42", arret: 1 },
-          { gare: "Rosheim", heure: "19:46", arret: 1 },
-          { gare: "Molsheim", heure: "19:52", arret: 2 },
-          { gare: "Duttlenheim", heure: "20:02", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "20:10", arret: 2 },
-          { gare: "Lingolsheim", heure: "20:18", arret: 1 },
-          { gare: "Strasbourg", heure: "20:27", arret: 5 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Sélestat",
-        dessertes: [
-          { gare: "Strasbourg", heure: "21:00", arret: 5 },
-          { gare: "Lingolsheim", heure: "21:13", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "21:20", arret: 2 },
-          { gare: "Duttlenheim", heure: "21:29", arret: 1 },
-          { gare: "Molsheim", heure: "21:38", arret: 2 },
-          { gare: "Rosheim", heure: "21:45", arret: 1 },
-          { gare: "Bischoffsheim", heure: "21:49", arret: 1 },
-          { gare: "Obernai", heure: "21:54", arret: 2 },
-          { gare: "Gertwiller", heure: "22:04", arret: 1 },
-          { gare: "Eichhoffen", heure: "22:10", arret: 1 },
-          { gare: "Dambach-la-Ville", heure: "22:20", arret: 1 },
-          { gare: "Scherwiller", heure: "22:26", arret: 1 },
-          { gare: "Sélestat", heure: "22:32", arret: 5 }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: "TER 3111",
-    nom: "AGC fluoGrandEst 3C",
-    moteurs: ["diesel"],
-    vitesseMax: 160,
-    capacite: { premiere: 24, seconde: 134 },
-    trajets: [
-      {
-        nom: "Strasbourg → Obernai",
-        dessertes: [
-          { gare: "Strasbourg", heure: "06:00", arret: 5 },
-          { gare: "Lingolsheim", heure: "06:13", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "06:20", arret: 2 },
-          { gare: "Duttlenheim", heure: "06:29", arret: 1 },
-          { gare: "Molsheim", heure: "06:38", arret: 2 },
-          { gare: "Rosheim", heure: "06:45", arret: 1 },
-          { gare: "Bischoffsheim", heure: "06:49", arret: 1 },
-          { gare: "Obernai", heure: "06:54", arret: 2 }
-        ]
-      },
-      {
-        nom: "Obernai → Strasbourg",
-        dessertes: [
-          { gare: "Obernai", heure: "08:00", arret: 2 },
-          { gare: "Bischoffsheim", heure: "08:06", arret: 1 },
-          { gare: "Rosheim", heure: "08:10", arret: 1 },
-          { gare: "Molsheim", heure: "08:16", arret: 2 },
-          { gare: "Duttlenheim", heure: "08:26", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "08:34", arret: 2 },
-          { gare: "Lingolsheim", heure: "08:42", arret: 1 },
-          { gare: "Strasbourg", heure: "08:51", arret: 5 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Obernai",
-        dessertes: [
-          { gare: "Strasbourg", heure: "10:00", arret: 5 },
-          { gare: "Lingolsheim", heure: "10:13", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "10:20", arret: 2 },
-          { gare: "Duttlenheim", heure: "10:29", arret: 1 },
-          { gare: "Molsheim", heure: "10:38", arret: 2 },
-          { gare: "Rosheim", heure: "10:45", arret: 1 },
-          { gare: "Bischoffsheim", heure: "10:49", arret: 1 },
-          { gare: "Obernai", heure: "10:54", arret: 2 }
-        ]
-      },
-      {
-        nom: "Obernai → Strasbourg",
-        dessertes: [
-          { gare: "Obernai", heure: "12:00", arret: 2 },
-          { gare: "Bischoffsheim", heure: "12:06", arret: 1 },
-          { gare: "Rosheim", heure: "12:10", arret: 1 },
-          { gare: "Molsheim", heure: "12:16", arret: 2 },
-          { gare: "Duttlenheim", heure: "12:26", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "12:34", arret: 2 },
-          { gare: "Lingolsheim", heure: "12:42", arret: 1 },
-          { gare: "Strasbourg", heure: "12:51", arret: 5 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Obernai",
-        dessertes: [
-          { gare: "Strasbourg", heure: "14:00", arret: 5 },
-          { gare: "Lingolsheim", heure: "14:13", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "14:20", arret: 2 },
-          { gare: "Duttlenheim", heure: "14:29", arret: 1 },
-          { gare: "Molsheim", heure: "14:38", arret: 2 },
-          { gare: "Rosheim", heure: "14:45", arret: 1 },
-          { gare: "Bischoffsheim", heure: "14:49", arret: 1 },
-          { gare: "Obernai", heure: "14:54", arret: 2 }
-        ]
-      },
-      {
-        nom: "Obernai → Strasbourg",
-        dessertes: [
-          { gare: "Obernai", heure: "16:00", arret: 2 },
-          { gare: "Bischoffsheim", heure: "16:06", arret: 1 },
-          { gare: "Rosheim", heure: "16:10", arret: 1 },
-          { gare: "Molsheim", heure: "16:16", arret: 2 },
-          { gare: "Duttlenheim", heure: "16:26", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "16:34", arret: 2 },
-          { gare: "Lingolsheim", heure: "16:42", arret: 1 },
-          { gare: "Strasbourg", heure: "16:51", arret: 5 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Obernai",
-        dessertes: [
-          { gare: "Strasbourg", heure: "18:00", arret: 5 },
-          { gare: "Lingolsheim", heure: "18:13", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "18:20", arret: 2 },
-          { gare: "Duttlenheim", heure: "18:29", arret: 1 },
-          { gare: "Molsheim", heure: "18:38", arret: 2 },
-          { gare: "Rosheim", heure: "18:45", arret: 1 },
-          { gare: "Bischoffsheim", heure: "18:49", arret: 1 },
-          { gare: "Obernai", heure: "18:54", arret: 2 }
-        ]
-      },
-      {
-        nom: "Obernai → Strasbourg",
-        dessertes: [
-          { gare: "Obernai", heure: "20:00", arret: 2 },
-          { gare: "Bischoffsheim", heure: "20:06", arret: 1 },
-          { gare: "Rosheim", heure: "20:10", arret: 1 },
-          { gare: "Molsheim", heure: "20:16", arret: 2 },
-          { gare: "Duttlenheim", heure: "20:26", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "20:34", arret: 2 },
-          { gare: "Lingolsheim", heure: "20:42", arret: 1 },
-          { gare: "Strasbourg", heure: "20:51", arret: 5 }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: "TER 3112",
-    nom: "AGC Alsace 3C",
-    moteurs: ["diesel"],
-    vitesseMax: 160,
-    capacite: { premiere: 24, seconde: 134 },
-    trajets: [
-      {
-        nom: "Obernai → Hoenheim Tram",
-        dessertes: [
-          { gare: "Obernai", heure: "08:30", arret: 4 },
-          { gare: "Bischoffsheim", heure: "08:38", arret: 1 },
-          { gare: "Rosheim", heure: "08:42", arret: 1 },
-          { gare: "Molsheim", heure: "08:48", arret: 2 },
-          { gare: "Duttlenheim", heure: "08:58", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "09:06", arret: 2 },
-          { gare: "Lingolsheim", heure: "09:14", arret: 1 },
-          { gare: "Strasbourg", heure: "09:23", arret: 5 },
-          { gare: "Bischheim", heure: "09:32", arret: 1 },
-          { gare: "Hoenheim Tram", heure: "09:36", arret: 4 }
-        ]
-      },
-      {
-        nom: "Hoenheim Tram → Obernai",
-        dessertes: [
-          { gare: "Hoenheim Tram", heure: "10:30", arret: 4 },
-          { gare: "Bischheim", heure: "10:37", arret: 1 },
-          { gare: "Strasbourg", heure: "10:42", arret: 5 },
-          { gare: "Lingolsheim", heure: "10:55", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "11:02", arret: 2 },
-          { gare: "Duttlenheim", heure: "11:11", arret: 1 },
-          { gare: "Molsheim", heure: "11:20", arret: 2 },
-          { gare: "Rosheim", heure: "11:27", arret: 1 },
-          { gare: "Bischoffsheim", heure: "11:31", arret: 1 },
-          { gare: "Obernai", heure: "11:36", arret: 4 }
-        ]
-      },
-      {
-        nom: "Obernai → Hoenheim Tram",
-        dessertes: [
-          { gare: "Obernai", heure: "13:30", arret: 4 },
-          { gare: "Bischoffsheim", heure: "13:38", arret: 1 },
-          { gare: "Rosheim", heure: "13:42", arret: 1 },
-          { gare: "Molsheim", heure: "13:48", arret: 2 },
-          { gare: "Duttlenheim", heure: "13:58", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "14:06", arret: 2 },
-          { gare: "Lingolsheim", heure: "14:14", arret: 1 },
-          { gare: "Strasbourg", heure: "14:23", arret: 5 },
-          { gare: "Bischheim", heure: "14:32", arret: 1 },
-          { gare: "Hoenheim Tram", heure: "14:36", arret: 4 }
-        ]
-      },
-      {
-        nom: "Hoenheim Tram → Obernai",
-        dessertes: [
-          { gare: "Hoenheim Tram", heure: "15:00", arret: 4 },
-          { gare: "Bischheim", heure: "15:07", arret: 1 },
-          { gare: "Strasbourg", heure: "15:12", arret: 5 },
-          { gare: "Lingolsheim", heure: "15:25", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "15:32", arret: 2 },
-          { gare: "Duttlenheim", heure: "15:41", arret: 1 },
-          { gare: "Molsheim", heure: "15:50", arret: 2 },
-          { gare: "Rosheim", heure: "15:57", arret: 1 },
-          { gare: "Bischoffsheim", heure: "16:01", arret: 1 },
-          { gare: "Obernai", heure: "16:06", arret: 4 }
-        ]
-      },
-      {
-        nom: "Obernai → Hoenheim Tram",
-        dessertes: [
-          { gare: "Obernai", heure: "17:30", arret: 4 },
-          { gare: "Bischoffsheim", heure: "17:38", arret: 1 },
-          { gare: "Rosheim", heure: "17:42", arret: 1 },
-          { gare: "Molsheim", heure: "17:48", arret: 2 },
-          { gare: "Duttlenheim", heure: "17:58", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "18:06", arret: 2 },
-          { gare: "Lingolsheim", heure: "18:14", arret: 1 },
-          { gare: "Strasbourg", heure: "18:23", arret: 5 },
-          { gare: "Bischheim", heure: "18:32", arret: 1 },
-          { gare: "Hoenheim Tram", heure: "18:36", arret: 4 }
-        ]
-      },
-      {
-        nom: "Hoenheim Tram → Obernai",
-        dessertes: [
-          { gare: "Hoenheim Tram", heure: "20:00", arret: 4 },
-          { gare: "Bischheim", heure: "20:07", arret: 1 },
-          { gare: "Strasbourg", heure: "20:12", arret: 5 },
-          { gare: "Lingolsheim", heure: "20:25", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "20:32", arret: 2 },
-          { gare: "Duttlenheim", heure: "20:41", arret: 1 },
-          { gare: "Molsheim", heure: "20:50", arret: 2 },
-          { gare: "Rosheim", heure: "20:57", arret: 1 },
-          { gare: "Bischoffsheim", heure: "21:01", arret: 1 },
-          { gare: "Obernai", heure: "21:06", arret: 4 }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: "TER 3114",
-    nom: "AGC fluoGrandEst 3C",
-    moteurs: ["diesel"],
-    vitesseMax: 160,
-    capacite: { premiere: 24, seconde: 134 },
-    trajets: [
-      {
-        nom: "Schirmeck - La Broque → Strasbourg",
-        dessertes: [
-          { gare: "Schirmeck - La Broque", heure: "06:00", arret: 2 },
-          { gare: "Wisches", heure: "06:10", arret: 1 },
-          { gare: "Urmatt", heure: "06:20", arret: 1 },
-          { gare: "Gresswiller", heure: "06:32", arret: 1 },
-          { gare: "Molsheim", heure: "06:43", arret: 2 },
-          { gare: "Duttlenheim", heure: "06:53", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "07:01", arret: 1 },
-          { gare: "Lingolsheim", heure: "07:08", arret: 1 },
-          { gare: "Strasbourg", heure: "07:17", arret: 4 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Schirmeck - La Broque",
-        dessertes: [
-          { gare: "Strasbourg", heure: "07:47", arret: 4 },
-          { gare: "Lingolsheim", heure: "07:59", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "08:06", arret: 1 },
-          { gare: "Duttlenheim", heure: "08:14", arret: 1 },
-          { gare: "Molsheim", heure: "08:23", arret: 2 },
-          { gare: "Gresswiller", heure: "08:35", arret: 1 },
-          { gare: "Urmatt", heure: "08:47", arret: 1 },
-          { gare: "Wisches", heure: "08:57", arret: 1 },
-          { gare: "Schirmeck - La Broque", heure: "09:06", arret: 2 }
-        ]
-      },
-      {
-        nom: "Schirmeck - La Broque → Strasbourg",
-        dessertes: [
-          { gare: "Schirmeck - La Broque", heure: "10:00", arret: 2 },
-          { gare: "Wisches", heure: "10:10", arret: 1 },
-          { gare: "Urmatt", heure: "10:20", arret: 1 },
-          { gare: "Gresswiller", heure: "10:32", arret: 1 },
-          { gare: "Molsheim", heure: "10:43", arret: 2 },
-          { gare: "Duttlenheim", heure: "10:53", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "11:01", arret: 1 },
-          { gare: "Lingolsheim", heure: "11:08", arret: 1 },
-          { gare: "Strasbourg", heure: "11:17", arret: 4 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Schirmeck - La Broque",
-        dessertes: [
-          { gare: "Strasbourg", heure: "11:47", arret: 4 },
-          { gare: "Lingolsheim", heure: "11:59", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "12:06", arret: 1 },
-          { gare: "Duttlenheim", heure: "12:14", arret: 1 },
-          { gare: "Molsheim", heure: "12:23", arret: 2 },
-          { gare: "Gresswiller", heure: "12:35", arret: 1 },
-          { gare: "Urmatt", heure: "12:47", arret: 1 },
-          { gare: "Wisches", heure: "12:57", arret: 1 },
-          { gare: "Schirmeck - La Broque", heure: "13:06", arret: 2 }
-        ]
-      },
-      {
-        nom: "Schirmeck - La Broque → Strasbourg",
-        dessertes: [
-          { gare: "Schirmeck - La Broque", heure: "14:00", arret: 2 },
-          { gare: "Wisches", heure: "14:10", arret: 1 },
-          { gare: "Urmatt", heure: "14:20", arret: 1 },
-          { gare: "Gresswiller", heure: "14:32", arret: 1 },
-          { gare: "Molsheim", heure: "14:43", arret: 2 },
-          { gare: "Duttlenheim", heure: "14:53", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "15:01", arret: 1 },
-          { gare: "Lingolsheim", heure: "15:08", arret: 1 },
-          { gare: "Strasbourg", heure: "15:17", arret: 4 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Schirmeck - La Broque",
-        dessertes: [
-          { gare: "Strasbourg", heure: "15:47", arret: 4 },
-          { gare: "Lingolsheim", heure: "15:59", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "16:06", arret: 1 },
-          { gare: "Duttlenheim", heure: "16:14", arret: 1 },
-          { gare: "Molsheim", heure: "16:23", arret: 2 },
-          { gare: "Gresswiller", heure: "16:35", arret: 1 },
-          { gare: "Urmatt", heure: "16:47", arret: 1 },
-          { gare: "Wisches", heure: "16:57", arret: 1 },
-          { gare: "Schirmeck - La Broque", heure: "17:06", arret: 2 }
-        ]
-      },
-      {
-        nom: "Schirmeck - La Broque → Strasbourg",
-        dessertes: [
-          { gare: "Schirmeck - La Broque", heure: "18:00", arret: 2 },
-          { gare: "Wisches", heure: "18:10", arret: 1 },
-          { gare: "Urmatt", heure: "18:20", arret: 1 },
-          { gare: "Gresswiller", heure: "18:32", arret: 1 },
-          { gare: "Molsheim", heure: "18:43", arret: 2 },
-          { gare: "Duttlenheim", heure: "18:53", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "19:01", arret: 1 },
-          { gare: "Lingolsheim", heure: "19:08", arret: 1 },
-          { gare: "Strasbourg", heure: "19:17", arret: 4 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Schirmeck - La Broque",
-        dessertes: [
-          { gare: "Strasbourg", heure: "19:47", arret: 4 },
-          { gare: "Lingolsheim", heure: "19:59", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "20:06", arret: 1 },
-          { gare: "Duttlenheim", heure: "20:14", arret: 1 },
-          { gare: "Molsheim", heure: "20:23", arret: 2 },
-          { gare: "Gresswiller", heure: "20:35", arret: 1 },
-          { gare: "Urmatt", heure: "20:47", arret: 1 },
-          { gare: "Wisches", heure: "20:57", arret: 1 },
-          { gare: "Schirmeck - La Broque", heure: "21:06", arret: 2 }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: "TER 3115",
-    nom: "AGC Alsace 3C",
-    moteurs: ["diesel"],
-    vitesseMax: 160,
-    capacite: { premiere: 24, seconde: 134 },
-    trajets: [
-      {
-        nom: "Strasbourg → Schirmeck - La Broque",
-        dessertes: [
-          { gare: "Strasbourg", heure: "05:47", arret: 4 },
-          { gare: "Lingolsheim", heure: "05:59", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "06:06", arret: 1 },
-          { gare: "Duttlenheim", heure: "06:14", arret: 1 },
-          { gare: "Molsheim", heure: "06:23", arret: 2 },
-          { gare: "Gresswiller", heure: "06:35", arret: 1 },
-          { gare: "Urmatt", heure: "06:47", arret: 1 },
-          { gare: "Wisches", heure: "06:57", arret: 1 },
-          { gare: "Schirmeck - La Broque", heure: "07:06", arret: 2 }
-        ]
-      },
-      {
-        nom: "Schirmeck - La Broque → Strasbourg",
-        dessertes: [
-          { gare: "Schirmeck - La Broque", heure: "08:00", arret: 2 },
-          { gare: "Wisches", heure: "08:10", arret: 1 },
-          { gare: "Urmatt", heure: "08:20", arret: 1 },
-          { gare: "Gresswiller", heure: "08:32", arret: 1 },
-          { gare: "Molsheim", heure: "08:43", arret: 1 },
-          { gare: "Strasbourg", heure: "09:12", arret: 4 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Schirmeck - La Broque",
-        dessertes: [
-          { gare: "Strasbourg", heure: "09:42", arret: 4 },
-          { gare: "Lingolsheim", heure: "09:54", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "10:01", arret: 1 },
-          { gare: "Duttlenheim", heure: "10:09", arret: 1 },
-          { gare: "Molsheim", heure: "10:18", arret: 1 },
-          { gare: "Gresswiller", heure: "10:29", arret: 1 },
-          { gare: "Urmatt", heure: "10:41", arret: 1 },
-          { gare: "Wisches", heure: "10:51", arret: 1 },
-          { gare: "Schirmeck - La Broque", heure: "11:00", arret: 2 }
-        ]
-      },
-      {
-        nom: "Schirmeck - La Broque → Strasbourg",
-        dessertes: [
-          { gare: "Schirmeck - La Broque", heure: "12:00", arret: 2 },
-          { gare: "Wisches", heure: "12:10", arret: 1 },
-          { gare: "Urmatt", heure: "12:20", arret: 1 },
-          { gare: "Gresswiller", heure: "12:32", arret: 1 },
-          { gare: "Molsheim", heure: "12:43", arret: 2 },
-          { gare: "Duttlenheim", heure: "12:53", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "13:01", arret: 1 },
-          { gare: "Lingolsheim", heure: "13:08", arret: 1 },
-          { gare: "Strasbourg", heure: "13:17", arret: 4 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Schirmeck - La Broque",
-        dessertes: [
-          { gare: "Strasbourg", heure: "13:47", arret: 4 },
-          { gare: "Lingolsheim", heure: "13:59", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "14:06", arret: 1 },
-          { gare: "Duttlenheim", heure: "14:14", arret: 1 },
-          { gare: "Molsheim", heure: "14:23", arret: 2 },
-          { gare: "Gresswiller", heure: "14:35", arret: 1 },
-          { gare: "Urmatt", heure: "14:47", arret: 1 },
-          { gare: "Wisches", heure: "14:57", arret: 1 },
-          { gare: "Schirmeck - La Broque", heure: "15:06", arret: 2 }
-        ]
-      },
-      {
-        nom: "Schirmeck - La Broque → Strasbourg",
-        dessertes: [
-          { gare: "Schirmeck - La Broque", heure: "16:00", arret: 2 },
-          { gare: "Wisches", heure: "16:10", arret: 1 },
-          { gare: "Urmatt", heure: "16:20", arret: 1 },
-          { gare: "Gresswiller", heure: "16:32", arret: 1 },
-          { gare: "Molsheim", heure: "16:43", arret: 2 },
-          { gare: "Duttlenheim", heure: "16:53", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "17:01", arret: 1 },
-          { gare: "Lingolsheim", heure: "17:08", arret: 1 },
-          { gare: "Strasbourg", heure: "17:17", arret: 4 }
-        ]
-      },
-      {
-        nom: "Strasbourg → Schirmeck - La Broque",
-        dessertes: [
-          { gare: "Strasbourg", heure: "17:47", arret: 4 },
-          { gare: "Lingolsheim", heure: "17:59", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "18:06", arret: 1 },
-          { gare: "Duttlenheim", heure: "18:14", arret: 1 },
-          { gare: "Molsheim", heure: "18:23", arret: 2 },
-          { gare: "Gresswiller", heure: "18:35", arret: 1 },
-          { gare: "Urmatt", heure: "18:47", arret: 1 },
-          { gare: "Wisches", heure: "18:57", arret: 1 },
-          { gare: "Schirmeck - La Broque", heure: "19:06", arret: 2 }
-        ]
-      },
-      {
-        nom: "Schirmeck - La Broque → Strasbourg",
-        dessertes: [
-          { gare: "Schirmeck - La Broque", heure: "20:00", arret: 2 },
-          { gare: "Wisches", heure: "20:10", arret: 1 },
-          { gare: "Urmatt", heure: "20:20", arret: 1 },
-          { gare: "Gresswiller", heure: "20:32", arret: 1 },
-          { gare: "Molsheim", heure: "20:43", arret: 2 },
-          { gare: "Duttlenheim", heure: "20:53", arret: 1 },
-          { gare: "Entzheim-Aéroport", heure: "21:01", arret: 1 },
-          { gare: "Lingolsheim", heure: "21:08", arret: 1 },
-          { gare: "Strasbourg", heure: "21:17", arret: 4 }
         ]
       }
     ]
@@ -8384,136 +10860,6 @@ export const trainsFR = [
           { gare: "Colmar", heure: "21:53", arret: 2 },
           { gare: "Sélestat", heure: "22:06", arret: 1 },
           { gare: "Strasbourg", heure: "22:33", arret: 2 }
-        ]
-      }
-    ]
-  },
-
-  {
-    id: "TER2055",
-    nom: "AGC Alsace 3C",
-    moteurs: ["diesel"],
-    vitesseMax: 160,
-    capacite: { premiere: 24, seconde: 134 },
-    trajets: [
-      {
-        nom: "Metzeral → Colmar",
-        dessertes: [
-          { gare: "Metzeral", heure: "07:00", arret: 1 },
-          { gare: "Muhlbach-sur-Munster", heure: "07:04", arret: 1 },
-          { gare: "Munster", heure: "07:12", arret: 2 },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "07:24", arret: 1 },
-          { gare: "Turckheim", heure: "07:36", arret: 1 },
-          { gare: "Logelbach", heure: "07:43", arret: 1 },
-          { gare: "Colmar", heure: "07:48", arret: 2 }
-        ]
-      },
-      {
-        nom: "Colmar → Metzeral",
-        dessertes: [
-          { gare: "Colmar", heure: "08:30", arret: 2 },
-          { gare: "Logelbach", heure: "08:36", arret: 1 },
-          { gare: "Turckheim", heure: "08:43", arret: 1 },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "08:55", arret: 1 },
-          { gare: "Munster", heure: "09:06", arret: 2 },
-          { gare: "Muhlbach-sur-Munster", heure: "09:15", arret: 1 },
-          { gare: "Metzeral", heure: "09:19", arret: 1 }
-        ]
-      },
-      {
-        nom: "Metzeral → Colmar",
-        dessertes: [
-          { gare: "Metzeral", heure: "10:00", arret: 1 },
-          { gare: "Muhlbach-sur-Munster", heure: "10:04", arret: 1 },
-          { gare: "Munster", heure: "10:12", arret: 2 },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "10:24", arret: 1 },
-          { gare: "Turckheim", heure: "10:36", arret: 1 },
-          { gare: "Logelbach", heure: "10:43", arret: 1 },
-          { gare: "Colmar", heure: "10:48", arret: 2 }
-        ]
-      },
-      {
-        nom: "Colmar → Metzeral",
-        dessertes: [
-          { gare: "Colmar", heure: "11:30", arret: 2 },
-          { gare: "Logelbach", heure: "11:36", arret: 1 },
-          { gare: "Turckheim", heure: "11:43", arret: 1 },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "11:55", arret: 1 },
-          { gare: "Munster", heure: "12:06", arret: 2 },
-          { gare: "Muhlbach-sur-Munster", heure: "12:15", arret: 1 },
-          { gare: "Metzeral", heure: "12:19", arret: 1 }
-        ]
-      },
-      {
-        nom: "Metzeral → Colmar",
-        dessertes: [
-          { gare: "Metzeral", heure: "13:00", arret: 1 },
-          { gare: "Muhlbach-sur-Munster", heure: "13:04", arret: 1 },
-          { gare: "Munster", heure: "13:12", arret: 2 },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "13:24", arret: 1 },
-          { gare: "Turckheim", heure: "13:36", arret: 1 },
-          { gare: "Logelbach", heure: "13:43", arret: 1 },
-          { gare: "Colmar", heure: "13:48", arret: 2 }
-        ]
-      },
-      {
-        nom: "Colmar → Metzeral",
-        dessertes: [
-          { gare: "Colmar", heure: "14:30", arret: 2 },
-          { gare: "Logelbach", heure: "14:36", arret: 1 },
-          { gare: "Turckheim", heure: "14:43", arret: 1 },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "14:55", arret: 1 },
-          { gare: "Munster", heure: "15:06", arret: 2 },
-          { gare: "Muhlbach-sur-Munster", heure: "15:15", arret: 1 },
-          { gare: "Metzeral", heure: "15:19", arret: 1 }
-        ]
-      },
-      {
-        nom: "Metzeral → Colmar",
-        dessertes: [
-          { gare: "Metzeral", heure: "16:00", arret: 1 },
-          { gare: "Muhlbach-sur-Munster", heure: "16:04", arret: 1 },
-          { gare: "Munster", heure: "16:12", arret: 2 },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "16:24", arret: 1 },
-          { gare: "Turckheim", heure: "16:36", arret: 1 },
-          { gare: "Logelbach", heure: "16:43", arret: 1 },
-          { gare: "Colmar", heure: "16:48", arret: 2 }
-        ]
-      },
-      {
-        nom: "Colmar → Metzeral",
-        dessertes: [
-          { gare: "Colmar", heure: "17:30", arret: 2 },
-          { gare: "Logelbach", heure: "17:36", arret: 1 },
-          { gare: "Turckheim", heure: "17:43", arret: 1 },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "17:55", arret: 1 },
-          { gare: "Munster", heure: "18:06", arret: 2 },
-          { gare: "Muhlbach-sur-Munster", heure: "18:15", arret: 1 },
-          { gare: "Metzeral", heure: "18:19", arret: 1 }
-        ]
-      },
-      {
-        nom: "Metzeral → Colmar",
-        dessertes: [
-          { gare: "Metzeral", heure: "19:00", arret: 1 },
-          { gare: "Muhlbach-sur-Munster", heure: "19:04", arret: 1 },
-          { gare: "Munster", heure: "19:12", arret: 2 },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "19:24", arret: 1 },
-          { gare: "Turckheim", heure: "19:36", arret: 1 },
-          { gare: "Logelbach", heure: "19:43", arret: 1 },
-          { gare: "Colmar", heure: "19:48", arret: 2 }
-        ]
-      },
-      {
-        nom: "Colmar → Metzeral",
-        dessertes: [
-          { gare: "Colmar", heure: "20:30", arret: 2 },
-          { gare: "Logelbach", heure: "20:36", arret: 1 },
-          { gare: "Turckheim", heure: "20:43", arret: 1 },
-          { gare: "Wihr-au-Val - Soultzbach", heure: "20:55", arret: 1 },
-          { gare: "Munster", heure: "21:06", arret: 2 },
-          { gare: "Muhlbach-sur-Munster", heure: "21:15", arret: 1 },
-          { gare: "Metzeral", heure: "21:19", arret: 1 }
         ]
       }
     ]
