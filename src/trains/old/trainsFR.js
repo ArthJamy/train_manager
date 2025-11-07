@@ -11604,33 +11604,5 @@ export const trainsFR = [
         ]
       }
     ]
-  },
-
-  {
-    id: "TGV Lyria Pest Gnv",
-    nom: "TGVEuroDuplex lyria 8C",
-    moteurs: ["25kV CA", "1.5kV CC", "15kV CA"],
-    vitesseMax: 320,
-    capacite: { premiere: 158, seconde: 398 },
-    trajets: [
-      {
-        nom: "Gare de Lyon → Genève",
-        dessertes: [
-          { gare: "Gare de Lyon", heure: "07:15", arret: 5 },
-          { gare: "Mâcon Loché TGV", heure: "08:59", arret: 2 },
-          { gare: "Bourg-en-Bresse", heure: "09:26", arret: 2 },
-          { gare: "Genève", heure: "11:12", arret: 5 }
-        ]
-      },
-      {
-        nom: "Genève → Gare de Lyon",
-        dessertes: [
-          { gare: "Genève", heure: "11:42", arret: 5 },
-          { gare: "Bourg-en-Bresse", heure: "13:31", arret: 2 },
-          { gare: "Mâcon Loché TGV", heure: "13:58", arret: 2 },
-          { gare: "Gare de Lyon", heure: "15:39", arret: 5 }
-        ]
-      }
-    ]
   }
 ];

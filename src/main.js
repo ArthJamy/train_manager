@@ -167,49 +167,62 @@ window.__trainRuntime = {
 
 // Affichage gares intermédiaires V3 (gares fantomes, LGV)
 function trouverCheminEntreGares(gareA, gareB, vitesseTrain = Infinity) {
+  // --- 1️⃣ Construction du graphe pondéré par le temps ---
   const graph = {};
   lignes.forEach(l => {
-    // 🚄 Si la ligne est une LGV (>201 km/h) et que le train ne dépasse pas 201 → on l'ignore
+    // 🚄 Ignore la ligne LGV uniquement si le train ne peut pas y circuler
     if ((l.vitesse_max || 0) > 201 && vitesseTrain <= 201) return;
+
+    const vitesseEffective = Math.min(l.vitesse_max || 100, vitesseTrain || 100);
+    const distance = l.longueur || 1;
+    const tempsHeures = distance / vitesseEffective; // coût = temps en heures
 
     if (!graph[l.gareA]) graph[l.gareA] = [];
     if (!graph[l.gareB]) graph[l.gareB] = [];
-    graph[l.gareA].push(l.gareB);
-    graph[l.gareB].push(l.gareA);
+    graph[l.gareA].push({ to: l.gareB, temps: tempsHeures });
+    graph[l.gareB].push({ to: l.gareA, temps: tempsHeures });
   });
 
-  const queue = [[gareA]];
-  const visited = new Set([gareA]);
+  // --- 2️⃣ Dijkstra pour temps minimal ---
+  const temps = {};
+  const previous = {};
+  const visited = new Set();
+  const pq = new Map();
 
-  while (queue.length > 0) {
-    const path = queue.shift();
-    const last = path[path.length - 1];
-    if (last === gareB) return path;
+  for (const k in graph) temps[k] = Infinity;
+  temps[gareA] = 0;
+  pq.set(gareA, 0);
 
-    const voisins = graph[last] || [];
-    for (const voisin of voisins) {
-      if (visited.has(voisin)) continue;
-      visited.add(voisin);
+  while (pq.size > 0) {
+    const [current] = [...pq.entries()].reduce((a, b) => (a[1] < b[1] ? a : b));
+    pq.delete(current);
 
-      const g = villes.find(v => v.nom === voisin);
-      if (!g) continue;
+    if (current === gareB) break;
+    if (visited.has(current)) continue;
+    visited.add(current);
 
-      if (g.fantome) {
-        // 🚧 Traverse les gares fantômes sans augmenter la "distance"
-        // On continue directement derrière elles
-        for (const next of graph[voisin] || []) {
-          if (!visited.has(next)) {
-            queue.push([...path, voisin, next]);
-          }
-        }
-      } else {
-        queue.push([...path, voisin]);
+    for (const voisin of graph[current] || []) {
+      const newTime = temps[current] + voisin.temps;
+      if (newTime < temps[voisin.to]) {
+        temps[voisin.to] = newTime;
+        previous[voisin.to] = current;
+        pq.set(voisin.to, newTime);
       }
     }
   }
 
-  return [gareA, gareB];
+  // --- 3️⃣ Reconstruction du chemin ---
+  const path = [];
+  let node = gareB;
+  while (node) {
+    path.unshift(node);
+    node = previous[node];
+  }
+
+  return path.length > 1 ? path : [gareA, gareB];
 }
+
+
 
 let fondDoitEtreRedessine = true;
 

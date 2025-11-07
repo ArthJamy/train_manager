@@ -373,6 +373,14 @@
       "type": "Voyageur"
     },
     {
+      "nom": "X73900 Bourgogne",
+      "moteurs": ["diesel"],
+      "vitesseMax": 140,
+      "capacite": { "premiere": 0, "seconde": 61 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
       "nom": "X73900 DB Sarre",
       "moteurs": ["diesel"],
       "vitesseMax": 120,
