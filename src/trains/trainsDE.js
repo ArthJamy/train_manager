@@ -403,9 +403,9 @@ export const trainsDE = [
         nom: "Stuttgart Hdf → Gare de l'Est",
         dessertes: [
           { gare: "Stuttgart Hdf", heure: "07:40", arret: 5 },
-          { gare: "Karlsruhe Hbf", heure: "08:20", arret: 5 },
-          { gare: "Strasbourg", heure: "09:20", arret: 5 },
-          { gare: "Gare de l'Est", heure: "11:47", arret: 5 }
+          { gare: "Karlsruhe Hbf", heure: "08:20", arret: 4 },
+          { gare: "Strasbourg", heure: "09:19", arret: 4 },
+          { gare: "Gare de l'Est", heure: "11:45", arret: 5 }
         ]
       },
       {
@@ -429,10 +429,10 @@ export const trainsDE = [
       {
         nom: "Basel Bad Bf → Stuttgart Hdf",
         dessertes: [
-          { gare: "Basel Bad Bf", heure: "20:18", arret: 4 },
-          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "20:53", arret: 6 },
-          { gare: "Karlsruhe Hbf", heure: "22:08", arret: 3 },
-          { gare: "Stuttgart Hdf", heure: "22:46", arret: 4 }
+          { gare: "Basel Bad Bf", heure: "21:18", arret: 4 },
+          { gare: "Freiburg (Breisgau) Hauptbahnhof", heure: "21:53", arret: 5 },
+          { gare: "Karlsruhe Hbf", heure: "23:08", arret: 2 },
+          { gare: "Stuttgart Hdf", heure: "23:45", arret: 4 }
         ]
       }
     ]

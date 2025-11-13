@@ -15064,6 +15064,36 @@ export const trainsFR = [
   },
 
   {
+    id: "TGV INOUI 0302",
+    nom: "TGVEuroDuplex InOui 8C",
+    moteurs: ["25kV CA", "1.5kV CC", "15kV CA"],
+    vitesseMax: 320,
+    capacite: { premiere: 158, seconde: 398 },
+    trajets: [
+      {
+        nom: "Mulhouse → Gare de Lyon",
+        dessertes: [
+          { gare: "Mulhouse", heure: "07:45", arret: 4 },
+          { gare: "Belfort - Montbéliard TGV", heure: "08:19", arret: 2 },
+          { gare: "Besancon Franche-Comté", heure: "08:45", arret: 2 },
+          { gare: "Dijon-Ville", heure: "09:19", arret: 4 },
+          { gare: "Gare de Lyon", heure: "11:22", arret: 5 }
+        ]
+      },
+      {
+        nom: "Gare de Lyon → Mulhouse",
+        dessertes: [
+          { gare: "Gare de Lyon", heure: "12:08", arret: 5 },
+          { gare: "Dijon-Ville", heure: "14:12", arret: 7 },
+          { gare: "Besancon Franche-Comté", heure: "14:51", arret: 5 },
+          { gare: "Belfort - Montbéliard TGV", heure: "15:20", arret: 5 },
+          { gare: "Mulhouse", heure: "15:55", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "TGV Lyria Pest Gnv",
     nom: "TGVEuroDuplex lyria 8C",
     moteurs: ["25kV CA", "1.5kV CC", "15kV CA"],
