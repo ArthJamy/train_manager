@@ -205,7 +205,47 @@
       "type": "Voyageur"
     },
     {
+      "nom": "BB26000 Fantôme",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "BB26000 Corail Plus",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "BB26000 Carmillon",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 200,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "BB22200 En Voyage",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
       "nom": "BB22200 RC Fluo",
+      "moteurs": ["25kV CA", "1.5kV CC"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "BB22200 RC PACA",
       "moteurs": ["25kV CA", "1.5kV CC"],
       "vitesseMax": 160,
       "capacite": { "premiere": 0, "seconde": 0 },
@@ -216,6 +256,22 @@
       "nom": "CC72100 SNCF",
       "moteurs": ["diesel"],
       "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR",
+      "type": "Poly"
+    },
+    {
+      "nom": "CC72000 TGV",
+      "moteurs": ["diesel"],
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 0 },
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "CC70000 SNCF",
+      "moteurs": ["diesel"],
+      "vitesseMax": 140,
       "capacite": { "premiere": 0, "seconde": 0 },
       "pays": "FR",
       "type": "Poly"
@@ -781,6 +837,23 @@
     },
     {
       "nom": "VTU B5uxh AuRa",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 0, "seconde": 40 },
+      "longueur": 26,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "VTU FC",
+      "vitesseMax": 160,
+      "capacite": { "premiere": 88, "seconde": 0 },
+      "poids": 40,
+      "longueur": 26,
+      "pays": "FR",
+      "type": "Voyageur"
+    },
+    {
+      "nom": "VTU B5uxh FC",
       "vitesseMax": 160,
       "capacite": { "premiere": 0, "seconde": 40 },
       "longueur": 26,
