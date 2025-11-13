@@ -683,6 +683,72 @@ export const trainsFR = [
   },
 
   {
+    id: "FLUO IC Rms Djn",
+    nom: "AGC Champagne-Ardenne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Dijon-Ville → Chaumont",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "13:00", arret: 2 },
+          { gare: "Dijon Porte Neuve", heure: "13:07", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "13:15", arret: 1 },
+          { gare: "Gemeaux", heure: "13:23", arret: 1 },
+          { gare: "Is-sur-tille", heure: "13:28", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "14:03", arret: 1 },
+          { gare: "Langres", heure: "14:13", arret: 1 },
+          { gare: "Chaumont", heure: "14:37", arret: 2 }
+        ]
+      },
+      {
+        nom: "Chaumont → Dijon-Ville",
+        dessertes: [
+          { gare: "Chaumont", heure: "15:10", arret: 2 },
+          { gare: "Langres", heure: "15:35", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "15:45", arret: 1 },
+          { gare: "Is-sur-tille", heure: "16:20", arret: 1 },
+          { gare: "Gemeaux", heure: "16:25", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "16:33", arret: 1 },
+          { gare: "Dijon Porte Neuve", heure: "16:41", arret: 1 },
+          { gare: "Dijon-Ville", heure: "16:47", arret: 2 }
+        ]
+      },
+      {
+        nom: "Reims → Dijon-Ville",
+        dessertes: [
+          { gare: "Reims", heure: "07:00", arret: 2 },
+          { gare: "Mourmelon-le-Petit", heure: "07:29", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "07:45", arret: 1 },
+          { gare: "Vitry-le-François", heure: "08:07", arret: 1 },
+          { gare: "Saint-Dizier", heure: "08:33", arret: 1 },
+          { gare: "Joinville", heure: "09:01", arret: 1 },
+          { gare: "Chaumont", heure: "09:34", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "10:06", arret: 1 },
+          { gare: "Is-sur-tille", heure: "10:41", arret: 1 },
+          { gare: "Dijon-Ville", heure: "11:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Reims",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "17:00", arret: 2 },
+          { gare: "Is-sur-tille", heure: "17:24", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "17:59", arret: 1 },
+          { gare: "Chaumont", heure: "18:31", arret: 1 },
+          { gare: "Joinville", heure: "19:04", arret: 1 },
+          { gare: "Saint-Dizier", heure: "19:32", arret: 1 },
+          { gare: "Vitry-le-François", heure: "19:58", arret: 1 },
+          { gare: "Châlons-En-Champagne", heure: "20:20", arret: 1 },
+          { gare: "Mourmelon-le-Petit", heure: "20:36", arret: 1 },
+          { gare: "Reims", heure: "21:04", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
     id: "FLUO IC Rms Mtz",
     nom: "CoradiaLiner fluoGrandEst 6C",
     moteurs: ["25kV CA", "1.5kV CC", "diesel"],
@@ -1592,6 +1658,307 @@ export const trainsFR = [
           { gare: "Nogent-sur-Seine", heure: "23:15", arret: 1 },
           { gare: "Romilly-sur-Seine", heure: "23:31", arret: 1 },
           { gare: "Troyes", heure: "23:57", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "IC Bel Lyn 1",
+    nom: "Regiolis BFC 6C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 304 },
+    trajets: [
+      {
+        nom: "Belfort-Ville → Lyon Part Dieu",
+        dessertes: [
+          { gare: "Belfort-Ville", heure: "07:30", arret: 2 },
+          { gare: "Montbéliard", heure: "07:45", arret: 1 },
+          { gare: "Besançon Viotte", heure: "09:16", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "09:48", arret: 1 },
+          { gare: "Lons-le-Saunier", heure: "10:27", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "11:10", arret: 2 },
+          { gare: "Ambérieu-en-Bugey", heure: "11:30", arret: 1 },
+          { gare: "Lyon Part Dieu", heure: "12:06", arret: 4 }
+        ]
+      },
+      {
+        nom: "Lyon Part Dieu → Belfort-Ville",
+        dessertes: [
+          { gare: "Lyon Part Dieu", heure: "15:10", arret: 4 },
+          { gare: "Ambérieu-en-Bugey", heure: "15:49", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "16:08", arret: 2 },
+          { gare: "Lons-le-Saunier", heure: "16:52", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "17:31", arret: 1 },
+          { gare: "Besançon Viotte", heure: "18:02", arret: 2 },
+          { gare: "Montbéliard", heure: "19:34", arret: 1 },
+          { gare: "Belfort-Ville", heure: "19:48", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "IC Bel Lyn 2",
+    nom: "Regiolis BFC 6C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 304 },
+    trajets: [
+      {
+        nom: "Lyon-Perrache → Belfort-Ville",
+        dessertes: [
+          { gare: "Lyon Part Dieu", heure: "07:10", arret: 4 },
+          { gare: "Ambérieu-en-Bugey", heure: "07:49", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "08:08", arret: 3 },
+          { gare: "Lons-le-Saunier", heure: "08:53", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "09:32", arret: 1 },
+          { gare: "Besançon Viotte", heure: "10:03", arret: 2 },
+          { gare: "Montbéliard", heure: "11:35", arret: 1 },
+          { gare: "Belfort-Ville", heure: "11:49", arret: 2 }
+        ]
+      },
+      {
+        nom: "Belfort-Ville → Lyon Part Dieu",
+        dessertes: [
+          { gare: "Belfort-Ville", heure: "18:00", arret: 2 },
+          { gare: "Montbéliard", heure: "18:15", arret: 1 },
+          { gare: "Besançon Viotte", heure: "19:46", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "20:18", arret: 1 },
+          { gare: "Lons-le-Saunier", heure: "20:57", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "21:40", arret: 3 },
+          { gare: "Ambérieu-en-Bugey", heure: "22:01", arret: 1 },
+          { gare: "Lyon Part Dieu", heure: "22:37", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "IC Djn 1",
+    nom: "BB7200 En Voyage Bourgogne",
+    moteurs: ["1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 120, seconde: 392 },
+    composition: ["VTU A BFC", "VTU A BFC", "VTU BFC", "VTU BFC", "VTU BFC", "VTU BFC", "VTU B5uxh BFC"],
+    trajets: [
+      {
+        nom: "Dijon-Ville → Gare de Lyon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "07:40", arret: 4 },
+          { gare: "Mâlain", heure: "07:58", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "08:25", arret: 1 },
+          { gare: "Laroche - Migennes", heure: "09:35", arret: 1 },
+          { gare: "Sens", heure: "10:02", arret: 1 },
+          { gare: "Montereau", heure: "10:29", arret: 1 },
+          { gare: "Melun", heure: "11:01", arret: 2 },
+          { gare: "Gare de Lyon", heure: "11:39", arret: 4 }
+        ]
+      },
+      {
+        nom: "Gare de Lyon → Dijon-Ville",
+        dessertes: [
+          { gare: "Gare de Lyon", heure: "13:10", arret: 4 },
+          { gare: "Melun", heure: "13:50", arret: 2 },
+          { gare: "Montereau", heure: "14:23", arret: 1 },
+          { gare: "Sens", heure: "14:50", arret: 1 },
+          { gare: "Laroche - Migennes", heure: "15:17", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "16:27", arret: 1 },
+          { gare: "Mâlain", heure: "16:54", arret: 1 },
+          { gare: "Dijon-Ville", heure: "17:09", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "17:50", arret: 4 },
+          { gare: "Chaugey", heure: "18:19", arret: 1 },
+          { gare: "Saint-Amour", heure: "19:15", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "19:35", arret: 2 }
+        ]
+      },
+      {
+        nom: "Bourg-en-Bresse → Dijon-Ville",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "20:00", arret: 2 },
+          { gare: "Saint-Amour", heure: "20:21", arret: 1 },
+          { gare: "Chaugey", heure: "21:17", arret: 1 },
+          { gare: "Dijon-Ville", heure: "21:43", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "IC Djn 2",
+    nom: "BB7200 En Voyage Bourgogne",
+    moteurs: ["1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 120, seconde: 392 },
+    composition: ["VTU A BFC", "VTU A BFC", "VTU BFC", "VTU BFC", "VTU BFC", "VTU BFC", "VTU B5uxh BFC"],
+    trajets: [
+      {
+        nom: "Dijon-Ville → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "08:00", arret: 2 },
+          { gare: "Chaugey", heure: "08:27", arret: 1 },
+          { gare: "Saint-Amour", heure: "09:23", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "09:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Bourg-en-Bresse → Dijon-Ville",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "10:00", arret: 2 },
+          { gare: "Saint-Amour", heure: "10:21", arret: 1 },
+          { gare: "Chaugey", heure: "11:17", arret: 1 },
+          { gare: "Dijon-Ville", heure: "11:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Gare de Lyon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "13:00", arret: 4 },
+          { gare: "Mâlain", heure: "13:18", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "13:45", arret: 1 },
+          { gare: "Laroche - Migennes", heure: "14:55", arret: 1 },
+          { gare: "Sens", heure: "15:22", arret: 1 },
+          { gare: "Montereau", heure: "15:49", arret: 1 },
+          { gare: "Melun", heure: "16:21", arret: 1 },
+          { gare: "Gare de Lyon", heure: "16:58", arret: 4 }
+        ]
+      },
+      {
+        nom: "Gare de Lyon → Dijon-Ville",
+        dessertes: [
+          { gare: "Gare de Lyon", heure: "18:30", arret: 4 },
+          { gare: "Melun", heure: "19:10", arret: 1 },
+          { gare: "Montereau", heure: "19:42", arret: 1 },
+          { gare: "Sens", heure: "20:09", arret: 1 },
+          { gare: "Laroche - Migennes", heure: "20:36", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "21:46", arret: 1 },
+          { gare: "Mâlain", heure: "22:13", arret: 1 },
+          { gare: "Dijon-Ville", heure: "22:28", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "IC Lyn Djn",
+    nom: "BB7200 Bourgogne",
+    moteurs: ["1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 120, seconde: 392 },
+    composition: ["VTU A BFC", "VTU A BFC", "VTU BFC", "VTU BFC", "VTU BFC", "VTU BFC", "VTU B5uxh BFC"],
+    trajets: [
+      {
+        nom: "Dijon-Ville → Lyon Part Dieu",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "05:00", arret: 2 },
+          { gare: "Beaune", heure: "05:25", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "05:46", arret: 1 },
+          { gare: "Mâcon", heure: "06:18", arret: 2 },
+          { gare: "Villefranche-sur-Saône", heure: "06:42", arret: 1 },
+          { gare: "Lyon Part Dieu", heure: "07:05", arret: 5 }
+        ]
+      },
+      {
+        nom: "Lyon Part Dieu → Dijon-Ville",
+        dessertes: [
+          { gare: "Lyon Part Dieu", heure: "08:10", arret: 5 },
+          { gare: "Villefranche-sur-Saône", heure: "08:37", arret: 1 },
+          { gare: "Mâcon", heure: "09:00", arret: 2 },
+          { gare: "Chalon-sur-Saône", heure: "09:33", arret: 1 },
+          { gare: "Beaune", heure: "09:54", arret: 1 },
+          { gare: "Dijon-Ville", heure: "10:18", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Lyon Part Dieu",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "11:00", arret: 2 },
+          { gare: "Beaune", heure: "11:25", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "11:46", arret: 1 },
+          { gare: "Mâcon", heure: "12:18", arret: 2 },
+          { gare: "Villefranche-sur-Saône", heure: "12:42", arret: 1 },
+          { gare: "Lyon Part Dieu", heure: "13:05", arret: 5 }
+        ]
+      },
+      {
+        nom: "Lyon Part Dieu → Dijon-Ville",
+        dessertes: [
+          { gare: "Lyon Part Dieu", heure: "14:10", arret: 5 },
+          { gare: "Villefranche-sur-Saône", heure: "14:37", arret: 1 },
+          { gare: "Mâcon", heure: "15:00", arret: 2 },
+          { gare: "Chalon-sur-Saône", heure: "15:33", arret: 1 },
+          { gare: "Beaune", heure: "15:54", arret: 1 },
+          { gare: "Dijon-Ville", heure: "16:18", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Lyon Part Dieu",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "17:00", arret: 2 },
+          { gare: "Beaune", heure: "17:25", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "17:46", arret: 1 },
+          { gare: "Mâcon", heure: "18:18", arret: 2 },
+          { gare: "Villefranche-sur-Saône", heure: "18:42", arret: 1 },
+          { gare: "Lyon Part Dieu", heure: "19:05", arret: 5 }
+        ]
+      },
+      {
+        nom: "Lyon Part Dieu → Dijon-Ville",
+        dessertes: [
+          { gare: "Lyon Part Dieu", heure: "20:10", arret: 5 },
+          { gare: "Villefranche-sur-Saône", heure: "20:37", arret: 1 },
+          { gare: "Mâcon", heure: "21:00", arret: 2 },
+          { gare: "Chalon-sur-Saône", heure: "21:33", arret: 1 },
+          { gare: "Beaune", heure: "21:54", arret: 1 },
+          { gare: "Dijon-Ville", heure: "22:18", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "IC Lyn Ncy",
+    nom: "Regiolis BFC 6C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 304 },
+    trajets: [
+      {
+        nom: "Nancy → Lyon Part Dieu",
+        dessertes: [
+          { gare: "Nancy", heure: "04:06", arret: 3 },
+          { gare: "Toul", heure: "04:34", arret: 1 },
+          { gare: "Neufchâteau", heure: "05:05", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "06:00", arret: 2 },
+          { gare: "Is-sur-tille", heure: "06:36", arret: 1 },
+          { gare: "Dijon-Ville", heure: "06:59", arret: 3 },
+          { gare: "Beaune", heure: "07:25", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "07:46", arret: 1 },
+          { gare: "Mâcon", heure: "08:18", arret: 2 },
+          { gare: "Villefranche-sur-Saône", heure: "08:42", arret: 1 },
+          { gare: "Lyon Part Dieu", heure: "09:05", arret: 5 }
+        ]
+      },
+      {
+        nom: "Lyon Part Dieu → Nancy",
+        dessertes: [
+          { gare: "Lyon Part Dieu", heure: "12:10", arret: 5 },
+          { gare: "Villefranche-sur-Saône", heure: "12:37", arret: 1 },
+          { gare: "Mâcon", heure: "13:00", arret: 2 },
+          { gare: "Chalon-sur-Saône", heure: "13:33", arret: 1 },
+          { gare: "Beaune", heure: "13:54", arret: 1 },
+          { gare: "Dijon-Ville", heure: "14:18", arret: 3 },
+          { gare: "Is-sur-tille", heure: "14:43", arret: 1 },
+          { gare: "Culmont-Chalindrey", heure: "15:18", arret: 2 },
+          { gare: "Neufchâteau", heure: "16:14", arret: 1 },
+          { gare: "Toul", heure: "16:45", arret: 1 },
+          { gare: "Nancy", heure: "17:11", arret: 3 }
         ]
       }
     ]
@@ -9924,6 +10291,22 @@ export const trainsFR = [
         ]
       },
       {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "08:43", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "08:49", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "08:55", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "09:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "09:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "09:12", arret: 2 }
+        ]
+      },
+      {
         nom: "Besançon Viotte → Belfort-Ville",
         dessertes: [
           { gare: "Besançon Viotte", heure: "09:30", arret: 4 },
@@ -9956,6 +10339,22 @@ export const trainsFR = [
         ]
       },
       {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "14:43", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "14:49", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "14:55", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "15:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "15:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "15:12", arret: 2 }
+        ]
+      },
+      {
         nom: "Besançon Viotte → Belfort-Ville",
         dessertes: [
           { gare: "Besançon Viotte", heure: "15:30", arret: 4 },
@@ -9969,6 +10368,38 @@ export const trainsFR = [
           { gare: "Montbéliard", heure: "17:16", arret: 2 },
           { gare: "Héricourt", heure: "17:23", arret: 1 },
           { gare: "Belfort-Ville", heure: "17:32", arret: 4 }
+        ]
+      },
+      {
+        nom: "Belfort-Ville → Besançon Viotte",
+        dessertes: [
+          { gare: "Belfort-Ville", heure: "18:30", arret: 4 },
+          { gare: "Héricourt", heure: "18:42", arret: 1 },
+          { gare: "Montbéliard", heure: "18:48", arret: 2 },
+          { gare: "Voujeaucourt", heure: "18:55", arret: 1 },
+          { gare: "Colombier-Fontaine", heure: "19:05", arret: 1 },
+          { gare: "L'Isle-sur-le-Doubs", heure: "19:19", arret: 1 },
+          { gare: "Clerval", heure: "19:31", arret: 1 },
+          { gare: "Baume-Les-Dames", heure: "19:47", arret: 1 },
+          { gare: "Deluz", heure: "20:08", arret: 1 },
+          { gare: "Roche-lez-Beaupre", heure: "20:20", arret: 1 },
+          { gare: "Besançon Viotte", heure: "20:32", arret: 4 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Belfort-Ville",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "21:30", arret: 4 },
+          { gare: "Roche-lez-Beaupre", heure: "21:45", arret: 1 },
+          { gare: "Deluz", heure: "21:57", arret: 1 },
+          { gare: "Baume-Les-Dames", heure: "22:18", arret: 1 },
+          { gare: "Clerval", heure: "22:34", arret: 1 },
+          { gare: "L'Isle-sur-le-Doubs", heure: "22:46", arret: 1 },
+          { gare: "Colombier-Fontaine", heure: "23:00", arret: 1 },
+          { gare: "Voujeaucourt", heure: "23:10", arret: 1 },
+          { gare: "Montbéliard", heure: "23:16", arret: 2 },
+          { gare: "Héricourt", heure: "23:23", arret: 1 },
+          { gare: "Belfort-Ville", heure: "23:32", arret: 4 }
         ]
       }
     ]
@@ -10014,6 +10445,22 @@ export const trainsFR = [
         ]
       },
       {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "11:43", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "11:49", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "11:55", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "12:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "12:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "12:12", arret: 2 }
+        ]
+      },
+      {
         nom: "Besançon Viotte → Belfort-Ville",
         dessertes: [
           { gare: "Besançon Viotte", heure: "12:30", arret: 4 },
@@ -10043,6 +10490,22 @@ export const trainsFR = [
           { gare: "Deluz", heure: "17:08", arret: 1 },
           { gare: "Roche-lez-Beaupre", heure: "17:20", arret: 1 },
           { gare: "Besançon Viotte", heure: "17:32", arret: 4 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "17:43", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "17:49", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "17:55", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "18:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "18:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "18:12", arret: 2 }
         ]
       },
       {
@@ -10088,6 +10551,34 @@ export const trainsFR = [
     capacite: { premiere: 24, seconde: 210 },
     trajets: [
       {
+        nom: "Belfort-Ville → Montbéliard",
+        dessertes: [
+          { gare: "Belfort-Ville", heure: "06:00", arret: 4 },
+          { gare: "Montbéliard", heure: "06:17", arret: 2 }
+        ]
+      },
+      {
+        nom: "Montbéliard → Belfort-Ville",
+        dessertes: [
+          { gare: "Montbéliard", heure: "06:28", arret: 2 },
+          { gare: "Belfort-Ville", heure: "06:43", arret: 4 }
+        ]
+      },
+      {
+        nom: "Belfort-Ville → Montbéliard",
+        dessertes: [
+          { gare: "Belfort-Ville", heure: "07:00", arret: 4 },
+          { gare: "Montbéliard", heure: "07:17", arret: 2 }
+        ]
+      },
+      {
+        nom: "Montbéliard → Belfort-Ville",
+        dessertes: [
+          { gare: "Montbéliard", heure: "07:28", arret: 2 },
+          { gare: "Belfort-Ville", heure: "07:43", arret: 4 }
+        ]
+      },
+      {
         nom: "Belfort-Ville → Besançon Viotte",
         dessertes: [
           { gare: "Belfort-Ville", heure: "08:30", arret: 4 },
@@ -10101,6 +10592,22 @@ export const trainsFR = [
           { gare: "Deluz", heure: "10:08", arret: 1 },
           { gare: "Roche-lez-Beaupre", heure: "10:20", arret: 1 },
           { gare: "Besançon Viotte", heure: "10:32", arret: 4 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "10:43", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "10:49", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "10:55", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "11:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "11:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "11:12", arret: 2 }
         ]
       },
       {
@@ -10133,6 +10640,22 @@ export const trainsFR = [
           { gare: "Deluz", heure: "16:08", arret: 1 },
           { gare: "Roche-lez-Beaupre", heure: "16:20", arret: 1 },
           { gare: "Besançon Viotte", heure: "16:32", arret: 4 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "16:43", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "16:49", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "16:55", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "17:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "17:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "17:12", arret: 2 }
         ]
       },
       {
@@ -10178,6 +10701,38 @@ export const trainsFR = [
     capacite: { premiere: 24, seconde: 210 },
     trajets: [
       {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "06:30", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "06:36", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "06:42", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "07:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "07:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "07:12", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "07:30", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "07:36", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "07:42", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "08:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "08:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "08:12", arret: 2 }
+        ]
+      },
+      {
         nom: "Besançon Viotte → Belfort-Ville",
         dessertes: [
           { gare: "Besançon Viotte", heure: "08:30", arret: 4 },
@@ -10207,6 +10762,22 @@ export const trainsFR = [
           { gare: "Deluz", heure: "13:08", arret: 1 },
           { gare: "Roche-lez-Beaupre", heure: "13:20", arret: 1 },
           { gare: "Besançon Viotte", heure: "13:32", arret: 4 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "13:43", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "13:49", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "13:55", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "14:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "14:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "14:12", arret: 2 }
         ]
       },
       {
@@ -10300,6 +10871,22 @@ export const trainsFR = [
         ]
       },
       {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "12:43", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "12:49", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "12:55", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "13:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "13:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "13:12", arret: 2 }
+        ]
+      },
+      {
         nom: "Besançon Viotte → Belfort-Ville",
         dessertes: [
           { gare: "Besançon Viotte", heure: "13:30", arret: 4 },
@@ -10351,6 +10938,38 @@ export const trainsFR = [
           { gare: "Dannemarie - Velesmes", heure: "20:30", arret: 1 },
           { gare: "Franois", heure: "20:36", arret: 1 },
           { gare: "Besançon Viotte", heure: "20:43", arret: 4 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "21:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "21:06", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "21:12", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "21:30", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "21:37", arret: 1 },
+          { gare: "Besançon Viotte", heure: "21:42", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Belfort-Ville",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "19:30", arret: 4 },
+          { gare: "Roche-lez-Beaupre", heure: "19:45", arret: 1 },
+          { gare: "Deluz", heure: "19:57", arret: 1 },
+          { gare: "Baume-Les-Dames", heure: "20:18", arret: 1 },
+          { gare: "Clerval", heure: "20:34", arret: 1 },
+          { gare: "L'Isle-sur-le-Doubs", heure: "20:46", arret: 1 },
+          { gare: "Colombier-Fontaine", heure: "21:00", arret: 1 },
+          { gare: "Voujeaucourt", heure: "21:10", arret: 1 },
+          { gare: "Montbéliard", heure: "21:16", arret: 2 },
+          { gare: "Héricourt", heure: "21:23", arret: 1 },
+          { gare: "Belfort-Ville", heure: "21:32", arret: 4 }
         ]
       }
     ]
@@ -10497,6 +11116,630 @@ export const trainsFR = [
           { gare: "Champagney", heure: "21:14", arret: 1 },
           { gare: "Bas Évette", heure: "21:24", arret: 1 },
           { gare: "Belfort-Ville", heure: "21:31", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3512",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Besançon Viotte → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "07:40", arret: 3 },
+          { gare: "Franois", heure: "07:49", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "07:56", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "08:00", arret: 1 },
+          { gare: "Byans", heure: "08:07", arret: 1 },
+          { gare: "Liesle", heure: "08:15", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "08:21", arret: 1 },
+          { gare: "Mouchard", heure: "08:27", arret: 1 },
+          { gare: "Arbois", heure: "08:34", arret: 1 },
+          { gare: "Poligny", heure: "08:44", arret: 1 },
+          { gare: "Saint-Lothain", heure: "08:51", arret: 1 },
+          { gare: "Domblans - Voiteur", heure: "08:59", arret: 1 },
+          { gare: "Lons-le-Saunier", heure: "09:08", arret: 1 },
+          { gare: "Cousance", heure: "09:24", arret: 1 },
+          { gare: "Saint-Amour", heure: "09:34", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "09:54", arret: 3 }
+        ]
+      },
+      {
+        nom: "Bourg-en-Bresse → Besançon Viotte",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "11:10", arret: 3 },
+          { gare: "Saint-Amour", heure: "11:32", arret: 1 },
+          { gare: "Cousance", heure: "11:42", arret: 1 },
+          { gare: "Lons-le-Saunier", heure: "11:58", arret: 1 },
+          { gare: "Domblans - Voiteur", heure: "12:07", arret: 1 },
+          { gare: "Saint-Lothain", heure: "12:15", arret: 1 },
+          { gare: "Poligny", heure: "12:22", arret: 1 },
+          { gare: "Arbois", heure: "12:32", arret: 1 },
+          { gare: "Mouchard", heure: "12:39", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "12:45", arret: 1 },
+          { gare: "Liesle", heure: "12:51", arret: 1 },
+          { gare: "Byans", heure: "12:59", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "13:06", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "13:10", arret: 1 },
+          { gare: "Franois", heure: "13:17", arret: 1 },
+          { gare: "Besançon Viotte", heure: "13:24", arret: 3 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "13:40", arret: 3 },
+          { gare: "Franois", heure: "13:49", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "13:56", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "14:00", arret: 1 },
+          { gare: "Byans", heure: "14:07", arret: 1 },
+          { gare: "Liesle", heure: "14:15", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "14:21", arret: 1 },
+          { gare: "Mouchard", heure: "14:27", arret: 1 },
+          { gare: "Arbois", heure: "14:34", arret: 1 },
+          { gare: "Poligny", heure: "14:44", arret: 1 },
+          { gare: "Saint-Lothain", heure: "14:51", arret: 1 },
+          { gare: "Domblans - Voiteur", heure: "14:59", arret: 1 },
+          { gare: "Lons-le-Saunier", heure: "15:08", arret: 1 },
+          { gare: "Cousance", heure: "15:24", arret: 1 },
+          { gare: "Saint-Amour", heure: "15:34", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "15:54", arret: 3 }
+        ]
+      },
+      {
+        nom: "Bourg-en-Bresse → Besançon Viotte",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "16:40", arret: 3 },
+          { gare: "Saint-Amour", heure: "17:02", arret: 1 },
+          { gare: "Cousance", heure: "17:12", arret: 1 },
+          { gare: "Lons-le-Saunier", heure: "17:28", arret: 1 },
+          { gare: "Domblans - Voiteur", heure: "17:37", arret: 1 },
+          { gare: "Saint-Lothain", heure: "17:45", arret: 1 },
+          { gare: "Poligny", heure: "17:52", arret: 1 },
+          { gare: "Arbois", heure: "18:02", arret: 1 },
+          { gare: "Mouchard", heure: "18:09", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "18:15", arret: 1 },
+          { gare: "Liesle", heure: "18:21", arret: 1 },
+          { gare: "Byans", heure: "18:29", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "18:36", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "18:40", arret: 1 },
+          { gare: "Franois", heure: "18:47", arret: 1 },
+          { gare: "Besançon Viotte", heure: "18:54", arret: 3 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3514",
+    nom: "BB22200 En Voyage",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 440, seconde: 40 },
+    composition: ["VTU FC", "VTU FC", "VTU FC", "VTU FC", "VTU FC", "VTU B5uxh FC"],
+    trajets: [
+      {
+        nom: "Belfort-Ville → Dole",
+        dessertes: [
+          { gare: "Belfort-Ville", heure: "07:16", arret: 4 },
+          { gare: "Montbéliard", heure: "07:33", arret: 1 },
+          { gare: "Colombier-Fontaine", heure: "07:47", arret: 1 },
+          { gare: "Clerval", heure: "08:11", arret: 1 },
+          { gare: "Deluz", heure: "08:47", arret: 1 },
+          { gare: "Besançon Viotte", heure: "09:09", arret: 4 },
+          { gare: "Ranchot", heure: "09:33", arret: 1 },
+          { gare: "Dole", heure: "09:49", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Belfort-Ville",
+        dessertes: [
+          { gare: "Dole", heure: "10:00", arret: 2 },
+          { gare: "Ranchot", heure: "10:17", arret: 1 },
+          { gare: "Besançon Viotte", heure: "10:38", arret: 4 },
+          { gare: "Deluz", heure: "11:03", arret: 1 },
+          { gare: "Clerval", heure: "11:39", arret: 1 },
+          { gare: "Colombier-Fontaine", heure: "12:03", arret: 1 },
+          { gare: "Montbéliard", heure: "12:17", arret: 1 },
+          { gare: "Belfort-Ville", heure: "12:31", arret: 4 }
+        ]
+      },
+      {
+        nom: "Belfort-Ville → Dole",
+        dessertes: [
+          { gare: "Belfort-Ville", heure: "13:16", arret: 4 },
+          { gare: "Montbéliard", heure: "13:33", arret: 1 },
+          { gare: "Colombier-Fontaine", heure: "13:47", arret: 1 },
+          { gare: "Clerval", heure: "14:11", arret: 1 },
+          { gare: "Deluz", heure: "14:47", arret: 1 },
+          { gare: "Besançon Viotte", heure: "15:09", arret: 4 },
+          { gare: "Ranchot", heure: "15:33", arret: 1 },
+          { gare: "Dole", heure: "15:49", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Belfort-Ville",
+        dessertes: [
+          { gare: "Dole", heure: "16:00", arret: 2 },
+          { gare: "Ranchot", heure: "16:17", arret: 1 },
+          { gare: "Besançon Viotte", heure: "16:38", arret: 4 },
+          { gare: "Deluz", heure: "17:03", arret: 1 },
+          { gare: "Clerval", heure: "17:39", arret: 1 },
+          { gare: "Colombier-Fontaine", heure: "18:03", arret: 1 },
+          { gare: "Montbéliard", heure: "18:17", arret: 1 },
+          { gare: "Belfort-Ville", heure: "18:31", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3515",
+    nom: "Regiolis BFC 4C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 210 },
+    trajets: [
+      {
+        nom: "Dole → Besançon Viotte",
+        dessertes: [
+          { gare: "Dole", heure: "07:00", arret: 2 },
+          { gare: "Ranchot", heure: "07:17", arret: 1 },
+          { gare: "Saint-Vit", heure: "07:24", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "07:30", arret: 1 },
+          { gare: "Franois", heure: "07:36", arret: 1 },
+          { gare: "Besançon Viotte", heure: "07:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Dole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "08:00", arret: 2 },
+          { gare: "Franois", heure: "08:08", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "08:14", arret: 1 },
+          { gare: "Saint-Vit", heure: "08:20", arret: 1 },
+          { gare: "Ranchot", heure: "08:27", arret: 1 },
+          { gare: "Dole", heure: "08:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Besançon Viotte",
+        dessertes: [
+          { gare: "Dole", heure: "09:00", arret: 2 },
+          { gare: "Ranchot", heure: "09:17", arret: 1 },
+          { gare: "Saint-Vit", heure: "09:24", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "09:30", arret: 1 },
+          { gare: "Franois", heure: "09:36", arret: 1 },
+          { gare: "Besançon Viotte", heure: "09:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Dole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "10:00", arret: 2 },
+          { gare: "Franois", heure: "10:08", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "10:14", arret: 1 },
+          { gare: "Saint-Vit", heure: "10:20", arret: 1 },
+          { gare: "Ranchot", heure: "10:27", arret: 1 },
+          { gare: "Dole", heure: "10:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Besançon Viotte",
+        dessertes: [
+          { gare: "Dole", heure: "11:00", arret: 2 },
+          { gare: "Ranchot", heure: "11:17", arret: 1 },
+          { gare: "Saint-Vit", heure: "11:24", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "11:30", arret: 1 },
+          { gare: "Franois", heure: "11:36", arret: 1 },
+          { gare: "Besançon Viotte", heure: "11:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Dole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "12:00", arret: 2 },
+          { gare: "Franois", heure: "12:08", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "12:14", arret: 1 },
+          { gare: "Saint-Vit", heure: "12:20", arret: 1 },
+          { gare: "Ranchot", heure: "12:27", arret: 1 },
+          { gare: "Dole", heure: "12:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Besançon Viotte",
+        dessertes: [
+          { gare: "Dole", heure: "13:00", arret: 2 },
+          { gare: "Ranchot", heure: "13:17", arret: 1 },
+          { gare: "Saint-Vit", heure: "13:24", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "13:30", arret: 1 },
+          { gare: "Franois", heure: "13:36", arret: 1 },
+          { gare: "Besançon Viotte", heure: "13:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Dole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "14:00", arret: 2 },
+          { gare: "Franois", heure: "14:08", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "14:14", arret: 1 },
+          { gare: "Saint-Vit", heure: "14:20", arret: 1 },
+          { gare: "Ranchot", heure: "14:27", arret: 1 },
+          { gare: "Dole", heure: "14:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Besançon Viotte",
+        dessertes: [
+          { gare: "Dole", heure: "15:00", arret: 2 },
+          { gare: "Ranchot", heure: "15:17", arret: 1 },
+          { gare: "Saint-Vit", heure: "15:24", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "15:30", arret: 1 },
+          { gare: "Franois", heure: "15:36", arret: 1 },
+          { gare: "Besançon Viotte", heure: "15:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Dole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "16:00", arret: 2 },
+          { gare: "Franois", heure: "16:08", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "16:14", arret: 1 },
+          { gare: "Saint-Vit", heure: "16:20", arret: 1 },
+          { gare: "Ranchot", heure: "16:27", arret: 1 },
+          { gare: "Dole", heure: "16:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Besançon Viotte",
+        dessertes: [
+          { gare: "Dole", heure: "17:00", arret: 2 },
+          { gare: "Ranchot", heure: "17:17", arret: 1 },
+          { gare: "Saint-Vit", heure: "17:24", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "17:30", arret: 1 },
+          { gare: "Franois", heure: "17:36", arret: 1 },
+          { gare: "Besançon Viotte", heure: "17:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Dole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "18:00", arret: 2 },
+          { gare: "Franois", heure: "18:08", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "18:14", arret: 1 },
+          { gare: "Saint-Vit", heure: "18:20", arret: 1 },
+          { gare: "Ranchot", heure: "18:27", arret: 1 },
+          { gare: "Dole", heure: "18:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Besançon Viotte",
+        dessertes: [
+          { gare: "Dole", heure: "19:00", arret: 2 },
+          { gare: "Ranchot", heure: "19:17", arret: 1 },
+          { gare: "Saint-Vit", heure: "19:24", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "19:30", arret: 1 },
+          { gare: "Franois", heure: "19:36", arret: 1 },
+          { gare: "Besançon Viotte", heure: "19:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Dole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "20:00", arret: 2 },
+          { gare: "Franois", heure: "20:08", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "20:14", arret: 1 },
+          { gare: "Saint-Vit", heure: "20:20", arret: 1 },
+          { gare: "Ranchot", heure: "20:27", arret: 1 },
+          { gare: "Dole", heure: "20:43", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3516",
+    nom: "Regiolis BFC 4C",
+    moteurs: ["25kV CA", "1.5kV CC"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 210 },
+    trajets: [
+      {
+        nom: "Besançon Viotte → Dole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "07:00", arret: 2 },
+          { gare: "Franois", heure: "07:08", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "07:14", arret: 1 },
+          { gare: "Saint-Vit", heure: "07:20", arret: 1 },
+          { gare: "Ranchot", heure: "07:27", arret: 1 },
+          { gare: "Dole", heure: "07:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Besançon Viotte",
+        dessertes: [
+          { gare: "Dole", heure: "08:00", arret: 2 },
+          { gare: "Ranchot", heure: "08:17", arret: 1 },
+          { gare: "Saint-Vit", heure: "08:24", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "08:30", arret: 1 },
+          { gare: "Franois", heure: "08:36", arret: 1 },
+          { gare: "Besançon Viotte", heure: "08:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "09:30", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "09:36", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "09:42", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "10:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "10:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "10:12", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Dole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "11:00", arret: 2 },
+          { gare: "Franois", heure: "11:08", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "11:14", arret: 1 },
+          { gare: "Saint-Vit", heure: "11:20", arret: 1 },
+          { gare: "Ranchot", heure: "11:27", arret: 1 },
+          { gare: "Dole", heure: "11:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Besançon Viotte",
+        dessertes: [
+          { gare: "Dole", heure: "12:00", arret: 2 },
+          { gare: "Ranchot", heure: "12:17", arret: 1 },
+          { gare: "Saint-Vit", heure: "12:24", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "12:30", arret: 1 },
+          { gare: "Franois", heure: "12:36", arret: 1 },
+          { gare: "Besançon Viotte", heure: "12:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Dole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "13:00", arret: 2 },
+          { gare: "Franois", heure: "13:08", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "13:14", arret: 1 },
+          { gare: "Saint-Vit", heure: "13:20", arret: 1 },
+          { gare: "Ranchot", heure: "13:27", arret: 1 },
+          { gare: "Dole", heure: "13:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Besançon Viotte",
+        dessertes: [
+          { gare: "Dole", heure: "14:00", arret: 2 },
+          { gare: "Ranchot", heure: "14:17", arret: 1 },
+          { gare: "Saint-Vit", heure: "14:24", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "14:30", arret: 1 },
+          { gare: "Franois", heure: "14:36", arret: 1 },
+          { gare: "Besançon Viotte", heure: "14:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "15:30", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "15:36", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "15:42", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "16:00", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "16:07", arret: 1 },
+          { gare: "Besançon Viotte", heure: "16:12", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Dole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "17:00", arret: 2 },
+          { gare: "Franois", heure: "17:08", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "17:14", arret: 1 },
+          { gare: "Saint-Vit", heure: "17:20", arret: 1 },
+          { gare: "Ranchot", heure: "17:27", arret: 1 },
+          { gare: "Dole", heure: "17:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dole → Besançon Viotte",
+        dessertes: [
+          { gare: "Dole", heure: "18:00", arret: 2 },
+          { gare: "Ranchot", heure: "18:17", arret: 1 },
+          { gare: "Saint-Vit", heure: "18:24", arret: 1 },
+          { gare: "Dannemarie - Velesmes", heure: "18:30", arret: 1 },
+          { gare: "Franois", heure: "18:36", arret: 1 },
+          { gare: "Besançon Viotte", heure: "18:43", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Besancon Franche-Comté",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "18:50", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "18:56", arret: 1 },
+          { gare: "Besancon Franche-Comté", heure: "19:02", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besancon Franche-Comté → Besançon Viotte",
+        dessertes: [
+          { gare: "Besancon Franche-Comté", heure: "19:10", arret: 2 },
+          { gare: "Ecole-Valentin", heure: "19:17", arret: 1 },
+          { gare: "Besançon Viotte", heure: "19:22", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3518",
+    nom: "X73900 BFC",
+    moteurs: ["diesel"],
+    vitesseMax: 140,
+    capacite: { premiere: 0, seconde: 122 },
+    composition: ["X73900 FrCo"],
+    trajets: [
+      {
+        nom: "Besancon Franche-Comté → La Chaux-de-Fonds",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "07:00", arret: 2 },
+          { gare: "Morre", heure: "07:09", arret: 1 },
+          { gare: "Mamirolle", heure: "07:24", arret: 1 },
+          { gare: "Étalans", heure: "07:41", arret: 1 },
+          { gare: "Le Valdahon", heure: "07:54", arret: 1 },
+          { gare: "Avoudrey", heure: "08:12", arret: 1 },
+          { gare: "Gilley", heure: "08:40", arret: 1 },
+          { gare: "Morteau", heure: "09:06", arret: 1 },
+          { gare: "Le Locle", heure: "09:28", arret: 1 },
+          { gare: "La Chaux-de-Fonds", heure: "09:40", arret: 2 }
+        ]
+      },
+      {
+        nom: "La Chaux-de-Fonds → Besançon Viotte",
+        dessertes: [
+          { gare: "La Chaux-de-Fonds", heure: "10:00", arret: 2 },
+          { gare: "Le Locle", heure: "10:13", arret: 1 },
+          { gare: "Morteau", heure: "10:35", arret: 1 },
+          { gare: "Gilley", heure: "11:01", arret: 1 },
+          { gare: "Avoudrey", heure: "11:29", arret: 1 },
+          { gare: "Le Valdahon", heure: "11:47", arret: 1 },
+          { gare: "Étalans", heure: "12:00", arret: 1 },
+          { gare: "Mamirolle", heure: "12:17", arret: 1 },
+          { gare: "Morre", heure: "12:32", arret: 1 },
+          { gare: "Besançon Viotte", heure: "12:40", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → La Chaux-de-Fonds",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "13:00", arret: 2 },
+          { gare: "Morre", heure: "13:09", arret: 1 },
+          { gare: "Mamirolle", heure: "13:24", arret: 1 },
+          { gare: "Étalans", heure: "13:41", arret: 1 },
+          { gare: "Le Valdahon", heure: "13:54", arret: 1 },
+          { gare: "Avoudrey", heure: "14:12", arret: 1 },
+          { gare: "Gilley", heure: "14:40", arret: 1 },
+          { gare: "Morteau", heure: "15:06", arret: 1 },
+          { gare: "Le Locle", heure: "15:28", arret: 1 },
+          { gare: "La Chaux-de-Fonds", heure: "15:40", arret: 2 }
+        ]
+      },
+      {
+        nom: "La Chaux-de-Fonds → Besançon Viotte",
+        dessertes: [
+          { gare: "La Chaux-de-Fonds", heure: "16:00", arret: 2 },
+          { gare: "Le Locle", heure: "16:13", arret: 1 },
+          { gare: "Morteau", heure: "16:35", arret: 1 },
+          { gare: "Gilley", heure: "17:01", arret: 1 },
+          { gare: "Avoudrey", heure: "17:29", arret: 1 },
+          { gare: "Le Valdahon", heure: "17:47", arret: 1 },
+          { gare: "Étalans", heure: "18:00", arret: 1 },
+          { gare: "Mamirolle", heure: "18:17", arret: 1 },
+          { gare: "Morre", heure: "18:32", arret: 1 },
+          { gare: "Besançon Viotte", heure: "18:40", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3519",
+    nom: "AGC greenMobigo 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Morteau → La Chaux-de-Fonds",
+        dessertes: [
+          { gare: "Morteau", heure: "06:10", arret: 1 },
+          { gare: "Le Locle", heure: "06:32", arret: 1 },
+          { gare: "La Chaux-de-Fonds", heure: "06:44", arret: 2 }
+        ]
+      },
+      {
+        nom: "La Chaux-de-Fonds → Besançon Viotte",
+        dessertes: [
+          { gare: "La Chaux-de-Fonds", heure: "07:00", arret: 2 },
+          { gare: "Le Locle", heure: "07:13", arret: 1 },
+          { gare: "Morteau", heure: "07:35", arret: 1 },
+          { gare: "Gilley", heure: "08:01", arret: 1 },
+          { gare: "Avoudrey", heure: "08:29", arret: 1 },
+          { gare: "Le Valdahon", heure: "08:47", arret: 1 },
+          { gare: "Étalans", heure: "09:00", arret: 1 },
+          { gare: "Mamirolle", heure: "09:17", arret: 1 },
+          { gare: "Morre", heure: "09:32", arret: 1 },
+          { gare: "Besançon Viotte", heure: "09:40", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → La Chaux-de-Fonds",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "10:00", arret: 2 },
+          { gare: "Morre", heure: "10:09", arret: 1 },
+          { gare: "Mamirolle", heure: "10:24", arret: 1 },
+          { gare: "Étalans", heure: "10:41", arret: 1 },
+          { gare: "Le Valdahon", heure: "10:54", arret: 1 },
+          { gare: "Avoudrey", heure: "11:12", arret: 1 },
+          { gare: "Gilley", heure: "11:40", arret: 1 },
+          { gare: "Morteau", heure: "12:06", arret: 1 },
+          { gare: "Le Locle", heure: "12:28", arret: 1 },
+          { gare: "La Chaux-de-Fonds", heure: "12:40", arret: 2 }
+        ]
+      },
+      {
+        nom: "La Chaux-de-Fonds → Besançon Viotte",
+        dessertes: [
+          { gare: "La Chaux-de-Fonds", heure: "13:00", arret: 2 },
+          { gare: "Le Locle", heure: "13:13", arret: 1 },
+          { gare: "Morteau", heure: "13:35", arret: 1 },
+          { gare: "Gilley", heure: "14:01", arret: 1 },
+          { gare: "Avoudrey", heure: "14:29", arret: 1 },
+          { gare: "Le Valdahon", heure: "14:47", arret: 1 },
+          { gare: "Étalans", heure: "15:00", arret: 1 },
+          { gare: "Mamirolle", heure: "15:17", arret: 1 },
+          { gare: "Morre", heure: "15:32", arret: 1 },
+          { gare: "Besançon Viotte", heure: "15:40", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → La Chaux-de-Fonds",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "16:00", arret: 2 },
+          { gare: "Morre", heure: "16:09", arret: 1 },
+          { gare: "Mamirolle", heure: "16:24", arret: 1 },
+          { gare: "Étalans", heure: "16:41", arret: 1 },
+          { gare: "Le Valdahon", heure: "16:54", arret: 1 },
+          { gare: "Avoudrey", heure: "17:12", arret: 1 },
+          { gare: "Gilley", heure: "17:40", arret: 1 },
+          { gare: "Morteau", heure: "18:06", arret: 1 },
+          { gare: "Le Locle", heure: "18:28", arret: 1 },
+          { gare: "La Chaux-de-Fonds", heure: "18:40", arret: 2 }
+        ]
+      },
+      {
+        nom: "La Chaux-de-Fonds → Besançon Viotte",
+        dessertes: [
+          { gare: "La Chaux-de-Fonds", heure: "19:00", arret: 2 },
+          { gare: "Le Locle", heure: "19:13", arret: 1 },
+          { gare: "Morteau", heure: "19:35", arret: 1 }
         ]
       }
     ]
@@ -10763,6 +12006,2220 @@ export const trainsFR = [
           { gare: "Méroux", heure: "20:30", arret: 1, jours: ["SA", "DI"] },
           { gare: "Danjoutin", heure: "20:37", arret: 1, jours: ["SA", "DI"] },
           { gare: "Belfort-Ville", heure: "20:41", arret: 4, jours: ["SA", "DI"] }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3522",
+    nom: "AGC greenMobigo 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Frasne → Neuchâtel",
+        dessertes: [
+          { gare: "Frasne", heure: "06:00", arret: 2 },
+          { gare: "La Rivière", heure: "06:08", arret: 1 },
+          { gare: "Sainte-Colombe", heure: "06:15", arret: 1 },
+          { gare: "Pontarlier", heure: "06:26", arret: 1 },
+          { gare: "Travers", heure: "07:07", arret: 1 },
+          { gare: "Neuchâtel", heure: "07:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Neuchâtel → Frasne",
+        dessertes: [
+          { gare: "Neuchâtel", heure: "08:10", arret: 4 },
+          { gare: "Travers", heure: "08:46", arret: 1 },
+          { gare: "Pontarlier", heure: "09:27", arret: 1 },
+          { gare: "Sainte-Colombe", heure: "09:38", arret: 1 },
+          { gare: "La Rivière", heure: "09:45", arret: 1 },
+          { gare: "Frasne", heure: "09:52", arret: 2 }
+        ]
+      },
+      {
+        nom: "Frasne → Besançon Viotte",
+        dessertes: [
+          { gare: "Frasne", heure: "10:00", arret: 2 },
+          { gare: "Andelot", heure: "10:22", arret: 1 },
+          { gare: "Mouchard", heure: "10:39", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "10:46", arret: 1 },
+          { gare: "Liesle", heure: "10:52", arret: 1 },
+          { gare: "Byans", heure: "11:01", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "11:09", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "11:14", arret: 1 },
+          { gare: "Franois", heure: "11:21", arret: 1 },
+          { gare: "Besançon Viotte", heure: "11:28", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Frasne",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "11:45", arret: 2 },
+          { gare: "Franois", heure: "11:53", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "12:00", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "12:05", arret: 1 },
+          { gare: "Byans", heure: "12:13", arret: 1 },
+          { gare: "Liesle", heure: "12:22", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "12:28", arret: 1 },
+          { gare: "Mouchard", heure: "12:35", arret: 1 },
+          { gare: "Andelot", heure: "12:52", arret: 1 },
+          { gare: "Frasne", heure: "13:13", arret: 2 }
+        ]
+      },
+      {
+        nom: "Frasne → Besançon Viotte",
+        dessertes: [
+          { gare: "Frasne", heure: "14:00", arret: 2 },
+          { gare: "Andelot", heure: "14:22", arret: 1 },
+          { gare: "Mouchard", heure: "14:39", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "14:46", arret: 1 },
+          { gare: "Liesle", heure: "14:52", arret: 1 },
+          { gare: "Byans", heure: "15:01", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "15:09", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "15:14", arret: 1 },
+          { gare: "Franois", heure: "15:21", arret: 1 },
+          { gare: "Besançon Viotte", heure: "15:28", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Frasne",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "15:45", arret: 2 },
+          { gare: "Franois", heure: "15:53", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "16:00", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "16:05", arret: 1 },
+          { gare: "Byans", heure: "16:13", arret: 1 },
+          { gare: "Liesle", heure: "16:22", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "16:28", arret: 1 },
+          { gare: "Mouchard", heure: "16:35", arret: 1 },
+          { gare: "Andelot", heure: "16:52", arret: 1 },
+          { gare: "Frasne", heure: "17:13", arret: 2 }
+        ]
+      },
+      {
+        nom: "Frasne → Neuchâtel",
+        dessertes: [
+          { gare: "Frasne", heure: "17:30", arret: 2 },
+          { gare: "La Rivière", heure: "17:38", arret: 1 },
+          { gare: "Sainte-Colombe", heure: "17:45", arret: 1 },
+          { gare: "Pontarlier", heure: "17:56", arret: 1 },
+          { gare: "Travers", heure: "18:37", arret: 1 },
+          { gare: "Noiraigue", heure: "18:44", arret: 1 },
+          { gare: "Champ-du-Moulin", heure: "18:52", arret: 1 },
+          { gare: "Bôle", heure: "19:01", arret: 1 },
+          { gare: "Neuchâtel", heure: "19:14", arret: 4 }
+        ]
+      },
+      {
+        nom: "Neuchâtel → Frasne",
+        dessertes: [
+          { gare: "Neuchâtel", heure: "19:30", arret: 4 },
+          { gare: "Bôle", heure: "19:46", arret: 1 },
+          { gare: "Champ-du-Moulin", heure: "19:55", arret: 1 },
+          { gare: "Noiraigue", heure: "20:03", arret: 1 },
+          { gare: "Travers", heure: "20:10", arret: 1 },
+          { gare: "Pontarlier", heure: "20:51", arret: 1 },
+          { gare: "Sainte-Colombe", heure: "21:02", arret: 1 },
+          { gare: "La Rivière", heure: "21:09", arret: 1 },
+          { gare: "Frasne", heure: "21:16", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3523",
+    nom: "X73900 BFC",
+    moteurs: ["diesel"],
+    vitesseMax: 140,
+    capacite: { premiere: 0, seconde: 122 },
+    composition: ["X73900 BFC"],
+    trajets: [
+      {
+        nom: "Besançon Viotte → Mouchard",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "06:00", arret: 2 },
+          { gare: "Franois", heure: "06:09", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "06:16", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "06:21", arret: 1 },
+          { gare: "Byans", heure: "06:29", arret: 1 },
+          { gare: "Liesle", heure: "06:38", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "06:44", arret: 1 },
+          { gare: "Mouchard", heure: "06:51", arret: 2 }
+        ]
+      },
+      {
+        nom: "Mouchard → Besançon Viotte",
+        dessertes: [
+          { gare: "Mouchard", heure: "07:00", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "07:08", arret: 1 },
+          { gare: "Liesle", heure: "07:14", arret: 1 },
+          { gare: "Byans", heure: "07:23", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "07:31", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "07:36", arret: 1 },
+          { gare: "Franois", heure: "07:43", arret: 1 },
+          { gare: "Besançon Viotte", heure: "07:51", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Pontarlier",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "08:30", arret: 2 },
+          { gare: "Franois", heure: "08:39", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "08:46", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "08:51", arret: 1 },
+          { gare: "Byans", heure: "08:59", arret: 1 },
+          { gare: "Liesle", heure: "09:08", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "09:14", arret: 1 },
+          { gare: "Mouchard", heure: "09:21", arret: 1 },
+          { gare: "Andelot", heure: "09:38", arret: 1 },
+          { gare: "Frasne", heure: "09:59", arret: 1 },
+          { gare: "La Rivière", heure: "10:06", arret: 1 },
+          { gare: "Sainte-Colombe", heure: "10:13", arret: 1 },
+          { gare: "Pontarlier", heure: "10:24", arret: 2 }
+        ]
+      },
+      {
+        nom: "Pontarlier → Besançon Viotte",
+        dessertes: [
+          { gare: "Pontarlier", heure: "11:00", arret: 2 },
+          { gare: "Sainte-Colombe", heure: "11:12", arret: 1 },
+          { gare: "La Rivière", heure: "11:19", arret: 1 },
+          { gare: "Frasne", heure: "11:26", arret: 1 },
+          { gare: "Andelot", heure: "11:47", arret: 1 },
+          { gare: "Mouchard", heure: "12:04", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "12:11", arret: 1 },
+          { gare: "Liesle", heure: "12:17", arret: 1 },
+          { gare: "Byans", heure: "12:26", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "12:34", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "12:39", arret: 1 },
+          { gare: "Franois", heure: "12:46", arret: 1 },
+          { gare: "Besançon Viotte", heure: "12:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Pontarlier",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "13:30", arret: 2 },
+          { gare: "Franois", heure: "13:39", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "13:46", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "13:51", arret: 1 },
+          { gare: "Byans", heure: "13:59", arret: 1 },
+          { gare: "Liesle", heure: "14:08", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "14:14", arret: 1 },
+          { gare: "Mouchard", heure: "14:21", arret: 1 },
+          { gare: "Andelot", heure: "14:38", arret: 1 },
+          { gare: "Frasne", heure: "14:59", arret: 1 },
+          { gare: "La Rivière", heure: "15:06", arret: 1 },
+          { gare: "Sainte-Colombe", heure: "15:13", arret: 1 },
+          { gare: "Pontarlier", heure: "15:24", arret: 2 }
+        ]
+      },
+      {
+        nom: "Pontarlier → Besançon Viotte",
+        dessertes: [
+          { gare: "Pontarlier", heure: "16:00", arret: 2 },
+          { gare: "Sainte-Colombe", heure: "16:12", arret: 1 },
+          { gare: "La Rivière", heure: "16:19", arret: 1 },
+          { gare: "Frasne", heure: "16:26", arret: 1 },
+          { gare: "Andelot", heure: "16:47", arret: 1 },
+          { gare: "Mouchard", heure: "17:04", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "17:11", arret: 1 },
+          { gare: "Liesle", heure: "17:17", arret: 1 },
+          { gare: "Byans", heure: "17:26", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "17:34", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "17:39", arret: 1 },
+          { gare: "Franois", heure: "17:46", arret: 1 },
+          { gare: "Besançon Viotte", heure: "17:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Pontarlier",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "18:30", arret: 2 },
+          { gare: "Franois", heure: "18:39", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "18:46", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "18:51", arret: 1 },
+          { gare: "Byans", heure: "18:59", arret: 1 },
+          { gare: "Liesle", heure: "19:08", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "19:14", arret: 1 },
+          { gare: "Mouchard", heure: "19:21", arret: 1 },
+          { gare: "Andelot", heure: "19:38", arret: 1 },
+          { gare: "Frasne", heure: "19:59", arret: 1 },
+          { gare: "La Rivière", heure: "20:06", arret: 1 },
+          { gare: "Sainte-Colombe", heure: "20:13", arret: 1 },
+          { gare: "Pontarlier", heure: "20:24", arret: 2 }
+        ]
+      },
+      {
+        nom: "Pontarlier → Besançon Viotte",
+        dessertes: [
+          { gare: "Pontarlier", heure: "21:00", arret: 2 },
+          { gare: "Sainte-Colombe", heure: "21:12", arret: 1 },
+          { gare: "La Rivière", heure: "21:19", arret: 1 },
+          { gare: "Frasne", heure: "21:26", arret: 1 },
+          { gare: "Andelot", heure: "21:47", arret: 1 },
+          { gare: "Mouchard", heure: "22:04", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "22:11", arret: 1 },
+          { gare: "Liesle", heure: "22:17", arret: 1 },
+          { gare: "Byans", heure: "22:26", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "22:34", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "22:39", arret: 1 },
+          { gare: "Franois", heure: "22:46", arret: 1 },
+          { gare: "Besançon Viotte", heure: "22:54", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3525",
+    nom: "AGC greenMobigo 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 48, seconde: 268 },
+    composition: ["AGC greenMobigo 3C"],
+    trajets: [
+      {
+        nom: "Besançon Viotte → Vallorbe",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "05:52", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "06:28", arret: 1 },
+          { gare: "Mouchard", heure: "06:35", arret: 1 },
+          { gare: "Andelot", heure: "06:52", arret: 1 },
+          { gare: "Frasne", heure: "07:13", arret: 2 },
+          { gare: "Les Granges-Ste-Marie", heure: "07:29", arret: 1 },
+          { gare: "Vallorbe", heure: "07:40", arret: 2 }
+        ]
+      },
+      {
+        nom: "Vallorbe → Besançon Viotte",
+        dessertes: [
+          { gare: "Vallorbe", heure: "08:10", arret: 2 },
+          { gare: "Les Granges-Ste-Marie", heure: "08:22", arret: 1 },
+          { gare: "Frasne", heure: "08:37", arret: 2 },
+          { gare: "Andelot", heure: "08:59", arret: 1 },
+          { gare: "Mouchard", heure: "09:16", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "09:23", arret: 1 },
+          { gare: "Besançon Viotte", heure: "09:58", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Vallorbe",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "10:52", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "11:28", arret: 1 },
+          { gare: "Mouchard", heure: "11:35", arret: 1 },
+          { gare: "Andelot", heure: "11:52", arret: 1 },
+          { gare: "Frasne", heure: "12:13", arret: 2 },
+          { gare: "Les Granges-Ste-Marie", heure: "12:29", arret: 1 },
+          { gare: "Vallorbe", heure: "12:40", arret: 2 }
+        ]
+      },
+      {
+        nom: "Vallorbe → Besançon Viotte",
+        dessertes: [
+          { gare: "Vallorbe", heure: "13:10", arret: 2 },
+          { gare: "Les Granges-Ste-Marie", heure: "13:22", arret: 1 },
+          { gare: "Frasne", heure: "13:37", arret: 2 },
+          { gare: "Andelot", heure: "13:59", arret: 1 },
+          { gare: "Mouchard", heure: "14:16", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "14:23", arret: 1 },
+          { gare: "Besançon Viotte", heure: "14:58", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Vallorbe",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "16:52", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "17:28", arret: 1 },
+          { gare: "Mouchard", heure: "17:35", arret: 1 },
+          { gare: "Andelot", heure: "17:52", arret: 1 },
+          { gare: "Frasne", heure: "18:13", arret: 2 },
+          { gare: "Les Granges-Ste-Marie", heure: "18:29", arret: 1 },
+          { gare: "Vallorbe", heure: "18:40", arret: 2 }
+        ]
+      },
+      {
+        nom: "Vallorbe → Besançon Viotte",
+        dessertes: [
+          { gare: "Vallorbe", heure: "19:10", arret: 2 },
+          { gare: "Les Granges-Ste-Marie", heure: "19:22", arret: 1 },
+          { gare: "Frasne", heure: "19:37", arret: 2 },
+          { gare: "Andelot", heure: "19:59", arret: 1 },
+          { gare: "Mouchard", heure: "20:16", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "20:23", arret: 1 },
+          { gare: "Besançon Viotte", heure: "20:58", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3526",
+    nom: "X73900 BFC",
+    moteurs: ["diesel"],
+    vitesseMax: 140,
+    capacite: { premiere: 0, seconde: 122 },
+    composition: ["X73900 BFC"],
+    trajets: [
+      {
+        nom: "Pontarlier → Vallorbe",
+        dessertes: [
+          { gare: "Pontarlier", heure: "07:30", arret: 2 },
+          { gare: "Sainte-Colombe", heure: "07:42", arret: 1 },
+          { gare: "La Rivière", heure: "07:49", arret: 1 },
+          { gare: "Frasne", heure: "07:56", arret: 1 },
+          { gare: "Les Granges-Ste-Marie", heure: "08:11", arret: 1 },
+          { gare: "Vallorbe", heure: "08:22", arret: 2 }
+        ]
+      },
+      {
+        nom: "Vallorbe → Pontarlier",
+        dessertes: [
+          { gare: "Vallorbe", heure: "09:00", arret: 2 },
+          { gare: "Les Granges-Ste-Marie", heure: "09:12", arret: 1 },
+          { gare: "Frasne", heure: "09:27", arret: 1 },
+          { gare: "La Rivière", heure: "09:34", arret: 1 },
+          { gare: "Sainte-Colombe", heure: "09:41", arret: 1 },
+          { gare: "Pontarlier", heure: "09:52", arret: 2 }
+        ]
+      },
+      {
+        nom: "Pontarlier → Vallorbe",
+        dessertes: [
+          { gare: "Pontarlier", heure: "10:30", arret: 2 },
+          { gare: "Sainte-Colombe", heure: "10:42", arret: 1 },
+          { gare: "La Rivière", heure: "10:49", arret: 1 },
+          { gare: "Frasne", heure: "10:56", arret: 1 },
+          { gare: "Les Granges-Ste-Marie", heure: "11:11", arret: 1 },
+          { gare: "Vallorbe", heure: "11:22", arret: 2 }
+        ]
+      },
+      {
+        nom: "Vallorbe → Pontarlier",
+        dessertes: [
+          { gare: "Vallorbe", heure: "12:00", arret: 2 },
+          { gare: "Les Granges-Ste-Marie", heure: "12:12", arret: 1 },
+          { gare: "Frasne", heure: "12:27", arret: 1 },
+          { gare: "La Rivière", heure: "12:34", arret: 1 },
+          { gare: "Sainte-Colombe", heure: "12:41", arret: 1 },
+          { gare: "Pontarlier", heure: "12:52", arret: 2 }
+        ]
+      },
+      {
+        nom: "Pontarlier → Vallorbe",
+        dessertes: [
+          { gare: "Pontarlier", heure: "13:30", arret: 2 },
+          { gare: "Sainte-Colombe", heure: "13:42", arret: 1 },
+          { gare: "La Rivière", heure: "13:49", arret: 1 },
+          { gare: "Frasne", heure: "13:56", arret: 1 },
+          { gare: "Les Granges-Ste-Marie", heure: "14:11", arret: 1 },
+          { gare: "Vallorbe", heure: "14:22", arret: 2 }
+        ]
+      },
+      {
+        nom: "Vallorbe → Pontarlier",
+        dessertes: [
+          { gare: "Vallorbe", heure: "15:00", arret: 2 },
+          { gare: "Les Granges-Ste-Marie", heure: "15:12", arret: 1 },
+          { gare: "Frasne", heure: "15:27", arret: 1 },
+          { gare: "La Rivière", heure: "15:34", arret: 1 },
+          { gare: "Sainte-Colombe", heure: "15:41", arret: 1 },
+          { gare: "Pontarlier", heure: "15:52", arret: 2 }
+        ]
+      },
+      {
+        nom: "Pontarlier → Vallorbe",
+        dessertes: [
+          { gare: "Pontarlier", heure: "16:30", arret: 2 },
+          { gare: "Sainte-Colombe", heure: "16:42", arret: 1 },
+          { gare: "La Rivière", heure: "16:49", arret: 1 },
+          { gare: "Frasne", heure: "16:56", arret: 1 },
+          { gare: "Les Granges-Ste-Marie", heure: "17:11", arret: 1 },
+          { gare: "Vallorbe", heure: "17:22", arret: 2 }
+        ]
+      },
+      {
+        nom: "Vallorbe → Pontarlier",
+        dessertes: [
+          { gare: "Vallorbe", heure: "18:00", arret: 2 },
+          { gare: "Les Granges-Ste-Marie", heure: "18:12", arret: 1 },
+          { gare: "Frasne", heure: "18:27", arret: 1 },
+          { gare: "La Rivière", heure: "18:34", arret: 1 },
+          { gare: "Sainte-Colombe", heure: "18:41", arret: 1 },
+          { gare: "Pontarlier", heure: "18:52", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3528",
+    nom: "X73900 FrCo",
+    moteurs: ["diesel"],
+    vitesseMax: 140,
+    capacite: { premiere: 0, seconde: 122 },
+    composition: ["X73900 BFC"],
+    trajets: [
+      {
+        nom: "Besançon Viotte → Saint-Claude",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "07:10", arret: 2 },
+          { gare: "Franois", heure: "07:19", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "07:26", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "07:31", arret: 1 },
+          { gare: "Byans", heure: "07:39", arret: 1 },
+          { gare: "Liesle", heure: "07:48", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "07:54", arret: 1 },
+          { gare: "Mouchard", heure: "08:01", arret: 1 },
+          { gare: "Andelot", heure: "08:18", arret: 1 },
+          { gare: "Champagnole", heure: "08:32", arret: 1 },
+          { gare: "La Chaux des Crotenay", heure: "08:51", arret: 1 },
+          { gare: "La Chaumusse", heure: "09:02", arret: 1 },
+          { gare: "Saint-Laurent-en-Grandvaux", heure: "09:11", arret: 1 },
+          { gare: "Morbier", heure: "09:33", arret: 1 },
+          { gare: "Morez", heure: "09:37", arret: 1 },
+          { gare: "Saint-Claude", heure: "10:21", arret: 1 }
+        ]
+      },
+      {
+        nom: "Saint-Claude → Besançon Viotte",
+        dessertes: [
+          { gare: "Saint-Claude", heure: "10:45", arret: 1 },
+          { gare: "Morez", heure: "11:29", arret: 1 },
+          { gare: "Morbier", heure: "11:33", arret: 1 },
+          { gare: "Saint-Laurent-en-Grandvaux", heure: "11:55", arret: 1 },
+          { gare: "La Chaumusse", heure: "12:04", arret: 1 },
+          { gare: "La Chaux des Crotenay", heure: "12:15", arret: 1 },
+          { gare: "Champagnole", heure: "12:34", arret: 1 },
+          { gare: "Andelot", heure: "12:48", arret: 1 },
+          { gare: "Mouchard", heure: "13:05", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "13:12", arret: 1 },
+          { gare: "Liesle", heure: "13:18", arret: 1 },
+          { gare: "Byans", heure: "13:27", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "13:35", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "13:40", arret: 1 },
+          { gare: "Franois", heure: "13:47", arret: 1 },
+          { gare: "Besançon Viotte", heure: "13:55", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Saint-Claude",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "14:10", arret: 2 },
+          { gare: "Franois", heure: "14:19", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "14:26", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "14:31", arret: 1 },
+          { gare: "Byans", heure: "14:39", arret: 1 },
+          { gare: "Liesle", heure: "14:48", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "14:54", arret: 1 },
+          { gare: "Mouchard", heure: "15:01", arret: 1 },
+          { gare: "Andelot", heure: "15:18", arret: 1 },
+          { gare: "Champagnole", heure: "15:32", arret: 1 },
+          { gare: "La Chaux des Crotenay", heure: "15:51", arret: 1 },
+          { gare: "La Chaumusse", heure: "16:02", arret: 1 },
+          { gare: "Saint-Laurent-en-Grandvaux", heure: "16:11", arret: 1 },
+          { gare: "Morbier", heure: "16:33", arret: 1 },
+          { gare: "Morez", heure: "16:37", arret: 1 },
+          { gare: "Saint-Claude", heure: "17:21", arret: 1 }
+        ]
+      },
+      {
+        nom: "Saint-Claude → Besançon Viotte",
+        dessertes: [
+          { gare: "Saint-Claude", heure: "18:25", arret: 1 },
+          { gare: "Morez", heure: "19:09", arret: 1 },
+          { gare: "Morbier", heure: "19:13", arret: 1 },
+          { gare: "Saint-Laurent-en-Grandvaux", heure: "19:35", arret: 1 },
+          { gare: "La Chaumusse", heure: "19:44", arret: 1 },
+          { gare: "La Chaux des Crotenay", heure: "19:55", arret: 1 },
+          { gare: "Champagnole", heure: "20:14", arret: 1 },
+          { gare: "Andelot", heure: "20:28", arret: 1 },
+          { gare: "Mouchard", heure: "20:45", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "20:52", arret: 1 },
+          { gare: "Liesle", heure: "20:58", arret: 1 },
+          { gare: "Byans", heure: "21:07", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "21:15", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "21:20", arret: 1 },
+          { gare: "Franois", heure: "21:27", arret: 1 },
+          { gare: "Besançon Viotte", heure: "21:35", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3529",
+    nom: "AGC BFC 3C",
+    moteurs: ["diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 134 },
+    trajets: [
+      {
+        nom: "Champagnole → Besançon Viotte",
+        dessertes: [
+          { gare: "Champagnole", heure: "07:00", arret: 2 },
+          { gare: "Andelot", heure: "07:15", arret: 1 },
+          { gare: "Mouchard", heure: "07:32", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "07:39", arret: 1 },
+          { gare: "Liesle", heure: "07:45", arret: 1 },
+          { gare: "Byans", heure: "07:54", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "08:02", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "08:07", arret: 1 },
+          { gare: "Franois", heure: "08:14", arret: 1 },
+          { gare: "Besançon Viotte", heure: "08:21", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Champagnole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "08:51", arret: 2 },
+          { gare: "Franois", heure: "08:59", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "09:06", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "09:11", arret: 1 },
+          { gare: "Byans", heure: "09:19", arret: 1 },
+          { gare: "Liesle", heure: "09:28", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "09:34", arret: 1 },
+          { gare: "Mouchard", heure: "09:41", arret: 1 },
+          { gare: "Andelot", heure: "09:58", arret: 1 },
+          { gare: "Champagnole", heure: "10:12", arret: 2 }
+        ]
+      },
+      {
+        nom: "Champagnole → Besançon Viotte",
+        dessertes: [
+          { gare: "Champagnole", heure: "11:00", arret: 2 },
+          { gare: "Andelot", heure: "11:15", arret: 1 },
+          { gare: "Mouchard", heure: "11:32", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "11:39", arret: 1 },
+          { gare: "Liesle", heure: "11:45", arret: 1 },
+          { gare: "Byans", heure: "11:54", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "12:02", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "12:07", arret: 1 },
+          { gare: "Franois", heure: "12:14", arret: 1 },
+          { gare: "Besançon Viotte", heure: "12:21", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Champagnole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "12:51", arret: 2 },
+          { gare: "Franois", heure: "12:59", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "13:06", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "13:11", arret: 1 },
+          { gare: "Byans", heure: "13:19", arret: 1 },
+          { gare: "Liesle", heure: "13:28", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "13:34", arret: 1 },
+          { gare: "Mouchard", heure: "13:41", arret: 1 },
+          { gare: "Andelot", heure: "13:58", arret: 1 },
+          { gare: "Champagnole", heure: "14:12", arret: 2 }
+        ]
+      },
+      {
+        nom: "Champagnole → Besançon Viotte",
+        dessertes: [
+          { gare: "Champagnole", heure: "15:00", arret: 2 },
+          { gare: "Andelot", heure: "15:15", arret: 1 },
+          { gare: "Mouchard", heure: "15:32", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "15:39", arret: 1 },
+          { gare: "Liesle", heure: "15:45", arret: 1 },
+          { gare: "Byans", heure: "15:54", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "16:02", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "16:07", arret: 1 },
+          { gare: "Franois", heure: "16:14", arret: 1 },
+          { gare: "Besançon Viotte", heure: "16:21", arret: 2 }
+        ]
+      },
+      {
+        nom: "Besançon Viotte → Champagnole",
+        dessertes: [
+          { gare: "Besançon Viotte", heure: "17:21", arret: 2 },
+          { gare: "Franois", heure: "17:29", arret: 1 },
+          { gare: "Montferrand-le-Château", heure: "17:36", arret: 1 },
+          { gare: "Torpes - Boussières", heure: "17:41", arret: 1 },
+          { gare: "Byans", heure: "17:49", arret: 1 },
+          { gare: "Liesle", heure: "17:58", arret: 1 },
+          { gare: "Arc-et-Senans", heure: "18:04", arret: 1 },
+          { gare: "Mouchard", heure: "18:11", arret: 1 },
+          { gare: "Andelot", heure: "18:28", arret: 1 },
+          { gare: "Champagnole", heure: "18:42", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3530",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Dijon-Ville → Arc-et-Senans",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "07:05", arret: 2 },
+          { gare: "Genlis", heure: "07:21", arret: 1 },
+          { gare: "Collonges", heure: "07:25", arret: 1 },
+          { gare: "Auxonne", heure: "07:34", arret: 1 },
+          { gare: "Dole", heure: "07:45", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "08:09", arret: 2 }
+        ]
+      },
+      {
+        nom: "Arc-et-Senans → Dijon-Ville",
+        dessertes: [
+          { gare: "Arc-et-Senans", heure: "08:30", arret: 2 },
+          { gare: "Dole", heure: "08:54", arret: 2 },
+          { gare: "Auxonne", heure: "09:06", arret: 1 },
+          { gare: "Collonges", heure: "09:15", arret: 1 },
+          { gare: "Genlis", heure: "09:19", arret: 1 },
+          { gare: "Dijon-Ville", heure: "09:34", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Arc-et-Senans",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "10:05", arret: 2 },
+          { gare: "Genlis", heure: "10:21", arret: 1 },
+          { gare: "Collonges", heure: "10:25", arret: 1 },
+          { gare: "Auxonne", heure: "10:34", arret: 1 },
+          { gare: "Dole", heure: "10:45", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "11:09", arret: 2 }
+        ]
+      },
+      {
+        nom: "Arc-et-Senans → Dijon-Ville",
+        dessertes: [
+          { gare: "Arc-et-Senans", heure: "11:30", arret: 2 },
+          { gare: "Dole", heure: "11:54", arret: 2 },
+          { gare: "Auxonne", heure: "12:06", arret: 1 },
+          { gare: "Collonges", heure: "12:15", arret: 1 },
+          { gare: "Genlis", heure: "12:19", arret: 1 },
+          { gare: "Dijon-Ville", heure: "12:34", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Arc-et-Senans",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "13:05", arret: 2 },
+          { gare: "Genlis", heure: "13:21", arret: 1 },
+          { gare: "Collonges", heure: "13:25", arret: 1 },
+          { gare: "Auxonne", heure: "13:34", arret: 1 },
+          { gare: "Dole", heure: "13:45", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "14:09", arret: 2 }
+        ]
+      },
+      {
+        nom: "Arc-et-Senans → Dijon-Ville",
+        dessertes: [
+          { gare: "Arc-et-Senans", heure: "14:30", arret: 2 },
+          { gare: "Dole", heure: "14:54", arret: 2 },
+          { gare: "Auxonne", heure: "15:06", arret: 1 },
+          { gare: "Collonges", heure: "15:15", arret: 1 },
+          { gare: "Genlis", heure: "15:19", arret: 1 },
+          { gare: "Dijon-Ville", heure: "15:34", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Arc-et-Senans",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "16:05", arret: 2 },
+          { gare: "Genlis", heure: "16:21", arret: 1 },
+          { gare: "Collonges", heure: "16:25", arret: 1 },
+          { gare: "Auxonne", heure: "16:34", arret: 1 },
+          { gare: "Dole", heure: "16:45", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "17:09", arret: 2 }
+        ]
+      },
+      {
+        nom: "Arc-et-Senans → Dijon-Ville",
+        dessertes: [
+          { gare: "Arc-et-Senans", heure: "17:30", arret: 2 },
+          { gare: "Dole", heure: "17:54", arret: 2 },
+          { gare: "Auxonne", heure: "18:06", arret: 1 },
+          { gare: "Collonges", heure: "18:15", arret: 1 },
+          { gare: "Genlis", heure: "18:19", arret: 1 },
+          { gare: "Dijon-Ville", heure: "18:34", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Arc-et-Senans",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "19:05", arret: 2 },
+          { gare: "Genlis", heure: "19:21", arret: 1 },
+          { gare: "Collonges", heure: "19:25", arret: 1 },
+          { gare: "Auxonne", heure: "19:34", arret: 1 },
+          { gare: "Dole", heure: "19:45", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "20:09", arret: 2 }
+        ]
+      },
+      {
+        nom: "Arc-et-Senans → Dijon-Ville",
+        dessertes: [
+          { gare: "Arc-et-Senans", heure: "20:30", arret: 2 },
+          { gare: "Dole", heure: "20:54", arret: 2 },
+          { gare: "Auxonne", heure: "21:06", arret: 1 },
+          { gare: "Collonges", heure: "21:15", arret: 1 },
+          { gare: "Genlis", heure: "21:19", arret: 1 },
+          { gare: "Dijon-Ville", heure: "21:34", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3531",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Arc-et-Senans → Dijon-Ville",
+        dessertes: [
+          { gare: "Arc-et-Senans", heure: "07:30", arret: 2 },
+          { gare: "Dole", heure: "07:54", arret: 2 },
+          { gare: "Auxonne", heure: "08:06", arret: 1 },
+          { gare: "Collonges", heure: "08:15", arret: 1 },
+          { gare: "Genlis", heure: "08:19", arret: 1 },
+          { gare: "Dijon-Ville", heure: "08:34", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Arc-et-Senans",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "09:05", arret: 2 },
+          { gare: "Genlis", heure: "09:21", arret: 1 },
+          { gare: "Collonges", heure: "09:25", arret: 1 },
+          { gare: "Auxonne", heure: "09:34", arret: 1 },
+          { gare: "Dole", heure: "09:45", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "10:09", arret: 2 }
+        ]
+      },
+      {
+        nom: "Arc-et-Senans → Dijon-Ville",
+        dessertes: [
+          { gare: "Arc-et-Senans", heure: "10:30", arret: 2 },
+          { gare: "Dole", heure: "10:54", arret: 2 },
+          { gare: "Auxonne", heure: "11:06", arret: 1 },
+          { gare: "Collonges", heure: "11:15", arret: 1 },
+          { gare: "Genlis", heure: "11:19", arret: 1 },
+          { gare: "Dijon-Ville", heure: "11:34", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Arc-et-Senans",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "12:05", arret: 2 },
+          { gare: "Genlis", heure: "12:21", arret: 1 },
+          { gare: "Collonges", heure: "12:25", arret: 1 },
+          { gare: "Auxonne", heure: "12:34", arret: 1 },
+          { gare: "Dole", heure: "12:45", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "13:09", arret: 2 }
+        ]
+      },
+      {
+        nom: "Arc-et-Senans → Dijon-Ville",
+        dessertes: [
+          { gare: "Arc-et-Senans", heure: "13:30", arret: 2 },
+          { gare: "Dole", heure: "13:54", arret: 2 },
+          { gare: "Auxonne", heure: "14:06", arret: 1 },
+          { gare: "Collonges", heure: "14:15", arret: 1 },
+          { gare: "Genlis", heure: "14:19", arret: 1 },
+          { gare: "Dijon-Ville", heure: "14:34", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Arc-et-Senans",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "15:05", arret: 2 },
+          { gare: "Genlis", heure: "15:21", arret: 1 },
+          { gare: "Collonges", heure: "15:25", arret: 1 },
+          { gare: "Auxonne", heure: "15:34", arret: 1 },
+          { gare: "Dole", heure: "15:45", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "16:09", arret: 2 }
+        ]
+      },
+      {
+        nom: "Arc-et-Senans → Dijon-Ville",
+        dessertes: [
+          { gare: "Arc-et-Senans", heure: "16:30", arret: 2 },
+          { gare: "Dole", heure: "16:54", arret: 2 },
+          { gare: "Auxonne", heure: "17:06", arret: 1 },
+          { gare: "Collonges", heure: "17:15", arret: 1 },
+          { gare: "Genlis", heure: "17:19", arret: 1 },
+          { gare: "Dijon-Ville", heure: "17:34", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Arc-et-Senans",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "18:05", arret: 2 },
+          { gare: "Genlis", heure: "18:21", arret: 1 },
+          { gare: "Collonges", heure: "18:25", arret: 1 },
+          { gare: "Auxonne", heure: "18:34", arret: 1 },
+          { gare: "Dole", heure: "18:45", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "19:09", arret: 2 }
+        ]
+      },
+      {
+        nom: "Arc-et-Senans → Dijon-Ville",
+        dessertes: [
+          { gare: "Arc-et-Senans", heure: "19:30", arret: 2 },
+          { gare: "Dole", heure: "19:54", arret: 2 },
+          { gare: "Auxonne", heure: "20:06", arret: 1 },
+          { gare: "Collonges", heure: "20:15", arret: 1 },
+          { gare: "Genlis", heure: "20:19", arret: 1 },
+          { gare: "Dijon-Ville", heure: "20:34", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Arc-et-Senans",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "21:05", arret: 2 },
+          { gare: "Genlis", heure: "21:21", arret: 1 },
+          { gare: "Collonges", heure: "21:25", arret: 1 },
+          { gare: "Auxonne", heure: "21:34", arret: 1 },
+          { gare: "Dole", heure: "21:45", arret: 2 },
+          { gare: "Arc-et-Senans", heure: "22:09", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3534",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Dijon-Ville → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "07:00", arret: 2 },
+          { gare: "Ouges", heure: "07:10", arret: 1 },
+          { gare: "Longecourt", heure: "07:18", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "07:26", arret: 1 },
+          { gare: "Chaugey", heure: "07:32", arret: 1 },
+          { gare: "Pagny", heure: "07:38", arret: 1 },
+          { gare: "Seurre", heure: "07:44", arret: 1 },
+          { gare: "Mervans", heure: "08:00", arret: 1 },
+          { gare: "Louhans", heure: "08:14", arret: 1 },
+          { gare: "Saint-Amour", heure: "08:34", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "08:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Bourg-en-Bresse → Dijon-Ville",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "09:00", arret: 2 },
+          { gare: "Saint-Amour", heure: "09:21", arret: 1 },
+          { gare: "Louhans", heure: "09:41", arret: 1 },
+          { gare: "Mervans", heure: "09:55", arret: 1 },
+          { gare: "Seurre", heure: "10:11", arret: 1 },
+          { gare: "Pagny", heure: "10:17", arret: 1 },
+          { gare: "Chaugey", heure: "10:23", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "10:29", arret: 1 },
+          { gare: "Longecourt", heure: "10:37", arret: 1 },
+          { gare: "Ouges", heure: "10:45", arret: 1 },
+          { gare: "Dijon-Ville", heure: "10:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "11:00", arret: 2 },
+          { gare: "Ouges", heure: "11:10", arret: 1 },
+          { gare: "Longecourt", heure: "11:18", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "11:26", arret: 1 },
+          { gare: "Chaugey", heure: "11:32", arret: 1 },
+          { gare: "Pagny", heure: "11:38", arret: 1 },
+          { gare: "Seurre", heure: "11:44", arret: 1 },
+          { gare: "Mervans", heure: "12:00", arret: 1 },
+          { gare: "Louhans", heure: "12:14", arret: 1 },
+          { gare: "Saint-Amour", heure: "12:34", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "12:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Bourg-en-Bresse → Dijon-Ville",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "13:00", arret: 2 },
+          { gare: "Saint-Amour", heure: "13:21", arret: 1 },
+          { gare: "Louhans", heure: "13:41", arret: 1 },
+          { gare: "Mervans", heure: "13:55", arret: 1 },
+          { gare: "Seurre", heure: "14:11", arret: 1 },
+          { gare: "Pagny", heure: "14:17", arret: 1 },
+          { gare: "Chaugey", heure: "14:23", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "14:29", arret: 1 },
+          { gare: "Longecourt", heure: "14:37", arret: 1 },
+          { gare: "Ouges", heure: "14:45", arret: 1 },
+          { gare: "Dijon-Ville", heure: "14:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "15:00", arret: 2 },
+          { gare: "Ouges", heure: "15:10", arret: 1 },
+          { gare: "Longecourt", heure: "15:18", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "15:26", arret: 1 },
+          { gare: "Chaugey", heure: "15:32", arret: 1 },
+          { gare: "Pagny", heure: "15:38", arret: 1 },
+          { gare: "Seurre", heure: "15:44", arret: 1 },
+          { gare: "Mervans", heure: "16:00", arret: 1 },
+          { gare: "Louhans", heure: "16:14", arret: 1 },
+          { gare: "Saint-Amour", heure: "16:34", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "16:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Bourg-en-Bresse → Dijon-Ville",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "17:00", arret: 2 },
+          { gare: "Saint-Amour", heure: "17:21", arret: 1 },
+          { gare: "Louhans", heure: "17:41", arret: 1 },
+          { gare: "Mervans", heure: "17:55", arret: 1 },
+          { gare: "Seurre", heure: "18:11", arret: 1 },
+          { gare: "Pagny", heure: "18:17", arret: 1 },
+          { gare: "Chaugey", heure: "18:23", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "18:29", arret: 1 },
+          { gare: "Longecourt", heure: "18:37", arret: 1 },
+          { gare: "Ouges", heure: "18:45", arret: 1 },
+          { gare: "Dijon-Ville", heure: "18:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "19:00", arret: 2 },
+          { gare: "Ouges", heure: "19:10", arret: 1 },
+          { gare: "Longecourt", heure: "19:18", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "19:26", arret: 1 },
+          { gare: "Chaugey", heure: "19:32", arret: 1 },
+          { gare: "Pagny", heure: "19:38", arret: 1 },
+          { gare: "Seurre", heure: "19:44", arret: 1 },
+          { gare: "Mervans", heure: "20:00", arret: 1 },
+          { gare: "Louhans", heure: "20:14", arret: 1 },
+          { gare: "Saint-Amour", heure: "20:34", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "20:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Bourg-en-Bresse → Dijon-Ville",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "21:00", arret: 2 },
+          { gare: "Saint-Amour", heure: "21:21", arret: 1 },
+          { gare: "Louhans", heure: "21:41", arret: 1 },
+          { gare: "Mervans", heure: "21:55", arret: 1 },
+          { gare: "Seurre", heure: "22:11", arret: 1 },
+          { gare: "Pagny", heure: "22:17", arret: 1 },
+          { gare: "Chaugey", heure: "22:23", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "22:29", arret: 1 },
+          { gare: "Longecourt", heure: "22:37", arret: 1 },
+          { gare: "Ouges", heure: "22:45", arret: 1 },
+          { gare: "Dijon-Ville", heure: "22:54", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3535",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Bourg-en-Bresse → Dijon-Ville",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "07:00", arret: 2 },
+          { gare: "Saint-Amour", heure: "07:21", arret: 1 },
+          { gare: "Louhans", heure: "07:41", arret: 1 },
+          { gare: "Mervans", heure: "07:55", arret: 1 },
+          { gare: "Seurre", heure: "08:11", arret: 1 },
+          { gare: "Pagny", heure: "08:17", arret: 1 },
+          { gare: "Chaugey", heure: "08:23", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "08:29", arret: 1 },
+          { gare: "Longecourt", heure: "08:37", arret: 1 },
+          { gare: "Ouges", heure: "08:45", arret: 1 },
+          { gare: "Dijon-Ville", heure: "08:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "09:00", arret: 2 },
+          { gare: "Ouges", heure: "09:10", arret: 1 },
+          { gare: "Longecourt", heure: "09:18", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "09:26", arret: 1 },
+          { gare: "Chaugey", heure: "09:32", arret: 1 },
+          { gare: "Pagny", heure: "09:38", arret: 1 },
+          { gare: "Seurre", heure: "09:44", arret: 1 },
+          { gare: "Mervans", heure: "10:00", arret: 1 },
+          { gare: "Louhans", heure: "10:14", arret: 1 },
+          { gare: "Saint-Amour", heure: "10:34", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "10:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Bourg-en-Bresse → Dijon-Ville",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "11:00", arret: 2 },
+          { gare: "Saint-Amour", heure: "11:21", arret: 1 },
+          { gare: "Louhans", heure: "11:41", arret: 1 },
+          { gare: "Mervans", heure: "11:55", arret: 1 },
+          { gare: "Seurre", heure: "12:11", arret: 1 },
+          { gare: "Pagny", heure: "12:17", arret: 1 },
+          { gare: "Chaugey", heure: "12:23", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "12:29", arret: 1 },
+          { gare: "Longecourt", heure: "12:37", arret: 1 },
+          { gare: "Ouges", heure: "12:45", arret: 1 },
+          { gare: "Dijon-Ville", heure: "12:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "13:00", arret: 2 },
+          { gare: "Ouges", heure: "13:10", arret: 1 },
+          { gare: "Longecourt", heure: "13:18", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "13:26", arret: 1 },
+          { gare: "Chaugey", heure: "13:32", arret: 1 },
+          { gare: "Pagny", heure: "13:38", arret: 1 },
+          { gare: "Seurre", heure: "13:44", arret: 1 },
+          { gare: "Mervans", heure: "14:00", arret: 1 },
+          { gare: "Louhans", heure: "14:14", arret: 1 },
+          { gare: "Saint-Amour", heure: "14:34", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "14:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Bourg-en-Bresse → Dijon-Ville",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "15:00", arret: 2 },
+          { gare: "Saint-Amour", heure: "15:21", arret: 1 },
+          { gare: "Louhans", heure: "15:41", arret: 1 },
+          { gare: "Mervans", heure: "15:55", arret: 1 },
+          { gare: "Seurre", heure: "16:11", arret: 1 },
+          { gare: "Pagny", heure: "16:17", arret: 1 },
+          { gare: "Chaugey", heure: "16:23", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "16:29", arret: 1 },
+          { gare: "Longecourt", heure: "16:37", arret: 1 },
+          { gare: "Ouges", heure: "16:45", arret: 1 },
+          { gare: "Dijon-Ville", heure: "16:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "17:00", arret: 2 },
+          { gare: "Ouges", heure: "17:10", arret: 1 },
+          { gare: "Longecourt", heure: "17:18", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "17:26", arret: 1 },
+          { gare: "Chaugey", heure: "17:32", arret: 1 },
+          { gare: "Pagny", heure: "17:38", arret: 1 },
+          { gare: "Seurre", heure: "17:44", arret: 1 },
+          { gare: "Mervans", heure: "18:00", arret: 1 },
+          { gare: "Louhans", heure: "18:14", arret: 1 },
+          { gare: "Saint-Amour", heure: "18:34", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "18:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Bourg-en-Bresse → Dijon-Ville",
+        dessertes: [
+          { gare: "Bourg-en-Bresse", heure: "19:00", arret: 2 },
+          { gare: "Saint-Amour", heure: "19:21", arret: 1 },
+          { gare: "Louhans", heure: "19:41", arret: 1 },
+          { gare: "Mervans", heure: "19:55", arret: 1 },
+          { gare: "Seurre", heure: "20:11", arret: 1 },
+          { gare: "Pagny", heure: "20:17", arret: 1 },
+          { gare: "Chaugey", heure: "20:23", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "20:29", arret: 1 },
+          { gare: "Longecourt", heure: "20:37", arret: 1 },
+          { gare: "Ouges", heure: "20:45", arret: 1 },
+          { gare: "Dijon-Ville", heure: "20:54", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Bourg-en-Bresse",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "21:00", arret: 2 },
+          { gare: "Ouges", heure: "21:10", arret: 1 },
+          { gare: "Longecourt", heure: "21:18", arret: 1 },
+          { gare: "Brazey-en-Plaine", heure: "21:26", arret: 1 },
+          { gare: "Chaugey", heure: "21:32", arret: 1 },
+          { gare: "Pagny", heure: "21:38", arret: 1 },
+          { gare: "Seurre", heure: "21:44", arret: 1 },
+          { gare: "Mervans", heure: "22:00", arret: 1 },
+          { gare: "Louhans", heure: "22:14", arret: 1 },
+          { gare: "Saint-Amour", heure: "22:34", arret: 1 },
+          { gare: "Bourg-en-Bresse", heure: "22:54", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3537",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 48, seconde: 366 },
+    composition: ["AGC Bourgogne 4C"],
+    trajets: [
+      {
+        nom: "Mâcon → Dijon-Ville",
+        dessertes: [
+          { gare: "Mâcon", heure: "07:00", arret: 2 },
+          { gare: "Senozan", heure: "07:09", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "07:14", arret: 1 },
+          { gare: "Tournus", heure: "07:23", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "07:29", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "07:39", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "07:46", arret: 1 },
+          { gare: "Chagny", heure: "07:51", arret: 1 },
+          { gare: "Beaune", heure: "08:02", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "08:13", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "08:21", arret: 1 },
+          { gare: "Dijon-Ville", heure: "08:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Mâcon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "09:00", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "09:10", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "09:18", arret: 1 },
+          { gare: "Beaune", heure: "09:29", arret: 1 },
+          { gare: "Chagny", heure: "09:40", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "09:45", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "09:52", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "10:02", arret: 1 },
+          { gare: "Tournus", heure: "10:08", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "10:17", arret: 1 },
+          { gare: "Senozan", heure: "10:22", arret: 1 },
+          { gare: "Mâcon", heure: "10:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Mâcon → Dijon-Ville",
+        dessertes: [
+          { gare: "Mâcon", heure: "11:00", arret: 2 },
+          { gare: "Senozan", heure: "11:09", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "11:14", arret: 1 },
+          { gare: "Tournus", heure: "11:23", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "11:29", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "11:39", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "11:46", arret: 1 },
+          { gare: "Chagny", heure: "11:51", arret: 1 },
+          { gare: "Beaune", heure: "12:02", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "12:13", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "12:21", arret: 1 },
+          { gare: "Dijon-Ville", heure: "12:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Mâcon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "13:00", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "13:10", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "13:18", arret: 1 },
+          { gare: "Beaune", heure: "13:29", arret: 1 },
+          { gare: "Chagny", heure: "13:40", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "13:45", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "13:52", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "14:02", arret: 1 },
+          { gare: "Tournus", heure: "14:08", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "14:17", arret: 1 },
+          { gare: "Senozan", heure: "14:22", arret: 1 },
+          { gare: "Mâcon", heure: "14:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Mâcon → Dijon-Ville",
+        dessertes: [
+          { gare: "Mâcon", heure: "17:00", arret: 2 },
+          { gare: "Senozan", heure: "17:09", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "17:14", arret: 1 },
+          { gare: "Tournus", heure: "17:23", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "17:29", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "17:39", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "17:46", arret: 1 },
+          { gare: "Chagny", heure: "17:51", arret: 1 },
+          { gare: "Beaune", heure: "18:02", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "18:13", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "18:21", arret: 1 },
+          { gare: "Dijon-Ville", heure: "18:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Mâcon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "19:00", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "19:10", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "19:18", arret: 1 },
+          { gare: "Beaune", heure: "19:29", arret: 1 },
+          { gare: "Chagny", heure: "19:40", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "19:45", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "19:52", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "20:02", arret: 1 },
+          { gare: "Tournus", heure: "20:08", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "20:17", arret: 1 },
+          { gare: "Senozan", heure: "20:22", arret: 1 },
+          { gare: "Mâcon", heure: "20:30", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3538",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 48, seconde: 366 },
+    composition: ["AGC Bourgogne 4C"],
+    trajets: [
+      {
+        nom: "Dijon-Ville → Mâcon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "08:00", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "08:10", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "08:18", arret: 1 },
+          { gare: "Beaune", heure: "08:29", arret: 1 },
+          { gare: "Chagny", heure: "08:40", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "08:45", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "08:52", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "09:02", arret: 1 },
+          { gare: "Tournus", heure: "09:08", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "09:17", arret: 1 },
+          { gare: "Senozan", heure: "09:22", arret: 1 },
+          { gare: "Mâcon", heure: "09:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Mâcon → Dijon-Ville",
+        dessertes: [
+          { gare: "Mâcon", heure: "10:00", arret: 2 },
+          { gare: "Senozan", heure: "10:09", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "10:14", arret: 1 },
+          { gare: "Tournus", heure: "10:23", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "10:29", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "10:39", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "10:46", arret: 1 },
+          { gare: "Chagny", heure: "10:51", arret: 1 },
+          { gare: "Beaune", heure: "11:02", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "11:13", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "11:21", arret: 1 },
+          { gare: "Dijon-Ville", heure: "11:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Mâcon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "12:00", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "12:10", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "12:18", arret: 1 },
+          { gare: "Beaune", heure: "12:29", arret: 1 },
+          { gare: "Chagny", heure: "12:40", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "12:45", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "12:52", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "13:02", arret: 1 },
+          { gare: "Tournus", heure: "13:08", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "13:17", arret: 1 },
+          { gare: "Senozan", heure: "13:22", arret: 1 },
+          { gare: "Mâcon", heure: "13:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Mâcon → Dijon-Ville",
+        dessertes: [
+          { gare: "Mâcon", heure: "14:00", arret: 2 },
+          { gare: "Senozan", heure: "14:09", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "14:14", arret: 1 },
+          { gare: "Tournus", heure: "14:23", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "14:29", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "14:39", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "14:46", arret: 1 },
+          { gare: "Chagny", heure: "14:51", arret: 1 },
+          { gare: "Beaune", heure: "15:02", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "15:13", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "15:21", arret: 1 },
+          { gare: "Dijon-Ville", heure: "15:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Mâcon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "16:00", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "16:10", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "16:18", arret: 1 },
+          { gare: "Beaune", heure: "16:29", arret: 1 },
+          { gare: "Chagny", heure: "16:40", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "16:45", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "16:52", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "17:02", arret: 1 },
+          { gare: "Tournus", heure: "17:08", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "17:17", arret: 1 },
+          { gare: "Senozan", heure: "17:22", arret: 1 },
+          { gare: "Mâcon", heure: "17:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Mâcon → Dijon-Ville",
+        dessertes: [
+          { gare: "Mâcon", heure: "18:00", arret: 2 },
+          { gare: "Senozan", heure: "18:09", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "18:14", arret: 1 },
+          { gare: "Tournus", heure: "18:23", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "18:29", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "18:39", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "18:46", arret: 1 },
+          { gare: "Chagny", heure: "18:51", arret: 1 },
+          { gare: "Beaune", heure: "19:02", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "19:13", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "19:21", arret: 1 },
+          { gare: "Dijon-Ville", heure: "19:30", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3539",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 48, seconde: 366 },
+    composition: ["AGC Bourgogne 4C"],
+    trajets: [
+      {
+        nom: "Dijon-Ville → Mâcon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "06:00", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "06:10", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "06:18", arret: 1 },
+          { gare: "Beaune", heure: "06:29", arret: 1 },
+          { gare: "Chagny", heure: "06:40", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "06:45", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "06:52", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "07:02", arret: 1 },
+          { gare: "Tournus", heure: "07:08", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "07:17", arret: 1 },
+          { gare: "Senozan", heure: "07:22", arret: 1 },
+          { gare: "Mâcon", heure: "07:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Mâcon → Dijon-Ville",
+        dessertes: [
+          { gare: "Mâcon", heure: "08:00", arret: 2 },
+          { gare: "Senozan", heure: "08:09", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "08:14", arret: 1 },
+          { gare: "Tournus", heure: "08:23", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "08:29", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "08:39", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "08:46", arret: 1 },
+          { gare: "Chagny", heure: "08:51", arret: 1 },
+          { gare: "Beaune", heure: "09:02", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "09:13", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "09:21", arret: 1 },
+          { gare: "Dijon-Ville", heure: "09:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Mâcon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "10:00", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "10:10", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "10:18", arret: 1 },
+          { gare: "Beaune", heure: "10:29", arret: 1 },
+          { gare: "Chagny", heure: "10:40", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "10:45", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "10:52", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "11:02", arret: 1 },
+          { gare: "Tournus", heure: "11:08", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "11:17", arret: 1 },
+          { gare: "Senozan", heure: "11:22", arret: 1 },
+          { gare: "Mâcon", heure: "11:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Mâcon → Dijon-Ville",
+        dessertes: [
+          { gare: "Mâcon", heure: "12:00", arret: 2 },
+          { gare: "Senozan", heure: "12:09", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "12:14", arret: 1 },
+          { gare: "Tournus", heure: "12:23", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "12:29", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "12:39", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "12:46", arret: 1 },
+          { gare: "Chagny", heure: "12:51", arret: 1 },
+          { gare: "Beaune", heure: "13:02", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "13:13", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "13:21", arret: 1 },
+          { gare: "Dijon-Ville", heure: "13:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Mâcon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "14:00", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "14:10", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "14:18", arret: 1 },
+          { gare: "Beaune", heure: "14:29", arret: 1 },
+          { gare: "Chagny", heure: "14:40", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "14:45", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "14:52", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "15:02", arret: 1 },
+          { gare: "Tournus", heure: "15:08", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "15:17", arret: 1 },
+          { gare: "Senozan", heure: "15:22", arret: 1 },
+          { gare: "Mâcon", heure: "15:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Mâcon → Dijon-Ville",
+        dessertes: [
+          { gare: "Mâcon", heure: "16:00", arret: 2 },
+          { gare: "Senozan", heure: "16:09", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "16:14", arret: 1 },
+          { gare: "Tournus", heure: "16:23", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "16:29", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "16:39", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "16:46", arret: 1 },
+          { gare: "Chagny", heure: "16:51", arret: 1 },
+          { gare: "Beaune", heure: "17:02", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "17:13", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "17:21", arret: 1 },
+          { gare: "Dijon-Ville", heure: "17:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Mâcon",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "18:00", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "18:10", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "18:18", arret: 1 },
+          { gare: "Beaune", heure: "18:29", arret: 1 },
+          { gare: "Chagny", heure: "18:40", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "18:45", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "18:52", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "19:02", arret: 1 },
+          { gare: "Tournus", heure: "19:08", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "19:17", arret: 1 },
+          { gare: "Senozan", heure: "19:22", arret: 1 },
+          { gare: "Mâcon", heure: "19:30", arret: 2 }
+        ]
+      },
+      {
+        nom: "Mâcon → Dijon-Ville",
+        dessertes: [
+          { gare: "Mâcon", heure: "20:00", arret: 2 },
+          { gare: "Senozan", heure: "20:09", arret: 1 },
+          { gare: "Fleurville - Pont-de-Vaux", heure: "20:14", arret: 1 },
+          { gare: "Tournus", heure: "20:23", arret: 1 },
+          { gare: "Sennecey-le-Grand", heure: "20:29", arret: 1 },
+          { gare: "Chalon-sur-Saône", heure: "20:39", arret: 1 },
+          { gare: "Fontaines - Mercurey", heure: "20:46", arret: 1 },
+          { gare: "Chagny", heure: "20:51", arret: 1 },
+          { gare: "Beaune", heure: "21:02", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "21:13", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "21:21", arret: 1 },
+          { gare: "Dijon-Ville", heure: "21:30", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3540",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Dijon-Ville → Laroche - Migennes",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "07:00", arret: 2 },
+          { gare: "Velars", heure: "07:09", arret: 1 },
+          { gare: "Lantenay", heure: "07:15", arret: 1 },
+          { gare: "Mâlain", heure: "07:20", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "07:27", arret: 1 },
+          { gare: "Verrey", heure: "07:34", arret: 1 },
+          { gare: "Thenissey", heure: "07:40", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "07:52", arret: 1 },
+          { gare: "Montbard", heure: "08:03", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "08:15", arret: 1 },
+          { gare: "Tonnerre", heure: "08:34", arret: 1 },
+          { gare: "Saint-Florentin - Vergigny", heure: "08:53", arret: 1 },
+          { gare: "Laroche - Migennes", heure: "09:08", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laroche - Migennes → Dijon-Ville",
+        dessertes: [
+          { gare: "Laroche - Migennes", heure: "09:30", arret: 2 },
+          { gare: "Saint-Florentin - Vergigny", heure: "09:46", arret: 1 },
+          { gare: "Tonnerre", heure: "10:05", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "10:24", arret: 1 },
+          { gare: "Montbard", heure: "10:36", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "10:47", arret: 1 },
+          { gare: "Thenissey", heure: "10:59", arret: 1 },
+          { gare: "Verrey", heure: "11:05", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "11:12", arret: 1 },
+          { gare: "Mâlain", heure: "11:19", arret: 1 },
+          { gare: "Lantenay", heure: "11:24", arret: 1 },
+          { gare: "Velars", heure: "11:30", arret: 1 },
+          { gare: "Dijon-Ville", heure: "11:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Laroche - Migennes",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "12:00", arret: 2 },
+          { gare: "Velars", heure: "12:09", arret: 1 },
+          { gare: "Lantenay", heure: "12:15", arret: 1 },
+          { gare: "Mâlain", heure: "12:20", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "12:27", arret: 1 },
+          { gare: "Verrey", heure: "12:34", arret: 1 },
+          { gare: "Thenissey", heure: "12:40", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "12:52", arret: 1 },
+          { gare: "Montbard", heure: "13:03", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "13:15", arret: 1 },
+          { gare: "Tonnerre", heure: "13:34", arret: 1 },
+          { gare: "Saint-Florentin - Vergigny", heure: "13:53", arret: 1 },
+          { gare: "Laroche - Migennes", heure: "14:08", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laroche - Migennes → Dijon-Ville",
+        dessertes: [
+          { gare: "Laroche - Migennes", heure: "14:30", arret: 2 },
+          { gare: "Saint-Florentin - Vergigny", heure: "14:46", arret: 1 },
+          { gare: "Tonnerre", heure: "15:05", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "15:24", arret: 1 },
+          { gare: "Montbard", heure: "15:36", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "15:47", arret: 1 },
+          { gare: "Thenissey", heure: "15:59", arret: 1 },
+          { gare: "Verrey", heure: "16:05", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "16:12", arret: 1 },
+          { gare: "Mâlain", heure: "16:19", arret: 1 },
+          { gare: "Lantenay", heure: "16:24", arret: 1 },
+          { gare: "Velars", heure: "16:30", arret: 1 },
+          { gare: "Dijon-Ville", heure: "16:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Laroche - Migennes",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "17:00", arret: 2 },
+          { gare: "Velars", heure: "17:09", arret: 1 },
+          { gare: "Lantenay", heure: "17:15", arret: 1 },
+          { gare: "Mâlain", heure: "17:20", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "17:27", arret: 1 },
+          { gare: "Verrey", heure: "17:34", arret: 1 },
+          { gare: "Thenissey", heure: "17:40", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "17:52", arret: 1 },
+          { gare: "Montbard", heure: "18:03", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "18:15", arret: 1 },
+          { gare: "Tonnerre", heure: "18:34", arret: 1 },
+          { gare: "Saint-Florentin - Vergigny", heure: "18:53", arret: 1 },
+          { gare: "Laroche - Migennes", heure: "19:08", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laroche - Migennes → Dijon-Ville",
+        dessertes: [
+          { gare: "Laroche - Migennes", heure: "19:30", arret: 2 },
+          { gare: "Saint-Florentin - Vergigny", heure: "19:46", arret: 1 },
+          { gare: "Tonnerre", heure: "20:05", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "20:24", arret: 1 },
+          { gare: "Montbard", heure: "20:36", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "20:47", arret: 1 },
+          { gare: "Thenissey", heure: "20:59", arret: 1 },
+          { gare: "Verrey", heure: "21:05", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "21:12", arret: 1 },
+          { gare: "Mâlain", heure: "21:19", arret: 1 },
+          { gare: "Lantenay", heure: "21:24", arret: 1 },
+          { gare: "Velars", heure: "21:30", arret: 1 },
+          { gare: "Dijon-Ville", heure: "21:38", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3541",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Laroche - Migennes → Dijon-Ville",
+        dessertes: [
+          { gare: "Laroche - Migennes", heure: "07:00", arret: 2 },
+          { gare: "Saint-Florentin - Vergigny", heure: "07:16", arret: 1 },
+          { gare: "Tonnerre", heure: "07:35", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "07:54", arret: 1 },
+          { gare: "Montbard", heure: "08:06", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "08:17", arret: 1 },
+          { gare: "Thenissey", heure: "08:29", arret: 1 },
+          { gare: "Verrey", heure: "08:35", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "08:42", arret: 1 },
+          { gare: "Mâlain", heure: "08:49", arret: 1 },
+          { gare: "Lantenay", heure: "08:54", arret: 1 },
+          { gare: "Velars", heure: "09:00", arret: 1 },
+          { gare: "Dijon-Ville", heure: "09:08", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Laroche - Migennes",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "09:30", arret: 2 },
+          { gare: "Velars", heure: "09:39", arret: 1 },
+          { gare: "Lantenay", heure: "09:45", arret: 1 },
+          { gare: "Mâlain", heure: "09:50", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "09:57", arret: 1 },
+          { gare: "Verrey", heure: "10:04", arret: 1 },
+          { gare: "Thenissey", heure: "10:10", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "10:22", arret: 1 },
+          { gare: "Montbard", heure: "10:33", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "10:45", arret: 1 },
+          { gare: "Tonnerre", heure: "11:04", arret: 1 },
+          { gare: "Saint-Florentin - Vergigny", heure: "11:23", arret: 1 },
+          { gare: "Laroche - Migennes", heure: "11:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laroche - Migennes → Dijon-Ville",
+        dessertes: [
+          { gare: "Laroche - Migennes", heure: "12:00", arret: 2 },
+          { gare: "Saint-Florentin - Vergigny", heure: "12:16", arret: 1 },
+          { gare: "Tonnerre", heure: "12:35", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "12:54", arret: 1 },
+          { gare: "Montbard", heure: "13:06", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "13:17", arret: 1 },
+          { gare: "Thenissey", heure: "13:29", arret: 1 },
+          { gare: "Verrey", heure: "13:35", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "13:42", arret: 1 },
+          { gare: "Mâlain", heure: "13:49", arret: 1 },
+          { gare: "Lantenay", heure: "13:54", arret: 1 },
+          { gare: "Velars", heure: "14:00", arret: 1 },
+          { gare: "Dijon-Ville", heure: "14:08", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Laroche - Migennes",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "14:30", arret: 2 },
+          { gare: "Velars", heure: "14:39", arret: 1 },
+          { gare: "Lantenay", heure: "14:45", arret: 1 },
+          { gare: "Mâlain", heure: "14:50", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "14:57", arret: 1 },
+          { gare: "Verrey", heure: "15:04", arret: 1 },
+          { gare: "Thenissey", heure: "15:10", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "15:22", arret: 1 },
+          { gare: "Montbard", heure: "15:33", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "15:45", arret: 1 },
+          { gare: "Tonnerre", heure: "16:04", arret: 1 },
+          { gare: "Saint-Florentin - Vergigny", heure: "16:23", arret: 1 },
+          { gare: "Laroche - Migennes", heure: "16:38", arret: 2 }
+        ]
+      },
+      {
+        nom: "Laroche - Migennes → Dijon-Ville",
+        dessertes: [
+          { gare: "Laroche - Migennes", heure: "17:00", arret: 2 },
+          { gare: "Saint-Florentin - Vergigny", heure: "17:16", arret: 1 },
+          { gare: "Tonnerre", heure: "17:35", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "17:54", arret: 1 },
+          { gare: "Montbard", heure: "18:06", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "18:17", arret: 1 },
+          { gare: "Thenissey", heure: "18:29", arret: 1 },
+          { gare: "Verrey", heure: "18:35", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "18:42", arret: 1 },
+          { gare: "Mâlain", heure: "18:49", arret: 1 },
+          { gare: "Lantenay", heure: "18:54", arret: 1 },
+          { gare: "Velars", heure: "19:00", arret: 1 },
+          { gare: "Dijon-Ville", heure: "19:08", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Laroche - Migennes",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "19:30", arret: 2 },
+          { gare: "Velars", heure: "19:39", arret: 1 },
+          { gare: "Lantenay", heure: "19:45", arret: 1 },
+          { gare: "Mâlain", heure: "19:50", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "19:57", arret: 1 },
+          { gare: "Verrey", heure: "20:04", arret: 1 },
+          { gare: "Thenissey", heure: "20:10", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "20:22", arret: 1 },
+          { gare: "Montbard", heure: "20:33", arret: 1 },
+          { gare: "Nuits sous Ravières", heure: "20:45", arret: 1 },
+          { gare: "Tonnerre", heure: "21:04", arret: 1 },
+          { gare: "Saint-Florentin - Vergigny", heure: "21:23", arret: 1 },
+          { gare: "Laroche - Migennes", heure: "21:38", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3542",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Les Laumes - Alésia → Dijon-Ville",
+        dessertes: [
+          { gare: "Les Laumes - Alésia", heure: "07:10", arret: 2 },
+          { gare: "Thenissey", heure: "07:23", arret: 1 },
+          { gare: "Verrey", heure: "07:29", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "07:36", arret: 1 },
+          { gare: "Mâlain", heure: "07:43", arret: 1 },
+          { gare: "Lantenay", heure: "07:48", arret: 1 },
+          { gare: "Velars", heure: "07:54", arret: 1 },
+          { gare: "Dijon-Ville", heure: "08:02", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Les Laumes - Alésia",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "08:10", arret: 4 },
+          { gare: "Velars", heure: "08:21", arret: 1 },
+          { gare: "Lantenay", heure: "08:27", arret: 1 },
+          { gare: "Mâlain", heure: "08:32", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "08:39", arret: 1 },
+          { gare: "Verrey", heure: "08:46", arret: 1 },
+          { gare: "Thenissey", heure: "08:52", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "09:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Les Laumes - Alésia → Dijon-Ville",
+        dessertes: [
+          { gare: "Les Laumes - Alésia", heure: "09:10", arret: 2 },
+          { gare: "Thenissey", heure: "09:23", arret: 1 },
+          { gare: "Verrey", heure: "09:29", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "09:36", arret: 1 },
+          { gare: "Mâlain", heure: "09:43", arret: 1 },
+          { gare: "Lantenay", heure: "09:48", arret: 1 },
+          { gare: "Velars", heure: "09:54", arret: 1 },
+          { gare: "Dijon-Ville", heure: "10:02", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Les Laumes - Alésia",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "10:10", arret: 4 },
+          { gare: "Velars", heure: "10:21", arret: 1 },
+          { gare: "Lantenay", heure: "10:27", arret: 1 },
+          { gare: "Mâlain", heure: "10:32", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "10:39", arret: 1 },
+          { gare: "Verrey", heure: "10:46", arret: 1 },
+          { gare: "Thenissey", heure: "10:52", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "11:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Les Laumes - Alésia → Dijon-Ville",
+        dessertes: [
+          { gare: "Les Laumes - Alésia", heure: "11:10", arret: 2 },
+          { gare: "Thenissey", heure: "11:23", arret: 1 },
+          { gare: "Verrey", heure: "11:29", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "11:36", arret: 1 },
+          { gare: "Mâlain", heure: "11:43", arret: 1 },
+          { gare: "Lantenay", heure: "11:48", arret: 1 },
+          { gare: "Velars", heure: "11:54", arret: 1 },
+          { gare: "Dijon-Ville", heure: "12:02", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Les Laumes - Alésia",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "12:10", arret: 4 },
+          { gare: "Velars", heure: "12:21", arret: 1 },
+          { gare: "Lantenay", heure: "12:27", arret: 1 },
+          { gare: "Mâlain", heure: "12:32", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "12:39", arret: 1 },
+          { gare: "Verrey", heure: "12:46", arret: 1 },
+          { gare: "Thenissey", heure: "12:52", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "13:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Les Laumes - Alésia → Dijon-Ville",
+        dessertes: [
+          { gare: "Les Laumes - Alésia", heure: "13:10", arret: 2 },
+          { gare: "Thenissey", heure: "13:23", arret: 1 },
+          { gare: "Verrey", heure: "13:29", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "13:36", arret: 1 },
+          { gare: "Mâlain", heure: "13:43", arret: 1 },
+          { gare: "Lantenay", heure: "13:48", arret: 1 },
+          { gare: "Velars", heure: "13:54", arret: 1 },
+          { gare: "Dijon-Ville", heure: "14:02", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Les Laumes - Alésia",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "14:10", arret: 4 },
+          { gare: "Velars", heure: "14:21", arret: 1 },
+          { gare: "Lantenay", heure: "14:27", arret: 1 },
+          { gare: "Mâlain", heure: "14:32", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "14:39", arret: 1 },
+          { gare: "Verrey", heure: "14:46", arret: 1 },
+          { gare: "Thenissey", heure: "14:52", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "15:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Les Laumes - Alésia → Dijon-Ville",
+        dessertes: [
+          { gare: "Les Laumes - Alésia", heure: "15:10", arret: 2 },
+          { gare: "Thenissey", heure: "15:23", arret: 1 },
+          { gare: "Verrey", heure: "15:29", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "15:36", arret: 1 },
+          { gare: "Mâlain", heure: "15:43", arret: 1 },
+          { gare: "Lantenay", heure: "15:48", arret: 1 },
+          { gare: "Velars", heure: "15:54", arret: 1 },
+          { gare: "Dijon-Ville", heure: "16:02", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Les Laumes - Alésia",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "16:10", arret: 4 },
+          { gare: "Velars", heure: "16:21", arret: 1 },
+          { gare: "Lantenay", heure: "16:27", arret: 1 },
+          { gare: "Mâlain", heure: "16:32", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "16:39", arret: 1 },
+          { gare: "Verrey", heure: "16:46", arret: 1 },
+          { gare: "Thenissey", heure: "16:52", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "17:04", arret: 2 }
+        ]
+      },
+      {
+        nom: "Les Laumes - Alésia → Dijon-Ville",
+        dessertes: [
+          { gare: "Les Laumes - Alésia", heure: "17:10", arret: 2 },
+          { gare: "Thenissey", heure: "17:23", arret: 1 },
+          { gare: "Verrey", heure: "17:29", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "17:36", arret: 1 },
+          { gare: "Mâlain", heure: "17:43", arret: 1 },
+          { gare: "Lantenay", heure: "17:48", arret: 1 },
+          { gare: "Velars", heure: "17:54", arret: 1 },
+          { gare: "Dijon-Ville", heure: "18:02", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Les Laumes - Alésia",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "18:10", arret: 4 },
+          { gare: "Velars", heure: "18:21", arret: 1 },
+          { gare: "Lantenay", heure: "18:27", arret: 1 },
+          { gare: "Mâlain", heure: "18:32", arret: 1 },
+          { gare: "Blaisy-Bas", heure: "18:39", arret: 1 },
+          { gare: "Verrey", heure: "18:46", arret: 1 },
+          { gare: "Thenissey", heure: "18:52", arret: 1 },
+          { gare: "Les Laumes - Alésia", heure: "19:04", arret: 2 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3543",
+    nom: "AGC Bourgogne 4C",
+    moteurs: ["25kV CA", "1.5kV CC", "diesel"],
+    vitesseMax: 160,
+    capacite: { premiere: 24, seconde: 183 },
+    trajets: [
+      {
+        nom: "Is-sur-tille → Dijon-Ville",
+        dessertes: [
+          { gare: "Is-sur-tille", heure: "07:10", arret: 4 },
+          { gare: "Gemeaux", heure: "07:18", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "07:26", arret: 1 },
+          { gare: "Dijon Porte Neuve", heure: "07:34", arret: 1 },
+          { gare: "Dijon-Ville", heure: "07:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Is-sur-tille",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "08:10", arret: 4 },
+          { gare: "Dijon Porte Neuve", heure: "08:19", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "08:27", arret: 1 },
+          { gare: "Gemeaux", heure: "08:35", arret: 1 },
+          { gare: "Is-sur-tille", heure: "08:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Is-sur-tille → Dijon-Ville",
+        dessertes: [
+          { gare: "Is-sur-tille", heure: "09:10", arret: 4 },
+          { gare: "Gemeaux", heure: "09:18", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "09:26", arret: 1 },
+          { gare: "Dijon Porte Neuve", heure: "09:34", arret: 1 },
+          { gare: "Dijon-Ville", heure: "09:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Is-sur-tille",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "10:10", arret: 4 },
+          { gare: "Dijon Porte Neuve", heure: "10:19", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "10:27", arret: 1 },
+          { gare: "Gemeaux", heure: "10:35", arret: 1 },
+          { gare: "Is-sur-tille", heure: "10:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Is-sur-tille → Dijon-Ville",
+        dessertes: [
+          { gare: "Is-sur-tille", heure: "11:10", arret: 4 },
+          { gare: "Gemeaux", heure: "11:18", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "11:26", arret: 1 },
+          { gare: "Dijon Porte Neuve", heure: "11:34", arret: 1 },
+          { gare: "Dijon-Ville", heure: "11:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Is-sur-tille",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "12:10", arret: 4 },
+          { gare: "Dijon Porte Neuve", heure: "12:19", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "12:27", arret: 1 },
+          { gare: "Gemeaux", heure: "12:35", arret: 1 },
+          { gare: "Is-sur-tille", heure: "12:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Is-sur-tille → Dijon-Ville",
+        dessertes: [
+          { gare: "Is-sur-tille", heure: "13:10", arret: 4 },
+          { gare: "Gemeaux", heure: "13:18", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "13:26", arret: 1 },
+          { gare: "Dijon Porte Neuve", heure: "13:34", arret: 1 },
+          { gare: "Dijon-Ville", heure: "13:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Is-sur-tille",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "14:05", arret: 4 },
+          { gare: "Dijon Porte Neuve", heure: "14:14", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "14:22", arret: 1 },
+          { gare: "Gemeaux", heure: "14:30", arret: 1 },
+          { gare: "Is-sur-tille", heure: "14:35", arret: 4 }
+        ]
+      },
+      {
+        nom: "Is-sur-tille → Dijon-Ville",
+        dessertes: [
+          { gare: "Is-sur-tille", heure: "15:10", arret: 4 },
+          { gare: "Gemeaux", heure: "15:18", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "15:26", arret: 1 },
+          { gare: "Dijon Porte Neuve", heure: "15:34", arret: 1 },
+          { gare: "Dijon-Ville", heure: "15:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Is-sur-tille",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "16:10", arret: 4 },
+          { gare: "Dijon Porte Neuve", heure: "16:19", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "16:27", arret: 1 },
+          { gare: "Gemeaux", heure: "16:35", arret: 1 },
+          { gare: "Is-sur-tille", heure: "16:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Is-sur-tille → Dijon-Ville",
+        dessertes: [
+          { gare: "Is-sur-tille", heure: "17:10", arret: 4 },
+          { gare: "Gemeaux", heure: "17:18", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "17:26", arret: 1 },
+          { gare: "Dijon Porte Neuve", heure: "17:34", arret: 1 },
+          { gare: "Dijon-Ville", heure: "17:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Is-sur-tille",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "18:10", arret: 4 },
+          { gare: "Dijon Porte Neuve", heure: "18:19", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "18:27", arret: 1 },
+          { gare: "Gemeaux", heure: "18:35", arret: 1 },
+          { gare: "Is-sur-tille", heure: "18:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Is-sur-tille → Dijon-Ville",
+        dessertes: [
+          { gare: "Is-sur-tille", heure: "19:10", arret: 4 },
+          { gare: "Gemeaux", heure: "19:18", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "19:26", arret: 1 },
+          { gare: "Dijon Porte Neuve", heure: "19:34", arret: 1 },
+          { gare: "Dijon-Ville", heure: "19:40", arret: 4 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Is-sur-tille",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "20:10", arret: 4 },
+          { gare: "Dijon Porte Neuve", heure: "20:19", arret: 1 },
+          { gare: "Bretigny - Norges", heure: "20:27", arret: 1 },
+          { gare: "Gemeaux", heure: "20:35", arret: 1 },
+          { gare: "Is-sur-tille", heure: "20:40", arret: 4 }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: "TER 3545",
+    nom: "X73900 Bourgogne",
+    moteurs: ["diesel"],
+    vitesseMax: 140,
+    capacite: { premiere: 0, seconde: 122 },
+    composition: ["X73900 BFC"],
+    trajets: [
+      {
+        nom: "Le Creusot → Dijon-Ville",
+        dessertes: [
+          { gare: "Le Creusot", heure: "06:00", arret: 2 },
+          { gare: "Montchanin", heure: "06:10", arret: 1 },
+          { gare: "Saint-Léger-sur-Dheune", heure: "06:28", arret: 1 },
+          { gare: "Cheilly-les-Maranges", heure: "06:35", arret: 1 },
+          { gare: "Santenay-Les-Bains", heure: "06:39", arret: 1 },
+          { gare: "Chagny", heure: "06:45", arret: 1 },
+          { gare: "Beaune", heure: "06:59", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "07:13", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "07:23", arret: 1 },
+          { gare: "Dijon-Ville", heure: "07:32", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Le Creusot",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "08:30", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "08:40", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "08:50", arret: 1 },
+          { gare: "Beaune", heure: "09:04", arret: 1 },
+          { gare: "Chagny", heure: "09:18", arret: 1 },
+          { gare: "Santenay-Les-Bains", heure: "09:24", arret: 1 },
+          { gare: "Cheilly-les-Maranges", heure: "09:28", arret: 1 },
+          { gare: "Saint-Léger-sur-Dheune", heure: "09:35", arret: 1 },
+          { gare: "Montchanin", heure: "09:53", arret: 1 },
+          { gare: "Le Creusot", heure: "10:02", arret: 2 }
+        ]
+      },
+      {
+        nom: "Le Creusot → Dijon-Ville",
+        dessertes: [
+          { gare: "Le Creusot", heure: "10:30", arret: 2 },
+          { gare: "Montchanin", heure: "10:40", arret: 1 },
+          { gare: "Saint-Léger-sur-Dheune", heure: "10:58", arret: 1 },
+          { gare: "Cheilly-les-Maranges", heure: "11:05", arret: 1 },
+          { gare: "Santenay-Les-Bains", heure: "11:09", arret: 1 },
+          { gare: "Chagny", heure: "11:15", arret: 1 },
+          { gare: "Beaune", heure: "11:29", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "11:43", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "11:53", arret: 1 },
+          { gare: "Dijon-Ville", heure: "12:02", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Le Creusot",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "12:30", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "12:40", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "12:50", arret: 1 },
+          { gare: "Beaune", heure: "13:04", arret: 1 },
+          { gare: "Chagny", heure: "13:18", arret: 1 },
+          { gare: "Santenay-Les-Bains", heure: "13:24", arret: 1 },
+          { gare: "Cheilly-les-Maranges", heure: "13:28", arret: 1 },
+          { gare: "Saint-Léger-sur-Dheune", heure: "13:35", arret: 1 },
+          { gare: "Montchanin", heure: "13:53", arret: 1 },
+          { gare: "Le Creusot", heure: "14:02", arret: 2 }
+        ]
+      },
+      {
+        nom: "Le Creusot → Dijon-Ville",
+        dessertes: [
+          { gare: "Le Creusot", heure: "14:30", arret: 2 },
+          { gare: "Montchanin", heure: "14:40", arret: 1 },
+          { gare: "Saint-Léger-sur-Dheune", heure: "14:58", arret: 1 },
+          { gare: "Cheilly-les-Maranges", heure: "15:05", arret: 1 },
+          { gare: "Santenay-Les-Bains", heure: "15:09", arret: 1 },
+          { gare: "Chagny", heure: "15:15", arret: 1 },
+          { gare: "Beaune", heure: "15:29", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "15:43", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "15:53", arret: 1 },
+          { gare: "Dijon-Ville", heure: "16:02", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Le Creusot",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "16:30", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "16:40", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "16:50", arret: 1 },
+          { gare: "Beaune", heure: "17:04", arret: 1 },
+          { gare: "Chagny", heure: "17:18", arret: 1 },
+          { gare: "Santenay-Les-Bains", heure: "17:24", arret: 1 },
+          { gare: "Cheilly-les-Maranges", heure: "17:28", arret: 1 },
+          { gare: "Saint-Léger-sur-Dheune", heure: "17:35", arret: 1 },
+          { gare: "Montchanin", heure: "17:53", arret: 1 },
+          { gare: "Le Creusot", heure: "18:02", arret: 2 }
+        ]
+      },
+      {
+        nom: "Le Creusot → Dijon-Ville",
+        dessertes: [
+          { gare: "Le Creusot", heure: "18:30", arret: 2 },
+          { gare: "Montchanin", heure: "18:40", arret: 1 },
+          { gare: "Saint-Léger-sur-Dheune", heure: "18:58", arret: 1 },
+          { gare: "Cheilly-les-Maranges", heure: "19:05", arret: 1 },
+          { gare: "Santenay-Les-Bains", heure: "19:09", arret: 1 },
+          { gare: "Chagny", heure: "19:15", arret: 1 },
+          { gare: "Beaune", heure: "19:29", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "19:43", arret: 1 },
+          { gare: "Gevrey-Chambertin", heure: "19:53", arret: 1 },
+          { gare: "Dijon-Ville", heure: "20:02", arret: 2 }
+        ]
+      },
+      {
+        nom: "Dijon-Ville → Le Creusot",
+        dessertes: [
+          { gare: "Dijon-Ville", heure: "20:30", arret: 2 },
+          { gare: "Gevrey-Chambertin", heure: "20:40", arret: 1 },
+          { gare: "Nuits-Saint-Georges", heure: "20:50", arret: 1 },
+          { gare: "Beaune", heure: "21:04", arret: 1 },
+          { gare: "Chagny", heure: "21:18", arret: 1 },
+          { gare: "Santenay-Les-Bains", heure: "21:24", arret: 1 },
+          { gare: "Cheilly-les-Maranges", heure: "21:28", arret: 1 },
+          { gare: "Saint-Léger-sur-Dheune", heure: "21:35", arret: 1 },
+          { gare: "Montchanin", heure: "21:53", arret: 1 },
+          { gare: "Le Creusot", heure: "22:02", arret: 2 }
         ]
       }
     ]
