@@ -1,13 +1,12 @@
 // creationTrains.js
-import { villes } from './gares.js';
-import { lignes } from './voies.js';
-import { trainsFR as baseFR } from './trains/trainsFR.js';
-import { trainsDE as baseDE } from './trains/trainsDE.js';
-import { trainsCH as baseCH } from './trains/trainsCH.js';
-import { trainsBNL as baseBNL } from './trains/trainsBNL.js';
-import { trainsIT as baseIT } from './trains/trainsIT.js';
-import { trainsFRET as baseFRET } from './trains/trainsFRET.js';
-
+import { villes } from "./gares.js";
+import { lignes } from "./voies.js";
+import { trainsFR as baseFR } from "./trains/trainsFR.js";
+import { trainsDE as baseDE } from "./trains/trainsDE.js";
+import { trainsCH as baseCH } from "./trains/trainsCH.js";
+import { trainsBNL as baseBNL } from "./trains/trainsBNL.js";
+import { trainsIT as baseIT } from "./trains/trainsIT.js";
+import { trainsFRET as baseFRET } from "./trains/trainsFRET.js";
 
 /* ============================================================
  * ÉTAT LOCAL
@@ -21,20 +20,20 @@ const state = {
   trainsIT: structuredClone(baseIT),
   trainsFRET: structuredClone(baseFRET),
   current: {
-    pays: 'FR',
-    id: '',
-    nom: '',
+    pays: "FR",
+    id: "",
+    nom: "",
     engin: null,
     composition: [], // tableau de noms
     vmax: 0,
     capacite: { premiere: 0, seconde: 0 },
-    trajets: [],               // [{nom, desserte:[{gare, arret, heure, jours?}], ...}]
-    trajetIndex: -1            // index du trajet en cours d'édition
+    trajets: [], // [{nom, desserte:[{gare, arret, heure, jours?}], ...}]
+    trajetIndex: -1, // index du trajet en cours d'édition
   },
-  editingExistingId: null,     // si on a chargé un train existant (pour remplacement)
+  editingExistingId: null, // si on a chargé un train existant (pour remplacement)
   defaultArretMin: 1,
-  retourBufferMin: 30,         // +30 min
-  suggestionRadius: 1          // rayon de suggestion (1=direct, 2=+1 saut, etc.)
+  retourBufferMin: 30, // +30 min
+  suggestionRadius: 1, // rayon de suggestion (1=direct, 2=+1 saut, etc.)
 };
 
 /* ============================================================
@@ -43,21 +42,21 @@ const state = {
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
-function toast(msg, kind = 'info', timeout = 2500) {
+function toast(msg, kind = "info", timeout = 2500) {
   // Crée le conteneur s'il n'existe pas
-  let container = document.querySelector('.toast-container');
+  let container = document.querySelector(".toast-container");
   if (!container) {
-    container = document.createElement('div');
-    container.className = 'toast-container';
+    container = document.createElement("div");
+    container.className = "toast-container";
     document.body.appendChild(container);
   }
 
-  const t = document.createElement('div');
-  t.className = 'toast';
+  const t = document.createElement("div");
+  t.className = "toast";
   t.textContent = msg;
-  if (kind === 'warn') t.style.background = '#f39c12';
-  if (kind === 'err') t.style.background = '#e74c3c';
-  if (kind === 'ok') t.style.background = '#2ecc71';
+  if (kind === "warn") t.style.background = "#f39c12";
+  if (kind === "err") t.style.background = "#e74c3c";
+  if (kind === "ok") t.style.background = "#2ecc71";
 
   // Ajoute le toast au conteneur
   container.appendChild(t);
@@ -69,7 +68,8 @@ function toast(msg, kind = 'info', timeout = 2500) {
 // === Couleurs dynamiques (identiques au catalogueEngins) ===
 function getSpeedColor(vitesse) {
   if (!vitesse) return "white";
-  const min = 60, max = 320; // échelle
+  const min = 60,
+    max = 320; // échelle
   const ratio = Math.min(1, Math.max(0, (vitesse - min) / (max - min)));
   const r = Math.round(255 * ratio);
   const g = Math.round(200 * (1 - ratio));
@@ -79,21 +79,23 @@ function getSpeedColor(vitesse) {
 
 function getAlimGradient(moteurs = []) {
   const colors = {
-    "25kV": "rgba(255, 120, 120, 0.5)",   // rouge clair
-    "15kV": "rgba(130, 220, 130, 0.5)",   // vert
-    "1.5kV": "rgba(0, 152, 203, 0.5)",  // bleu
-    "3kV": "rgba(0, 0, 255, 0.5)",  // bleu
-    "diesel": "rgba(210, 210, 210, 0.5)"  // gris
+    "25kV": "rgba(255, 120, 120, 0.5)", // rouge clair
+    "15kV": "rgba(130, 220, 130, 0.5)", // vert
+    "1.5kV": "rgba(0, 152, 203, 0.5)", // bleu
+    "3kV": "rgba(0, 0, 255, 0.5)", // bleu
+    diesel: "rgba(210, 210, 210, 0.5)", // gris
   };
 
-  const valid = Object.keys(colors).filter(k =>
-    moteurs.some(m => m.includes(k))
+  const valid = Object.keys(colors).filter((k) =>
+    moteurs.some((m) => m.includes(k))
   );
 
   if (valid.length === 0) return "rgb(240,240,240)";
   if (valid.length === 1) return colors[valid[0]];
 
-  const stops = valid.map((k, i) => `${colors[k]} ${(i / (valid.length - 1)) * 100}%`);
+  const stops = valid.map(
+    (k, i) => `${colors[k]} ${(i / (valid.length - 1)) * 100}%`
+  );
   return `linear-gradient(90deg, ${stops.join(", ")})`;
 }
 
@@ -102,33 +104,32 @@ function getAlimGradient(moteurs = []) {
  * ============================================================ */
 function timeToMinutes(hhmm) {
   if (!hhmm) return 0;
-  const [h, m] = hhmm.split(':').map(Number);
+  const [h, m] = hhmm.split(":").map(Number);
   return (h || 0) * 60 + (m || 0);
 }
 function minutesToTime(mins) {
   mins = Math.max(0, Math.round(mins));
   const h = Math.floor(mins / 60) % 24;
   const m = mins % 60;
-  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
 }
 function dist(a, b) {
   return Math.hypot(a.x - b.x, a.y - b.y); // pixels "réseau" (unité arbitraire)
 }
 function getGare(nom) {
-  return villes.find(v => v.nom === nom && !v.fantome);
+  return villes.find((v) => v.nom === nom && !v.fantome);
 }
 // Version "any": retourne la gare même si fantôme
 function getGareAny(nom) {
-  return villes.find(v => v.nom === nom); // pas de filtre fantome
+  return villes.find((v) => v.nom === nom); // pas de filtre fantome
 }
-
 
 /* ============================================================
  * GRAPH: connexions & chemin
  * ============================================================ */
 const graph = {};
 (function buildGraph() {
-  lignes.forEach(l => {
+  lignes.forEach((l) => {
     if (!graph[l.gareA]) graph[l.gareA] = [];
     if (!graph[l.gareB]) graph[l.gareB] = [];
     graph[l.gareA].push(l.gareB);
@@ -138,10 +139,12 @@ const graph = {};
 
 // Index rapide des lignes par paire de gares
 const lineByKey = new Map();
-function lineKey(a, b) { return a < b ? `${a}__${b}` : `${b}__${a}`; }
+function lineKey(a, b) {
+  return a < b ? `${a}__${b}` : `${b}__${a}`;
+}
 
 (function indexLines() {
-  lignes.forEach(l => {
+  lignes.forEach((l) => {
     lineByKey.set(lineKey(l.gareA, l.gareB), l);
   });
 })();
@@ -151,7 +154,9 @@ function segmentDistanceKm(gareNomA, gareNomB) {
   const l = lineByKey.get(k);
   if (l?.longueur) return l.longueur;
 
-  console.error(`[ERREUR] Aucune ligne trouvée entre ${gareNomA} et ${gareNomB}`);
+  console.error(
+    `[ERREUR] Aucune ligne trouvée entre ${gareNomA} et ${gareNomB}`
+  );
   return null;
 }
 
@@ -159,11 +164,14 @@ function segmentDistanceKm(gareNomA, gareNomB) {
 function trouverCheminEntreGares(gareA, gareB, vitesseTrain = Infinity) {
   // --- 1️⃣ Construction du graphe pondéré par le temps ---
   const graph = {};
-  lignes.forEach(l => {
+  lignes.forEach((l) => {
     // 🚄 Ignore la ligne LGV uniquement si le train ne peut pas y circuler
     if ((l.vitesse_max || 0) > 201 && vitesseTrain <= 201) return;
 
-    const vitesseEffective = Math.min(l.vitesse_max || 100, vitesseTrain || 100);
+    const vitesseEffective = Math.min(
+      l.vitesse_max || 100,
+      vitesseTrain || 100
+    );
     const distance = l.longueur || 1;
     const tempsHeures = distance / vitesseEffective; // coût = temps en heures
 
@@ -212,12 +220,10 @@ function trouverCheminEntreGares(gareA, gareB, vitesseTrain = Infinity) {
   return path.length > 1 ? path : [gareA, gareB];
 }
 
-
-
 /**
  * Renvoie les premières gares réelles atteignables depuis une gare source,
  * en traversant librement les gares fantômes (et en ignorant les gares FRET en mode voyageur).
- * 
+ *
  * @param {string} gareSource
  * @param {number} maxSuggestions  nb max de gares à retourner (facultatif)
  * @param {number} maxDepth        profondeur max de recherche (facultatif)
@@ -231,7 +237,8 @@ function suggestionsDepuis(gareSource, maxSuggestions, maxDepth) {
   function sortByTypePriority(noms) {
     const prio = { petite: 0, moyenne: 1, grande: 2, vaste: 3 };
     return noms.sort((a, b) => {
-      const ga = getGareAny(a), gb = getGareAny(b);
+      const ga = getGareAny(a),
+        gb = getGareAny(b);
       return (prio[ga?.type] ?? 99) - (prio[gb?.type] ?? 99);
     });
   }
@@ -287,8 +294,6 @@ function suggestionsDepuis(gareSource, maxSuggestions, maxDepth) {
   return sortByTypePriority(Array.from(results)).slice(0, maxSugg);
 }
 
-
-
 /* ============================================================
  * CHARGEMENT DES ENGINS (JSON)
  * ============================================================ */
@@ -309,29 +314,27 @@ async function loadEngins() {
     );
   } catch (e) {
     console.error(e);
-    toast("Impossible de charger engins.json", 'err');
+    toast("Impossible de charger engins.json", "err");
   }
 }
-
-
 
 /* ============================================================
  * UI: LIENS AVEC LE FORMULAIRE TRAIN
  * ============================================================ */
 function updatePaysColor() {
-  const sel = $('#paysSel');
+  const sel = $("#paysSel");
   if (!sel) return;
 
   // Réinitialise les classes
-  sel.classList.remove('FR', 'DE', 'CH', 'IT', 'BNL', 'FRET');
+  sel.classList.remove("FR", "DE", "CH", "IT", "BNL", "FRET");
   sel.classList.add(sel.value);
 }
 
 function getCapacityBlock() {
   // On repère la ligne qui contient le label "Capacité totale"
-  const labels = document.querySelectorAll('.train-main .label');
+  const labels = document.querySelectorAll(".train-main .label");
   for (const lab of labels) {
-    if ((lab.textContent || '').includes('Capacité totale')) {
+    if ((lab.textContent || "").includes("Capacité totale")) {
       return lab.parentElement; // le <div> enveloppant les inputs capPrem/capSec
     }
   }
@@ -341,22 +344,22 @@ function getCapacityBlock() {
 function applyFreightUI(isFRET) {
   // masque/affiche la ligne Capacité
   const capaBlock = getCapacityBlock();
-  if (capaBlock) capaBlock.style.display = isFRET ? 'none' : '';
+  if (capaBlock) capaBlock.style.display = isFRET ? "none" : "";
 
   // ajoute/supprime la ligne Tonnage
-  let tonnageRow = document.getElementById('tonnageRow');
+  let tonnageRow = document.getElementById("tonnageRow");
   if (isFRET) {
     if (!tonnageRow) {
-      tonnageRow = document.createElement('div');
-      tonnageRow.id = 'tonnageRow';
+      tonnageRow = document.createElement("div");
+      tonnageRow.id = "tonnageRow";
       tonnageRow.innerHTML = `
         <div class="label">Tonnage total</div>
         <input type="number" id="tonnageTotal" min="0" step="1" disabled>
       `;
       if (capaBlock && capaBlock.parentElement) {
-        capaBlock.parentElement.insertAdjacentElement('afterend', tonnageRow);
+        capaBlock.parentElement.insertAdjacentElement("afterend", tonnageRow);
       } else {
-        document.querySelector('.train-main')?.appendChild(tonnageRow);
+        document.querySelector(".train-main")?.appendChild(tonnageRow);
       }
     }
   } else if (tonnageRow) {
@@ -366,21 +369,20 @@ function applyFreightUI(isFRET) {
 
 function bindTrainForm() {
   // ID
-  $('#trainId').addEventListener('input', e => {
+  $("#trainId").addEventListener("input", (e) => {
     state.current.id = e.target.value.trim();
     updatePaysColor();
   });
 
-  $('#paysSel').addEventListener('change', e => {
+  $("#paysSel").addEventListener("change", (e) => {
     state.current.pays = e.target.value;
     updatePaysColor();
 
-    const isFRET = state.current.pays === 'FRET';
+    const isFRET = state.current.pays === "FRET";
     applyFreightUI(isFRET);
     useGaresDatalist();
     recalcCapaciteGlobale();
   });
-
 
   updatePaysColor();
 }
@@ -391,7 +393,9 @@ function bindTrainForm() {
 function recalcCapaciteGlobale() {
   const isFRET = state.current.pays === "FRET";
 
-  let prem = 0, sec = 0, tonnage = 0;
+  let prem = 0,
+    sec = 0,
+    tonnage = 0;
   let vmax = Infinity;
 
   // Engin de base
@@ -406,8 +410,8 @@ function recalcCapaciteGlobale() {
   }
 
   // Éléments de composition
-  (state.current.composition || []).forEach(name => {
-    const compo = state.engins.find(x => x.nom === name);
+  (state.current.composition || []).forEach((name) => {
+    const compo = state.engins.find((x) => x.nom === name);
     if (!compo) return;
     if (!isFRET && compo.capacite) {
       prem += compo.capacite.premiere || 0;
@@ -417,29 +421,29 @@ function recalcCapaciteGlobale() {
     if (compo.vitesseMax) vmax = Math.min(vmax, compo.vitesseMax);
   });
 
-  if (!isFinite(vmax) || vmax === 0) vmax = state.current.engin?.vitesseMax || 0;
+  if (!isFinite(vmax) || vmax === 0)
+    vmax = state.current.engin?.vitesseMax || 0;
 
   // ➜ pousse dans l'UI / state selon le mode
   if (isFRET) {
-    const tonInp = document.getElementById('tonnageTotal');
+    const tonInp = document.getElementById("tonnageTotal");
     if (tonInp) tonInp.value = tonnage;
     state.current.tonnage = tonnage;
     // on n'affiche pas capPrem/capSec en FRET (déjà masqués visuellement)
   } else {
-    document.getElementById('capPrem').value = prem;
-    document.getElementById('capSec').value = sec;
+    document.getElementById("capPrem").value = prem;
+    document.getElementById("capSec").value = sec;
     state.current.capacite = { premiere: prem, seconde: sec };
     delete state.current.tonnage;
   }
 
-  document.getElementById('vmax').value = vmax;
+  document.getElementById("vmax").value = vmax;
   state.current.vmax = vmax;
 }
 
-
 function addCompoTag(name) {
-  const list = $('#compoList');
-  const tag = document.createElement('span');
+  const list = $("#compoList");
+  const tag = document.createElement("span");
   tag.className = "tag";
   tag.style.display = "inline-flex";
   tag.style.alignItems = "center";
@@ -449,24 +453,29 @@ function addCompoTag(name) {
     <button class="btn-mini" aria-label="Supprimer" title="Supprimer" style="
       border:none; background:#00000010; padding:2px 6px; border-radius:6px; cursor:pointer;">×</button>
   `;
-  const btn = tag.querySelector('button');
-  btn.addEventListener('click', () => {
+  const btn = tag.querySelector("button");
+  btn.addEventListener("click", () => {
     // retire du state
-    state.current.composition = (state.current.composition || []).filter(n => n !== name);
+    state.current.composition = (state.current.composition || []).filter(
+      (n) => n !== name
+    );
 
     const isFRET = state.current.pays === "FRET";
-    const e = state.engins.find(x => x.nom === name);
+    const e = state.engins.find((x) => x.nom === name);
     if (e) {
       if (!isFRET && e.capacite) {
-        const prem = parseInt($('#capPrem').value || 0) - (e.capacite.premiere || 0);
-        const sec = parseInt($('#capSec').value || 0) - (e.capacite.seconde || 0);
-        $('#capPrem').value = Math.max(prem, 0);
-        $('#capSec').value = Math.max(sec, 0);
+        const prem =
+          parseInt($("#capPrem").value || 0) - (e.capacite.premiere || 0);
+        const sec =
+          parseInt($("#capSec").value || 0) - (e.capacite.seconde || 0);
+        $("#capPrem").value = Math.max(prem, 0);
+        $("#capSec").value = Math.max(sec, 0);
       }
       if (isFRET && e.tonnage) {
-        const tonInp = document.getElementById('tonnageTotal');
-        if (tonInp) tonInp.value = Math.max((parseInt(tonInp.value || 0) - e.tonnage), 0);
-        state.current.tonnage = parseInt(tonInp?.value || '0', 10);
+        const tonInp = document.getElementById("tonnageTotal");
+        if (tonInp)
+          tonInp.value = Math.max(parseInt(tonInp.value || 0) - e.tonnage, 0);
+        state.current.tonnage = parseInt(tonInp?.value || "0", 10);
       }
     }
 
@@ -477,23 +486,22 @@ function addCompoTag(name) {
   list.appendChild(tag);
 }
 
-
 /* ============================================================
  * TABLE DESSERTES
  * ============================================================ */
 function autoUpdateTrajetNom() {
   const t = activeTrajet();
   if (!t || t.dessertes.length < 2) return;
-  const first = t.dessertes[0].gare || '';
-  const last = t.dessertes.at(-1).gare || '';
+  const first = t.dessertes[0].gare || "";
+  const last = t.dessertes.at(-1).gare || "";
   if (first && last) {
     t.nom = `${first} → ${last}`;
-    $('#trajetNom').value = t.nom;
+    $("#trajetNom").value = t.nom;
   }
 }
 
 function emptyTrajet() {
-  return { nom: '', dessertes: [] };
+  return { nom: "", dessertes: [] };
 }
 
 function ensureTrajet() {
@@ -512,37 +520,42 @@ function ensureTrajet() {
   return state.current.trajets[state.current.trajetIndex] || null;
 }
 
-
 function activeTrajet() {
   return state.current.trajets[state.current.trajetIndex] || null;
 }
 
 function renderDessertes() {
   const t = activeTrajet();
-  const tbody = $('#dessertesTbl tbody');
-  tbody.innerHTML = '';
+  const tbody = $("#dessertesTbl tbody");
+  tbody.innerHTML = "";
   if (!t) return;
 
-
-
   t.dessertes.forEach((d, i) => {
-    const tr = document.createElement('tr');
+    const tr = document.createElement("tr");
     tr.innerHTML = `
     <td>${i + 1}</td>
     <td class="gare-cell" data-i="${i}">
-      <input type="text" class="in-gare" value="${d.gare || ''}" list="garesList" placeholder="Gare...">
+      <input type="text" class="in-gare" value="${
+        d.gare || ""
+      }" list="garesList" placeholder="Gare...">
     </td>
-    <td class="right"><input type="number" class="in-arret" min="0" value="${d.arret ?? state.defaultArretMin}"></td>
-    <td class="right"><input type="time" class="in-heure" value="${d.heure || ''}" step="60"></td>
-    <td class="right"><input type="text" class="in-jours" value="${(d.jours || []).join(',')}" placeholder="ex: LU,MA,ME"></td>
+    <td class="right"><input type="number" class="in-arret" min="0" value="${
+      d.arret ?? state.defaultArretMin
+    }"></td>
+    <td class="right"><input type="time" class="in-heure" value="${
+      d.heure || ""
+    }" step="60"></td>
+    <td class="right"><input type="text" class="in-jours" value="${(
+      d.jours || []
+    ).join(",")}" placeholder="ex: LU,MA,ME"></td>
     <td class="right"><button class="btn btn-mini btn-danger in-del" data-i="${i}">Suppr</button></td>
   `;
     tbody.appendChild(tr);
 
     // ➕ Bouton "remplir chemin" entre cette gare et la suivante
     if (i < t.dessertes.length - 1) {
-      const insertRow = document.createElement('tr');
-      insertRow.classList.add('row-inter'); // nouvelle classe
+      const insertRow = document.createElement("tr");
+      insertRow.classList.add("row-inter"); // nouvelle classe
 
       insertRow.innerHTML = `
       <td colspan="5" style="text-align:center; padding:3px 0;">
@@ -560,8 +573,8 @@ function renderDessertes() {
   useGaresDatalist();
 
   // hook inputs
-  tbody.querySelectorAll('.in-gare').forEach((inp, idx) => {
-    inp.addEventListener('input', (e) => {
+  tbody.querySelectorAll(".in-gare").forEach((inp, idx) => {
+    inp.addEventListener("input", (e) => {
       const t = activeTrajet();
       if (!t) return;
       t.dessertes[idx].gare = e.target.value.trim();
@@ -570,8 +583,9 @@ function renderDessertes() {
     });
 
     // double-clic → injecte suggestions selon rayon
-    inp.addEventListener('dblclick', (e) => {
-      const t = activeTrajet(); if (!t) return;
+    inp.addEventListener("dblclick", (e) => {
+      const t = activeTrajet();
+      if (!t) return;
       const idx2 = idx;
       // Prend la gare actuelle OU la précédente comme source
       let curr = t.dessertes[idx2]?.gare;
@@ -579,7 +593,10 @@ function renderDessertes() {
         curr = t.dessertes[idx2 - 1]?.gare;
       }
       if (!curr || !getGare(curr)) {
-        toast('Sélectionnez d\'abord une gare valide avant les suggestions.', 'warn');
+        toast(
+          "Sélectionnez d'abord une gare valide avant les suggestions.",
+          "warn"
+        );
         return;
       }
 
@@ -587,19 +604,19 @@ function renderDessertes() {
       const sugg = suggestionsDepuis(curr, 10, state.suggestionRadius);
 
       if (!sugg.length) {
-        toast('Aucune suggestion trouvée autour de cette gare.', 'warn');
+        toast("Aucune suggestion trouvée autour de cette gare.", "warn");
         return;
       }
-      e.target.setAttribute('list', `garesList_sugg_${idx2}`);
+      e.target.setAttribute("list", `garesList_sugg_${idx2}`);
       let dl = document.getElementById(`garesList_sugg_${idx2}`);
       if (!dl) {
-        dl = document.createElement('datalist');
+        dl = document.createElement("datalist");
         dl.id = `garesList_sugg_${idx2}`;
         document.body.appendChild(dl);
       }
-      dl.innerHTML = '';
-      sugg.forEach(n => {
-        const opt = document.createElement('option');
+      dl.innerHTML = "";
+      sugg.forEach((n) => {
+        const opt = document.createElement("option");
         opt.value = n;
         // Ajoute le type pour aide visuelle
         const gare = getGare(n);
@@ -608,20 +625,24 @@ function renderDessertes() {
         }
         dl.appendChild(opt);
       });
-      toast(`${sugg.length} suggestions chargées (rayon ${state.suggestionRadius}). Tapez pour filtrer.`, 'ok', 1800);
+      toast(
+        `${sugg.length} suggestions chargées (rayon ${state.suggestionRadius}). Tapez pour filtrer.`,
+        "ok",
+        1800
+      );
     });
   });
 
-  tbody.querySelectorAll('.in-arret').forEach((inp, idx) => {
-    inp.addEventListener('input', (e) => {
+  tbody.querySelectorAll(".in-arret").forEach((inp, idx) => {
+    inp.addEventListener("input", (e) => {
       const t = activeTrajet();
       if (!t) return;
       t.dessertes[idx].arret = Math.max(0, Number(e.target.value) || 0);
     });
   });
 
-  tbody.querySelectorAll('.in-heure').forEach((inp, idx) => {
-    inp.addEventListener('input', (e) => {
+  tbody.querySelectorAll(".in-heure").forEach((inp, idx) => {
+    inp.addEventListener("input", (e) => {
       const t = activeTrajet();
       if (!t) return;
       t.dessertes[idx].heure = e.target.value;
@@ -629,22 +650,32 @@ function renderDessertes() {
     });
   });
 
-  tbody.querySelectorAll('.in-jours').forEach((inp, idx) => {
-    inp.addEventListener('input', (e) => {
+  tbody.querySelectorAll(".in-jours").forEach((inp, idx) => {
+    inp.addEventListener("input", (e) => {
       const raw = e.target.value.trim();
-      const jours = raw ? raw.split(',').map(s => s.trim().toUpperCase()).filter(Boolean) : undefined;
+      const jours = raw
+        ? raw
+            .split(",")
+            .map((s) => s.trim().toUpperCase())
+            .filter(Boolean)
+        : undefined;
       const t = activeTrajet();
       if (!t) return;
-      if (jours && !jours.every(j => ["LU", "MA", "ME", "JE", "VE", "SA", "DI"].includes(j))) {
-        toast('Jours invalides : utiliser LU,MA,ME,JE,VE,SA,DI', 'warn');
+      if (
+        jours &&
+        !jours.every((j) =>
+          ["LU", "MA", "ME", "JE", "VE", "SA", "DI"].includes(j)
+        )
+      ) {
+        toast("Jours invalides : utiliser LU,MA,ME,JE,VE,SA,DI", "warn");
       } else {
         t.dessertes[idx].jours = jours && jours.length ? jours : undefined;
       }
     });
   });
 
-  tbody.querySelectorAll('.in-del').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  tbody.querySelectorAll(".in-del").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
       const i = Number(e.currentTarget.dataset.i);
       const t = activeTrajet();
       if (!t) return;
@@ -654,8 +685,8 @@ function renderDessertes() {
     });
   });
 
-  tbody.querySelectorAll('.btn-fill').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  tbody.querySelectorAll(".btn-fill").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
       const i = Number(e.currentTarget.dataset.i);
       const t = activeTrajet();
       if (!t) return;
@@ -663,12 +694,19 @@ function renderDessertes() {
       const curr = t.dessertes[i];
       const next = t.dessertes[i + 1];
       if (!curr?.gare || !next?.gare) {
-        toast("Deux gares valides sont nécessaires pour remplir le chemin.", "warn");
+        toast(
+          "Deux gares valides sont nécessaires pour remplir le chemin.",
+          "warn"
+        );
         return;
       }
 
       // Cherche le chemin complet
-      const path = trouverCheminEntreGares(curr.gare, next.gare, state.current.vmax || 9999);
+      const path = trouverCheminEntreGares(
+        curr.gare,
+        next.gare,
+        state.current.vmax || 9999
+      );
       if (!path || path.length <= 2) {
         toast("Aucune gare intermédiaire trouvée.", "warn");
         return;
@@ -678,8 +716,8 @@ function renderDessertes() {
       const typeFiltre = state.filtreTypeGare || "all";
       const intermediates = path
         .slice(1, -1)
-        .map(nom => getGareAny(nom))
-        .filter(g => {
+        .map((nom) => getGareAny(nom))
+        .filter((g) => {
           if (!g || g.fantome) return false;
 
           const isFRET = state.current.pays === "FRET";
@@ -696,8 +734,7 @@ function renderDessertes() {
           return idxFiltre !== -1 && idxGare !== -1 && idxGare >= idxFiltre;
         })
 
-        .map(g => g.nom);
-
+        .map((g) => g.nom);
 
       if (!intermediates.length) {
         toast("Pas de gares intermédiaires sur ce segment.", "warn");
@@ -705,14 +742,13 @@ function renderDessertes() {
       }
 
       // Insère les nouvelles dessertes juste après la position i
-      const inserts = intermediates.map(nom => ({
+      const inserts = intermediates.map((nom) => ({
         gare: nom,
         arret: state.defaultArretMin,
-        heure: '', // à suggérer ensuite
+        heure: "", // à suggérer ensuite
       }));
 
       t.dessertes.splice(i + 1, 0, ...inserts);
-
 
       // Icon elec ou diesel
       const trs = tbody.querySelectorAll("tr");
@@ -724,8 +760,8 @@ function renderDessertes() {
           return;
         }
 
-        const ga = trs[i].querySelector('.in-gare')?.value.trim() || "";
-        const gb = trs[i + 1]?.querySelector('.in-gare')?.value.trim() || "";
+        const ga = trs[i].querySelector(".in-gare")?.value.trim() || "";
+        const gb = trs[i + 1]?.querySelector(".in-gare")?.value.trim() || "";
 
         if (!ga || !gb) {
           cell.textContent = "—";
@@ -738,7 +774,6 @@ function renderDessertes() {
         cell.title = t.type;
       });
 
-
       renderDessertes();
       renderAllTrajets();
       toast(`${inserts.length} gare(s) intermédiaire(s) ajoutée(s).`, "ok");
@@ -750,17 +785,23 @@ function renderDessertes() {
 }
 
 function updateTractionIcons() {
-  const tbody = $('#dessertesTbl tbody');
+  const tbody = $("#dessertesTbl tbody");
   if (!tbody) return;
-  const rowsGare = Array.from(tbody.querySelectorAll('tr')).filter(r => r.querySelector('.in-gare'));
-  const rowsInter = Array.from(tbody.querySelectorAll('.row-inter'));
+  const rowsGare = Array.from(tbody.querySelectorAll("tr")).filter((r) =>
+    r.querySelector(".in-gare")
+  );
+  const rowsInter = Array.from(tbody.querySelectorAll(".row-inter"));
   rowsInter.forEach((row, i) => {
-    const tdIcon = row.querySelector('.traction-icon-cell');
-    if (tdIcon) { tdIcon.textContent = '—'; tdIcon.style.color = '#aaa'; }
-    else { return; }
+    const tdIcon = row.querySelector(".traction-icon-cell");
+    if (tdIcon) {
+      tdIcon.textContent = "—";
+      tdIcon.style.color = "#aaa";
+    } else {
+      return;
+    }
 
-    const ga = rowsGare[i]?.querySelector('.in-gare')?.value.trim();
-    const gb = rowsGare[i + 1]?.querySelector('.in-gare')?.value.trim();
+    const ga = rowsGare[i]?.querySelector(".in-gare")?.value.trim();
+    const gb = rowsGare[i + 1]?.querySelector(".in-gare")?.value.trim();
     if (!ga || !gb) {
       tdIcon.textContent = "—";
       tdIcon.style.color = "#aaa";
@@ -774,31 +815,29 @@ function updateTractionIcons() {
   });
 }
 
-
 function useGaresDatalist() {
-  let dl = document.getElementById('garesList');
+  let dl = document.getElementById("garesList");
   if (!dl) {
-    dl = document.createElement('datalist');
-    dl.id = 'garesList';
+    dl = document.createElement("datalist");
+    dl.id = "garesList";
     document.body.appendChild(dl);
   }
-  dl.innerHTML = '';
+  dl.innerHTML = "";
   const isFRET = state.current.pays === "FRET";
   villes
-    .filter(v => !v.fantome)
+    .filter((v) => !v.fantome)
     // 🔹 En mode FRET : toutes les gares
     // 🔹 En mode voyageur : on exclut juste les gares purement FRET
-    .filter(v => isFRET ? true : v.gareFRET !== true)
-    .forEach(g => {
-      const opt = document.createElement('option');
+    .filter((v) => (isFRET ? true : v.gareFRET !== true))
+    .forEach((g) => {
+      const opt = document.createElement("option");
       opt.value = g.nom;
       dl.appendChild(opt);
     });
-  $$('#dessertesTbl .in-gare').forEach(inp => inp.setAttribute('list', 'garesList'));
+  $$("#dessertesTbl .in-gare").forEach((inp) =>
+    inp.setAttribute("list", "garesList")
+  );
 }
-
-
-
 
 /* ============================================================
  * CALCUL VITESSE & DURÉE
@@ -814,11 +853,11 @@ function dureeCheminMinutes(path) {
     const nomA = path[i];
     const nomB = path[i + 1];
 
-
     // trouve la voie correspondante
-    const l = lignes.find(L =>
-      (L.gareA === nomA && L.gareB === nomB) ||
-      (L.gareA === nomB && L.gareB === nomA)
+    const l = lignes.find(
+      (L) =>
+        (L.gareA === nomA && L.gareB === nomB) ||
+        (L.gareA === nomB && L.gareB === nomA)
     );
     if (!l) continue;
 
@@ -835,9 +874,19 @@ function dureeCheminMinutes(path) {
 
     // ⚙️ coefficient de pénalité selon la traction
     const FACTEUR_MODE =
-      vSeg > 250 ? (mode === "electrique" ? 1.02 : 1.15) :  // LGV
-        vSeg > 160 ? (mode === "electrique" ? 1.10 : 1.25) :  // Lignes rapides
-          (mode === "diesel" ? 1.35 : mode === "electrique" ? 1.20 : 1.5);  // Classique
+      vSeg > 250
+        ? mode === "electrique"
+          ? 1.02
+          : 1.15 // LGV
+        : vSeg > 160
+        ? mode === "electrique"
+          ? 1.1
+          : 1.25 // Lignes rapides
+        : mode === "diesel"
+        ? 1.35
+        : mode === "electrique"
+        ? 1.2
+        : 1.5; // Classique
 
     const MARGE_SECURITE = vSeg > 250 ? 1.01 : vSeg > 160 ? 1.05 : 1.08;
     // 🕒 temps du segment en minutes
@@ -851,7 +900,6 @@ function dureeCheminMinutes(path) {
   return Math.ceil(total);
 }
 
-
 /**
  * Détermine le type de traction nécessaire entre deux gares
  * @returns {Object} { type: string, icon: string, color: string }
@@ -864,11 +912,15 @@ function determinerTractionEntre(ga, gb) {
 
   // 📋 Capacités de l'engin
   const capacites = {
-    diesel: base.moteurs?.some(m => m.toLowerCase().includes("diesel")) || false,
-    "25kv": base.moteurs?.some(m => m.toLowerCase().includes("25kv")) || false,
-    "15kv": base.moteurs?.some(m => m.toLowerCase().includes("15kv")) || false,
-    "1.5kv": base.moteurs?.some(m => m.toLowerCase().includes("1.5kv")) || false,
-    "3kv": base.moteurs?.some(m => m.toLowerCase().includes("3kv")) || false
+    diesel:
+      base.moteurs?.some((m) => m.toLowerCase().includes("diesel")) || false,
+    "25kv":
+      base.moteurs?.some((m) => m.toLowerCase().includes("25kv")) || false,
+    "15kv":
+      base.moteurs?.some((m) => m.toLowerCase().includes("15kv")) || false,
+    "1.5kv":
+      base.moteurs?.some((m) => m.toLowerCase().includes("1.5kv")) || false,
+    "3kv": base.moteurs?.some((m) => m.toLowerCase().includes("3kv")) || false,
   };
 
   // 🛤️ Récupération des types d'électrification sur le chemin
@@ -879,9 +931,10 @@ function determinerTractionEntre(ga, gb) {
 
   const typesElec = new Set();
   for (let i = 0; i < path.length - 1; i++) {
-    const ligne = lignes.find(L =>
-      (L.gareA === path[i] && L.gareB === path[i + 1]) ||
-      (L.gareA === path[i + 1] && L.gareB === path[i])
+    const ligne = lignes.find(
+      (L) =>
+        (L.gareA === path[i] && L.gareB === path[i + 1]) ||
+        (L.gareA === path[i + 1] && L.gareB === path[i])
     );
     if (ligne?.electrification) {
       typesElec.add(ligne.electrification.toLowerCase());
@@ -907,11 +960,19 @@ function determinerTractionEntre(ga, gb) {
       }
     }
     // Cas 2️⃣ : Voie électrifiée
-    else if (typeVoie.includes("25kv") || typeVoie.includes("15kv") || typeVoie.includes("3kv") || typeVoie.includes("1.5kv")) {
-      const typeExact = typeVoie.includes("25kv") ? "25kv"
-        : typeVoie.includes("15kv") ? "15kv"
-          : typeVoie.includes("3kv") ? "3kv"
-            : "1.5kv";
+    else if (
+      typeVoie.includes("25kv") ||
+      typeVoie.includes("15kv") ||
+      typeVoie.includes("3kv") ||
+      typeVoie.includes("1.5kv")
+    ) {
+      const typeExact = typeVoie.includes("25kv")
+        ? "25kv"
+        : typeVoie.includes("15kv")
+        ? "15kv"
+        : typeVoie.includes("3kv")
+        ? "3kv"
+        : "1.5kv";
 
       if (capacites[typeExact]) {
         // ✅ Compatible en électrique
@@ -997,7 +1058,7 @@ function verifierCompatibiliteTraction() {
 
   return {
     valid: errors.length === 0,
-    errors
+    errors,
   };
 }
 
@@ -1007,12 +1068,12 @@ function verifierCompatibiliteTraction() {
 function suggestHoraires() {
   const t = activeTrajet();
   if (!t || t.dessertes.length < 2) {
-    toast("Ajoute au moins 2 gares avant de suggérer.", 'warn');
+    toast("Ajoute au moins 2 gares avant de suggérer.", "warn");
     return;
   }
 
   try {
-    const startTime = $('#heureDepart').value || '08:00';
+    const startTime = $("#heureDepart").value || "08:00";
     t.dessertes[0].heure = startTime;
 
     for (let i = 1; i < t.dessertes.length; i++) {
@@ -1020,11 +1081,15 @@ function suggestHoraires() {
       const curr = t.dessertes[i];
 
       if (!getGare(prev.gare) || !getGare(curr.gare)) {
-        toast(`Gare inconnue : ${prev.gare} ou ${curr.gare}`, 'err', 2500);
+        toast(`Gare inconnue : ${prev.gare} ou ${curr.gare}`, "err", 2500);
         return;
       }
 
-      const path = trouverCheminEntreGares(prev.gare, curr.gare, state.current.vmax || 9999);
+      const path = trouverCheminEntreGares(
+        prev.gare,
+        curr.gare,
+        state.current.vmax || 9999
+      );
       const arretPrev = Number(prev.arret ?? state.defaultArretMin);
       const baseMins = timeToMinutes(prev.heure || startTime);
       try {
@@ -1033,27 +1098,25 @@ function suggestHoraires() {
         curr.heure = minutesToTime(arrivalMins);
       } catch (err) {
         console.error(err);
-        toast(`Erreur : ${err.message}`, 'err', 4000);
+        toast(`Erreur : ${err.message}`, "err", 4000);
       }
     }
 
     renderDessertes();
-    toast('Horaires suggérés appliqués.', 'ok');
+    toast("Horaires suggérés appliqués.", "ok");
     // ✅ Lance automatiquement la validation après suggestion
     setTimeout(() => {
       const err = validateTrainBeforeSave();
       if (err) {
-        toast(err, 'err', 5000);
+        toast(err, "err", 5000);
       } else {
-        toast('✅ Trajet validé sans conflit.', 'ok');
+        toast("✅ Trajet validé sans conflit.", "ok");
       }
     }, 500);
-
   } catch (err) {
     console.error(err);
-    toast(`Erreur : ${err.message}`, 'err', 4000);
+    toast(`Erreur : ${err.message}`, "err", 4000);
   }
-
 }
 
 /* ============================================================
@@ -1062,7 +1125,7 @@ function suggestHoraires() {
 function genererRetourInverse() {
   const t = activeTrajet();
   if (!t || t.dessertes.length < 2) {
-    toast("Ajoute au moins 2 gares avant de générer un retour.", 'warn');
+    toast("Ajoute au moins 2 gares avant de générer un retour.", "warn");
     return;
   }
 
@@ -1070,15 +1133,16 @@ function genererRetourInverse() {
   const t2 = emptyTrajet();
 
   // inverse les dessertes et garde arrêts / jours
-  t2.dessertes = [...t.dessertes].reverse().map(d => ({
+  t2.dessertes = [...t.dessertes].reverse().map((d) => ({
     gare: d.gare,
     arret: d.arret ?? state.defaultArretMin,
     jours: d.jours ? [...d.jours] : undefined,
-    heure: '' // sera calculée
+    heure: "", // sera calculée
   }));
 
   // --- Calcule l'heure de départ du retour ---
-  const lastHeure = t.dessertes.at(-1).heure || $('#heureDepart').value || '08:00';
+  const lastHeure =
+    t.dessertes.at(-1).heure || $("#heureDepart").value || "08:00";
   const start = minutesToTime(timeToMinutes(lastHeure) + state.retourBufferMin);
 
   // --- Insère le trajet dans la liste ---
@@ -1086,20 +1150,19 @@ function genererRetourInverse() {
   state.current.trajetIndex = state.current.trajets.length - 1;
 
   // --- Nom dynamique "première → dernière" ---
-  const first = t2.dessertes[0]?.gare || '';
-  const last = t2.dessertes.at(-1)?.gare || '';
-  t2.nom = first && last ? `${first} → ${last}` : 'Trajet retour';
+  const first = t2.dessertes[0]?.gare || "";
+  const last = t2.dessertes.at(-1)?.gare || "";
+  t2.nom = first && last ? `${first} → ${last}` : "Trajet retour";
 
   // --- Met à jour l’UI ---
-  $('#trajetNom').value = t2.nom;
-  $('#heureDepart').value = start;
+  $("#trajetNom").value = t2.nom;
+  $("#heureDepart").value = start;
 
-  renderDessertes();     // charge dans l’éditeur
-  suggestHoraires();     // calcule les horaires
-  renderAllTrajets();    // met à jour les cards
+  renderDessertes(); // charge dans l’éditeur
+  suggestHoraires(); // calcule les horaires
+  renderAllTrajets(); // met à jour les cards
 
-
-  toast(`Trajet retour généré : ${t2.nom}`, 'ok');
+  toast(`Trajet retour généré : ${t2.nom}`, "ok");
 }
 
 /* ============================================================
@@ -1117,11 +1180,58 @@ function trouverCheminEntreGaresCached(gareA, gareB, vitesse) {
 }
 
 /* ============================================================
+ * Calcule les segments d'un trajet avec leurs temps relatifs
+ * (identique à la logique de main.js)
+ * ============================================================ */
+function calculerSegmentsAvecTemps(cheminGares, vitesseTrain) {
+  const segments = [];
+  let totalTempsRelatif = 0;
+
+  for (let j = 0; j < cheminGares.length - 1; j++) {
+    const nomG1 = cheminGares[j];
+    const nomG2 = cheminGares[j + 1];
+
+    const g1 = getGareAny(nomG1);
+    const g2 = getGareAny(nomG2);
+
+    if (!g1 || !g2) continue;
+
+    // Trouve la ligne correspondante
+    const ligne = lignes.find(
+      (l) =>
+        (l.gareA === nomG1 && l.gareB === nomG2) ||
+        (l.gareA === nomG2 && l.gareB === nomG1)
+    );
+
+    // Distance en pixels (arbitraire mais cohérent)
+    const distance = dist(g1, g2);
+
+    // Vitesse effective : minimum entre la voie et le train
+    const vitesseVoie = ligne?.vitesse_max || 100;
+    const vitesseEffective = Math.min(vitesseVoie, vitesseTrain || 100);
+
+    // Temps relatif : proportionnel à distance/vitesse
+    const tempsRelatif = distance / vitesseEffective;
+    totalTempsRelatif += tempsRelatif;
+
+    segments.push({
+      nomG1,
+      nomG2,
+      distance,
+      vitesseEffective,
+      tempsRelatif,
+      signalisation: ligne?.signalisation || "inconnue",
+    });
+  }
+
+  return { segments, totalTempsRelatif };
+}
+/* ============================================================
  * INDEX GLOBAL D'OCCUPATION DES TRONÇONS
  * ============================================================ */
 const occupationIndex = {
   data: new Map(), // clé: "gareA__gareB", valeur: array d'occupations
-  ready: false
+  ready: false,
 };
 
 /**
@@ -1129,7 +1239,7 @@ const occupationIndex = {
  * À appeler une seule fois après loadEngins()
  */
 function buildOccupationIndex() {
-  console.time('⏱️ Construction index occupation');
+  console.time("⏱️ Construction index occupation");
   occupationIndex.data.clear();
 
   const allTrains = [
@@ -1138,7 +1248,7 @@ function buildOccupationIndex() {
     ...state.trainsCH,
     ...state.trainsBNL,
     ...state.trainsIT,
-    ...state.trainsFRET
+    ...state.trainsFRET,
   ];
 
   for (const train of allTrains) {
@@ -1150,7 +1260,7 @@ function buildOccupationIndex() {
   }
 
   occupationIndex.ready = true;
-  console.timeEnd('⏱️ Construction index occupation');
+  console.timeEnd("⏱️ Construction index occupation");
   console.log(`📊 ${occupationIndex.data.size} tronçons indexés`);
 }
 
@@ -1166,45 +1276,60 @@ function indexerTrajet(trainId, trajet, vitesseMax) {
 
     if (!curr.heure || !next.heure) continue;
 
-    const path = trouverCheminEntreGaresCached(curr.gare, next.gare, vitesseMax || 9999);
+    const path = trouverCheminEntreGaresCached(
+      curr.gare,
+      next.gare,
+      vitesseMax || 9999
+    );
     if (!path || path.length <= 1) continue;
 
-    const tDepart = timeToMinutes(curr.heure) + (curr.arret ?? state.defaultArretMin);
+    const tDepart =
+      timeToMinutes(curr.heure) + (curr.arret ?? state.defaultArretMin);
     const tArrivee = timeToMinutes(next.heure);
 
-    // Pour chaque segment du chemin (incluant gares fantômes)
-    for (let j = 0; j < path.length - 1; j++) {
-      const gareA = path[j];
-      const gareB = path[j + 1];
+    // 🎯 Calcul segmentaire temporel (identique à main.js)
+    const { segments, totalTempsRelatif } = calculerSegmentsAvecTemps(
+      path,
+      vitesseMax || 9999
+    );
+
+    let tempsCumule = 0;
+    const dureeTrajet = tArrivee - tDepart;
+
+    segments.forEach((seg) => {
+      const gareA = seg.nomG1;
+      const gareB = seg.nomG2;
 
       // ⚠️ Clé AVEC sens (A→B ≠ B→A) car voies doubles
       const key = `${gareA}__${gareB}`;
 
-      // Interpolation linéaire du temps de passage
-      const ratio = j / (path.length - 1);
-      const tDebut = tDepart + (tArrivee - tDepart) * ratio;
-      const tFin = tDepart + (tArrivee - tDepart) * ((j + 1) / (path.length - 1));
+      // 🔥 Calcul temporel réaliste basé sur la vitesse
+      const ratioDebut =
+        totalTempsRelatif > 0 ? tempsCumule / totalTempsRelatif : 0;
+      const ratioFin =
+        totalTempsRelatif > 0
+          ? (tempsCumule + seg.tempsRelatif) / totalTempsRelatif
+          : 0;
 
-      // Récupère la ligne pour la signalisation
-      const ligne = lignes.find(L =>
-        (L.gareA === gareA && L.gareB === gareB) ||
-        (L.gareA === gareB && L.gareB === gareA)
-      );
+      const tDebut = tDepart + dureeTrajet * ratioDebut;
+      const tFin = tDepart + dureeTrajet * ratioFin;
+
+      tempsCumule += seg.tempsRelatif;
 
       const occupation = {
         trainId,
-        trajetNom: trajet.nom || 'sans nom',
+        trajetNom: trajet.nom || "sans nom",
         debut: Math.round(tDebut),
         fin: Math.round(tFin),
         jours,
-        signalisation: ligne?.signalisation || 'inconnue'
+        signalisation: seg.signalisation,
       };
 
       if (!occupationIndex.data.has(key)) {
         occupationIndex.data.set(key, []);
       }
       occupationIndex.data.get(key).push(occupation);
-    }
+    });
   }
 }
 
@@ -1215,7 +1340,7 @@ function supprimerTrainDeIndex(trainId) {
   if (!trainId) return;
 
   for (const [key, occupations] of occupationIndex.data) {
-    const filtered = occupations.filter(occ => occ.trainId !== trainId);
+    const filtered = occupations.filter((occ) => occ.trainId !== trainId);
     if (filtered.length === 0) {
       occupationIndex.data.delete(key);
     } else {
@@ -1230,7 +1355,7 @@ function supprimerTrainDeIndex(trainId) {
 function detectConflitTroncons(ignoreConflits = false) {
   if (ignoreConflits) return [];
   if (!occupationIndex.ready) {
-    console.warn('⚠️ Index d\'occupation non prêt');
+    console.warn("⚠️ Index d'occupation non prêt");
     return [];
   }
 
@@ -1241,21 +1366,22 @@ function detectConflitTroncons(ignoreConflits = false) {
   function joursChevauchent(j1, j2) {
     if (!j1 || !j1.length || !j2 || !j2.length) return true;
     const s2 = new Set(j2);
-    return j1.some(j => s2.has(j));
+    return j1.some((j) => s2.has(j));
   }
 
   // Tolérance selon signalisation
   const tolerances = {
-    "ETCS": 3,
-    "LZB": 4,
-    "PZB": 5,
-    "KVB": 6,
-    "inconnue": 10
+    ETCS: 3,
+    LZB: 4,
+    PZB: 5,
+    KVB: 6,
+    inconnue: 10,
   };
 
   // 🔍 Parcourt TOUS les trajets du nouveau train
   for (const nouveauTrajet of state.current.trajets || []) {
-    if (!nouveauTrajet.dessertes || nouveauTrajet.dessertes.length < 2) continue;
+    if (!nouveauTrajet.dessertes || nouveauTrajet.dessertes.length < 2)
+      continue;
 
     const joursNew = nouveauTrajet.dessertes[0]?.jours || null;
 
@@ -1272,28 +1398,47 @@ function detectConflitTroncons(ignoreConflits = false) {
       );
       if (!path || path.length <= 1) continue;
 
-      const tDepart = timeToMinutes(curr.heure) + (curr.arret ?? state.defaultArretMin);
+      const tDepart =
+        timeToMinutes(curr.heure) + (curr.arret ?? state.defaultArretMin);
       const tArrivee = timeToMinutes(next.heure);
 
-      // Pour chaque segment du chemin
-      for (let j = 0; j < path.length - 1; j++) {
-        const gareA = path[j];
-        const gareB = path[j + 1];
+      
+
+// 🎯 Calcul segmentaire temporel pour le nouveau train
+      const { segments: newSegments, totalTempsRelatif: newTotal } = 
+        calculerSegmentsAvecTemps(path, state.current.vmax || 9999);
+
+      let tempsCumule = 0;
+      const dureeTrajet = tArrivee - tDepart;
+
+      newSegments.forEach(seg => {
+        const gareA = seg.nomG1;
+        const gareB = seg.nomG2;
         const key = `${gareA}__${gareB}`;
 
         // 🎯 Lookup direct dans l'index
         const occupations = occupationIndex.data.get(key);
-        if (!occupations || occupations.length === 0) continue;
+        if (!occupations || occupations.length === 0) {
+          tempsCumule += seg.tempsRelatif;
+          return; // continue dans forEach
+        }
 
-        // Interpolation temps du nouveau train
-        const ratio = j / (path.length - 1);
-        const tNewDebut = Math.round(tDepart + (tArrivee - tDepart) * ratio);
-        const tNewFin = Math.round(tDepart + (tArrivee - tDepart) * ((j + 1) / (path.length - 1)));
+        // Calcul temporel réaliste
+        const ratioDebut = newTotal > 0 ? tempsCumule / newTotal : 0;
+        const ratioFin = newTotal > 0 ? (tempsCumule + seg.tempsRelatif) / newTotal : 0;
+
+        const tNewDebut = Math.round(tDepart + dureeTrajet * ratioDebut);
+        const tNewFin = Math.round(tDepart + dureeTrajet * ratioFin);
+
+        tempsCumule += seg.tempsRelatif;
 
         // Compare avec toutes les occupations existantes sur ce tronçon
         for (const occ of occupations) {
           // Skip si même train en édition
-          if (state.editingExistingId && occ.trainId === state.editingExistingId) {
+          if (
+            state.editingExistingId &&
+            occ.trainId === state.editingExistingId
+          ) {
             continue;
           }
 
@@ -1301,7 +1446,7 @@ function detectConflitTroncons(ignoreConflits = false) {
           if (!joursChevauchent(joursNew, occ.jours)) continue;
 
           // ✅ Chevauchement temporel
-          const chevauchement = (tNewFin > occ.debut && tNewDebut < occ.fin);
+          const chevauchement = tNewFin > occ.debut && tNewDebut < occ.fin;
           if (!chevauchement) continue;
 
           // ⏱️ Calcul écart et tolérance
@@ -1315,7 +1460,7 @@ function detectConflitTroncons(ignoreConflits = false) {
               conflitsSet.add(globalKey);
 
               conflits.push({
-                trajetNom: nouveauTrajet.nom || 'sans nom',
+                trajetNom: nouveauTrajet.nom || "sans nom",
                 segment: `${gareA}→${gareB}`,
                 heureDebut: minutesToTime(tNewDebut),
                 heureFin: minutesToTime(tNewFin),
@@ -1325,19 +1470,22 @@ function detectConflitTroncons(ignoreConflits = false) {
                 signalisation: occ.signalisation,
                 tolerance: tol,
                 ecart: Math.round(ecart),
-                sens: tNewDebut < occ.debut ? 'rattrape' : tNewDebut > occ.debut ? 'rattrapepar' : 'simultanee'
+                sens:
+                  tNewDebut < occ.debut
+                    ? "rattrape"
+                    : tNewDebut > occ.debut
+                    ? "rattrapepar"
+                    : "simultanee",
               });
             }
           }
         }
-      }
+      }); // fin du forEach sur newSegments
     }
   }
 
   return conflits;
 }
-
-
 
 /* ============================================================
  * POPUP CONFLITS
@@ -1349,12 +1497,12 @@ function genererTableauConflits(conflits) {
 
   // Grouper par trajet
   const parTrajet = {};
-  conflits.forEach(c => {
+  conflits.forEach((c) => {
     if (!parTrajet[c.trajetNom]) parTrajet[c.trajetNom] = [];
     parTrajet[c.trajetNom].push(c);
   });
 
-  let html = '';
+  let html = "";
 
   for (const [trajetNom, conflitsTrajet] of Object.entries(parTrajet)) {
     html += `
@@ -1371,16 +1519,20 @@ function genererTableauConflits(conflits) {
         <tbody>
     `;
 
-    conflitsTrajet.forEach(c => {
+    conflitsTrajet.forEach((c) => {
       const situation =
-        c.sens === 'rattrape' ? `🔴 Vous rattrapez ${c.trainConflictuel}` :
-          c.sens === 'rattrapepar' ? `🟠 ${c.trainConflictuel} vous rattrape` :
-            `⚠️ Passage simultané`;
+        c.sens === "rattrape"
+          ? `🔴 Vous rattrapez ${c.trainConflictuel}`
+          : c.sens === "rattrapepar"
+          ? `🟠 ${c.trainConflictuel} vous rattrape`
+          : `⚠️ Passage simultané`;
 
       const bgColor =
-        c.sens === 'rattrape' ? '#ffe6e6' :
-          c.sens === 'rattrapepar' ? '#fff4e6' :
-            '#fff9e6';
+        c.sens === "rattrape"
+          ? "#ffe6e6"
+          : c.sens === "rattrapepar"
+          ? "#fff4e6"
+          : "#fff9e6";
 
       html += `
         <tr style="background:${bgColor}; border-bottom:1px solid #eee;">
@@ -1408,29 +1560,29 @@ function genererTableauConflits(conflits) {
 }
 
 function showConflitsPopup(conflits) {
-  const popup = $('#popupConflits');
-  const list = $('#conflitsList');
-  const btn = $('#btn-show-conflits');
-  const close = $('#closePopupConflits');
+  const popup = $("#popupConflits");
+  const list = $("#conflitsList");
+  const btn = $("#btn-show-conflits");
+  const close = $("#closePopupConflits");
 
   if (!popup || !list || !btn) return;
 
   list.innerHTML = genererTableauConflits(conflits);
 
-  popup.style.display = 'flex';
-  close.onclick = () => popup.style.display = 'none';
+  popup.style.display = "flex";
+  close.onclick = () => (popup.style.display = "none");
 }
 
 /** Met à jour le bouton "⚠️ Conflits détectés (x)" */
 function updateConflitsButton(conflits) {
-  const btn = $('#btn-show-conflits');
+  const btn = $("#btn-show-conflits");
   if (!btn) return;
 
   if (!conflits || conflits.length === 0) {
-    btn.style.display = 'none';
+    btn.style.display = "none";
   } else {
     btn.textContent = `⚠️ Conflits détectés (${conflits.length})`;
-    btn.style.display = 'inline-block';
+    btn.style.display = "inline-block";
   }
 
   btn.onclick = () => showConflitsPopup(conflits);
@@ -1444,8 +1596,10 @@ function validateTrainBeforeSave() {
   if (!c.id) return "L'ID du train est requis.";
   if (!c.id.trim()) return "L'ID ne doit pas être vide.";
   if (!c.engin || !c.engin.nom) return "Aucun engin de base sélectionné.";
-  if (!c.vmax || c.vmax <= 0) return "Vitesse max non valide (vérifie composition/engin).";
-  if (!c.trajets || c.trajets.length === 0) return "Ajoute au moins un trajet avant d'exporter.";
+  if (!c.vmax || c.vmax <= 0)
+    return "Vitesse max non valide (vérifie composition/engin).";
+  if (!c.trajets || c.trajets.length === 0)
+    return "Ajoute au moins un trajet avant d'exporter.";
 
   // Conflit d'ID si création (sauf si on édite celui-là)
   const all = [
@@ -1454,12 +1608,15 @@ function validateTrainBeforeSave() {
     ...state.trainsCH,
     ...state.trainsBNL,
     ...state.trainsIT,
-    ...state.trainsFRET
+    ...state.trainsFRET,
   ];
 
-  const exists = all.some(t => t.id === c.id);
+  const exists = all.some((t) => t.id === c.id);
   // ✅ on autorise le remplacement si on édite le même train
-  if (exists && (!state.editingExistingId || state.editingExistingId !== c.id)) {
+  if (
+    exists &&
+    (!state.editingExistingId || state.editingExistingId !== c.id)
+  ) {
     return "ID déjà utilisé. Modifie l'ID ou charge l'existant pour l'éditer.";
   }
 
@@ -1472,12 +1629,18 @@ function validateTrainBeforeSave() {
     let prev = null;
     for (const [k, d] of tr.dessertes.entries()) {
       const gare = getGare(d.gare);
-      if (!gare) return `Trajet #${i + 1}: gare "${d.gare}" inconnue à la ligne ${k + 1}.`;
-      if (!d.heure) return `Trajet #${i + 1}: heure manquante à la ligne ${k + 1}.`;
+      if (!gare)
+        return `Trajet #${i + 1}: gare "${d.gare}" inconnue à la ligne ${
+          k + 1
+        }.`;
+      if (!d.heure)
+        return `Trajet #${i + 1}: heure manquante à la ligne ${k + 1}.`;
 
       const currMins = timeToMinutes(d.heure);
       if (prev !== null && currMins <= prev) {
-        return `Trajet #${i + 1}: les heures doivent être strictement croissantes (ligne ${k + 1}).`;
+        return `Trajet #${
+          i + 1
+        }: les heures doivent être strictement croissantes (ligne ${k + 1}).`;
       }
       prev = currMins;
     }
@@ -1486,7 +1649,9 @@ function validateTrainBeforeSave() {
   const tractionCheck = verifierCompatibiliteTraction();
   if (!tractionCheck.valid) {
     // Retourne la première erreur (ou toutes si tu préfères)
-    return `❌ Incompatibilité de traction détectée :\n\n${tractionCheck.errors.join('\n')}`;
+    return `❌ Incompatibilité de traction détectée :\n\n${tractionCheck.errors.join(
+      "\n"
+    )}`;
   }
 
   // Vérifie les conflits de sillons avec d'autres trains
@@ -1499,10 +1664,13 @@ function validateTrainBeforeSave() {
   // Dans validateTrainBeforeSave, après detectConflitTroncons :
   if (conflits.length > 0 && !ignoreUM) {
     // Convertir les objets en messages texte pour le toast d'erreur
-    const messages = conflits.map(c =>
-      `⚠️ ${c.trajetNom} : ${c.segment} à ${c.heureDebut} (${c.trainConflictuel})`
+    const messages = conflits.map(
+      (c) =>
+        `⚠️ ${c.trajetNom} : ${c.segment} à ${c.heureDebut} (${c.trainConflictuel})`
     );
-    return `❌ ${conflits.length} conflit(s) détecté(s) :\n\n${messages.join('\n')}`;
+    return `❌ ${conflits.length} conflit(s) détecté(s) :\n\n${messages.join(
+      "\n"
+    )}`;
   }
 
   updateConflitsButton([]); // si tout va bien, on cache le bouton
@@ -1518,74 +1686,102 @@ function toTrainObjectForSave() {
   const isFRET = c.pays === "FRET";
   return {
     id: c.id,
-    nom: c.engin?.nom || '(sans nom)',
+    nom: c.engin?.nom || "(sans nom)",
     moteurs: c.engin?.moteurs || [],
     vitesseMax: c.vmax,
-    ...(isFRET ? { tonnage: c.tonnage || 0 }
-      : { capacite: { ...c.capacite } }),
+    ...(isFRET ? { tonnage: c.tonnage || 0 } : { capacite: { ...c.capacite } }),
     composition: [...c.composition],
-    trajets: c.trajets.map(t => ({
+    trajets: c.trajets.map((t) => ({
       nom: t.nom || undefined,
-      dessertes: t.dessertes.map(d => ({
+      dessertes: t.dessertes.map((d) => ({
         gare: d.gare,
         heure: d.heure,
         arret: d.arret ?? state.defaultArretMin,
-        ...(d.jours ? { jours: d.jours } : {})
-      }))
-    }))
+        ...(d.jours ? { jours: d.jours } : {}),
+      })),
+    })),
   };
 }
 
 function download(filename, content) {
-  const blob = new Blob([content], { type: 'text/javascript;charset=utf-8' });
+  const blob = new Blob([content], { type: "text/javascript;charset=utf-8" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename; a.click();
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
   URL.revokeObjectURL(url);
 }
 
 function prettyJSExport(varName, arr) {
-  const sorted = [...arr].sort((a, b) => String(a.id).localeCompare(String(b.id), 'fr'));
-  const isFretExport = varName.toLowerCase().includes('fret');
+  const sorted = [...arr].sort((a, b) =>
+    String(a.id).localeCompare(String(b.id), "fr")
+  );
+  const isFretExport = varName.toLowerCase().includes("fret");
   const formatDessertes = (dessertes) => {
-    return "[\n" + dessertes.map(d => {
-      const parts = [
-        `gare: "${d.gare}"`,
-        `heure: "${d.heure}"`,
-        `arret: ${d.arret}`
-      ];
-      if (d.jours && d.jours.length) {
-        parts.push(`jours: [${d.jours.map(j => `"${j}"`).join(", ")}]`);
-      }
-      return `          { ${parts.join(", ")} }`;
-    }).join(",\n") + "\n        ]";
+    return (
+      "[\n" +
+      dessertes
+        .map((d) => {
+          const parts = [
+            `gare: "${d.gare}"`,
+            `heure: "${d.heure}"`,
+            `arret: ${d.arret}`,
+          ];
+          if (d.jours && d.jours.length) {
+            parts.push(`jours: [${d.jours.map((j) => `"${j}"`).join(", ")}]`);
+          }
+          return `          { ${parts.join(", ")} }`;
+        })
+        .join(",\n") +
+      "\n        ]"
+    );
   };
 
   const formatTrajets = (trajets) => {
-    return "[\n" + trajets.map(t =>
-      `      {\n        nom: "${t.nom}",\n        dessertes: ${formatDessertes(t.dessertes)}\n      }`
-    ).join(",\n") + "\n    ]";
+    return (
+      "[\n" +
+      trajets
+        .map(
+          (t) =>
+            `      {\n        nom: "${
+              t.nom
+            }",\n        dessertes: ${formatDessertes(t.dessertes)}\n      }`
+        )
+        .join(",\n") +
+      "\n    ]"
+    );
   };
 
   const formatTrain = (t) => {
-    const moteurs = `[${(t.moteurs || []).map(m => `"${m}"`).join(", ")}]`;
-    const composition = (t.composition && t.composition.length)
-      ? `,\n    composition: [${t.composition.map(c => `"${c}"`).join(", ")}]`
-      : "";
+    const moteurs = `[${(t.moteurs || []).map((m) => `"${m}"`).join(", ")}]`;
+    const composition =
+      t.composition && t.composition.length
+        ? `,\n    composition: [${t.composition
+            .map((c) => `"${c}"`)
+            .join(", ")}]`
+        : "";
 
     // 🚧 Choix entre tonnage et capacité
-    const useTonnage = isFretExport || ('tonnage' in t);
+    const useTonnage = isFretExport || "tonnage" in t;
     const middleLine = useTonnage
       ? `tonnage: ${t.tonnage || 0}`
-      : `capacite: { premiere: ${t.capacite?.premiere || 0}, seconde: ${t.capacite?.seconde || 0} }`;
+      : `capacite: { premiere: ${t.capacite?.premiere || 0}, seconde: ${
+          t.capacite?.seconde || 0
+        } }`;
 
-    return `  {\n    id: "${t.id}",\n    nom: "${t.nom}",\n    moteurs: ${moteurs},\n    vitesseMax: ${t.vitesseMax},\n    ${middleLine}${composition},\n    trajets: ${formatTrajets(t.trajets)}\n  }`;
+    return `  {\n    id: "${t.id}",\n    nom: "${
+      t.nom
+    }",\n    moteurs: ${moteurs},\n    vitesseMax: ${
+      t.vitesseMax
+    },\n    ${middleLine}${composition},\n    trajets: ${formatTrajets(
+      t.trajets
+    )}\n  }`;
   };
 
   const trainsText = sorted.map(formatTrain).join(",\n\n");
   return `export const ${varName} = [\n${trainsText}\n];\n`;
 }
-
 
 // ============================================================
 //  UTILITAIRE : détermine le pays d'un train à partir de son ID
@@ -1593,7 +1789,7 @@ function prettyJSExport(varName, arr) {
 function removeTrainEverywhere(id) {
   if (!id) return;
   const rm = (arr, label) => {
-    const idx = arr.findIndex(t => t.id === id);
+    const idx = arr.findIndex((t) => t.id === id);
     if (idx >= 0) {
       arr.splice(idx, 1);
       toast(`Ancienne version supprimée de ${label}.js`, "warn");
@@ -1609,11 +1805,16 @@ function removeTrainEverywhere(id) {
 
 function performExport() {
   const err = validateTrainBeforeSave();
-  if (err) { toast(err, 'err', 3500); return; }
+  if (err) {
+    toast(err, "err", 3500);
+    return;
+  }
 
   const trainObj = toTrainObjectForSave();
-  const validPays = ['FR', 'DE', 'CH', 'BNL', 'IT', 'FRET'];
-  const target = validPays.includes(state.current.pays) ? state.current.pays : 'FR';
+  const validPays = ["FR", "DE", "CH", "BNL", "IT", "FRET"];
+  const target = validPays.includes(state.current.pays)
+    ? state.current.pays
+    : "FR";
 
   // 🧹 Supprime de l'index ET des listes
   supprimerTrainDeIndex(trainObj.id);
@@ -1626,7 +1827,7 @@ function performExport() {
     CH: state.trainsCH,
     BNL: state.trainsBNL,
     IT: state.trainsIT,
-    FRET: state.trainsFRET
+    FRET: state.trainsFRET,
   };
   const arrTarget = arrMap[target] || state.trainsFR;
   arrTarget.push(trainObj);
@@ -1637,48 +1838,49 @@ function performExport() {
   }
 
   // 📦 Génère exports...
-  const frText = prettyJSExport('trainsFR', state.trainsFR);
-  const deText = prettyJSExport('trainsDE', state.trainsDE);
-  const chText = prettyJSExport('trainsCH', state.trainsCH);
-  const bnlText = prettyJSExport('trainsBNL', state.trainsBNL);
-  const itText = prettyJSExport('trainsIT', state.trainsIT);
-  const fretText = prettyJSExport('trainsFRET', state.trainsFRET);
+  const frText = prettyJSExport("trainsFR", state.trainsFR);
+  const deText = prettyJSExport("trainsDE", state.trainsDE);
+  const chText = prettyJSExport("trainsCH", state.trainsCH);
+  const bnlText = prettyJSExport("trainsBNL", state.trainsBNL);
+  const itText = prettyJSExport("trainsIT", state.trainsIT);
+  const fretText = prettyJSExport("trainsFRET", state.trainsFRET);
 
-  download('trainsFR.js', frText);
-  download('trainsDE.js', deText);
-  download('trainsCH.js', chText);
-  download('trainsBNL.js', bnlText);
-  download('trainsIT.js', itText);
-  download('trainsFRET.js', fretText);
+  download("trainsFR.js", frText);
+  download("trainsDE.js", deText);
+  download("trainsCH.js", chText);
+  download("trainsBNL.js", bnlText);
+  download("trainsIT.js", itText);
+  download("trainsFRET.js", fretText);
 
   renderAllTrajets();
-  toast('Export téléchargé (FR, DE, CH, IT, BNL & FRET).', 'ok');
+  toast("Export téléchargé (FR, DE, CH, IT, BNL & FRET).", "ok");
   state.editingExistingId = null;
 }
-
-
 
 /* ============================================================
  * CHARGER / MODIFIER UN TRAIN EXISTANT
  * ============================================================ */
 
 // === Sélection visuelle d’un train existant ===
-$('#btn-load-train').addEventListener('click', openPopupTrains);
-$('#closePopupTrains').addEventListener('click', () => $('#popupTrains').style.display = 'none');
+$("#btn-load-train").addEventListener("click", openPopupTrains);
+$("#closePopupTrains").addEventListener(
+  "click",
+  () => ($("#popupTrains").style.display = "none")
+);
 
 function openPopupTrains() {
-  const popup = $('#popupTrains');
-  const grid = $('#gridTrains');
-  const search = $('#searchTrain');
-  const sort = $('#sortTrains');
+  const popup = $("#popupTrains");
+  const grid = $("#gridTrains");
+  const search = $("#searchTrain");
+  const sort = $("#sortTrains");
 
   const trains = [
-    ...(state.trainsFR || []).map(t => ({ ...t, pays: "FR" })),
-    ...(state.trainsDE || []).map(t => ({ ...t, pays: "DE" })),
-    ...(state.trainsCH || []).map(t => ({ ...t, pays: "CH" })),
-    ...(state.trainsBNL || []).map(t => ({ ...t, pays: "BNL" })),
-    ...(state.trainsIT || []).map(t => ({ ...t, pays: "IT" })),
-    ...(state.trainsFRET || []).map(t => ({ ...t, pays: "FRET" })),
+    ...(state.trainsFR || []).map((t) => ({ ...t, pays: "FR" })),
+    ...(state.trainsDE || []).map((t) => ({ ...t, pays: "DE" })),
+    ...(state.trainsCH || []).map((t) => ({ ...t, pays: "CH" })),
+    ...(state.trainsBNL || []).map((t) => ({ ...t, pays: "BNL" })),
+    ...(state.trainsIT || []).map((t) => ({ ...t, pays: "IT" })),
+    ...(state.trainsFRET || []).map((t) => ({ ...t, pays: "FRET" })),
   ];
 
   if (!trains.length) {
@@ -1690,51 +1892,58 @@ function openPopupTrains() {
     let list = [...trains];
     const q = search.value.toLowerCase().trim();
     if (q) {
-      list = list.filter(t =>
-        (t.nom || '').toLowerCase().includes(q) ||
-        (t.id || '').toLowerCase().includes(q)
+      list = list.filter(
+        (t) =>
+          (t.nom || "").toLowerCase().includes(q) ||
+          (t.id || "").toLowerCase().includes(q)
       );
     }
 
     // Tri
     const sortBy = sort.value;
     list.sort((a, b) => {
-      if (sortBy === 'pays') return (a.pays || '').localeCompare(b.pays || '');
-      if (sortBy === 'nom') return (a.nom || '').localeCompare(b.nom || '');
-      return (a.id || '').localeCompare(b.id || '');
+      if (sortBy === "pays") return (a.pays || "").localeCompare(b.pays || "");
+      if (sortBy === "nom") return (a.nom || "").localeCompare(b.nom || "");
+      return (a.id || "").localeCompare(b.id || "");
     });
 
-    grid.innerHTML = '';
-    list.forEach(t => {
-      const div = document.createElement('div');
-      div.className = 'card-train';
+    grid.innerHTML = "";
+    list.forEach((t) => {
+      const div = document.createElement("div");
+      div.className = "card-train";
 
-
-      const p = (t.pays || '').toUpperCase();
+      const p = (t.pays || "").toUpperCase();
       div.style.background =
-        p === 'FR' ? '#e6f0ff' :
-          p === 'DE' ? '#fff7cc' :
-            p === 'CH' ? '#ffe6e6' :
-              p === 'IT' ? '#97e197' :
-                p === 'BNL' ? '#f8abff' :
-                  p === 'FRET' ? '#fcdfcaff' : '#f9f9f9';
-
+        p === "FR"
+          ? "#e6f0ff"
+          : p === "DE"
+          ? "#fff7cc"
+          : p === "CH"
+          ? "#ffe6e6"
+          : p === "IT"
+          ? "#97e197"
+          : p === "BNL"
+          ? "#f8abff"
+          : p === "FRET"
+          ? "#fcdfcaff"
+          : "#f9f9f9";
 
       // 🔹 tentative de trouver l'image correspondante (si dispo)
-      const imgPath = `./assets/trains/${t.nom?.replaceAll(' ', '_')}.png`;
+      const imgPath = `./assets/trains/${t.nom?.replaceAll(" ", "_")}.png`;
 
       div.innerHTML = `
-        <img src="${imgPath}" alt="${t.nom}" style="width:100%; height:90px; object-fit:contain; background:#f7f7f7;">
-        <h4 style="margin-top:6px;">ID : ${t.id || '(sans id)'}</h4>
-        <p>${t.nom || '(sans nom)'}</p>
+        <img src="${imgPath}" alt="${
+        t.nom
+      }" style="width:100%; height:90px; object-fit:contain; background:#f7f7f7;">
+        <h4 style="margin-top:6px;">ID : ${t.id || "(sans id)"}</h4>
+        <p>${t.nom || "(sans nom)"}</p>
         <p style="color:#555;">${t.trajets?.length || 0} trajet(s)</p>
       `;
 
-
       // clic → charger le train
-      div.addEventListener('click', () => {
+      div.addEventListener("click", () => {
         loadTrainData(t);
-        popup.style.display = 'none';
+        popup.style.display = "none";
       });
 
       grid.appendChild(div);
@@ -1745,23 +1954,23 @@ function openPopupTrains() {
   sort.onchange = renderList;
 
   renderList();
-  popup.style.display = 'flex';
+  popup.style.display = "flex";
 }
 
 function loadTrainData(train) {
   // reset du state
   state.current = JSON.parse(JSON.stringify(train));
-  state.currentPays = train.pays || 'FR';
+  state.currentPays = train.pays || "FR";
 
   // on met à jour les champs encore existants
-  $('#trainId').value = train.id || '';
-  $('#vmax').value = train.vitesseMax || '';
+  $("#trainId").value = train.id || "";
+  $("#vmax").value = train.vitesseMax || "";
 
-  const isFRET = (train.pays === 'FRET') || ('tonnage' in train);
+  const isFRET = train.pays === "FRET" || "tonnage" in train;
 
   // synchronise le sélecteur pays
-  const paysSel = $('#paysSel');
-  paysSel.value = isFRET ? 'FRET' : (train.pays || 'FR');
+  const paysSel = $("#paysSel");
+  paysSel.value = isFRET ? "FRET" : train.pays || "FR";
   state.current.pays = paysSel.value;
 
   // applique l’UI FRET/Voyageur
@@ -1770,40 +1979,45 @@ function loadTrainData(train) {
   // alimenter les champs selon le mode
   if (isFRET) {
     // on ignore l’affichage capacité et on remplit le tonnage
-    const tonInp = document.getElementById('tonnageTotal');
+    const tonInp = document.getElementById("tonnageTotal");
     if (tonInp) tonInp.value = Number(train.tonnage || 0);
     state.current.tonnage = Number(train.tonnage || 0);
   } else {
-    $('#capPrem').value = train.capacite?.premiere || 0;
-    $('#capSec').value = train.capacite?.seconde || 0;
-    state.current.capacite = { premiere: +$('#capPrem').value, seconde: +$('#capSec').value };
+    $("#capPrem").value = train.capacite?.premiere || 0;
+    $("#capSec").value = train.capacite?.seconde || 0;
+    state.current.capacite = {
+      premiere: +$("#capPrem").value,
+      seconde: +$("#capSec").value,
+    };
   }
 
   // mise à jour du sélecteur d’engin
-  const e = state.engins.find(x => x.nom === train.nom);
+  const e = state.engins.find((x) => x.nom === train.nom);
   if (e) {
     state.current.engin = e;
-    $('#enginChoisi').textContent = e.nom;
+    $("#enginChoisi").textContent = e.nom;
   } else {
-    $('#enginChoisi').textContent = '⚠️ Engin non trouvé';
-    toast(`⚠️ L'engin "${train.nom}" n'existe pas dans la base actuelle.`, 'warn');
+    $("#enginChoisi").textContent = "⚠️ Engin non trouvé";
+    toast(
+      `⚠️ L'engin "${train.nom}" n'existe pas dans la base actuelle.`,
+      "warn"
+    );
   }
 
   // Composition
-  $('#compoList').innerHTML = '';
+  $("#compoList").innerHTML = "";
   state.current.composition = [...(train.composition || [])];
-  state.current.composition.forEach(n => addCompoTag(n));
+  state.current.composition.forEach((n) => addCompoTag(n));
 
   //  recalcul des capacités globales (1ʳᵉ / 2ᵉ classe)
   recalcCapaciteGlobale();
 
   // 🔄 Réinitialise l'affichage des dessertes (vide l'ancien trajet)
-  const tbody = document.querySelector('#dessertesTbl tbody');
-  if (tbody) tbody.innerHTML = '';
+  const tbody = document.querySelector("#dessertesTbl tbody");
+  if (tbody) tbody.innerHTML = "";
 
-  $('#distTot').textContent = '— km';
-  $('#timeTot').textContent = '— min';
-
+  $("#distTot").textContent = "— km";
+  $("#timeTot").textContent = "— min";
 
   // Trajets
   renderAllTrajets();
@@ -1812,9 +2026,8 @@ function loadTrainData(train) {
   // 🟦 synchronise le sélecteur de pays (visuel et logique)
   updatePaysColor();
   useGaresDatalist();
-  toast(`✅ Train "${train.nom}" chargé avec succès.`, 'ok');
+  toast(`✅ Train "${train.nom}" chargé avec succès.`, "ok");
 }
-
 
 /* ============================================================
  * ACTIONS UI
@@ -1839,7 +2052,7 @@ function trajetValide(t) {
       return false;
     }
     if (!d.heure || !d.heure.trim()) {
-      toast(`Gare n°${num} (${d.gare || '—'}) : heure manquante.`, "err");
+      toast(`Gare n°${num} (${d.gare || "—"}) : heure manquante.`, "err");
       return false;
     }
     if (!/^\d{2}:\d{2}$/.test(d.heure)) {
@@ -1856,25 +2069,32 @@ function trajetValide(t) {
 }
 
 function bindActions() {
-  $('#btn-add-gare').addEventListener('click', () => {
+  $("#btn-add-gare").addEventListener("click", () => {
     if (state.current.trajetIndex == null || state.current.trajetIndex < 0) {
-      state.current.trajetIndex = 0;           // ► fallback
+      state.current.trajetIndex = 0; // ► fallback
     }
     const t = activeTrajet();
-    if (!t) { toast("Aucun trajet actif.", "warn"); return; }
+    if (!t) {
+      toast("Aucun trajet actif.", "warn");
+      return;
+    }
 
     if (!t.dessertes.length) {
-      t.dessertes.push({ gare: '', arret: state.defaultArretMin, heure: $('#heureDepart').value || '08:00' });
+      t.dessertes.push({
+        gare: "",
+        arret: state.defaultArretMin,
+        heure: $("#heureDepart").value || "08:00",
+      });
     } else {
-      t.dessertes.push({ gare: '', arret: state.defaultArretMin, heure: '' });
+      t.dessertes.push({ gare: "", arret: state.defaultArretMin, heure: "" });
     }
     renderDessertes();
     renderAllTrajets();
   });
-  $('#btn-start-trajet').addEventListener('click', () => {
+  $("#btn-start-trajet").addEventListener("click", () => {
     ensureTrajet();
     const t = activeTrajet();
-    if (!trajetValide(t)) return;  // ✅ validation centralisée
+    if (!trajetValide(t)) return; // ✅ validation centralisée
 
     state.current.trajets.push(emptyTrajet());
     state.current.trajetIndex = state.current.trajets.length - 1;
@@ -1883,21 +2103,25 @@ function bindActions() {
     toast("Nouveau trajet ajouté.", "ok");
   });
 
-  $('#trajetNom').addEventListener('input', (e) => {
+  $("#trajetNom").addEventListener("input", (e) => {
     ensureTrajet();
-    const t = activeTrajet(); if (!t) return;
+    const t = activeTrajet();
+    if (!t) return;
     t.nom = e.target.value;
   });
-  $('#heureDepart').addEventListener('input', (e) => {
+  $("#heureDepart").addEventListener("input", (e) => {
     // ne force rien ici ; utilisé par suggérer/retour
   });
-  $('#btn-suggest').addEventListener('click', suggestHoraires);
-  $('#btn-return').addEventListener('click', genererRetourInverse);
-  $('#btn-export').addEventListener('click', performExport);
-  $('#btn-load-train').addEventListener('click', openPopupTrains);
-  $('#btn-validate').addEventListener('click', () => {
+  $("#btn-suggest").addEventListener("click", suggestHoraires);
+  $("#btn-return").addEventListener("click", genererRetourInverse);
+  $("#btn-export").addEventListener("click", performExport);
+  $("#btn-load-train").addEventListener("click", openPopupTrains);
+  $("#btn-validate").addEventListener("click", () => {
     const t = activeTrajet();
-    if (!t) { toast("Aucun trajet sélectionné.", "warn"); return; }
+    if (!t) {
+      toast("Aucun trajet sélectionné.", "warn");
+      return;
+    }
     if (!trajetValide(t)) return; // ✅ même sécurité que “Ajouter trajet”
     // 🔄 Met à jour le nom du trajet selon les gares (si possible)
     autoUpdateTrajetNom();
@@ -1912,50 +2136,51 @@ function bindActions() {
     setTimeout(() => {
       const err = validateTrainBeforeSave();
       if (err) {
-        toast(err, 'err', 5000);
+        toast(err, "err", 5000);
       } else {
-        toast('✅ Trajet validé sans conflit.', 'ok');
+        toast("✅ Trajet validé sans conflit.", "ok");
       }
     }, 500);
 
     toast(`Modifications enregistrées pour "${t.nom}".`, "ok");
   });
 
-
-  $('#filtreTypeGare').addEventListener('change', e => {
+  $("#filtreTypeGare").addEventListener("change", (e) => {
     state.filtreTypeGare = e.target.value;
   });
-  $('#suggestDepth').addEventListener('input', e => {
+  $("#suggestDepth").addEventListener("input", (e) => {
     state.suggestionRadius = parseInt(e.target.value, 10);
   });
-  $('#suggestMax').addEventListener('input', e => {
+  $("#suggestMax").addEventListener("input", (e) => {
     state.suggestionMax = parseInt(e.target.value, 10);
   });
 
   // valeurs par défaut au démarrage
-  state.filtreTypeGare = $('#filtreTypeGare').value;
-  state.suggestionRadius = parseInt($('#suggestDepth').value, 10);
-  state.suggestionMax = parseInt($('#suggestMax').value, 10);
-
+  state.filtreTypeGare = $("#filtreTypeGare").value;
+  state.suggestionRadius = parseInt($("#suggestDepth").value, 10);
+  state.suggestionMax = parseInt($("#suggestMax").value, 10);
 
   // === Sélection d’un engin via popup amélioré ===
-  $('#btnSelectEngin').addEventListener('click', () => openPopupEngins());
-  $('#closePopupEngins').addEventListener('click', () => $('#popupEngins').style.display = "none");
+  $("#btnSelectEngin").addEventListener("click", () => openPopupEngins());
+  $("#closePopupEngins").addEventListener(
+    "click",
+    () => ($("#popupEngins").style.display = "none")
+  );
 
   function openPopupEngins() {
-    const popup = $('#popupEngins');
-    const grid = $('#gridEngins');
-    const search = $('#searchEngin');
-    const sort = $('#sortEngins');
-    const paysBtns = document.querySelectorAll('#filtrePays button');
+    const popup = $("#popupEngins");
+    const grid = $("#gridEngins");
+    const search = $("#searchEngin");
+    const sort = $("#sortEngins");
+    const paysBtns = document.querySelectorAll("#filtrePays button");
 
     let paysFiltre = "all";
 
-    paysBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
+    paysBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
         paysFiltre = btn.dataset.pays;
-        paysBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        paysBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
         renderList();
       });
     });
@@ -1966,29 +2191,34 @@ function bindActions() {
 
       const isFRET = state.current.pays === "FRET";
       if (isFRET) {
-        engins = engins.filter(e => e.type === "Fret" || e.type === "Poly");
+        engins = engins.filter((e) => e.type === "Fret" || e.type === "Poly");
       } else {
-        engins = engins.filter(e => e.type !== "Fret");
+        engins = engins.filter((e) => e.type !== "Fret");
       }
 
-
-      if (q) engins = engins.filter(e => e.nom.toLowerCase().includes(q));
-      if (paysFiltre !== "all") engins = engins.filter(e => (e.pays || "").toUpperCase() === paysFiltre);
+      if (q) engins = engins.filter((e) => e.nom.toLowerCase().includes(q));
+      if (paysFiltre !== "all")
+        engins = engins.filter(
+          (e) => (e.pays || "").toUpperCase() === paysFiltre
+        );
 
       // --- tri
       const sortBy = sort.value;
       engins.sort((a, b) => {
-        if (sortBy === "pays") return (a.pays || "").localeCompare(b.pays || "");
-        if (sortBy === "vitesse") return (b.vitesseMax || 0) - (a.vitesseMax || 0);
-        if (sortBy === "moteur") return (a.moteurs?.[0] || "").localeCompare(b.moteurs?.[0] || "");
+        if (sortBy === "pays")
+          return (a.pays || "").localeCompare(b.pays || "");
+        if (sortBy === "vitesse")
+          return (b.vitesseMax || 0) - (a.vitesseMax || 0);
+        if (sortBy === "moteur")
+          return (a.moteurs?.[0] || "").localeCompare(b.moteurs?.[0] || "");
         return a.nom.localeCompare(b.nom);
       });
 
       // --- couleurs selon le tri actif
       grid.innerHTML = "";
-      engins.forEach(e => {
+      engins.forEach((e) => {
         const img = `./assets/trains/${e.nom.replaceAll(" ", "_")}.png`;
-        const div = document.createElement('div');
+        const div = document.createElement("div");
         div.className = "card-train";
 
         let bg = "#f6f6f6";
@@ -1999,16 +2229,16 @@ function bindActions() {
           else if ((e.pays || "").toUpperCase() === "DE") bg = "#fff7cc";
           else if ((e.pays || "").toUpperCase() === "CH") bg = "#ffe6e6";
           else if ((e.pays || "").toUpperCase() === "IT") bg = "#7cc47c";
-          else if ((e.pays || "").toUpperCase() === "BE") bg = "#f0c828";  // Belgique
-          else if ((e.pays || "").toUpperCase() === "NL") bg = "#fb8c05";  // Pays-Bas
-          else if ((e.pays || "").toUpperCase() === "LU") bg = "#82a0ff";  // Luxembourg
-
+          else if ((e.pays || "").toUpperCase() === "BE")
+            bg = "#f0c828"; // Belgique
+          else if ((e.pays || "").toUpperCase() === "NL")
+            bg = "#fb8c05"; // Pays-Bas
+          else if ((e.pays || "").toUpperCase() === "LU")
+            bg = "#82a0ff"; // Luxembourg
           else bg = "#f9f9f9";
-        }
-        else if (sortBy === "vitesse") {
+        } else if (sortBy === "vitesse") {
           bg = getSpeedColor(e.vitesseMax);
-        }
-        else if (sortBy === "moteur") {
+        } else if (sortBy === "moteur") {
           bg = getAlimGradient(e.moteurs || []);
         }
 
@@ -2017,27 +2247,29 @@ function bindActions() {
         div.innerHTML = `
         <img src="${img}" alt="${e.nom}">
         <h4>${e.nom}</h4>
-        <p>${e.vitesseMax || '?'} km/h</p>
+        <p>${e.vitesseMax || "?"} km/h</p>
         <p style="color:#444;">${(e.moteurs || []).join(" / ") || "—"}</p>
       `;
 
-        div.addEventListener('click', () => {
-          $('#enginChoisi').textContent = e.nom;
+        div.addEventListener("click", () => {
+          $("#enginChoisi").textContent = e.nom;
           state.current.engin = e;
 
           // Réinitialise les compositions car elles peuvent être incompatibles
           state.current.composition = [];
-          $('#compoList').innerHTML = '';
-          $('#capPrem').value = e.capacite?.premiere || 0;
-          $('#capSec').value = e.capacite?.seconde || 0;
-          $('#vmax').value = e.vitesseMax || '';
+          $("#compoList").innerHTML = "";
+          $("#capPrem").value = e.capacite?.premiere || 0;
+          $("#capSec").value = e.capacite?.seconde || 0;
+          $("#vmax").value = e.vitesseMax || "";
 
           recalcCapaciteGlobale();
 
           popup.style.display = "none";
-          toast(`Engin "${e.nom}" sélectionné. Composition réinitialisée.`, "ok");
+          toast(
+            `Engin "${e.nom}" sélectionné. Composition réinitialisée.`,
+            "ok"
+          );
         });
-
 
         grid.appendChild(div);
       });
@@ -2050,29 +2282,32 @@ function bindActions() {
   }
 
   // === Sélection de composition ===
-  $('#btn-add-compo').addEventListener('click', () => openPopupCompo());
-  $('#closePopupCompo').addEventListener('click', () => $('#popupCompo').style.display = "none");
+  $("#btn-add-compo").addEventListener("click", () => openPopupCompo());
+  $("#closePopupCompo").addEventListener(
+    "click",
+    () => ($("#popupCompo").style.display = "none")
+  );
 
   function openPopupCompo() {
-    const popup = $('#popupCompo');
-    const grid = $('#gridCompo');
-    const sortSel = $('#sortCompo');
-    const search = $('#searchCompo');
-    const qtyInp = $('#qtyCompo');
-    const confirm = $('#btnConfirmCompo');
+    const popup = $("#popupCompo");
+    const grid = $("#gridCompo");
+    const sortSel = $("#sortCompo");
+    const search = $("#searchCompo");
+    const qtyInp = $("#qtyCompo");
+    const confirm = $("#btnConfirmCompo");
 
     let selected = new Set();
 
     function renderList() {
-      // affiner la compatibilité 
-
+      // affiner la compatibilité
 
       // ✅ on commence par les données séparées
       let items = [];
       const base = state.current.engin;
 
       if (base) {
-        const isLoco = (base.capacite?.premiere || 0) + (base.capacite?.seconde || 0) === 0;
+        const isLoco =
+          (base.capacite?.premiere || 0) + (base.capacite?.seconde || 0) === 0;
 
         if (isLoco) {
           // 🚂 Locomotive : propose uniquement les wagons
@@ -2080,24 +2315,24 @@ function bindActions() {
 
           const isFRET = state.current.pays === "FRET";
           if (isFRET) {
-            items = items.filter(e => e.type === "Fret");
+            items = items.filter((e) => e.type === "Fret");
           } else {
-            items = items.filter(e => e.type !== "Fret");
+            items = items.filter((e) => e.type !== "Fret");
           }
-          items.unshift(base);  // ✅ Inclut la motrice actuelle (pour double ou triple traction)
-
+          items.unshift(base); // ✅ Inclut la motrice actuelle (pour double ou triple traction)
         } else {
           // util: premier "mot" avant espace(s) et/ou underscore(s), en minuscules
-          const token = (s) => (s || "")
-            .trim()
-            .split(/[\s_]+/)[0]     // coupe sur 1+ espaces ou underscores
-            .toLowerCase();
+          const token = (s) =>
+            (s || "")
+              .trim()
+              .split(/[\s_]+/)[0] // coupe sur 1+ espaces ou underscores
+              .toLowerCase();
 
           const prefix = token(base.nom);
 
-          items = state.enginsTrains.filter(e => {
+          items = state.enginsTrains.filter((e) => {
             const pfx = token(e.nom);
-            const ok = pfx === prefix;   // ou pfx.startsWith(prefix) si tu veux être plus large
+            const ok = pfx === prefix; // ou pfx.startsWith(prefix) si tu veux être plus large
             return ok;
           });
         }
@@ -2109,69 +2344,77 @@ function bindActions() {
       // ✅ tri lisible (facultatif)
       items.sort((a, b) => a.nom.localeCompare(b.nom));
 
-
       // 🔎 filtre texte (dans le popup)
       const q = (search.value || "").toLowerCase().trim();
       if (q) {
-        items = items.filter(e =>
-          e.nom.toLowerCase().includes(q) ||
-          (e.moteurs || []).some(m => m.toLowerCase().includes(q)) ||
-          (e.pays || '').toLowerCase().includes(q)
+        items = items.filter(
+          (e) =>
+            e.nom.toLowerCase().includes(q) ||
+            (e.moteurs || []).some((m) => m.toLowerCase().includes(q)) ||
+            (e.pays || "").toLowerCase().includes(q)
         );
       }
 
       // 🔃 tri
       const sortBy = sortSel.value;
       items.sort((a, b) => {
-        if (sortBy === 'pays') return (a.pays || '').localeCompare(b.pays || '');
-        if (sortBy === 'vitesse') return (b.vitesseMax || 0) - (a.vitesseMax || 0);
+        if (sortBy === "pays")
+          return (a.pays || "").localeCompare(b.pays || "");
+        if (sortBy === "vitesse")
+          return (b.vitesseMax || 0) - (a.vitesseMax || 0);
         return a.nom.localeCompare(b.nom);
       });
 
       // 🧱 rendu
-      grid.innerHTML = '';
-      items.forEach(e => {
-        const div = document.createElement('div');
-        div.className = 'card-train';
+      grid.innerHTML = "";
+      items.forEach((e) => {
+        const div = document.createElement("div");
+        div.className = "card-train";
 
         // 🎨 fond selon tri (mêmes règles que le popup engins)
-        let bg = '#f8f8f8';
-        if (sortBy === 'pays') {
-          const p = (e.pays || '').toUpperCase();
+        let bg = "#f8f8f8";
+        if (sortBy === "pays") {
+          const p = (e.pays || "").toUpperCase();
           bg =
-            p === 'FR' ? '#e6f0ff' :       // bleu clair
-              p === 'DE' ? '#fff7cc' :       // jaune pâle
-                p === 'CH' ? '#ffe6e6' :       // rouge clair
-                  p === 'IT' ? '#d9f5d9' :       // vert clair
-                    p === 'BE' ? '#f0c828' :
-                      p === 'NL' ? '#fb8c05' :
-                        p === 'LU' ? '#82a0ff' :
-                          // bleu-violet clair
-                          '#f9f9f9';                     // par défaut
-
-        } else if (sortBy === 'vitesse') {
+            p === "FR"
+              ? "#e6f0ff" // bleu clair
+              : p === "DE"
+              ? "#fff7cc" // jaune pâle
+              : p === "CH"
+              ? "#ffe6e6" // rouge clair
+              : p === "IT"
+              ? "#d9f5d9" // vert clair
+              : p === "BE"
+              ? "#f0c828"
+              : p === "NL"
+              ? "#fb8c05"
+              : p === "LU"
+              ? "#82a0ff"
+              : // bleu-violet clair
+                "#f9f9f9"; // par défaut
+        } else if (sortBy === "vitesse") {
           bg = getSpeedColor(e.vitesseMax);
         } // (pas de mode "moteur" ici pour compo)
 
         div.style.background = bg;
 
-        const img = `./assets/trains/${e.nom.replaceAll(' ', '_')}.png`;
+        const img = `./assets/trains/${e.nom.replaceAll(" ", "_")}.png`;
         div.innerHTML = `
         <img src="${img}" alt="${e.nom}">
         <h4>${e.nom}</h4>
-        <p>${e.vitesseMax || '?'} km/h</p>
-        <p style="color:#444;">${(e.moteurs || []).join(' / ') || '—'}</p>
+        <p>${e.vitesseMax || "?"} km/h</p>
+        <p style="color:#444;">${(e.moteurs || []).join(" / ") || "—"}</p>
       `;
 
         // sélection multiple (toggle)
-        div.addEventListener('click', () => {
+        div.addEventListener("click", () => {
           const key = e.nom;
           if (selected.has(key)) {
             selected.delete(key);
-            div.style.outline = 'none';
+            div.style.outline = "none";
           } else {
             selected.add(key);
-            div.style.outline = '3px solid #1e3a8a';
+            div.style.outline = "3px solid #1e3a8a";
           }
         });
 
@@ -2182,7 +2425,7 @@ function bindActions() {
     // ➕ Ajouter à la rame (popup reste ouvert)
     confirm.onclick = () => {
       if (selected.size === 0) {
-        toast('Aucun élément sélectionné.', 'warn');
+        toast("Aucun élément sélectionné.", "warn");
         return;
       }
 
@@ -2190,13 +2433,13 @@ function bindActions() {
       if (!Number.isFinite(qty) || qty < 1) qty = 1;
 
       if (!state.current.composition) state.current.composition = [];
-      const list = $('#compoList');
+      const list = $("#compoList");
 
-      let totalPrem = parseInt($('#capPrem').value || 0);
-      let totalSec = parseInt($('#capSec').value || 0);
+      let totalPrem = parseInt($("#capPrem").value || 0);
+      let totalSec = parseInt($("#capSec").value || 0);
 
       for (const name of selected) {
-        const e = state.engins.find(x => x.nom === name);
+        const e = state.engins.find((x) => x.nom === name);
         if (!e) continue;
 
         for (let i = 0; i < qty; i++) {
@@ -2212,29 +2455,29 @@ function bindActions() {
       }
 
       // met à jour la capacité globale affichée
-      $('#capPrem').value = totalPrem;
-      $('#capSec').value = totalSec;
+      $("#capPrem").value = totalPrem;
+      $("#capSec").value = totalSec;
 
-      toast(`${selected.size * qty} élément(s) ajouté(s).`, 'ok');
+      toast(`${selected.size * qty} élément(s) ajouté(s).`, "ok");
 
       // conserve le popup ouvert, réinitialise juste la sélection visuelle
       selected.clear();
-      grid.querySelectorAll('.card-train').forEach(c => c.style.outline = 'none');
+      grid
+        .querySelectorAll(".card-train")
+        .forEach((c) => (c.style.outline = "none"));
       recalcCapaciteGlobale();
-
     };
-
 
     // évènements live
     search.oninput = renderList;
     sortSel.onchange = renderList;
 
     renderList();
-    popup.style.display = 'flex';
+    popup.style.display = "flex";
   }
 
-  // ==== Gestion nouveau train 
-  $('#btn-new-train').addEventListener('click', () => {
+  // ==== Gestion nouveau train
+  $("#btn-new-train").addEventListener("click", () => {
     const err = validateTrainBeforeSave();
     if (err) {
       toast(err, "err");
@@ -2248,25 +2491,24 @@ function bindActions() {
       CH: state.trainsCH,
       BNL: state.trainsBNL,
       IT: state.trainsIT,
-      FRET: state.trainsFRET
+      FRET: state.trainsFRET,
     };
     const target = mapTrains[state.current.pays] || state.trainsFR;
 
-
-
     // Supprime ancienne version si même ID
-    const idx = target.findIndex(t => t.id === trainObj.id);
+    const idx = target.findIndex((t) => t.id === trainObj.id);
     if (idx >= 0) target[idx] = trainObj;
     else target.push(trainObj);
 
-    toast(`Train "${trainObj.id}" ajouté en mémoire. Tu peux en créer un nouveau.`, "ok");
-
+    toast(
+      `Train "${trainObj.id}" ajouté en mémoire. Tu peux en créer un nouveau.`,
+      "ok"
+    );
 
     // 🔄 Met à jour uniquement le train qu’on vient de créer ou modifier
     supprimerTrainDeIndex(trainObj.id);
     for (const trajet of trainObj.trajets || [])
       indexerTrajet(trainObj.id, trajet, trainObj.vitesseMax);
-
 
     // 🧹 Réinitialise l’éditeur pour un nouveau train
     state.current = {
@@ -2275,40 +2517,37 @@ function bindActions() {
       engin: null,
       pays: "FR",
       composition: [],
-      trajets: []
+      trajets: [],
     };
     state.editingExistingId = null;
     // UI de base
-    $('#trainId').value = "";
-    $('#enginChoisi').textContent = "(aucun)";
-    $('#compoList').innerHTML = "";
-    $('#trajetNom').value = "";
-    $('#heureDepart').value = "08:00";
+    $("#trainId").value = "";
+    $("#enginChoisi").textContent = "(aucun)";
+    $("#compoList").innerHTML = "";
+    $("#trajetNom").value = "";
+    $("#heureDepart").value = "08:00";
     // 🟦 Pays visuel et logique
-    const paysSel = $('#paysSel');
+    const paysSel = $("#paysSel");
     paysSel.value = "FR";
-    paysSel.classList.remove('FR', 'DE', 'CH', 'IT', 'BNL', 'FRET');
-    paysSel.classList.add('FR');
+    paysSel.classList.remove("FR", "DE", "CH", "IT", "BNL", "FRET");
+    paysSel.classList.add("FR");
     state.current.pays = "FR";
     // 🔁 Très important : recréer un trajet vide et le sélectionner
     state.current.trajets.push(emptyTrajet());
     state.current.trajetIndex = 0;
     // UI
-    renderDessertes();      // recharge l’éditeur avec le trajet vide
-    renderAllTrajets();     // affiche la card “(Trajet sans nom)”
+    renderDessertes(); // recharge l’éditeur avec le trajet vide
+    renderAllTrajets(); // affiche la card “(Trajet sans nom)”
   });
-
-
-
 }
 
 /* ============================================================
  * AFFICHAGE MULTIPLE DES TRAJETS (cards repliables)
  * ============================================================ */
 function renderAllTrajets() {
-  const container = document.getElementById('trajetsContainer');
+  const container = document.getElementById("trajetsContainer");
   if (!container) return;
-  container.innerHTML = '';
+  container.innerHTML = "";
 
   if (!state.current.trajets.length) {
     container.innerHTML = `<div class="muted" style="padding:6px;">Aucun trajet défini.</div>`;
@@ -2317,8 +2556,9 @@ function renderAllTrajets() {
 
   state.current.trajets.forEach((trajet, index) => {
     // Création de la card principale
-    const card = document.createElement('div');
-    card.className = 'trajet-card' + (index === state.current.trajetIndex ? ' active' : '');
+    const card = document.createElement("div");
+    card.className =
+      "trajet-card" + (index === state.current.trajetIndex ? " active" : "");
     card.style.cssText = `
       background:#fafbff;
       border:1px solid #dde2f3;
@@ -2328,8 +2568,8 @@ function renderAllTrajets() {
     `;
 
     // === HEADER REPLIABLE ===
-    const header = document.createElement('div');
-    header.className = 'trajet-header';
+    const header = document.createElement("div");
+    header.className = "trajet-header";
     header.style.cssText = `
       background:#eef2ff;
       cursor:pointer;
@@ -2354,26 +2594,24 @@ function renderAllTrajets() {
     // === HEADER REPLIABLE ===
     header.innerHTML = `
   <div style="display:flex; flex-direction:column; flex:1;">
-    <span style="font-weight:600;">${trajet.nom || '(Trajet sans nom)'}</span>
+    <span style="font-weight:600;">${trajet.nom || "(Trajet sans nom)"}</span>
     <small class="muted">${nbGares} gares — ${heureDebut} → ${heureFin} (${duree})</small>
   </div>
   <span style="font-size:18px; color:#888;">▼</span>
 `;
 
-
     // === CONTENU ===
-    const body = document.createElement('div');
-    body.className = 'trajet-body';
+    const body = document.createElement("div");
+    body.className = "trajet-body";
     body.style.cssText = `padding:10px 12px; display:none; background:#fff;`;
 
     if (index === state.current.trajetIndex) {
-      body.style.display = 'block'; // ✅ ouvre la card active
+      body.style.display = "block"; // ✅ ouvre la card active
     }
 
-
     // Table interne (dessertes)
-    const tbl = document.createElement('table');
-    tbl.className = 'table';
+    const tbl = document.createElement("table");
+    tbl.className = "table";
     tbl.innerHTML = `
       <thead><tr>
         <th>#</th><th>Gare</th><th>Arrêt</th><th>Heure</th><th>Jours</th><th></th>
@@ -2384,8 +2622,8 @@ function renderAllTrajets() {
 
     // === Actions spécifiques ===
     // === Actions spécifiques ===
-    const actions = document.createElement('div');
-    actions.className = 'actions';
+    const actions = document.createElement("div");
+    actions.className = "actions";
     actions.innerHTML = `
       <button class="btn btn-ghost btn-mini" data-act="edit">✏️ Modifier</button>
       <button class="btn btn-danger btn-mini" data-act="delete">🗑 Supprimer</button>
@@ -2394,40 +2632,43 @@ function renderAllTrajets() {
     body.appendChild(actions);
 
     // === Gestion ouverture/fermeture ===
-    header.addEventListener('click', () => {
-      const isVisible = body.style.display === 'block';
-      body.style.display = isVisible ? 'none' : 'block';
+    header.addEventListener("click", () => {
+      const isVisible = body.style.display === "block";
+      body.style.display = isVisible ? "none" : "block";
     });
 
     // === Injection du tableau ===
     trajet.dessertes.forEach((d, i) => {
-      const tr = document.createElement('tr');
+      const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${i + 1}</td>
         <td>${d.gare}</td>
         <td class="right">${d.arret ?? state.defaultArretMin}</td>
-        <td class="right">${d.heure || '—'}</td>
-        <td class="right">${(d.jours || []).join(',') || 'tous'}</td>
+        <td class="right">${d.heure || "—"}</td>
+        <td class="right">${(d.jours || []).join(",") || "tous"}</td>
         <td class="right"></td>
       `;
-      tbl.querySelector('tbody').appendChild(tr);
+      tbl.querySelector("tbody").appendChild(tr);
     });
 
     // === Actions locales ===
-    actions.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    actions.querySelectorAll("button").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
         const act = e.currentTarget.dataset.act;
         state.current.trajetIndex = index; // focus sur le trajet cliqué
-        if (act === 'suggest') {
+        if (act === "suggest") {
           suggestHoraires();
         }
-        if (act === 'return') {
+        if (act === "return") {
           genererRetourInverse();
         }
-        if (act === 'delete') {
+        if (act === "delete") {
           const trajets = state.current.trajets || [];
           if (trajets.length <= 1) {
-            toast("Impossible de supprimer : il doit rester au moins un trajet.", "warn");
+            toast(
+              "Impossible de supprimer : il doit rester au moins un trajet.",
+              "warn"
+            );
             return;
           }
           trajets.splice(index, 1);
@@ -2436,29 +2677,28 @@ function renderAllTrajets() {
           renderDessertes(); // recharge l’éditeur sur le trajet restant
           toast("Trajet supprimé.", "ok");
         }
-        if (act === 'edit') {
+        if (act === "edit") {
           state.current.trajetIndex = index;
           const t = state.current.trajets[index];
-          $('#trajetNom').value = t.nom || '';
-          $('#heureDepart').value = t.dessertes?.[0]?.heure || '08:00';
-          renderDessertes();          // recharge la grande table
+          $("#trajetNom").value = t.nom || "";
+          $("#heureDepart").value = t.dessertes?.[0]?.heure || "08:00";
+          renderDessertes(); // recharge la grande table
           toast(`Trajet #${index + 1} chargé pour édition.`, "ok");
         }
       });
     });
-
 
     // Injection dans le container
     card.appendChild(header);
     card.appendChild(body);
     container.appendChild(card);
     // quand on clique sur l’en-tête, on rend cette card active aussi :
-    header.addEventListener('click', () => {
+    header.addEventListener("click", () => {
       // Si on reclique sur la même card, on toggle son affichage
       if (state.current.trajetIndex === index) {
         const currentBody = header.nextElementSibling;
-        const visible = currentBody.style.display === 'block';
-        currentBody.style.display = visible ? 'none' : 'block';
+        const visible = currentBody.style.display === "block";
+        currentBody.style.display = visible ? "none" : "block";
         return;
       }
       // Sinon, on sélectionne une nouvelle card et on l’ouvre
@@ -2466,8 +2706,8 @@ function renderAllTrajets() {
       renderDessertes();
       renderAllTrajets();
       const t = state.current.trajets[index];
-      $('#trajetNom').value = t.nom || '';
-      $('#heureDepart').value = t.dessertes?.[0]?.heure || '08:00';
+      $("#trajetNom").value = t.nom || "";
+      $("#heureDepart").value = t.dessertes?.[0]?.heure || "08:00";
       renderDessertes();
       toast(`Trajet #${index + 1} chargé pour édition.`, "ok");
     });
@@ -2480,8 +2720,8 @@ function renderAllTrajets() {
 function renderResumeTrajet() {
   const t = activeTrajet();
   if (!t || t.dessertes.length < 2) {
-    $('#distTot').textContent = '— km';
-    $('#timeTot').textContent = '— min';
+    $("#distTot").textContent = "— km";
+    $("#timeTot").textContent = "— min";
     return;
   }
   let totalMin = 0;
@@ -2489,11 +2729,17 @@ function renderResumeTrajet() {
   let totalKm = 0;
 
   for (let i = 0; i < t.dessertes.length - 1; i++) {
-    const a = t.dessertes[i], b = t.dessertes[i + 1];
-    const g1 = getGare(a.gare), g2 = getGare(b.gare);
+    const a = t.dessertes[i],
+      b = t.dessertes[i + 1];
+    const g1 = getGare(a.gare),
+      g2 = getGare(b.gare);
     if (!g1 || !g2) continue;
 
-    const path = trouverCheminEntreGares(a.gare, b.gare, state.current.vmax || 9999);
+    const path = trouverCheminEntreGares(
+      a.gare,
+      b.gare,
+      state.current.vmax || 9999
+    );
 
     // km cumulés le long du chemin
     for (let j = 0; j < path.length - 1; j++) {
@@ -2505,16 +2751,15 @@ function renderResumeTrajet() {
   }
 
   const total = totalMin + totalArret;
-  $('#distTot').textContent = `${totalKm.toFixed(1)} km`;
-  $('#timeTot').textContent = `${Math.round(total)} min`;
+  $("#distTot").textContent = `${totalKm.toFixed(1)} km`;
+  $("#timeTot").textContent = `${Math.round(total)} min`;
 }
-
 
 /* ============================================================
  * INIT
  * ============================================================ */
 async function init() {
-  state.current.pays = $('#paysSel').value;
+  state.current.pays = $("#paysSel").value;
   bindTrainForm();
   bindActions();
   await loadEngins();
@@ -2528,17 +2773,17 @@ async function init() {
     state.current.trajets.push(emptyTrajet());
   }
   if (state.current.trajetIndex == null || state.current.trajetIndex < 0) {
-    state.current.trajetIndex = 0;           // ► le 1er trajet devient actif
+    state.current.trajetIndex = 0; // ► le 1er trajet devient actif
   }
 
-  renderDessertes();                         // ► charge l’éditeur avec ce trajet
-  renderAllTrajets();                        // ► affiche les cards avec l’actif
+  renderDessertes(); // ► charge l’éditeur avec ce trajet
+  renderAllTrajets(); // ► affiche les cards avec l’actif
 }
 
 // ============================================================
 // 🔒 Confirmation avant de quitter ou recharger la page
 // ============================================================
-window.addEventListener('beforeunload', (event) => {
+window.addEventListener("beforeunload", (event) => {
   // Si au moins un train a été modifié ou ajouté
   if (
     state.current?.trajets?.length > 0 ||
@@ -2550,6 +2795,5 @@ window.addEventListener('beforeunload', (event) => {
     event.returnValue = ""; // Nécessaire pour afficher le message système
   }
 });
-
 
 init();
